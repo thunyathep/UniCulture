@@ -194,7 +194,7 @@ class _AllActivityState extends State<AllActivity> {
                       left: MediaQuery.of(context).devicePixelRatio*10,
                     ),
                     child: const Text(
-                      'กิจกกรมทั้งหมด',
+                      'กิจกรรมทั้งหมด',
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 32,
@@ -206,18 +206,256 @@ class _AllActivityState extends State<AllActivity> {
               ),
               Column(
                 children: [
-
-
-
+                  _buildCardActivity(context, "assets/pikachu.jpg", "บ้านปลา SCG เคมีคอลส์","open"),
+                  _buildCardActivity(context, "assets/pikachu.jpg", "บ้านปลา SCG เคมีคอลส์","open"),
+                  _buildCardActivity(context, "assets/pikachu.jpg", "บ้านปลา SCG เคมีคอลส์","open"),
 
                   SizedBox(
-                    height: MediaQuery.of(context).size.height*0.05,
+                    height: MediaQuery.of(context).size.height*0.15,
                   ),
                 ],
               ),
             ],
           ),
         ),
+      ),
+    );
+  }
+  Widget _buildCardActivity (BuildContext context, image,String title, String status){
+    return Container(
+      margin: EdgeInsets.symmetric(
+        horizontal: MediaQuery.of(context).devicePixelRatio*8,
+        vertical: MediaQuery.of(context).devicePixelRatio*8,
+      ),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.all(Radius.circular(20)),
+        color: Colors.white,
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.3),
+            blurRadius: 10,
+            spreadRadius: 5,
+          )
+        ],
+      ),
+      height: MediaQuery.of(context).size.height * 0.35,
+      width: MediaQuery.of(context).size.width * 0.9,
+      child: Stack(
+        children: [
+          Align(
+            alignment: Alignment(-1,-1),
+            child: Container(
+              height: MediaQuery.of(context).size.height * 0.15,
+              width: MediaQuery.of(context).size.width*1,
+              decoration: const BoxDecoration(
+                borderRadius: BorderRadius.only(
+                  topRight: Radius.circular(20),
+                  topLeft: Radius.circular(20),
+
+                ),
+              ),
+              child: ClipRRect(
+                borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(20),
+                  topRight: Radius.circular(20),
+                ),
+                child: Image.asset(
+                  image,
+                  fit: BoxFit.cover,
+                ),
+              ),
+            ),
+          ),
+          Column(
+            children: [
+              Padding(
+                padding: EdgeInsets.only(
+                  top: MediaQuery.of(context).devicePixelRatio*38,
+                  left: MediaQuery.of(context).devicePixelRatio*10,
+                ),
+                child: Text(
+                  title,
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
+                  ),
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.only(
+                  left: MediaQuery.of(context).devicePixelRatio*28,
+                ),
+                child: Row(
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.only(
+                          right: MediaQuery.of(context).devicePixelRatio*2
+                      ),
+                      child: Icon(
+                        Icons.location_on,
+                        color: Color(0xFF757575),
+                        size: MediaQuery.of(context).size.height*0.02,
+                      ),
+                    ),
+                    Text(
+                      "จังหวัดระยอง",
+                      style: TextStyle(
+                        fontSize: 14,
+                        color:  Color(0xff757575),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.only(
+                  top: MediaQuery.of(context).devicePixelRatio*2,
+                  left: MediaQuery.of(context).devicePixelRatio*5,
+                ),
+                child: Row(
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.only(
+                          right: MediaQuery.of(context).devicePixelRatio*2
+                      ),
+                      child: Icon(
+                        Icons.calendar_month_rounded,
+                        color: Color(0xFF757575),
+                        size: MediaQuery.of(context).size.height*0.03,
+                      ),
+                    ),
+                    Text(
+                      "เริ่ม : 1 May 2023 / สิ้นสุด : 1 May 2023",
+                      style: TextStyle(
+                        fontSize: 14,
+                        color:  Color(0xff757575),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.only(
+                  top: MediaQuery.of(context).devicePixelRatio*2,
+                  left: MediaQuery.of(context).devicePixelRatio*5,
+                ),
+                child: Row(
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.only(
+                          right:
+                          MediaQuery.of(context).devicePixelRatio*2
+                      ),
+                      child: Icon(
+                        Icons.group,
+                        color: Color(0xFF757575),
+                        size:
+                        MediaQuery.of(context).size.height*0.03,
+                      ),
+                    ),
+                    Text(
+                      "สถานะกิจกรรม",
+                      style: TextStyle(
+                        fontSize: 14,
+                        color:  Color(0xff757575),
+                      ),
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(
+                        left: MediaQuery.of(context).devicePixelRatio*2,
+                      ),
+                      width: MediaQuery.of(context).size.width*0.12,
+                      height: MediaQuery.of(context).size.height*0.02,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(20),
+                        ),
+                        color: Color(0xFF6ED33F),
+                      ),
+                      child: Center(
+                        child: Text(
+                          status,
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 14,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.only(
+                  left: MediaQuery.of(context).devicePixelRatio*1,
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Container(
+                      margin: EdgeInsets.only(
+                        top: MediaQuery.of(context).devicePixelRatio*2,
+                        left: MediaQuery.of(context).devicePixelRatio*3,
+                      ),
+                      height: MediaQuery.of(context).size.height*0.03,
+                      width: MediaQuery.of(context).size.width*0.25,
+                      child: Row(
+                        children: [
+                          Image.asset("assets/coin2.png"),
+                          Padding(
+                            padding: EdgeInsets.only(
+                              left: MediaQuery.of(context).devicePixelRatio*1,
+                              right: MediaQuery.of(context).devicePixelRatio*2,
+                            ),
+                            child: Text("x3",
+                              style: TextStyle(
+                                fontSize: 12,
+                              ),
+                            ),
+                          ),
+                          Image.asset("assets/Fast_move_coin.png"),
+                          Padding(
+                            padding: EdgeInsets.only(
+                                left: MediaQuery.of(context).devicePixelRatio*1
+                            ),
+                            child: Text("x1",
+                              style: TextStyle(
+                                fontSize: 12,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+
+          Align(
+            alignment: Alignment(-0.85,-0.1),
+            child: Container(
+              height: MediaQuery.of(context).size.height*0.07,
+              width: MediaQuery.of(context).size.width*0.1,
+              color: Color(0xFF5B4589),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: const [
+                  Text("1",style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                  ),),
+                  Text("JUN",style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                  ),),
+                ],
+              ),
+            ),
+          )
+        ],
       ),
     );
   }
