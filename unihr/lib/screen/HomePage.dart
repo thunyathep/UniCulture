@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:unihr/screen/AllActivity.dart';
 import 'package:unihr/screen/MyReward.dart';
+import 'package:unihr/screen/ALlReward.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -28,43 +30,41 @@ class _HomePageState extends State<HomePage> {
                           fit: BoxFit.cover,
                       ),
                     ),
-                    // decoration: BoxDecoration(
-                    //   gradient: LinearGradient(
-                    //       begin: Alignment.topLeft,
-                    //       end: Alignment.topRight,
-                    //       colors: [
-                    //         Color(0xffFCB0C2),
-                    //         Color(0xffF4BFCF),
-                    //         Color(0xffF0C5F1),
-                    //         Color(0xffE3DEF4),
-                    //         Color(0xffC1E1E7),
-                    //         Color(0xffC1E1E6),
-                    //       ]
-                    //   ),
-                    // ),
                   ),
-                  // Align(
-                  //   alignment: Alignment.bottomLeft,
-                  //   child: Container(
-                  //     height: MediaQuery.of(context).size.height*0.1,
-                  //     color: Colors.blue.withOpacity(0.5),
-                  //   ),
-                  // ),
+                  Container(
+                    height: MediaQuery.of(context).size.height*0.4,
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
+                        colors: [
+                          Colors.white.withOpacity(0.0), // Start color with opacity
+                          Colors.white.withOpacity(1), // End color with opacity
+                        ],
+                      ),
+                    ),
+                  ),
                   Padding(
-                    padding: EdgeInsets.only(top: MediaQuery.of(context).devicePixelRatio*5),
+                    padding: EdgeInsets.only(
+                        top: MediaQuery.of(context).devicePixelRatio*10,
+                    ),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         SizedBox(
-                          width: MediaQuery.of(context).size.width * 0.6,
-                          child: Image.asset("assets/Unicorn.gif"),
+                          child: Image.asset(
+                            "assets/Unicorn.gif",
+                            width: MediaQuery.of(context).size.width * 0.6,
+                            height: MediaQuery.of(context).size.height*0.3,
+                            fit: BoxFit.cover,
+                          ),
                         ),
                       ],
                     ),
                   ),
                   Padding(
                     padding: EdgeInsets.only(
-                      top: MediaQuery.of(context).devicePixelRatio*38,
+                      top: MediaQuery.of(context).devicePixelRatio*50,
                       left: MediaQuery.of(context).devicePixelRatio* 5 ,
                     ),
                     child: Row(
@@ -73,8 +73,8 @@ class _HomePageState extends State<HomePage> {
                           children: [
                             Container(
                             decoration: BoxDecoration(
-                              borderRadius: BorderRadius.all(Radius.circular(20)),
-                              gradient: LinearGradient(
+                              borderRadius: const BorderRadius.all(Radius.circular(20)),
+                              gradient: const LinearGradient(
                                 begin: Alignment.topCenter,
                                 end: Alignment.bottomCenter,
                                 colors: [
@@ -262,7 +262,7 @@ class _HomePageState extends State<HomePage> {
                         _buildFeature(context, "กระเป๋า\nเหรียญ", MyReward()),
                         _buildFeature(context, "รับส่ง\nหัวใจ", MyReward()),
                         _buildFeature(context, "ฟีดแบค\n", MyReward()),
-                        _buildFeature(context, "แลกของ\nรางวัล", MyReward()),
+                        _buildFeature(context, "แลกของ\nรางวัล", AllReward()),
                         _buildFeature(context, "ภาระกิจ\nของฉัน", MyReward()),
                         _buildFeature(context, "การสื่อสาร\n", MyReward()),
                         _buildFeature(context, "ตาราง\nคะแนน", MyReward()),
@@ -327,7 +327,9 @@ class _HomePageState extends State<HomePage> {
                     ),
                     TextButton(
                       onPressed: (){
-
+                        Navigator.of(context).push(
+                          MaterialPageRoute(builder: (context) => AllActivity()),
+                        );
                       },
                       child: Text("ดูทั้งหมด",
                         style: TextStyle(

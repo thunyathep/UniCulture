@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:gradient_borders/gradient_borders.dart';
 
-class MyReward extends StatefulWidget {
-  const MyReward({Key? key}) : super(key: key);
+
+class AllReward extends StatefulWidget {
+  const AllReward({Key? key}) : super(key: key);
 
   @override
-  State<MyReward> createState() => _MyRewardState();
+  State<AllReward> createState() => _AllRewardState();
 }
 
-class _MyRewardState extends State<MyReward> {
+class _AllRewardState extends State<AllReward> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,27 +45,27 @@ class _MyRewardState extends State<MyReward> {
                   Align(
                     alignment: Alignment.topRight,
                     child: Image.asset(
-                        'assets/trophy.png',
+                      'assets/trophy.png',
                       width: MediaQuery.of(context).size.width*0.4,
                       fit: BoxFit.cover,
                     ),
                   ),
                   Padding(
                     padding: EdgeInsets.only(
-                      top: MediaQuery.of(context).devicePixelRatio*20
+                        top: MediaQuery.of(context).devicePixelRatio*20
                     ),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         IconButton(
-                            onPressed: (){
-                              Navigator.of(context).pop();
-                            },
-                            icon: Icon(
-                                Icons.arrow_back_ios_new_rounded,
-                              color: Colors.white,
-                              size: MediaQuery.of(context).size.height*0.04,
-                            ),
+                          onPressed: (){
+                            Navigator.of(context).pop();
+                          },
+                          icon: Icon(
+                            Icons.arrow_back_ios_new_rounded,
+                            color: Colors.white,
+                            size: MediaQuery.of(context).size.height*0.04,
+                          ),
                         ),
                         Container(
                           width: MediaQuery.of(context).size.width*0.35,
@@ -82,15 +83,15 @@ class _MyRewardState extends State<MyReward> {
                               Row(
                                 children: [
                                   Image.asset(
-                                      'assets/coin2.png',
+                                    'assets/coin2.png',
                                     width: MediaQuery.of(context).size.width*0.06,
                                   ),
                                   Padding(
                                     padding: EdgeInsets.only(
                                       left: MediaQuery.of(context).devicePixelRatio*3,
                                     ),
-                                    child: Text(
-                                        '26',
+                                    child: const Text(
+                                      '26',
                                       style: TextStyle(
                                         fontWeight: FontWeight.bold,
                                       ),
@@ -107,7 +108,7 @@ class _MyRewardState extends State<MyReward> {
                                     padding: EdgeInsets.only(
                                       left: MediaQuery.of(context).devicePixelRatio*3,
                                     ),
-                                    child: Text(
+                                    child: const Text(
                                       '10',
                                       style: TextStyle(
                                         fontWeight: FontWeight.bold,
@@ -127,8 +128,8 @@ class _MyRewardState extends State<MyReward> {
 
                   Padding(
                     padding: EdgeInsets.only(
-                      top: MediaQuery.of(context).devicePixelRatio*17,
-                      left: MediaQuery.of(context).devicePixelRatio*17
+                        top: MediaQuery.of(context).devicePixelRatio*17,
+                        left: MediaQuery.of(context).devicePixelRatio*17
                     ),
                     child: Row(
                       children: [
@@ -139,17 +140,17 @@ class _MyRewardState extends State<MyReward> {
                             borderRadius: BorderRadius.circular(50),
                             border: const GradientBoxBorder(
                               gradient: LinearGradient(
-                                      begin: Alignment.topCenter,
-                                      end: Alignment.bottomCenter,
-                                      colors: [
-                                        Color(0xffFCB0C2),
-                                        Color(0xffF4BFCF),
-                                        Color(0xffF0C5F1),
-                                        Color(0xffE3DEF4),
-                                        Color(0xffC1E1E7),
-                                        Color(0xffC1E1E6),
-                                      ]
-                                  ),
+                                  begin: Alignment.topCenter,
+                                  end: Alignment.bottomCenter,
+                                  colors: [
+                                    Color(0xffFCB0C2),
+                                    Color(0xffF4BFCF),
+                                    Color(0xffF0C5F1),
+                                    Color(0xffE3DEF4),
+                                    Color(0xffC1E1E7),
+                                    Color(0xffC1E1E6),
+                                  ]
+                              ),
                               width: 4,
                             ),
                           ),
@@ -170,7 +171,7 @@ class _MyRewardState extends State<MyReward> {
                             left: MediaQuery.of(context).devicePixelRatio*5,
                           ),
                           child: const Text(
-                              'สมพงศ์ จำปี',
+                            'สมพงศ์ จำปี',
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                               color: Colors.white,
@@ -188,7 +189,7 @@ class _MyRewardState extends State<MyReward> {
                       left: MediaQuery.of(context).devicePixelRatio*10,
                     ),
                     child: const Text(
-                        'รางวัลของฉัน',
+                      'รางวัลของฉัน',
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 24,
@@ -218,7 +219,7 @@ class _MyRewardState extends State<MyReward> {
                           ),
                           TextButton(
                             onPressed: (){},
-                            child: const Text("รอตรวจสอบ",
+                            child: const Text("อาหาร",
                               style: TextStyle(
                                 color: Color(0xff757575),
                               ),
@@ -226,7 +227,7 @@ class _MyRewardState extends State<MyReward> {
                           ),
                           TextButton(
                             onPressed: (){},
-                            child: const Text("สำเร็จ",
+                            child: const Text("ชอปปิง",
                               style: TextStyle(
                                 color: Color(0xff757575),
                               ),
@@ -234,7 +235,7 @@ class _MyRewardState extends State<MyReward> {
                           ),
                           TextButton(
                             onPressed: (){},
-                            child: const Text("รับของรางวัลแล้ว",
+                            child: const Text("ความบันเทิง",
                               style: TextStyle(
                                 color: Color(0xff757575),
                               ),
@@ -242,7 +243,23 @@ class _MyRewardState extends State<MyReward> {
                           ),
                           TextButton(
                             onPressed: (){},
-                            child: const Text("ไม่สำเร็จ",
+                            child: const Text("ไลฟ์สไตล์",
+                              style: TextStyle(
+                                color: Color(0xff757575),
+                              ),
+                            ),
+                          ),
+                          TextButton(
+                            onPressed: (){},
+                            child: const Text("ท่องเที่ยว",
+                              style: TextStyle(
+                                color: Color(0xff757575),
+                              ),
+                            ),
+                          ),
+                          TextButton(
+                            onPressed: (){},
+                            child: const Text("สุขภาพ",
                               style: TextStyle(
                                 color: Color(0xff757575),
                               ),
@@ -256,11 +273,10 @@ class _MyRewardState extends State<MyReward> {
               ),
               Column(
                 children: [
-                  CardMyReward(context),
-                  CardMyReward(context),
-                  CardMyReward(context),
-                  CardMyReward(context),
-
+                  AllReward(context),
+                  AllReward(context),
+                  AllReward(context),
+                  AllReward(context),
 
 
 
@@ -275,7 +291,7 @@ class _MyRewardState extends State<MyReward> {
       ),
     );
   }
-  Widget CardMyReward (BuildContext context){
+  Widget AllReward (BuildContext context){
     return Container(
       width: MediaQuery.of(context).size.width*0.85,
       height: MediaQuery.of(context).size.height*0.25,
@@ -313,33 +329,19 @@ class _MyRewardState extends State<MyReward> {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Container(
-                margin: EdgeInsets.only(
-                  top: MediaQuery.of(context).devicePixelRatio*10,
-                  bottom: MediaQuery.of(context).devicePixelRatio*2,
+              Padding(
+                padding: EdgeInsets.only(
+                  top: MediaQuery.of(context).devicePixelRatio*15,
                 ),
-                width: MediaQuery.of(context).size.width*0.2,
-                height: MediaQuery.of(context).size.height*0.03,
-                decoration: const BoxDecoration(
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(20),
-                  ),
-                  color: Color(0xff6ED33F),
-                ),
-                child: Center(
-                  child: Text(
-                      "สำเร็จ",
-                  ),
-                ),
-              ),
-              Text(
-                'Hanabishi หม้อทอดไร้น้ำมัน',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
+                child: Text(
+                  'Hanabishi หม้อทอดไร้น้ำมัน',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
 
+                  ),
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 1,
                 ),
-                overflow: TextOverflow.ellipsis,
-                maxLines: 1,
               ),
               Container(
                 margin: EdgeInsets.only(
@@ -363,26 +365,21 @@ class _MyRewardState extends State<MyReward> {
                   ],
                 ),
               ),
-              Row(
-                children: [
-                  Padding(
-                    padding: EdgeInsets.only(
-                        right: MediaQuery.of(context).devicePixelRatio*2
-                    ),
-                    child: Icon(
-                      Icons.calendar_month_rounded,
-                      color: Color(0xFF757575),
-                      size: MediaQuery.of(context).size.height*0.02,
-                    ),
-                  ),
-                  Text(
-                    "วันที่แลก: 23 May 2023",
-                    style: TextStyle(
-                      fontSize: 8,
-                      color:  Color(0xff757575),
-                    ),
-                  ),
-                ],
+
+              Text(
+                "หมดเขต: 31 Mar 2023",
+                style: TextStyle(
+                  fontSize: 8,
+                  color:  Color(0xff757575),
+                ),
+              ),
+
+              Text(
+                "คลัง: 9",
+                style: TextStyle(
+                  fontSize: 8,
+                  color:  Color(0xff757575),
+                ),
               ),
               Row(
                 children: [
@@ -406,4 +403,5 @@ class _MyRewardState extends State<MyReward> {
       ),
     );
   }
+
 }
