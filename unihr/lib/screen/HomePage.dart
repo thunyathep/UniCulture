@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:unihr/screen/AllActivity.dart';
+import 'package:unihr/screen/MyActivity.dart';
 import 'package:unihr/screen/MyReward.dart';
 import 'package:unihr/screen/ALlReward.dart';
 
@@ -272,7 +273,7 @@ class _HomePageState extends State<HomePage> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        _buildFeature(context, "กิจกรรม\nของฉัน\n", MyReward()),
+                        _buildFeature(context, "กิจกรรม\nของฉัน\n", MyActivity()),
                         _buildFeature(context, "สมัคร\nกิจกรรม\n", MyReward()),
                         _buildFeature(context, "รางวัล\nของฉัน\n", MyReward()),
                         _buildFeature(context, "คำถาม\nสุขภาพใจ\nรายวัน", MyReward()),

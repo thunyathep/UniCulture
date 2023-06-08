@@ -1,0 +1,358 @@
+import 'package:flutter/material.dart';
+import 'package:gradient_borders/box_borders/gradient_box_border.dart';
+
+class DetailReward extends StatefulWidget {
+  const DetailReward({Key? key}) : super(key: key);
+
+  @override
+  State<DetailReward> createState() => _DetailRewardState();
+}
+
+class _DetailRewardState extends State<DetailReward> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: SafeArea(
+        child: Stack(
+          children: [
+              Stack(
+                children: [
+                  Column(
+                    children: [
+                      Container(
+                        width: MediaQuery.of(context).size.width*1,
+                        height: MediaQuery.of(context).size.height*0.1,
+                        decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                            begin: Alignment.bottomCenter,
+                            end: Alignment.topCenter,
+                            colors: [
+                              Colors.white.withOpacity(0.0), // Start color with opacity
+                              Color(0xffE299AA).withOpacity(0.5), // End color with opacity
+                            ],
+                          ),
+                        ),
+                      ),
+                      Container(
+                        width: MediaQuery.of(context).size.width*0.5,
+                        height: MediaQuery.of(context).size.height*0.25,
+                        color: Colors.transparent,
+                        child: Image.asset(
+                          "assets/air_fryer2.png",
+                          fit: BoxFit.contain,
+                        ),
+                      ),
+
+                      Container(
+                        width: MediaQuery.of(context).size.width*1,
+                        height: MediaQuery.of(context).size.height*0.1,
+                        decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                            begin: Alignment.topCenter,
+                            end: Alignment.bottomCenter,
+                            colors: [
+                              Colors.white.withOpacity(0.0), // Start color with opacity
+                              Color(0xffE299AA).withOpacity(0.7), // End color with opacity
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(
+                      top: MediaQuery.of(context).devicePixelRatio*20,
+                      left: MediaQuery.of(context).devicePixelRatio*5,
+                    ),
+                    child: IconButton(
+                      onPressed: (){
+                        Navigator.of(context).pop();
+                      },
+                      icon: Icon(
+                          Icons.arrow_back_ios_new_rounded,
+                        size: MediaQuery.of(context).size.width*0.07,
+                      ),
+                    ),
+                  ),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height*0.2,
+                      ),
+                      Container(
+                        height: MediaQuery.of(context).size.height*0.55,
+                        width: MediaQuery.of(context).size.width*1,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(50),
+                            topRight: Radius.circular(50),
+                          ),
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding: EdgeInsets.only(
+                                left: MediaQuery.of(context).devicePixelRatio*10,
+                                top: MediaQuery.of(context).devicePixelRatio*5,
+                                bottom: MediaQuery.of(context).devicePixelRatio*2,
+                                right: MediaQuery.of(context).devicePixelRatio*10,
+                              ),
+                              child: Text(
+                                "Hanabishi หม้อทอดไร้น้ำมัน",
+                                overflow: TextOverflow.ellipsis,
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 22,
+                                  color: Colors.black,
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(
+                                top: MediaQuery.of(context).devicePixelRatio*2,
+                                bottom: MediaQuery.of(context).devicePixelRatio*2,
+                                left: MediaQuery.of(context).devicePixelRatio*10,
+                                right: MediaQuery.of(context).devicePixelRatio*10,
+                              ),
+                              child: Text(
+                                "คลัง : 9",
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  color: Color(0xff757575),
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(
+                                top: MediaQuery.of(context).devicePixelRatio*2,
+                                bottom: MediaQuery.of(context).devicePixelRatio*2,
+                                left: MediaQuery.of(context).devicePixelRatio*10,
+                                right: MediaQuery.of(context).devicePixelRatio*10,
+                              ),
+                              child: Text(
+                                "anabishi หม้อทอดไร้น้ำมัน 4 ลิตร รุ่น HAF-001 - 4 ลิตร",
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  color: Colors.black
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(
+                                top: MediaQuery.of(context).devicePixelRatio*2,
+                                bottom: MediaQuery.of(context).devicePixelRatio*2,
+                                left: MediaQuery.of(context).devicePixelRatio*10,
+                                right: MediaQuery.of(context).devicePixelRatio*10,
+                              ),
+                              child: Row(
+                                children: [
+                                  Image.asset(
+                                    'assets/coin.png',
+                                    fit: BoxFit.contain,
+                                    width: MediaQuery.of(context).size.width*0.08,
+                                    height: MediaQuery.of(context).size.width*0.08,
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.only(
+                                      left: MediaQuery.of(context).devicePixelRatio*3,
+                                      right: MediaQuery.of(context).devicePixelRatio*5,
+                                    ),
+                                    child: Text("x3",
+                                      style: TextStyle(
+                                        fontSize: 16,
+                                      ),
+                                    ),
+                                  ),
+                                  Image.asset(
+                                    'assets/heart.png',
+                                    fit: BoxFit.contain,
+                                    width: MediaQuery.of(context).size.width*0.08,
+                                    height: MediaQuery.of(context).size.width*0.08,
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.only(
+                                      left: MediaQuery.of(context).devicePixelRatio*3,
+                                      right: MediaQuery.of(context).devicePixelRatio*2,
+                                    ),
+                                    child: Text("x10",
+                                      style: TextStyle(
+                                        fontSize: 16,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Padding(
+                                    padding: EdgeInsets.only(
+                                      top: MediaQuery.of(context).devicePixelRatio*5,
+                                      bottom: MediaQuery.of(context).devicePixelRatio*2,
+                                      left: MediaQuery.of(context).devicePixelRatio*10,
+                                      right: MediaQuery.of(context).devicePixelRatio*10,
+                                    ),
+                                  child: Text(
+                                    "จำนวน",
+                                    style: TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ),
+                                Container(
+                                  margin: EdgeInsets.only(
+                                    top: MediaQuery.of(context).devicePixelRatio*5,
+                                    right: MediaQuery.of(context).devicePixelRatio*10,
+                                  ),
+                                  width: MediaQuery.of(context).size.width*0.4,
+                                  height: MediaQuery.of(context).size.height*0.05,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10),
+                                    border: const GradientBoxBorder(
+                                      gradient: LinearGradient(
+                                          begin: Alignment.topCenter,
+                                          end: Alignment.bottomCenter,
+                                          colors: [
+                                            Color(0xffFCB0C2),
+                                            Color(0xffF4BFCF),
+                                            Color(0xffF0C5F1),
+                                            Color(0xffE3DEF4),
+                                            Color(0xffC1E1E7),
+                                            Color(0xffC1E1E6),
+                                          ]
+                                      ),
+                                      width: 2.5,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Padding(
+                                  padding: EdgeInsets.only(
+                                    bottom: MediaQuery.of(context).devicePixelRatio*2,
+                                    left: MediaQuery.of(context).devicePixelRatio*10,
+                                    right: MediaQuery.of(context).devicePixelRatio*10,
+                                  ),
+                                  child: Text(
+                                    "รวม",
+                                    style: TextStyle(
+                                      color: Color(0xff757575),
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    SizedBox(
+                                      height: MediaQuery.of(context).devicePixelRatio*10,
+                                    ),
+                                    Row(
+                                      children: [
+                                        Image.asset(
+                                          'assets/coin.png',
+                                          fit: BoxFit.contain,
+                                          width: MediaQuery.of(context).size.width*0.08,
+                                          height: MediaQuery.of(context).size.width*0.08,
+                                        ),
+                                        Padding(
+                                          padding: EdgeInsets.only(
+                                            left: MediaQuery.of(context).devicePixelRatio*3,
+                                            right: MediaQuery.of(context).devicePixelRatio*5,
+                                          ),
+                                          child: Text("x3",
+                                            style: TextStyle(
+                                              fontSize: 16,
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    Row(
+                                      children: [
+                                        Image.asset(
+                                          'assets/heart.png',
+                                          fit: BoxFit.contain,
+                                          width: MediaQuery.of(context).size.width*0.08,
+                                          height: MediaQuery.of(context).size.width*0.08,
+                                        ),
+                                        Padding(
+                                          padding: EdgeInsets.only(
+                                            left: MediaQuery.of(context).devicePixelRatio*3,
+                                            right: MediaQuery.of(context).devicePixelRatio*5,
+                                          ),
+                                          child: Text("x10",
+                                            style: TextStyle(
+                                              fontSize: 16,
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                            Center(
+                              child: GestureDetector(
+                                onTap: (){},
+                                child: Container(
+                                  margin: EdgeInsets.only(
+                                    top: MediaQuery.of(context).devicePixelRatio*10,
+                                  ),
+                                  width: MediaQuery.of(context).size.width*0.7,
+                                  height: MediaQuery.of(context).size.height*0.05,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.all(
+                                      Radius.circular(20),
+                                    ),
+                                    gradient: LinearGradient(
+                                        begin: Alignment.centerLeft,
+                                        end: Alignment.centerRight,
+                                        colors: [
+                                          Color(0xffFCB0C2),
+                                          Color(0xffF4BFCF),
+                                          Color(0xffF0C5F1),
+                                          Color(0xffE3DEF4),
+                                          Color(0xffC1E1E7),
+                                          Color(0xffC1E1E6),
+                                        ]
+                                    ),
+                                  ),
+                                  child: Center(
+                                    child: Text(
+                                      "แลกของรางวัล",
+                                      style: TextStyle(
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 20,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  )
+                ],
+              ),
+          ],
+        ),
+      ),
+    );
+  }
+}
