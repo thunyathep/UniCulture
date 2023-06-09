@@ -3,6 +3,7 @@ import 'package:unihr/screen/AllActivity.dart';
 import 'package:unihr/screen/MyActivity.dart';
 import 'package:unihr/screen/MyReward.dart';
 import 'package:unihr/screen/ALlReward.dart';
+import 'package:unihr/screen/SentHeart.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -261,7 +262,7 @@ class _HomePageState extends State<HomePage> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         _buildFeature(context, "กระเป๋า\nเหรียญ", MyReward()),
-                        _buildFeature(context, "รับส่ง\nหัวใจ", MyReward()),
+                        _buildFeature(context, "รับส่ง\nหัวใจ", SentHeart()),
                         _buildFeature(context, "ฟีดแบค\n", MyReward()),
                         _buildFeature(context, "แลกของ\nรางวัล", AllReward()),
                         _buildFeature(context, "ภาระกิจ\nของฉัน", MyReward()),
