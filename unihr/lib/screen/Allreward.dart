@@ -23,14 +23,16 @@ class _AllRewardState extends State<AllReward> {
               Stack(
                 children: [
                   SizedBox(
-                    height: MediaQuery.of(context).size.height*0.3,
+                    height: MediaQuery.of(context).size.height*0.26,
+                    width: MediaQuery.of(context).size.width*1,
                     child: Image.asset(
                       'assets/top_bar.png',
                       fit: BoxFit.cover,
                     ),
                   ),
                   Container(
-                    height: MediaQuery.of(context).size.height*0.3,
+                    height: MediaQuery.of(context).size.height*0.26,
+                    width: MediaQuery.of(context).size.width*1,
                     decoration: BoxDecoration(
                       gradient: LinearGradient(
                         begin: Alignment.topCenter,
@@ -190,7 +192,7 @@ class _AllRewardState extends State<AllReward> {
                       left: MediaQuery.of(context).devicePixelRatio*10,
                     ),
                     child: const Text(
-                      'รางวัลของฉัน',
+                      'แลกของรางวัล',
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 24,
