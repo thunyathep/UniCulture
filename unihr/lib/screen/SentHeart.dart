@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:gradient_borders/gradient_borders.dart';
 import 'dart:math' as math;
 
+import 'Calender.dart';
+import 'Search.dart';
+
 class SentHeart extends StatefulWidget {
   const SentHeart({Key? key}) : super(key: key);
 
@@ -272,96 +275,430 @@ class _SentHeartState extends State<SentHeart> {
                 children: [
                   Row(
                     children: [
-                      Container(
-                        margin: EdgeInsets.only(
-                          top: MediaQuery.of(context).devicePixelRatio*10,
-                          left: MediaQuery.of(context).devicePixelRatio*15
-                        ),
-                        width: MediaQuery.of(context).size.width*0.35,
-                        height: MediaQuery.of(context).size.height*0.05,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(40),
+                      GestureDetector(
+                        onTap: (){},
+                        child: Container(
+                          margin: EdgeInsets.only(
+                            top: MediaQuery.of(context).devicePixelRatio*10,
+                            left: MediaQuery.of(context).devicePixelRatio*15
                           ),
-                          gradient: LinearGradient(
-                            begin: Alignment.centerRight,
-                            end: Alignment.centerLeft,
-                            colors: [
-                              Color(0xffFCB0C2),
-                              Color(0xffF4BFCF),
-                              Color(0xffF0C5F1),
-                              Color(0xffE3DEF4),
-                              Color(0xffC1E1E7),
-                              Color(0xffC1E1E6),
+                          width: MediaQuery.of(context).size.width*0.35,
+                          height: MediaQuery.of(context).size.height*0.05,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(40),
+                            ),
+                            gradient: LinearGradient(
+                              begin: Alignment.centerRight,
+                              end: Alignment.centerLeft,
+                              colors: [
+                                Color(0xffFCB0C2),
+                                Color(0xffF4BFCF),
+                                Color(0xffF0C5F1),
+                                Color(0xffE3DEF4),
+                                Color(0xffC1E1E7),
+                                Color(0xffC1E1E6),
+                              ],
+                            ),
+                          ),
+                          child: Row(
+                            children: [
+                              Padding(
+                                padding: EdgeInsets.only(
+                                    left: MediaQuery.of(context).devicePixelRatio*8,
+                                    right: MediaQuery.of(context).devicePixelRatio*2
+                                ),
+                                child: Transform.rotate(
+                                  angle: 180 * math.pi/180,
+                                  child: Icon(
+                                    Icons.file_upload_rounded,
+                                    color: Colors.black,
+                                  ),
+                                ),
+                              ),
+                              Text(
+                                "รับหัวใจ",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 14,
+                                ),
+                              ),
                             ],
                           ),
                         ),
-                        child: Row(
-                          children: [
-                            Padding(
-                              padding: EdgeInsets.only(
+                      ),
+                      GestureDetector(
+                        onTap: (){},
+                        child: Container(
+                          margin: EdgeInsets.only(
+                              top: MediaQuery.of(context).devicePixelRatio*10,
+                              left: MediaQuery.of(context).devicePixelRatio*5,
+                          ),
+                          width: MediaQuery.of(context).size.width*0.35,
+                          height: MediaQuery.of(context).size.height*0.05,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(40),
+                            ),
+                            border: Border.all(
+                              width: 1,
+                              color: Color(0xff757575).withOpacity(0.3),
+                            ),
+                            color: Colors.white,
+                          ),
+                          child: Row(
+                            children: [
+                              Padding(
+                                padding: EdgeInsets.only(
                                   left: MediaQuery.of(context).devicePixelRatio*8,
                                   right: MediaQuery.of(context).devicePixelRatio*2
-                              ),
-                              child: Transform.rotate(
-                                angle: 180 * math.pi/180,
+                                ),
                                 child: Icon(
                                   Icons.file_upload_rounded,
-                                  color: Colors.black,
+                                  color: Color(0xff757575),
                                 ),
                               ),
-                            ),
-                            Text(
-                              "รับหัวใจ",
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 14,
+                              Text(
+                                "ส่งหัวใจ",
+                                style: TextStyle(
+                                  color: Color(0xff757575),
+                                ),
                               ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Container(
-                        margin: EdgeInsets.only(
-                            top: MediaQuery.of(context).devicePixelRatio*10,
-                            left: MediaQuery.of(context).devicePixelRatio*5,
-                        ),
-                        width: MediaQuery.of(context).size.width*0.35,
-                        height: MediaQuery.of(context).size.height*0.05,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(40),
+                            ],
                           ),
-                          border: Border.all(
-                            width: 1,
-                            color: Color(0xff757575).withOpacity(0.3),
-                          ),
-                          color: Colors.white,
-                        ),
-                        child: Row(
-                          children: [
-                            Padding(
-                              padding: EdgeInsets.only(
-                                left: MediaQuery.of(context).devicePixelRatio*8,
-                                right: MediaQuery.of(context).devicePixelRatio*2
-                              ),
-                              child: Icon(
-                                Icons.file_upload_rounded,
-                                color: Color(0xff757575),
-                              ),
-                            ),
-                            Text(
-                              "ส่งหัวใจ",
-                              style: TextStyle(
-                                color: Color(0xff757575),
-                              ),
-                            ),
-                          ],
                         ),
                       ),
                     ],
                   ),
+                  Padding(
+                    padding: EdgeInsets.only(
+                      top: MediaQuery.of(context).devicePixelRatio*5,
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.only(
+                            top: MediaQuery.of(context).devicePixelRatio*5,
+                            left: MediaQuery.of(context).devicePixelRatio*15,
+                          ),
+                          child: Row(
+                            children: [
+                              Text(
+                                  "ค้นหาชื่อ",
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black,
+                                ),
+                              ),
+                              GestureDetector(
+                                onTap: (){
+                                  Navigator.of(context).push(
+                                    MaterialPageRoute(builder: (context) => Search(),),
+                                  );
+                                },
+                                child: Container(
+                                  margin: EdgeInsets.only(
+                                    left: MediaQuery.of(context).devicePixelRatio*15,
+                                  ),
+                                  width: MediaQuery.of(context).size.width*0.55,
+                                  height: MediaQuery.of(context).size.height*0.035,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.all(
+                                      Radius.circular(50),
+                                    ),
+                                    color: Color(0xfff5f5f5),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(
+                            top: MediaQuery.of(context).devicePixelRatio*5,
+                            left: MediaQuery.of(context).devicePixelRatio*15,                          ),
+                          child: Row(
+                            children: [
+                              Text(
+                                "ค้นหาวันที่",
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black,
+                                ),
+                              ),
+                              GestureDetector(
+                                onTap: (){
+                                  Navigator.of(context).push(
+                                    MaterialPageRoute(
+                                        builder: (context)=>Calendar())
+                                  );
+                                },
+                                child: Container(
+                                  margin: EdgeInsets.only(
+                                    left: MediaQuery.of(context).devicePixelRatio*13,
+                                  ),
+                                  width: MediaQuery.of(context).size.width*0.55,
+                                  height: MediaQuery.of(context).size.height*0.035,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.all(
+                                      Radius.circular(50),
+                                    ),
+                                    color: Color(0xfff5f5f5),
+                                  ),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    children: [
+                                      Padding(
+                                        padding: EdgeInsets.only(
+                                          right: MediaQuery.of(context).devicePixelRatio*3,
+                                        ),
+                                        child: Icon(
+                                          Icons.calendar_today_rounded,
+                                          size: MediaQuery.of(context).size.width*0.04,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(
+                            top: MediaQuery.of(context).devicePixelRatio*5,
+                            left: MediaQuery.of(context).devicePixelRatio*15,                          ),
+                          child: Row(
+                            children: [
+                              Text(
+                                "จำนวนหัวใจ",
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black,
+                                ),
+                              ),
+                              GestureDetector(
+                                onTap: (){
+                                  showModalBottomSheet(
+                                      context: context,
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.only(
+                                          topRight: Radius.circular(50),
+                                          topLeft: Radius.circular(50),
+                                        ),
+                                      ),
+                                      builder: ((context){
+                                        return Container(
+                                          height: MediaQuery.of(context).size.height*0.35,
+                                          child: Column(
+                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                            children: [
+                                              Padding(
+                                                padding: EdgeInsets.only(
+                                                  top: MediaQuery.of(context).devicePixelRatio*10,
+                                                  left: MediaQuery.of(context).devicePixelRatio*10,
+                                                ),
+                                                child: Text(
+                                                  "เลือกจำนวนหัวใจ",
+                                                  style: TextStyle(
+                                                    fontWeight: FontWeight.bold,
+                                                    fontSize: 20,
+                                                    color: Color(0xff5B4589),
+                                                  ),
+                                                ),
+                                              ),
+                                              GestureDetector(
+                                                onTap: (){},
+                                                child: Container(
+                                                  padding: EdgeInsets.only(
+                                                    top: MediaQuery.of(context).devicePixelRatio*5,
+                                                    left: MediaQuery.of(context).devicePixelRatio*10,
+                                                  ),
+                                                  child: Text(
+                                                    "ทั้งหมด",
+                                                    style: TextStyle(
+                                                      color: Colors.black,
+                                                      fontSize: 16,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                              Container(
+                                                padding: EdgeInsets.only(
+                                                  top: MediaQuery.of(context).devicePixelRatio*10,
+                                                  left: MediaQuery.of(context).devicePixelRatio*10,
+                                                ),
+                                                child: Row(
+                                                  children: [
+                                                    Text(
+                                                      "1",
+                                                      style: TextStyle(
+                                                        fontSize: 16,
+                                                        color: Colors.black,
+                                                      ),
+                                                    ),
+                                                    Padding(
+                                                      padding: EdgeInsets.only(
+                                                        left: MediaQuery.of(context).devicePixelRatio*5,
+                                                      ),
+                                                      child: Image.asset(
+                                                        "assets/heart.png",
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                              Container(
+                                                padding: EdgeInsets.only(
+                                                  top: MediaQuery.of(context).devicePixelRatio*10,
+                                                  left: MediaQuery.of(context).devicePixelRatio*10,
+                                                ),
+                                                child: Row(
+                                                  children: [
+                                                    Text(
+                                                      "2",
+                                                      style: TextStyle(
+                                                        fontSize: 16,
+                                                        color: Colors.black,
+                                                      ),
+                                                    ),
+                                                    Padding(
+                                                      padding: EdgeInsets.only(
+                                                        left: MediaQuery.of(context).devicePixelRatio*5,
+                                                      ),
+                                                      child: Image.asset(
+                                                        "assets/heart.png",
+                                                      ),
+                                                    ),
+                                                    Padding(
+                                                      padding: EdgeInsets.only(
+                                                        left: MediaQuery.of(context).devicePixelRatio*5,
+                                                      ),
+                                                      child: Image.asset(
+                                                        "assets/heart.png",
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                              Container(
+                                                padding: EdgeInsets.only(
+                                                  top: MediaQuery.of(context).devicePixelRatio*10,
+                                                  left: MediaQuery.of(context).devicePixelRatio*10,
+                                                ),
+                                                child: Row(
+                                                  children: [
+                                                    Text(
+                                                      "3",
+                                                      style: TextStyle(
+                                                        fontSize: 16,
+                                                        color: Colors.black,
+                                                      ),
+                                                    ),
+                                                    Padding(
+                                                      padding: EdgeInsets.only(
+                                                        left: MediaQuery.of(context).devicePixelRatio*5,
+                                                      ),
+                                                      child: Image.asset(
+                                                        "assets/heart.png",
+                                                      ),
+                                                    ),
+                                                    Padding(
+                                                      padding: EdgeInsets.only(
+                                                        left: MediaQuery.of(context).devicePixelRatio*5,
+                                                      ),
+                                                      child: Image.asset(
+                                                        "assets/heart.png",
+                                                      ),
+                                                    ),
+                                                    Padding(
+                                                      padding: EdgeInsets.only(
+                                                        left: MediaQuery.of(context).devicePixelRatio*5,
+                                                      ),
+                                                      child: Image.asset(
+                                                        "assets/heart.png",
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        );
+                                      }));
+                                },
+                                child: Container(
+                                  margin: EdgeInsets.only(
+                                    left: MediaQuery.of(context).devicePixelRatio*10,
+                                  ),
+                                  width: MediaQuery.of(context).size.width*0.55,
+                                  height: MediaQuery.of(context).size.height*0.035,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.all(
+                                      Radius.circular(50),
+                                    ),
+                                    color: Color(0xfff5f5f5),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(
+                            top: MediaQuery.of(context).devicePixelRatio*10,
+                            left: MediaQuery.of(context).devicePixelRatio*15,                          ),
+                          child: Text(
+                            "รายการการรับหัวใจ",
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 14,
+                              color: Colors.black,
+                            ),
+                          ),
+                        ),
+                        Container(
+                          margin: EdgeInsets.only(
+                            top: MediaQuery.of(context).devicePixelRatio*5,
+                            left: MediaQuery.of(context).devicePixelRatio*12,
+                          ),
+                          width: MediaQuery.of(context).size.width*0.8,
+                          height: MediaQuery.of(context).size.height*0.2,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(20),
+                            ),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withOpacity(0.1),
+                                blurRadius: 5,
+                                spreadRadius: 1,
+                              )
+                            ],
+                            color: Colors.white,
+                          ),
+                          child: SingleChildScrollView(
+                            scrollDirection: Axis.vertical,
+                            child: Column(
+                              children: [
+                                ListSentheart(context),
+                                ListSentheart(context),
+                                ListSentheart(context),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                 ],
+              ),
+              SizedBox(
+                height: MediaQuery.of(context).size.height*0.1,
               ),
             ],
           ),
@@ -369,5 +706,52 @@ class _SentHeartState extends State<SentHeart> {
       ),
     );
   }
-
+  Widget ListSentheart (BuildContext){
+    return GestureDetector(
+      onTap: (){},
+      child: Container(
+        width: MediaQuery.of(context).size.width*0.8,
+        height: MediaQuery.of(context).size.height*0.1,
+        decoration: BoxDecoration(
+          border: Border(
+            bottom: BorderSide(
+              color: Colors.black.withOpacity(0.3),
+              width: 1,
+            ),
+          ),
+        ),
+        child: ListTile(
+          leading: CircleAvatar(
+            backgroundImage: AssetImage('assets/pikachu.jpg'),
+            radius: 30,
+          ),
+          title: Text('สมปอง นอนดึก'),
+          subtitle: Text('32 Jan 3080'),
+          trailing: Stack(
+            children: [
+              Icon(
+                  Icons.favorite,
+                color: Colors.red,
+                size: MediaQuery.of(context).size.width*0.09,
+              ),
+              Padding(
+                padding: EdgeInsets.only(
+                  top: MediaQuery.of(context).devicePixelRatio*3,
+                  left: MediaQuery.of(context).devicePixelRatio*4,
+                ),
+                child: Text(
+                    "1",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 14,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
 }
