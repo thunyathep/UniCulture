@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:unihr/screen/AllActivity.dart';
+import 'package:unihr/screen/FeedBack.dart';
 import 'package:unihr/screen/MyActivity.dart';
 import 'package:unihr/screen/MyReward.dart';
 import 'package:unihr/screen/ALlReward.dart';
 import 'package:unihr/screen/Pocket.dart';
 import 'package:unihr/screen/SentHeart.dart';
+
+import 'DiaryQuestion.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -264,7 +267,7 @@ class _HomePageState extends State<HomePage> {
                       children: [
                         _buildFeature(context, "กระเป๋า\nเหรียญ", Pocket()),
                         _buildFeature(context, "รับส่ง\nหัวใจ", SentHeart()),
-                        _buildFeature(context, "ฟีดแบค\n", MyReward()),
+                        _buildFeature(context, "ฟีดแบค\n", FeedBack()),
                         _buildFeature(context, "แลกของ\nรางวัล", AllReward()),
                         _buildFeature(context, "ภาระกิจ\nของฉัน", MyReward()),
                         _buildFeature(context, "การสื่อสาร\n", MyReward()),
@@ -278,7 +281,7 @@ class _HomePageState extends State<HomePage> {
                         _buildFeature(context, "กิจกรรม\nของฉัน\n", MyActivity()),
                         _buildFeature(context, "สมัคร\nกิจกรรม\n", MyReward()),
                         _buildFeature(context, "รางวัล\nของฉัน\n", MyReward()),
-                        _buildFeature(context, "คำถาม\nสุขภาพใจ\nรายวัน", MyReward()),
+                        _buildFeature(context, "คำถาม\nสุขภาพใจ\nรายวัน", DiaryQuestion()),
                         _buildFeature(context, "คำถาม\nสุขภาพใจ\nประจำปี", MyReward()),
                         _buildFeature(context, "ประเมิน\n360 องศา\n", MyReward()),
                         _buildFeature(context, "โค้ชชิ่ง\n\n", MyReward()),
@@ -776,7 +779,10 @@ class _HomePageState extends State<HomePage> {
                               ),
                             ),
                           ),
-                          Image.asset("assets/heart.png"),
+                          Image.asset(
+                            "assets/heart.png",
+                            width: MediaQuery.of(context).size.width*0.06,
+                          ),
                           Padding(
                             padding: EdgeInsets.only(
                                 left: MediaQuery.of(context).devicePixelRatio*1

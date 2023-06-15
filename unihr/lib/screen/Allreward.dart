@@ -106,6 +106,7 @@ class _AllRewardState extends State<AllReward> {
                                 children: [
                                   Image.asset(
                                     'assets/heart.png',
+                                    width: MediaQuery.of(context).size.width*0.05,
                                   ),
                                   Padding(
                                     padding: EdgeInsets.only(
@@ -399,7 +400,8 @@ class _AllRewardState extends State<AllReward> {
                       children: [
                         Image.asset(
                           'assets/heart.png',
-                          width: MediaQuery.of(context).size.width*0.12,
+                          width: MediaQuery.of(context).size.width*0.07,
+                          height: MediaQuery.of(context).size.height*0.07,
                         ),
                         Text('x10'),
                       ],

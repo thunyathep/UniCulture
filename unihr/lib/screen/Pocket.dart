@@ -134,6 +134,7 @@ List<T> map<T>(List list, Function handler){
                                 children: [
                                   Image.asset(
                                     'assets/heart.png',
+                                    width: MediaQuery.of(context).size.width*0.06,
                                   ),
                                   Padding(
                                     padding: EdgeInsets.only(

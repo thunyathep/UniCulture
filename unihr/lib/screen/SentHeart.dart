@@ -16,7 +16,7 @@ class _SentHeartState extends State<SentHeart> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Color(0xffffffff),
       body: SafeArea(
         child: SingleChildScrollView(
           scrollDirection: Axis.vertical,
@@ -127,6 +127,7 @@ class _SentHeartState extends State<SentHeart> {
                                 children: [
                                   Image.asset(
                                     'assets/heart.png',
+                                    width: MediaQuery.of(context).size.width*0.06,
                                   ),
                                   Padding(
                                     padding: EdgeInsets.only(
@@ -547,6 +548,8 @@ class _SentHeartState extends State<SentHeart> {
                                                       ),
                                                       child: Image.asset(
                                                         "assets/heart.png",
+                                                        width: MediaQuery.of(context).size.width*0.05,
+
                                                       ),
                                                     ),
                                                   ],
@@ -572,6 +575,7 @@ class _SentHeartState extends State<SentHeart> {
                                                       ),
                                                       child: Image.asset(
                                                         "assets/heart.png",
+                                                        width: MediaQuery.of(context).size.width*0.05,
                                                       ),
                                                     ),
                                                     Padding(
@@ -580,6 +584,7 @@ class _SentHeartState extends State<SentHeart> {
                                                       ),
                                                       child: Image.asset(
                                                         "assets/heart.png",
+                                                        width: MediaQuery.of(context).size.width*0.05,
                                                       ),
                                                     ),
                                                   ],
@@ -605,6 +610,7 @@ class _SentHeartState extends State<SentHeart> {
                                                       ),
                                                       child: Image.asset(
                                                         "assets/heart.png",
+                                                        width: MediaQuery.of(context).size.width*0.05,
                                                       ),
                                                     ),
                                                     Padding(
@@ -613,6 +619,8 @@ class _SentHeartState extends State<SentHeart> {
                                                       ),
                                                       child: Image.asset(
                                                         "assets/heart.png",
+                                                        width: MediaQuery.of(context).size.width*0.05,
+
                                                       ),
                                                     ),
                                                     Padding(
@@ -621,6 +629,7 @@ class _SentHeartState extends State<SentHeart> {
                                                       ),
                                                       child: Image.asset(
                                                         "assets/heart.png",
+                                                        width: MediaQuery.of(context).size.width*0.05,
                                                       ),
                                                     ),
                                                   ],
