@@ -32,6 +32,7 @@ dependencies:
   gradient_borders: ^1.0.0
   table_calendar: ^3.0.9
   carousel_slider: ^4.2.1
+  circular_bottom_navigation: ^2.3.0
   flutter:
     sdk: flutter
 

@@ -456,6 +456,89 @@ class _DetailRewardState extends State<DetailReward> {
                                                 GestureDetector(
                                                   onTap: (){
                                                     Navigator.of(context).pop();
+                                                    showDialog(
+                                                        context: context,
+                                                        builder: (BuildContext context) {
+                                                          return Scaffold(
+                                                            backgroundColor: Colors.transparent,
+                                                            body: SafeArea(
+                                                              child: Stack(
+                                                                children: [
+                                                                  // Confetti GIF as the background
+                                                                  Positioned.fill(
+                                                                    child: Image.asset(
+                                                                      'assets/confetti.gif',
+                                                                      fit: BoxFit.cover,
+                                                                    ),
+                                                                  ),
+                                                                  // Centered Dialog Container
+                                                                  Dialog(
+                                                                    shape: RoundedRectangleBorder(
+                                                                        borderRadius:
+                                                                        BorderRadius.circular(
+                                                                            20.0)), //this right here
+                                                                    child: Container(
+                                                                      height: MediaQuery.of(context)
+                                                                          .size
+                                                                          .height *
+                                                                          0.38,
+                                                                      width: MediaQuery.of(context)
+                                                                          .size
+                                                                          .width *
+                                                                          0.8,
+                                                                      child: Column(
+                                                                        children: [
+                                                                          Row(
+                                                                            mainAxisAlignment:
+                                                                            MainAxisAlignment
+                                                                                .end,
+                                                                            children: [
+                                                                              IconButton(
+                                                                                onPressed: () {
+                                                                                  Navigator.of(
+                                                                                      context)
+                                                                                      .pop();
+                                                                                },
+                                                                                icon: Icon(Icons
+                                                                                    .clear_rounded),
+                                                                              ),
+                                                                            ],
+                                                                          ),
+                                                                          Center(
+                                                                            child: Image.asset(
+                                                                              "assets/air_fryer2.png",
+                                                                              width: MediaQuery
+                                                                                  .of(context)
+                                                                                  .size
+                                                                                  .width
+                                                                                  *0.3,
+                                                                              fit: BoxFit.cover,
+                                                                            ),
+                                                                          ),
+                                                                          Text(
+                                                                            "สำเร็จ!",
+                                                                            style: TextStyle(
+                                                                              color: Colors.black,
+                                                                              fontSize: 40,
+                                                                              fontWeight: FontWeight.bold,
+                                                                            ),
+                                                                          ),
+                                                                          Text(
+                                                                            "แลกของรางวัลแล้ว",
+                                                                            style: TextStyle(
+                                                                              color: Colors.black,
+                                                                              fontSize: 24,
+                                                                            ),
+                                                                          )
+                                                                        ],
+                                                                      ),
+                                                                    ),
+                                                                  ),
+                                                                ],
+                                                              ),
+                                                            ),
+                                                          );
+                                                        });
                                                   },
                                                   child: Padding(
                                                     padding: EdgeInsets.only(

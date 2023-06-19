@@ -2,19 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:gradient_borders/gradient_borders.dart';
 import 'dart:math' as math;
 
-import 'AddFeedBack.dart';
-import 'Calender.dart';
-import 'FeedBack/SearchFeedBack.dart';
-import 'Search.dart';
+import '../../BottomNavigate.dart';
 
-class FeedBack extends StatefulWidget {
-  const FeedBack({Key? key}) : super(key: key);
+
+class MyMission extends StatefulWidget {
+  const MyMission({Key? key}) : super(key: key);
 
   @override
-  State<FeedBack> createState() => _FeedBackState();
+  State<MyMission> createState() => _MyMissionState();
 }
 
-class _FeedBackState extends State<FeedBack> {
+class _MyMissionState extends State<MyMission> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,7 +52,7 @@ class _FeedBackState extends State<FeedBack> {
                     child: Transform.rotate(
                       angle: 2 * math.pi/180,
                       child: Image.asset(
-                        'assets/handfeedback.png',
+                        'assets/arrow_target.png',
                         width: MediaQuery.of(context).size.width*0.5,
                         height: MediaQuery.of(context).size.height*0.27,
                         fit: BoxFit.cover,
@@ -193,7 +191,6 @@ class _FeedBackState extends State<FeedBack> {
                       ],
                     ),
                   ),
-
                   Padding(
                     padding: EdgeInsets.only(
                       top: MediaQuery.of(context).devicePixelRatio*50,
@@ -203,156 +200,38 @@ class _FeedBackState extends State<FeedBack> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         const Text(
-                          'ฟีดแบค',
+                          'ภารกิจของฉัน',
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 24,
                             color: Colors.black,
                           ),
                         ),
-                        Row(
-                          children: [
-                            CircleAvatar(
-                              radius: 20,
-                              backgroundColor: Color(0xff5B4589), //<-- SEE HERE
-                              child: IconButton(
-                                icon: Icon(
-                                  Icons.add,
-                                  color: Colors.white,
-                                ),
-                                onPressed: () {
-                                  Navigator.of(context).push(
-                                    MaterialPageRoute(builder: (context)=>AddFeedBack()),
-                                  );
-                                },
-                              ),
+                        Padding(
+                          padding: EdgeInsets.only(
+                            left: MediaQuery.of(context).devicePixelRatio*2,
+                            right: MediaQuery.of(context).devicePixelRatio*5,
+                          ),
+                          child: Container(
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              gradient: LinearGradient(
+                                  begin: Alignment.topCenter,
+                                  end: Alignment.bottomCenter,
+                                  colors: [
+                                    Color(0xffFCDDDD),
+                                    Color(0xffFEA1C3),
+                                  ]
+                              )
                             ),
-                            Padding(
-                              padding: EdgeInsets.only(
-                                left: MediaQuery.of(context).devicePixelRatio*2,
-                                right: MediaQuery.of(context).devicePixelRatio*5,
+                            child: IconButton(
+                              icon: Icon(
+                                Icons.calendar_today_rounded,
+                                color: Colors.white,
                               ),
-                              child: CircleAvatar(
-                                radius: 20,
-                                backgroundColor: Color(0xff5B4589), //<-- SEE HERE
-                                child: IconButton(
-                                  icon: Icon(
-                                    Icons.search,
-                                    color: Colors.white,
-                                  ),
-                                  onPressed: () {
-                                    Navigator.of(context).push(
-                                      MaterialPageRoute(builder: (context)=>SearchFeedBack()),
-                                    );
-                                  },
-                                ),
-                              ),
+                              onPressed: () {  },
                             ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(
-                      top: MediaQuery.of(context).devicePixelRatio*70,
-                    ),
-                    child: Column(
-                      children: [
-                        Row(
-                          children: [
-                            GestureDetector(
-                              onTap: (){},
-                              child: Container(
-                                margin: EdgeInsets.only(
-                                    left: MediaQuery.of(context).devicePixelRatio*15
-                                ),
-                                width: MediaQuery.of(context).size.width*0.35,
-                                height: MediaQuery.of(context).size.height*0.05,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.all(
-                                    Radius.circular(40),
-                                  ),
-                                  gradient: LinearGradient(
-                                    begin: Alignment.centerRight,
-                                    end: Alignment.centerLeft,
-                                    colors: [
-                                      Color(0xffFCB0C2),
-                                      Color(0xffF4BFCF),
-                                      Color(0xffF0C5F1),
-                                      Color(0xffE3DEF4),
-                                      Color(0xffC1E1E7),
-                                      Color(0xffC1E1E6),
-                                    ],
-                                  ),
-                                ),
-                                child: Row(
-                                  children: [
-                                    Padding(
-                                      padding: EdgeInsets.only(
-                                          left: MediaQuery.of(context).devicePixelRatio*3,
-                                          right: MediaQuery.of(context).devicePixelRatio*2
-                                      ),
-                                      child: Transform.rotate(
-                                        angle: 180 * math.pi/180,
-                                        child: Icon(
-                                          Icons.file_upload_rounded,
-                                          color: Colors.black,
-                                        ),
-                                      ),
-                                    ),
-                                    Text(
-                                      "ฟีดแบคที่ได้รับ",
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 14,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                            GestureDetector(
-                              onTap: (){},
-                              child: Container(
-                                margin: EdgeInsets.only(
-                                  left: MediaQuery.of(context).devicePixelRatio*5,
-                                ),
-                                width: MediaQuery.of(context).size.width*0.35,
-                                height: MediaQuery.of(context).size.height*0.05,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.all(
-                                    Radius.circular(40),
-                                  ),
-                                  border: Border.all(
-                                    width: 1,
-                                    color: Color(0xff757575).withOpacity(0.3),
-                                  ),
-                                  color: Colors.white,
-                                ),
-                                child: Row(
-                                  children: [
-                                    Padding(
-                                      padding: EdgeInsets.only(
-                                          left: MediaQuery.of(context).devicePixelRatio*5,
-                                          right: MediaQuery.of(context).devicePixelRatio*2
-                                      ),
-                                      child: Icon(
-                                        Icons.file_upload_rounded,
-                                        color: Color(0xff757575),
-                                      ),
-                                    ),
-                                    Text(
-                                      "ฟีดแบคที่ส่ง",
-                                      style: TextStyle(
-                                        color: Color(0xff757575),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ],
+                          ),
                         ),
                       ],
                     ),
@@ -361,11 +240,10 @@ class _FeedBackState extends State<FeedBack> {
               ),
               Column(
                 children: [
-                  ListFeedback(context),
-                  ListFeedback(context),
-                  ListFeedback(context),
-                  ListFeedback(context),
-                  ListFeedback(context),
+                  Card_Mission(context),
+                  Card_Mission(context),
+                  Card_Mission(context),
+                  Card_Mission(context),
                 ],
               ),
               SizedBox(
@@ -377,38 +255,162 @@ class _FeedBackState extends State<FeedBack> {
       ),
     );
   }
-  Widget ListFeedback (BuildContext){
-    return GestureDetector(
-      onTap: (){},
-      child: Padding(
-        padding: EdgeInsets.all(
-          MediaQuery.of(context).devicePixelRatio*5
-        ),
-        child: Container(
-          width: MediaQuery.of(context).size.width*0.9,
-          height: MediaQuery.of(context).size.height*0.12,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20),
-            color: Colors.white,
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black.withOpacity(0.1),
-                blurRadius: 5,
-                spreadRadius: 1,
+  Widget Card_Mission (BuildContext){
+    return Container(
+      margin: EdgeInsets.only(
+        bottom: MediaQuery.of(context).devicePixelRatio*10,
+      ),
+      width: MediaQuery.of(context).size.width*0.9,
+      height: MediaQuery.of(context).size.height*0.2,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(30),
+        color: Colors.white,
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.1),
+            blurRadius: 5,
+            spreadRadius: 1,
+          )
+        ]
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            child: Stack(
+              children: [
+                Image.asset(
+                  "assets/mission_card.png",
+                  width: MediaQuery.of(context).size.width,
+                fit: BoxFit.cover,
+                ),
+                Padding(
+                  padding: EdgeInsets.only(
+                    top: MediaQuery.of(context).devicePixelRatio*5,
+                    left: MediaQuery.of(context).devicePixelRatio*10,
+                  ),
+                  child: Text(
+                    "Topic",
+                    style: TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.only(
+              top: MediaQuery.of(context).devicePixelRatio*2,
+              left: MediaQuery.of(context).devicePixelRatio*10,
+            ),
+            child: Text(
+              "วันที่ได้รับมอบหมาย : 27 May 4070",
+              style: TextStyle(
+                color: Color(0xff757575),
+                fontSize: 14,
+              ),
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.only(
+              top: MediaQuery.of(context).devicePixelRatio*2,
+              left: MediaQuery.of(context).devicePixelRatio*10,
+              right: MediaQuery.of(context).devicePixelRatio*10,
+            ),
+            child: Text(
+              "ไปตีแบดกัน",
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+              style: TextStyle(
+                color: Color(0xff757575),
+                fontSize: 16,
+              ),
+            ),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Row(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.only(
+                      top: MediaQuery.of(context).devicePixelRatio*8,
+                      left: MediaQuery.of(context).devicePixelRatio*10,
+                      right: MediaQuery.of(context).devicePixelRatio*2,
+                    ),
+                    child: Icon(
+                      Icons.group,
+                      color: Color(0xff757575),
+                      size: MediaQuery.of(context).devicePixelRatio*6,
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(
+                      top: MediaQuery.of(context).devicePixelRatio*7,
+                    ),
+                    child: Text(
+                      "สถานะกิจกรรม : ",
+                      style: TextStyle(
+                        color: Color(0xff757575),
+                        fontSize: 16,
+                      ),
+                    ),
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(
+                      top: MediaQuery.of(context).devicePixelRatio*7,
+                    ),
+                    width: MediaQuery.of(context).size.width*0.15,
+                    height: MediaQuery.of(context).size.height*0.02,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(50),
+                      color: Color(0xff6ED33F),
+                    ),
+                    child: Center(
+                      child: Text(
+                        "approve",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 12,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              Row(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.only(
+                      top: MediaQuery.of(context).devicePixelRatio*5,
+                    ),
+                    child: Image.asset(
+                      "assets/coin2.png",
+                      fit: BoxFit.contain,
+                      width: MediaQuery.of(context).size.width*0.08,
+                      height: MediaQuery.of(context).size.width*0.08,
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(
+                      top: MediaQuery.of(context).devicePixelRatio*5,
+                      right: MediaQuery.of(context).devicePixelRatio*10,
+                    ),
+                    child: Text(
+                      " x5",
+                      style: TextStyle(
+                        color: Color(0xff757575),
+                        fontSize: 16,
+                      ),
+                    ),
+                  )
+                ],
               ),
             ],
           ),
-          child: Center(
-            child: ListTile(
-              leading: CircleAvatar(
-                backgroundImage: AssetImage('assets/pikachu.jpg'),
-                radius: 30,
-              ),
-              title: Text('อิ่มอร่อยได้ทุกที่กรอบดีถึงใจ'),
-              subtitle: Text('สมปอง นอนดึก, 30 Feb 5080'),
-            ),
-          ),
-        ),
+        ],
       ),
     );
   }

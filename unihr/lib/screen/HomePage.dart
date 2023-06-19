@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:unihr/BottomNavigate.dart';
 import 'package:unihr/screen/AllActivity.dart';
 import 'package:unihr/screen/FeedBack.dart';
 import 'package:unihr/screen/MyActivity.dart';
@@ -6,8 +7,8 @@ import 'package:unihr/screen/MyReward.dart';
 import 'package:unihr/screen/ALlReward.dart';
 import 'package:unihr/screen/Pocket.dart';
 import 'package:unihr/screen/SentHeart.dart';
-
 import 'DiaryQuestion.dart';
+import 'misson/MyMission.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -269,8 +270,8 @@ class _HomePageState extends State<HomePage> {
                         _buildFeature(context, "รับส่ง\nหัวใจ", SentHeart()),
                         _buildFeature(context, "ฟีดแบค\n", FeedBack()),
                         _buildFeature(context, "แลกของ\nรางวัล", AllReward()),
-                        _buildFeature(context, "ภาระกิจ\nของฉัน", MyReward()),
-                        _buildFeature(context, "การสื่อสาร\n", MyReward()),
+                        _buildFeature(context, "ภาระกิจ\nของฉัน", MyMission()),
+                        _buildFeature(context, "การสื่อสาร\n", MyMission()),
                         _buildFeature(context, "ตาราง\nคะแนน", MyReward()),
                         _buildFeature(context, "ผลโหวต\n", MyReward()),
                       ],

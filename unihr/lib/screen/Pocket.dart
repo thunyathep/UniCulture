@@ -281,7 +281,7 @@ List<T> map<T>(List list, Function handler){
                           horizontal: 2.0),
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
-                        color: _currentIndex == index ? Colors.blueAccent : Colors.grey,
+                        color: _currentIndex == index ? Color(0xffF4BFCF) : Color(0xfff5f5f5),
                       ),
                     ),
                   );

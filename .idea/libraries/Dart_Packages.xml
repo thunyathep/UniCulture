@@ -30,6 +30,13 @@
             </list>
           </value>
         </entry>
+        <entry key="circular_bottom_navigation">
+          <value>
+            <list>
+              <option value="$PROJECT_DIR$/../src/flutter/.pub-cache/hosted/pub.dartlang.org/circular_bottom_navigation-2.3.0/lib" />
+            </list>
+          </value>
+        </entry>
         <entry key="clock">
           <value>
             <list>
@@ -205,6 +212,7 @@
       <root url="file://$PROJECT_DIR$/../src/flutter/.pub-cache/hosted/pub.dartlang.org/boolean_selector-2.1.0/lib" />
       <root url="file://$PROJECT_DIR$/../src/flutter/.pub-cache/hosted/pub.dartlang.org/carousel_slider-4.2.1/lib" />
       <root url="file://$PROJECT_DIR$/../src/flutter/.pub-cache/hosted/pub.dartlang.org/characters-1.2.1/lib" />
+      <root url="file://$PROJECT_DIR$/../src/flutter/.pub-cache/hosted/pub.dartlang.org/circular_bottom_navigation-2.3.0/lib" />
       <root url="file://$PROJECT_DIR$/../src/flutter/.pub-cache/hosted/pub.dartlang.org/clock-1.1.1/lib" />
       <root url="file://$PROJECT_DIR$/../src/flutter/.pub-cache/hosted/pub.dartlang.org/collection-1.16.0/lib" />
       <root url="file://$PROJECT_DIR$/../src/flutter/.pub-cache/hosted/pub.dartlang.org/cupertino_icons-1.0.5/lib" />
