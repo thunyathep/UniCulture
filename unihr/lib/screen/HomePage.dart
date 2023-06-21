@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:unihr/BottomNavigate.dart';
+import 'package:unihr/score/Score.dart';
 import 'package:unihr/screen/AllActivity.dart';
 import 'package:unihr/screen/FeedBack.dart';
 import 'package:unihr/screen/MyActivity.dart';
@@ -272,7 +273,7 @@ class _HomePageState extends State<HomePage> {
                         _buildFeature(context, "แลกของ\nรางวัล", AllReward()),
                         _buildFeature(context, "ภาระกิจ\nของฉัน", MyMission()),
                         _buildFeature(context, "การสื่อสาร\n", MyMission()),
-                        _buildFeature(context, "ตาราง\nคะแนน", MyReward()),
+                        _buildFeature(context, "ตาราง\nคะแนน", ScorePage()),
                         _buildFeature(context, "ผลโหวต\n", MyReward()),
                       ],
                     ),
