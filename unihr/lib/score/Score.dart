@@ -18,6 +18,7 @@ class _ScorePageState extends State<ScorePage> {
         child: SingleChildScrollView(
           scrollDirection: Axis.vertical,
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Stack(
                 children: [
@@ -225,6 +226,162 @@ class _ScorePageState extends State<ScorePage> {
                     ),
                   ),
                 ],
+              ),
+              Padding(
+                padding: EdgeInsets.only(
+                  left: MediaQuery.of(context).devicePixelRatio*10,
+                ),
+                child: Text(
+                  "Top 10",
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+              Center(
+                child: Container(
+                  width: MediaQuery.of(context).size.width*0.85,
+                  height: MediaQuery.of(context).size.height*0.3,
+                  color: Colors.transparent,
+                  child: Stack(
+                    children: [
+                      Row(
+                        children: [
+                          Container(
+                            width: MediaQuery.of(context).size.width*0.283,
+                            height: MediaQuery.of(context).size.height*0.25,
+                            color: Color(0xffFCB0C2),
+                            child: Container(
+                              width: MediaQuery.of(context).size.width*0.283,
+                              height: MediaQuery.of(context).size.height*0.3,
+                              decoration: BoxDecoration(
+                                gradient: LinearGradient(
+                                  begin: Alignment.bottomCenter,
+                                  end: Alignment.topCenter,
+                                  colors: [
+                                    Colors.white.withOpacity(0.7), // Start color with opacity
+                                    Colors.white.withOpacity(1), // End color with opacity
+                                  ],
+                                ),
+                              ),
+                              child: Column(
+                                children: [
+                                  Stack(
+                                    children: [
+                                      Padding(
+                                        padding: EdgeInsets.only(
+                                          left: MediaQuery.of(context).devicePixelRatio*5,
+                                          top: MediaQuery.of(context).devicePixelRatio*10,
+                                        ),
+                                        child: SizedBox(
+                                          width: MediaQuery.of(context).size.width*0.2,
+                                          height: MediaQuery.of(context).size.height*0.1,
+                                          child: CircleAvatar(
+                                            backgroundImage: AssetImage('assets/pikachu.jpg'),
+                                            radius: 30,
+                                          ),
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsets.only(
+                                          top: MediaQuery.of(context).devicePixelRatio*10,
+                                        ),
+                                        child: Align(
+                                          alignment: Alignment(0.7,1),
+                                          child: Stack(
+                                            children: [
+                                              Image.asset(
+                                                "assets/heart.png",
+                                                width: MediaQuery.of(context).size.width*0.08,
+                                                height: MediaQuery.of(context).size.height*0.16,
+                                              ),
+                                              Padding(
+                                                padding: EdgeInsets.only(
+                                                  left: MediaQuery.of(context).devicePixelRatio*2.5,
+                                                  top: MediaQuery.of(context).devicePixelRatio*17,
+                                                ),
+                                                child: Text(
+                                                  "30",
+                                                  style: TextStyle(
+                                                    fontWeight: FontWeight.bold,
+                                                    color: Colors.white,
+                                                    fontSize: 14,
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                          Container(
+                            width: MediaQuery.of(context).size.width*0.283,
+                            height: MediaQuery.of(context).size.height*0.25,
+                            color: Color(0xffFCB0C2),
+                            child: Container(
+                              width: MediaQuery.of(context).size.width*0.283,
+                              height: MediaQuery.of(context).size.height*0.3,
+                              decoration: BoxDecoration(
+                                gradient: LinearGradient(
+                                  begin: Alignment.bottomCenter,
+                                  end: Alignment.topCenter,
+                                  colors: [
+                                    Colors.white.withOpacity(0.2), // Start color with opacity
+                                    Colors.white.withOpacity(1), // End color with opacity
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                          Container(
+                            width: MediaQuery.of(context).size.width*0.283,
+                            height: MediaQuery.of(context).size.height*0.25,
+                            color: Color(0xffFCB0C2),
+                            child: Container(
+                              width: MediaQuery.of(context).size.width*0.283,
+                              height: MediaQuery.of(context).size.height*0.3,
+                              decoration: BoxDecoration(
+                                gradient: LinearGradient(
+                                  begin: Alignment.bottomCenter,
+                                  end: Alignment.topCenter,
+                                  colors: [
+                                    Colors.white.withOpacity(0.7), // Start color with opacity
+                                    Colors.white.withOpacity(1), // End color with opacity
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          SizedBox(
+                            height: MediaQuery.of(context).size.height*0.1,
+                          ),
+                          Container(
+                            // margin: EdgeInsets.only(
+                            //   top: MediaQuery.of(context).devicePixelRatio*40,
+                            // ),
+                            width: MediaQuery.of(context).size.width*0.85,
+                            child: Image.asset(
+                              "assets/podium.png",
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
               ),
               SizedBox(
                 height: MediaQuery.of(context).size.height*0.1,
