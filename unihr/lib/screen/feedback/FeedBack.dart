@@ -3,9 +3,8 @@ import 'package:gradient_borders/gradient_borders.dart';
 import 'dart:math' as math;
 
 import 'AddFeedBack.dart';
-import 'Calender.dart';
-import 'FeedBack/SearchFeedBack.dart';
-import 'Search.dart';
+import 'SearchFeedBack.dart';
+import '../Search.dart';
 
 class FeedBack extends StatefulWidget {
   const FeedBack({Key? key}) : super(key: key);
