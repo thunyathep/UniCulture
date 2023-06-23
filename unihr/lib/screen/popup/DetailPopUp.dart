@@ -204,7 +204,92 @@ class _DetailPopUpState extends State<DetailPopUp> {
                   ),
                   child: Center(
                     child: GestureDetector(
-                      onTap: (){},
+                      onTap: () {
+                        Navigator.of(context).pop();
+                        showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return Scaffold(
+                                backgroundColor: Colors.transparent,
+                                body: SafeArea(
+                                  child: Stack(
+                                    children: [
+                                      // Confetti GIF as the background
+                                      Positioned.fill(
+                                        child: Image.asset(
+                                          'assets/confetti.gif',
+                                          fit: BoxFit.cover,
+                                        ),
+                                      ),
+                                      // Centered Dialog Container
+                                      Dialog(
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                            BorderRadius.circular(
+                                                20.0)), //this right here
+                                        child: Container(
+                                          height: MediaQuery.of(context)
+                                              .size
+                                              .height *
+                                              0.38,
+                                          width: MediaQuery.of(context)
+                                              .size
+                                              .width *
+                                              0.8,
+                                          child: Column(
+                                            children: [
+                                              Row(
+                                                mainAxisAlignment:
+                                                MainAxisAlignment
+                                                    .end,
+                                                children: [
+                                                  IconButton(
+                                                    onPressed: () {
+                                                      Navigator.of(
+                                                          context)
+                                                          .pop();
+                                                    },
+                                                    icon: Icon(Icons
+                                                        .clear_rounded),
+                                                  ),
+                                                ],
+                                              ),
+                                              Center(
+                                                child: Image.asset(
+                                                  "assets/coin2.png",
+                                                  width: MediaQuery
+                                                      .of(context)
+                                                      .size
+                                                      .width
+                                                      *0.3,
+                                                  fit: BoxFit.cover,
+                                                ),
+                                              ),
+                                              Text(
+                                                "ยินดีด้วย",
+                                                style: TextStyle(
+                                                  color: Colors.black,
+                                                  fontSize: 40,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                              ),
+                                              Text(
+                                                "คุณได้รับ 1 เหรียญทอง",
+                                                style: TextStyle(
+                                                  color: Colors.black,
+                                                  fontSize: 24,
+                                                ),
+                                              )
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              );
+                            });
+                      },
                       child: Container(
                         width: MediaQuery.of(context).size.width*0.6,
                         height: MediaQuery.of(context).size.height*0.05,

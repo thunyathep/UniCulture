@@ -21,9 +21,10 @@ class _DetailMyActivityState extends State<DetailMyActivity> {
                 Column(
                   children: [
                     Container(
-                      width: MediaQuery.of(context).size.width*1,
-                      height: MediaQuery.of(context).size.height*0.45,
-                      child: Image.asset('assets/shinosukeedit.jpg',
+                      width: MediaQuery.of(context).size.width * 1,
+                      height: MediaQuery.of(context).size.height * 0.45,
+                      child: Image.asset(
+                        'assets/shinosukeedit.jpg',
                         fit: BoxFit.cover,
                       ),
                     ),
@@ -31,17 +32,17 @@ class _DetailMyActivityState extends State<DetailMyActivity> {
                 ),
                 Padding(
                   padding: EdgeInsets.only(
-                    top: MediaQuery.of(context).devicePixelRatio*20,
-                    left: MediaQuery.of(context).devicePixelRatio*5,
+                    top: MediaQuery.of(context).devicePixelRatio * 20,
+                    left: MediaQuery.of(context).devicePixelRatio * 5,
                   ),
                   child: IconButton(
-                    onPressed: (){
+                    onPressed: () {
                       Navigator.of(context).pop();
                     },
                     icon: Icon(
                       Icons.arrow_back_ios_new_rounded,
                       color: Colors.white,
-                      size: MediaQuery.of(context).size.width*0.07,
+                      size: MediaQuery.of(context).size.width * 0.07,
                     ),
                   ),
                 ),
@@ -49,11 +50,11 @@ class _DetailMyActivityState extends State<DetailMyActivity> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     SizedBox(
-                      height: MediaQuery.of(context).size.height*0.2,
+                      height: MediaQuery.of(context).size.height * 0.2,
                     ),
                     Container(
-                      height: MediaQuery.of(context).size.height*0.6,
-                      width: MediaQuery.of(context).size.width*1,
+                      height: MediaQuery.of(context).size.height * 0.6,
+                      width: MediaQuery.of(context).size.width * 1,
                       decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.only(
@@ -66,8 +67,8 @@ class _DetailMyActivityState extends State<DetailMyActivity> {
                         children: [
                           Center(
                             child: Container(
-                              width: MediaQuery.of(context).size.width*0.98,
-                              height: MediaQuery.of(context).size.height*0.05,
+                              width: MediaQuery.of(context).size.width * 0.98,
+                              height: MediaQuery.of(context).size.height * 0.05,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.only(
                                   topLeft: Radius.circular(50),
@@ -77,8 +78,10 @@ class _DetailMyActivityState extends State<DetailMyActivity> {
                                   begin: Alignment.bottomCenter,
                                   end: Alignment.topCenter,
                                   colors: [
-                                    Colors.white.withOpacity(0.2), // Start color with opacity
-                                    Color(0xffE299AA).withOpacity(0.5), // End color with opacity
+                                    Colors.white.withOpacity(
+                                        0.2), // Start color with opacity
+                                    Color(0xffE299AA).withOpacity(
+                                        0.5), // End color with opacity
                                   ],
                                 ),
                               ),
@@ -86,10 +89,13 @@ class _DetailMyActivityState extends State<DetailMyActivity> {
                           ),
                           Padding(
                             padding: EdgeInsets.only(
-                              left: MediaQuery.of(context).devicePixelRatio*10,
-                              top: MediaQuery.of(context).devicePixelRatio*2,
-                              bottom: MediaQuery.of(context).devicePixelRatio*2,
-                              right: MediaQuery.of(context).devicePixelRatio*10,
+                              left:
+                                  MediaQuery.of(context).devicePixelRatio * 10,
+                              top: MediaQuery.of(context).devicePixelRatio * 2,
+                              bottom:
+                                  MediaQuery.of(context).devicePixelRatio * 2,
+                              right:
+                                  MediaQuery.of(context).devicePixelRatio * 10,
                             ),
                             child: Text(
                               "วิ่งเพื่อผู้พิทักษ์ป่า",
@@ -103,23 +109,27 @@ class _DetailMyActivityState extends State<DetailMyActivity> {
                           ),
                           Padding(
                             padding: EdgeInsets.only(
-                              top: MediaQuery.of(context).devicePixelRatio*2,
-                              bottom: MediaQuery.of(context).devicePixelRatio*2,
-                              left: MediaQuery.of(context).devicePixelRatio*10,
-                              right: MediaQuery.of(context).devicePixelRatio*10,
+                              top: MediaQuery.of(context).devicePixelRatio * 2,
+                              bottom:
+                                  MediaQuery.of(context).devicePixelRatio * 2,
+                              left:
+                                  MediaQuery.of(context).devicePixelRatio * 10,
+                              right:
+                                  MediaQuery.of(context).devicePixelRatio * 10,
                             ),
                             child: Row(
                               children: [
                                 Padding(
                                   padding: EdgeInsets.only(
-                                    right:
-                                    MediaQuery.of(context).devicePixelRatio*2,
+                                    right: MediaQuery.of(context)
+                                            .devicePixelRatio *
+                                        2,
                                   ),
                                   child: Icon(
                                     Icons.group,
                                     color: Color(0xFF757575),
-                                    size:
-                                    MediaQuery.of(context).size.height*0.03,
+                                    size: MediaQuery.of(context).size.height *
+                                        0.03,
                                   ),
                                 ),
                                 Text(
@@ -127,15 +137,19 @@ class _DetailMyActivityState extends State<DetailMyActivity> {
                                   style: TextStyle(
                                     fontSize: 14,
                                     fontWeight: FontWeight.bold,
-                                    color:  Color(0xff757575),
+                                    color: Color(0xff757575),
                                   ),
                                 ),
                                 Container(
                                   margin: EdgeInsets.only(
-                                    left: MediaQuery.of(context).devicePixelRatio*2,
+                                    left: MediaQuery.of(context)
+                                            .devicePixelRatio *
+                                        2,
                                   ),
-                                  width: MediaQuery.of(context).size.width*0.12,
-                                  height: MediaQuery.of(context).size.height*0.02,
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.12,
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.02,
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.all(
                                       Radius.circular(20),
@@ -157,22 +171,30 @@ class _DetailMyActivityState extends State<DetailMyActivity> {
                           ),
                           Padding(
                             padding: EdgeInsets.only(
-                              top: MediaQuery.of(context).devicePixelRatio*2,
-                              bottom: MediaQuery.of(context).devicePixelRatio*2,
-                              left: MediaQuery.of(context).devicePixelRatio*10,
-                              right: MediaQuery.of(context).devicePixelRatio*10,
+                              top: MediaQuery.of(context).devicePixelRatio * 2,
+                              bottom:
+                                  MediaQuery.of(context).devicePixelRatio * 2,
+                              left:
+                                  MediaQuery.of(context).devicePixelRatio * 10,
+                              right:
+                                  MediaQuery.of(context).devicePixelRatio * 10,
                             ),
                             child: Row(
                               children: [
                                 Padding(
                                   padding: EdgeInsets.only(
-                                    right: MediaQuery.of(context).devicePixelRatio*2,
-                                    bottom: MediaQuery.of(context).devicePixelRatio*2,
+                                    right: MediaQuery.of(context)
+                                            .devicePixelRatio *
+                                        2,
+                                    bottom: MediaQuery.of(context)
+                                            .devicePixelRatio *
+                                        2,
                                   ),
                                   child: Icon(
                                     Icons.location_on,
                                     color: Color(0xFF757575),
-                                    size: MediaQuery.of(context).size.height*0.03,
+                                    size: MediaQuery.of(context).size.height *
+                                        0.03,
                                   ),
                                 ),
                                 Column(
@@ -183,14 +205,14 @@ class _DetailMyActivityState extends State<DetailMyActivity> {
                                       style: TextStyle(
                                         fontSize: 14,
                                         fontWeight: FontWeight.bold,
-                                        color:  Color(0xff757575),
+                                        color: Color(0xff757575),
                                       ),
                                     ),
                                     Text(
                                       "สถานที่จัดกิจกรรม",
                                       style: TextStyle(
                                         fontSize: 14,
-                                        color:  Color(0xff757575),
+                                        color: Color(0xff757575),
                                       ),
                                     ),
                                   ],
@@ -200,22 +222,30 @@ class _DetailMyActivityState extends State<DetailMyActivity> {
                           ),
                           Padding(
                             padding: EdgeInsets.only(
-                              top: MediaQuery.of(context).devicePixelRatio*2,
-                              bottom: MediaQuery.of(context).devicePixelRatio*2,
-                              left: MediaQuery.of(context).devicePixelRatio*10,
-                              right: MediaQuery.of(context).devicePixelRatio*10,
+                              top: MediaQuery.of(context).devicePixelRatio * 2,
+                              bottom:
+                                  MediaQuery.of(context).devicePixelRatio * 2,
+                              left:
+                                  MediaQuery.of(context).devicePixelRatio * 10,
+                              right:
+                                  MediaQuery.of(context).devicePixelRatio * 10,
                             ),
                             child: Row(
                               children: [
                                 Padding(
                                   padding: EdgeInsets.only(
-                                    right: MediaQuery.of(context).devicePixelRatio*2,
-                                    bottom: MediaQuery.of(context).devicePixelRatio*8,
+                                    right: MediaQuery.of(context)
+                                            .devicePixelRatio *
+                                        2,
+                                    bottom: MediaQuery.of(context)
+                                            .devicePixelRatio *
+                                        8,
                                   ),
                                   child: Icon(
                                     Icons.access_time,
                                     color: Color(0xFF757575),
-                                    size: MediaQuery.of(context).size.height*0.03,
+                                    size: MediaQuery.of(context).size.height *
+                                        0.03,
                                   ),
                                 ),
                                 Column(
@@ -223,14 +253,15 @@ class _DetailMyActivityState extends State<DetailMyActivity> {
                                   children: [
                                     Padding(
                                       padding: EdgeInsets.only(
-                                          right: MediaQuery.of(context).devicePixelRatio*2
-                                      ),
+                                          right: MediaQuery.of(context)
+                                                  .devicePixelRatio *
+                                              2),
                                       child: Text(
                                         "ระยะเวลารับสมัคร",
                                         style: TextStyle(
                                           fontSize: 14,
                                           fontWeight: FontWeight.bold,
-                                          color:  Color(0xff757575),
+                                          color: Color(0xff757575),
                                         ),
                                       ),
                                     ),
@@ -255,22 +286,30 @@ class _DetailMyActivityState extends State<DetailMyActivity> {
                           ),
                           Padding(
                             padding: EdgeInsets.only(
-                              top: MediaQuery.of(context).devicePixelRatio*2,
-                              bottom: MediaQuery.of(context).devicePixelRatio*2,
-                              left: MediaQuery.of(context).devicePixelRatio*10,
-                              right: MediaQuery.of(context).devicePixelRatio*10,
+                              top: MediaQuery.of(context).devicePixelRatio * 2,
+                              bottom:
+                                  MediaQuery.of(context).devicePixelRatio * 2,
+                              left:
+                                  MediaQuery.of(context).devicePixelRatio * 10,
+                              right:
+                                  MediaQuery.of(context).devicePixelRatio * 10,
                             ),
                             child: Row(
                               children: [
                                 Padding(
                                   padding: EdgeInsets.only(
-                                    right: MediaQuery.of(context).devicePixelRatio*2,
-                                    bottom: MediaQuery.of(context).devicePixelRatio*8,
+                                    right: MediaQuery.of(context)
+                                            .devicePixelRatio *
+                                        2,
+                                    bottom: MediaQuery.of(context)
+                                            .devicePixelRatio *
+                                        8,
                                   ),
                                   child: Icon(
                                     Icons.calendar_today_rounded,
                                     color: Color(0xFF757575),
-                                    size: MediaQuery.of(context).size.height*0.03,
+                                    size: MediaQuery.of(context).size.height *
+                                        0.03,
                                   ),
                                 ),
                                 Column(
@@ -278,14 +317,15 @@ class _DetailMyActivityState extends State<DetailMyActivity> {
                                   children: [
                                     Padding(
                                       padding: EdgeInsets.only(
-                                          right: MediaQuery.of(context).devicePixelRatio*2
-                                      ),
+                                          right: MediaQuery.of(context)
+                                                  .devicePixelRatio *
+                                              2),
                                       child: Text(
                                         "ระยะเวลากิจกกรม",
                                         style: TextStyle(
                                           fontSize: 14,
                                           fontWeight: FontWeight.bold,
-                                          color:  Color(0xff757575),
+                                          color: Color(0xff757575),
                                         ),
                                       ),
                                     ),
@@ -310,22 +350,30 @@ class _DetailMyActivityState extends State<DetailMyActivity> {
                           ),
                           Padding(
                             padding: EdgeInsets.only(
-                              top: MediaQuery.of(context).devicePixelRatio*2,
-                              bottom: MediaQuery.of(context).devicePixelRatio*2,
-                              left: MediaQuery.of(context).devicePixelRatio*10,
-                              right: MediaQuery.of(context).devicePixelRatio*10,
+                              top: MediaQuery.of(context).devicePixelRatio * 2,
+                              bottom:
+                                  MediaQuery.of(context).devicePixelRatio * 2,
+                              left:
+                                  MediaQuery.of(context).devicePixelRatio * 10,
+                              right:
+                                  MediaQuery.of(context).devicePixelRatio * 10,
                             ),
                             child: Row(
                               children: [
                                 Padding(
                                   padding: EdgeInsets.only(
-                                    right: MediaQuery.of(context).devicePixelRatio*2,
-                                    bottom: MediaQuery.of(context).devicePixelRatio*8,
+                                    right: MediaQuery.of(context)
+                                            .devicePixelRatio *
+                                        2,
+                                    bottom: MediaQuery.of(context)
+                                            .devicePixelRatio *
+                                        8,
                                   ),
                                   child: Icon(
                                     Icons.contact_phone_rounded,
                                     color: Color(0xFF757575),
-                                    size: MediaQuery.of(context).size.height*0.03,
+                                    size: MediaQuery.of(context).size.height *
+                                        0.03,
                                   ),
                                 ),
                                 Column(
@@ -333,14 +381,15 @@ class _DetailMyActivityState extends State<DetailMyActivity> {
                                   children: [
                                     Padding(
                                       padding: EdgeInsets.only(
-                                          right: MediaQuery.of(context).devicePixelRatio*2
-                                      ),
+                                          right: MediaQuery.of(context)
+                                                  .devicePixelRatio *
+                                              2),
                                       child: Text(
                                         "ข้อมูลผู้จัดกิจกรรม",
                                         style: TextStyle(
                                           fontSize: 14,
                                           fontWeight: FontWeight.bold,
-                                          color:  Color(0xff757575),
+                                          color: Color(0xff757575),
                                         ),
                                       ),
                                     ),
@@ -365,11 +414,12 @@ class _DetailMyActivityState extends State<DetailMyActivity> {
                           ),
                           Container(
                             margin: EdgeInsets.only(
-                              top: MediaQuery.of(context).devicePixelRatio*7,
-                              right: MediaQuery.of(context).devicePixelRatio*5,
+                              top: MediaQuery.of(context).devicePixelRatio * 7,
+                              right:
+                                  MediaQuery.of(context).devicePixelRatio * 5,
                             ),
-                            height: MediaQuery.of(context).size.height*0.03,
-                            width: MediaQuery.of(context).size.width*1,
+                            height: MediaQuery.of(context).size.height * 0.03,
+                            width: MediaQuery.of(context).size.width * 1,
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: [
@@ -383,10 +433,15 @@ class _DetailMyActivityState extends State<DetailMyActivity> {
                                 Image.asset("assets/coin2.png"),
                                 Padding(
                                   padding: EdgeInsets.only(
-                                    left: MediaQuery.of(context).devicePixelRatio*1,
-                                    right: MediaQuery.of(context).devicePixelRatio*2,
+                                    left: MediaQuery.of(context)
+                                            .devicePixelRatio *
+                                        1,
+                                    right: MediaQuery.of(context)
+                                            .devicePixelRatio *
+                                        2,
                                   ),
-                                  child: Text("x3",
+                                  child: Text(
+                                    "x3",
                                     style: TextStyle(
                                       fontSize: 12,
                                     ),
@@ -395,9 +450,11 @@ class _DetailMyActivityState extends State<DetailMyActivity> {
                                 Image.asset("assets/Fast_move_coin.png"),
                                 Padding(
                                   padding: EdgeInsets.only(
-                                      left: MediaQuery.of(context).devicePixelRatio*1
-                                  ),
-                                  child: Text("x1",
+                                      left: MediaQuery.of(context)
+                                              .devicePixelRatio *
+                                          1),
+                                  child: Text(
+                                    "x1",
                                     style: TextStyle(
                                       fontSize: 12,
                                     ),
@@ -414,16 +471,24 @@ class _DetailMyActivityState extends State<DetailMyActivity> {
                                     builder: (BuildContext context) {
                                       return Dialog(
                                         shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                            BorderRadius.circular(20.0)), //this right here
+                                            borderRadius: BorderRadius.circular(
+                                                20.0)), //this right here
                                         child: Container(
-                                          height: MediaQuery.of(context).size.height*0.27,
-                                          width: MediaQuery.of(context).size.width*0.8,
+                                          height: MediaQuery.of(context)
+                                                  .size
+                                                  .height *
+                                              0.27,
+                                          width: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              0.8,
                                           child: Column(
                                             children: [
                                               Padding(
                                                 padding: EdgeInsets.only(
-                                                  top: MediaQuery.of(context).devicePixelRatio*5,
+                                                  top: MediaQuery.of(context)
+                                                          .devicePixelRatio *
+                                                      5,
                                                 ),
                                                 child: Text(
                                                   "ยกเลิกการเข้าร่วมกิจกรรม",
@@ -436,7 +501,9 @@ class _DetailMyActivityState extends State<DetailMyActivity> {
                                               ),
                                               Padding(
                                                 padding: EdgeInsets.only(
-                                                  top: MediaQuery.of(context).devicePixelRatio*5,
+                                                  top: MediaQuery.of(context)
+                                                          .devicePixelRatio *
+                                                      5,
                                                 ),
                                                 child: Text(
                                                   "คุณต้องยืนยันการยกเลิกลงทะเบียนเข้าร่วมกิจกรรม",
@@ -448,7 +515,9 @@ class _DetailMyActivityState extends State<DetailMyActivity> {
                                               ),
                                               Padding(
                                                 padding: EdgeInsets.only(
-                                                  top: MediaQuery.of(context).devicePixelRatio*2,
+                                                  top: MediaQuery.of(context)
+                                                          .devicePixelRatio *
+                                                      2,
                                                 ),
                                                 child: Text(
                                                   "วิ่งเพื่อผู้พิทักษ์ป่า",
@@ -459,35 +528,46 @@ class _DetailMyActivityState extends State<DetailMyActivity> {
                                                   ),
                                                 ),
                                               ),
-
-
                                               GestureDetector(
-                                                onTap: (){
+                                                onTap: () {
                                                   Navigator.of(context).pop();
                                                 },
                                                 child: Padding(
                                                   padding: EdgeInsets.only(
-                                                    top: MediaQuery.of(context).devicePixelRatio*5,
+                                                    top: MediaQuery.of(context)
+                                                            .devicePixelRatio *
+                                                        5,
                                                   ),
                                                   child: Container(
-                                                    width: MediaQuery.of(context).size.width*0.6,
-                                                    height: MediaQuery.of(context).size.height*0.05,
+                                                    width:
+                                                        MediaQuery.of(context)
+                                                                .size
+                                                                .width *
+                                                            0.6,
+                                                    height:
+                                                        MediaQuery.of(context)
+                                                                .size
+                                                                .height *
+                                                            0.05,
                                                     decoration: BoxDecoration(
-                                                        borderRadius: BorderRadius.all(
+                                                        borderRadius:
+                                                            BorderRadius.all(
                                                           Radius.circular(20),
                                                         ),
-                                                        color: Color(0xffF05F5F),
+                                                        color:
+                                                            Color(0xffF05F5F),
                                                         border: Border.all(
-                                                          color: Color(0xffF05F5F),
+                                                          color:
+                                                              Color(0xffF05F5F),
                                                           width: 2,
-                                                        )
-                                                    ),
+                                                        )),
                                                     child: Center(
                                                       child: Text(
                                                         "ยืนยัน",
                                                         style: TextStyle(
                                                           color: Colors.white,
-                                                          fontWeight: FontWeight.bold,
+                                                          fontWeight:
+                                                              FontWeight.bold,
                                                           fontSize: 12,
                                                         ),
                                                       ),
@@ -495,34 +575,44 @@ class _DetailMyActivityState extends State<DetailMyActivity> {
                                                   ),
                                                 ),
                                               ),
-
-
                                               GestureDetector(
-                                                onTap: (){
+                                                onTap: () {
                                                   Navigator.of(context).pop();
                                                 },
                                                 child: Padding(
                                                   padding: EdgeInsets.only(
-                                                    top: MediaQuery.of(context).devicePixelRatio*2,
+                                                    top: MediaQuery.of(context)
+                                                            .devicePixelRatio *
+                                                        2,
                                                   ),
                                                   child: Container(
-                                                    width: MediaQuery.of(context).size.width*0.6,
-                                                    height: MediaQuery.of(context).size.height*0.05,
+                                                    width:
+                                                        MediaQuery.of(context)
+                                                                .size
+                                                                .width *
+                                                            0.6,
+                                                    height:
+                                                        MediaQuery.of(context)
+                                                                .size
+                                                                .height *
+                                                            0.05,
                                                     decoration: BoxDecoration(
-                                                        borderRadius: BorderRadius.all(
+                                                        borderRadius:
+                                                            BorderRadius.all(
                                                           Radius.circular(20),
                                                         ),
                                                         color: Colors.white,
                                                         border: Border.all(
-                                                          color: Color(0xff5581F1),
+                                                          color:
+                                                              Color(0xff5581F1),
                                                           width: 2,
-                                                        )
-                                                    ),
+                                                        )),
                                                     child: Center(
                                                       child: Text(
                                                         "ยกเลิก",
                                                         style: TextStyle(
-                                                          color: Color(0xff5581F1),
+                                                          color:
+                                                              Color(0xff5581F1),
                                                           fontSize: 12,
                                                         ),
                                                       ),
@@ -538,10 +628,12 @@ class _DetailMyActivityState extends State<DetailMyActivity> {
                               },
                               child: Container(
                                 margin: EdgeInsets.only(
-                                  top: MediaQuery.of(context).devicePixelRatio*5,
+                                  top: MediaQuery.of(context).devicePixelRatio *
+                                      5,
                                 ),
-                                width: MediaQuery.of(context).size.width*0.7,
-                                height: MediaQuery.of(context).size.height*0.05,
+                                width: MediaQuery.of(context).size.width * 0.7,
+                                height:
+                                    MediaQuery.of(context).size.height * 0.05,
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.all(
                                     Radius.circular(20),
@@ -567,10 +659,10 @@ class _DetailMyActivityState extends State<DetailMyActivity> {
                   ],
                 ),
                 Align(
-                  alignment: Alignment(0.7,-0.25),
+                  alignment: Alignment(0.7, -0.25),
                   child: Container(
-                    width: MediaQuery.of(context).size.width*0.22,
-                    height: MediaQuery.of(context).size.height*0.1,
+                    width: MediaQuery.of(context).size.width * 0.22,
+                    height: MediaQuery.of(context).size.height * 0.1,
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       border: Border.all(
@@ -579,25 +671,24 @@ class _DetailMyActivityState extends State<DetailMyActivity> {
                       ),
                     ),
                     child: Container(
-                      width: MediaQuery.of(context).size.width*0.18,
-                      height: MediaQuery.of(context).size.height*0.08,
+                      width: MediaQuery.of(context).size.width * 0.18,
+                      height: MediaQuery.of(context).size.height * 0.08,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(50),
                         gradient: LinearGradient(
-                          begin: Alignment.topRight,
-                          end: Alignment.bottomLeft,
-                          colors: [
-                            Color(0xffFCDDDD),
-                            Color(0xffFEA1C3),
-                          ]
-                        ),
+                            begin: Alignment.topRight,
+                            end: Alignment.bottomLeft,
+                            colors: [
+                              Color(0xffFCDDDD),
+                              Color(0xffFEA1C3),
+                            ]),
                       ),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Padding(
                             padding: EdgeInsets.only(
-                              top: MediaQuery.of(context).devicePixelRatio*2,
+                              top: MediaQuery.of(context).devicePixelRatio * 2,
                             ),
                             child: Text(
                               "1",

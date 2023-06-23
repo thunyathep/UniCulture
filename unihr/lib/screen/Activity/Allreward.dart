@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gradient_borders/gradient_borders.dart';
-import 'package:unihr/screen/DetailReward.dart';
+import 'DetailReward.dart';
 
 
 class AllReward extends StatefulWidget {

@@ -4,7 +4,6 @@ import 'dart:math' as math;
 
 import 'DetailMyActivity.dart';
 
-
 class MyActivity extends StatefulWidget {
   const MyActivity({Key? key}) : super(key: key);
 
@@ -25,58 +24,57 @@ class _MyActivityState extends State<MyActivity> {
               Stack(
                 children: [
                   SizedBox(
-                    height: MediaQuery.of(context).size.height*0.3,
+                    height: MediaQuery.of(context).size.height * 0.3,
                     child: Image.asset(
                       'assets/top_bar.png',
                       fit: BoxFit.cover,
                     ),
                   ),
                   Container(
-                    height: MediaQuery.of(context).size.height*0.3,
+                    height: MediaQuery.of(context).size.height * 0.3,
                     decoration: BoxDecoration(
                       gradient: LinearGradient(
                         begin: Alignment.topCenter,
                         end: Alignment.bottomCenter,
                         colors: [
-                          Colors.white.withOpacity(0.0), // Start color with opacity
+                          Colors.white
+                              .withOpacity(0.0), // Start color with opacity
                           Colors.white.withOpacity(1), // End color with opacity
                         ],
                       ),
                     ),
                   ),
-
                   Align(
                     alignment: Alignment.topRight,
                     child: Transform.rotate(
-                      angle: 5 * math.pi/180,
+                      angle: 5 * math.pi / 180,
                       child: Image.asset(
                         'assets/human.png',
-                        width: MediaQuery.of(context).size.width*0.45,
-                        height: MediaQuery.of(context).size.height*0.23,
+                        width: MediaQuery.of(context).size.width * 0.45,
+                        height: MediaQuery.of(context).size.height * 0.23,
                         fit: BoxFit.cover,
                       ),
                     ),
                   ),
                   Padding(
                     padding: EdgeInsets.only(
-                        top: MediaQuery.of(context).devicePixelRatio*20
-                    ),
+                        top: MediaQuery.of(context).devicePixelRatio * 20),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         IconButton(
-                          onPressed: (){
+                          onPressed: () {
                             Navigator.of(context).pop();
                           },
                           icon: Icon(
                             Icons.arrow_back_ios_new_rounded,
                             color: Colors.white,
-                            size: MediaQuery.of(context).size.height*0.04,
+                            size: MediaQuery.of(context).size.height * 0.04,
                           ),
                         ),
                         Container(
-                          width: MediaQuery.of(context).size.width*0.35,
-                          height: MediaQuery.of(context).size.height*0.035,
+                          width: MediaQuery.of(context).size.width * 0.35,
+                          height: MediaQuery.of(context).size.height * 0.035,
                           decoration: const BoxDecoration(
                             borderRadius: BorderRadius.only(
                               topLeft: Radius.circular(50),
@@ -91,11 +89,14 @@ class _MyActivityState extends State<MyActivity> {
                                 children: [
                                   Image.asset(
                                     'assets/coin2.png',
-                                    width: MediaQuery.of(context).size.width*0.06,
+                                    width: MediaQuery.of(context).size.width *
+                                        0.06,
                                   ),
                                   Padding(
                                     padding: EdgeInsets.only(
-                                      left: MediaQuery.of(context).devicePixelRatio*3,
+                                      left: MediaQuery.of(context)
+                                              .devicePixelRatio *
+                                          3,
                                     ),
                                     child: Text(
                                       '26',
@@ -110,11 +111,14 @@ class _MyActivityState extends State<MyActivity> {
                                 children: [
                                   Image.asset(
                                     'assets/heart.png',
-                                    width: MediaQuery.of(context).size.width*0.06,
+                                    width: MediaQuery.of(context).size.width *
+                                        0.06,
                                   ),
                                   Padding(
                                     padding: EdgeInsets.only(
-                                      left: MediaQuery.of(context).devicePixelRatio*3,
+                                      left: MediaQuery.of(context)
+                                              .devicePixelRatio *
+                                          3,
                                     ),
                                     child: Text(
                                       '10',
@@ -131,19 +135,15 @@ class _MyActivityState extends State<MyActivity> {
                       ],
                     ),
                   ),
-
-
-
                   Padding(
                     padding: EdgeInsets.only(
-                        top: MediaQuery.of(context).devicePixelRatio*17,
-                        left: MediaQuery.of(context).devicePixelRatio*17
-                    ),
+                        top: MediaQuery.of(context).devicePixelRatio * 17,
+                        left: MediaQuery.of(context).devicePixelRatio * 17),
                     child: Row(
                       children: [
                         Container(
-                          width: MediaQuery.of(context).size.width*0.18,
-                          height: MediaQuery.of(context).size.height*0.08,
+                          width: MediaQuery.of(context).size.width * 0.18,
+                          height: MediaQuery.of(context).size.height * 0.08,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(50),
                             border: const GradientBoxBorder(
@@ -157,26 +157,26 @@ class _MyActivityState extends State<MyActivity> {
                                     Color(0xffE3DEF4),
                                     Color(0xffC1E1E7),
                                     Color(0xffC1E1E6),
-                                  ]
-                              ),
+                                  ]),
                               width: 4,
                             ),
                           ),
                           child: Container(
-                            width: MediaQuery.of(context).size.width*0.18,
-                            height: MediaQuery.of(context).size.height*0.08,
+                            width: MediaQuery.of(context).size.width * 0.18,
+                            height: MediaQuery.of(context).size.height * 0.08,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(50),
                               color: Colors.white,
                             ),
-                            child: Image.asset('assets/Unicorn.gif',
+                            child: Image.asset(
+                              'assets/Unicorn.gif',
                               fit: BoxFit.contain,
                             ),
                           ),
                         ),
                         Padding(
                           padding: EdgeInsets.only(
-                            left: MediaQuery.of(context).devicePixelRatio*5,
+                            left: MediaQuery.of(context).devicePixelRatio * 5,
                           ),
                           child: const Text(
                             'สมพงศ์ จำปี',
@@ -190,11 +190,10 @@ class _MyActivityState extends State<MyActivity> {
                       ],
                     ),
                   ),
-
                   Padding(
                     padding: EdgeInsets.only(
-                      top: MediaQuery.of(context).devicePixelRatio*40,
-                      left: MediaQuery.of(context).devicePixelRatio*10,
+                      top: MediaQuery.of(context).devicePixelRatio * 40,
+                      left: MediaQuery.of(context).devicePixelRatio * 10,
                     ),
                     child: const Text(
                       'กิจกรรมของฉัน',
@@ -205,44 +204,47 @@ class _MyActivityState extends State<MyActivity> {
                       ),
                     ),
                   ),
-
                   Padding(
                     padding: EdgeInsets.only(
-                      left: MediaQuery.of(context).devicePixelRatio*8,
-                      top: MediaQuery.of(context).devicePixelRatio*55,
-                      right: MediaQuery.of(context).devicePixelRatio*8,
+                      left: MediaQuery.of(context).devicePixelRatio * 8,
+                      top: MediaQuery.of(context).devicePixelRatio * 55,
+                      right: MediaQuery.of(context).devicePixelRatio * 8,
                     ),
                     child: SingleChildScrollView(
                       scrollDirection: Axis.horizontal,
                       child: Row(
                         children: [
                           TextButton(
-                            onPressed: (){},
-                            child: const Text("ทั้งหมด",
+                            onPressed: () {},
+                            child: const Text(
+                              "ทั้งหมด",
                               style: TextStyle(
                                 color: Color(0xff757575),
                               ),
                             ),
                           ),
                           TextButton(
-                            onPressed: (){},
-                            child: const Text("กิจกรรมที่กำลังจะมาถึง",
+                            onPressed: () {},
+                            child: const Text(
+                              "กิจกรรมที่กำลังจะมาถึง",
                               style: TextStyle(
                                 color: Color(0xff757575),
                               ),
                             ),
                           ),
                           TextButton(
-                            onPressed: (){},
-                            child: const Text("กิจกรรมที่เสร็จสิ้น",
+                            onPressed: () {},
+                            child: const Text(
+                              "กิจกรรมที่เสร็จสิ้น",
                               style: TextStyle(
                                 color: Color(0xff757575),
                               ),
                             ),
                           ),
                           TextButton(
-                            onPressed: (){},
-                            child: const Text("กิจกรรมที่ยกเลิก",
+                            onPressed: () {},
+                            child: const Text(
+                              "กิจกรรมที่ยกเลิก",
                               style: TextStyle(
                                 color: Color(0xff757575),
                               ),
@@ -256,12 +258,14 @@ class _MyActivityState extends State<MyActivity> {
               ),
               Column(
                 children: [
-                  _buildCardActivity(context, "assets/pikachu.jpg", "บ้านปลา SCG เคมีคอลส์","open"),
-                  _buildCardActivity(context, "assets/pikachu.jpg", "บ้านปลา SCG เคมีคอลส์","open"),
-                  _buildCardActivity(context, "assets/pikachu.jpg", "บ้านปลา SCG เคมีคอลส์","open"),
-
+                  _buildCardActivity(context, "assets/pikachu.jpg",
+                      "บ้านปลา SCG เคมีคอลส์", "open"),
+                  _buildCardActivity(context, "assets/pikachu.jpg",
+                      "บ้านปลา SCG เคมีคอลส์", "open"),
+                  _buildCardActivity(context, "assets/pikachu.jpg",
+                      "บ้านปลา SCG เคมีคอลส์", "open"),
                   SizedBox(
-                    height: MediaQuery.of(context).size.height*0.15,
+                    height: MediaQuery.of(context).size.height * 0.15,
                   ),
                 ],
               ),
@@ -271,17 +275,19 @@ class _MyActivityState extends State<MyActivity> {
       ),
     );
   }
-  Widget _buildCardActivity (BuildContext context, image,String title, String status){
+
+  Widget _buildCardActivity(
+      BuildContext context, image, String title, String status) {
     return GestureDetector(
-      onTap: (){
+      onTap: () {
         Navigator.of(context).push(
           MaterialPageRoute(builder: (context) => DetailMyActivity()),
         );
       },
       child: Container(
         margin: EdgeInsets.symmetric(
-          horizontal: MediaQuery.of(context).devicePixelRatio*8,
-          vertical: MediaQuery.of(context).devicePixelRatio*8,
+          horizontal: MediaQuery.of(context).devicePixelRatio * 8,
+          vertical: MediaQuery.of(context).devicePixelRatio * 8,
         ),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(20)),
@@ -299,15 +305,14 @@ class _MyActivityState extends State<MyActivity> {
         child: Stack(
           children: [
             Align(
-              alignment: Alignment(-1,-1),
+              alignment: Alignment(-1, -1),
               child: Container(
                 height: MediaQuery.of(context).size.height * 0.15,
-                width: MediaQuery.of(context).size.width*1,
+                width: MediaQuery.of(context).size.width * 1,
                 decoration: const BoxDecoration(
                   borderRadius: BorderRadius.only(
                     topRight: Radius.circular(20),
                     topLeft: Radius.circular(20),
-
                   ),
                 ),
                 child: ClipRRect(
@@ -327,8 +332,8 @@ class _MyActivityState extends State<MyActivity> {
               children: [
                 Padding(
                   padding: EdgeInsets.only(
-                    top: MediaQuery.of(context).devicePixelRatio*38,
-                    left: MediaQuery.of(context).devicePixelRatio*25,
+                    top: MediaQuery.of(context).devicePixelRatio * 38,
+                    left: MediaQuery.of(context).devicePixelRatio * 25,
                   ),
                   child: Text(
                     title,
@@ -341,25 +346,24 @@ class _MyActivityState extends State<MyActivity> {
                 ),
                 Padding(
                   padding: EdgeInsets.only(
-                    left: MediaQuery.of(context).devicePixelRatio*25,
+                    left: MediaQuery.of(context).devicePixelRatio * 25,
                   ),
                   child: Row(
                     children: [
                       Padding(
                         padding: EdgeInsets.only(
-                            right: MediaQuery.of(context).devicePixelRatio*2
-                        ),
+                            right: MediaQuery.of(context).devicePixelRatio * 2),
                         child: Icon(
                           Icons.location_on,
                           color: Color(0xFF757575),
-                          size: MediaQuery.of(context).size.height*0.02,
+                          size: MediaQuery.of(context).size.height * 0.02,
                         ),
                       ),
                       Text(
                         "จังหวัดระยอง",
                         style: TextStyle(
                           fontSize: 14,
-                          color:  Color(0xff757575),
+                          color: Color(0xff757575),
                         ),
                       ),
                     ],
@@ -367,19 +371,18 @@ class _MyActivityState extends State<MyActivity> {
                 ),
                 Padding(
                   padding: EdgeInsets.only(
-                    top: MediaQuery.of(context).devicePixelRatio*1,
-                    left: MediaQuery.of(context).devicePixelRatio*25,
+                    top: MediaQuery.of(context).devicePixelRatio * 1,
+                    left: MediaQuery.of(context).devicePixelRatio * 25,
                   ),
                   child: Row(
                     children: [
                       Padding(
                         padding: EdgeInsets.only(
-                            right: MediaQuery.of(context).devicePixelRatio*2
-                        ),
+                            right: MediaQuery.of(context).devicePixelRatio * 2),
                         child: Icon(
                           Icons.access_time,
                           color: Color(0xFF757575),
-                          size: MediaQuery.of(context).size.height*0.03,
+                          size: MediaQuery.of(context).size.height * 0.03,
                         ),
                       ),
                       Text(
@@ -387,7 +390,7 @@ class _MyActivityState extends State<MyActivity> {
                         maxLines: 2,
                         style: TextStyle(
                           fontSize: 12,
-                          color:  Color(0xff757575),
+                          color: Color(0xff757575),
                         ),
                       ),
                     ],
@@ -395,36 +398,33 @@ class _MyActivityState extends State<MyActivity> {
                 ),
                 Padding(
                   padding: EdgeInsets.only(
-                    top: MediaQuery.of(context).devicePixelRatio*1,
-                    left: MediaQuery.of(context).devicePixelRatio*25,
+                    top: MediaQuery.of(context).devicePixelRatio * 1,
+                    left: MediaQuery.of(context).devicePixelRatio * 25,
                   ),
                   child: Row(
                     children: [
                       Padding(
                         padding: EdgeInsets.only(
-                            right:
-                            MediaQuery.of(context).devicePixelRatio*2
-                        ),
+                            right: MediaQuery.of(context).devicePixelRatio * 2),
                         child: Icon(
                           Icons.group,
                           color: Color(0xFF757575),
-                          size:
-                          MediaQuery.of(context).size.height*0.03,
+                          size: MediaQuery.of(context).size.height * 0.03,
                         ),
                       ),
                       Text(
                         "สถานะกิจกรรม",
                         style: TextStyle(
                           fontSize: 14,
-                          color:  Color(0xff757575),
+                          color: Color(0xff757575),
                         ),
                       ),
                       Container(
                         margin: EdgeInsets.only(
-                          left: MediaQuery.of(context).devicePixelRatio*2,
+                          left: MediaQuery.of(context).devicePixelRatio * 2,
                         ),
-                        width: MediaQuery.of(context).size.width*0.12,
-                        height: MediaQuery.of(context).size.height*0.02,
+                        width: MediaQuery.of(context).size.width * 0.12,
+                        height: MediaQuery.of(context).size.height * 0.02,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.all(
                             Radius.circular(20),
@@ -446,18 +446,18 @@ class _MyActivityState extends State<MyActivity> {
                 ),
                 Padding(
                   padding: EdgeInsets.only(
-                    left: MediaQuery.of(context).devicePixelRatio*1,
+                    left: MediaQuery.of(context).devicePixelRatio * 1,
                   ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       Container(
                         margin: EdgeInsets.only(
-                          top: MediaQuery.of(context).devicePixelRatio*5,
-                          left: MediaQuery.of(context).devicePixelRatio*3,
+                          top: MediaQuery.of(context).devicePixelRatio * 5,
+                          left: MediaQuery.of(context).devicePixelRatio * 3,
                         ),
-                        height: MediaQuery.of(context).size.height*0.03,
-                        width: MediaQuery.of(context).size.width*0.4,
+                        height: MediaQuery.of(context).size.height * 0.03,
+                        width: MediaQuery.of(context).size.width * 0.4,
                         child: Row(
                           children: [
                             Text(
@@ -470,10 +470,13 @@ class _MyActivityState extends State<MyActivity> {
                             Image.asset("assets/coin2.png"),
                             Padding(
                               padding: EdgeInsets.only(
-                                left: MediaQuery.of(context).devicePixelRatio*1,
-                                right: MediaQuery.of(context).devicePixelRatio*2,
+                                left:
+                                    MediaQuery.of(context).devicePixelRatio * 1,
+                                right:
+                                    MediaQuery.of(context).devicePixelRatio * 2,
                               ),
-                              child: Text("x3",
+                              child: Text(
+                                "x3",
                                 style: TextStyle(
                                   fontSize: 12,
                                 ),
@@ -482,9 +485,11 @@ class _MyActivityState extends State<MyActivity> {
                             Image.asset("assets/Fast_move_coin.png"),
                             Padding(
                               padding: EdgeInsets.only(
-                                  left: MediaQuery.of(context).devicePixelRatio*1
-                              ),
-                              child: Text("x1",
+                                  left:
+                                      MediaQuery.of(context).devicePixelRatio *
+                                          1),
+                              child: Text(
+                                "x1",
                                 style: TextStyle(
                                   fontSize: 12,
                                 ),
@@ -498,26 +503,31 @@ class _MyActivityState extends State<MyActivity> {
                 ),
               ],
             ),
-
             Align(
-              alignment: Alignment(-0.9,0.1),
+              alignment: Alignment(-0.9, 0.1),
               child: Container(
-                height: MediaQuery.of(context).size.height*0.1,
-                width: MediaQuery.of(context).size.width*0.12,
+                height: MediaQuery.of(context).size.height * 0.1,
+                width: MediaQuery.of(context).size.width * 0.12,
                 color: Color(0xFF5B4589),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: const [
-                    Text("1",style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                    ),),
-                    Text("JUN",style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                    ),),
+                    Text(
+                      "1",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    Text(
+                      "JUN",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                   ],
                 ),
               ),
