@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:unihr/BottomNavigate.dart';
-import 'package:unihr/score/Score.dart';
 import 'package:unihr/screen/AllActivity.dart';
 import 'package:unihr/screen/FeedBack.dart';
 import 'package:unihr/screen/MyActivity.dart';
@@ -8,6 +7,7 @@ import 'package:unihr/screen/MyReward.dart';
 import 'package:unihr/screen/ALlReward.dart';
 import 'package:unihr/screen/Pocket.dart';
 import 'package:unihr/screen/SentHeart.dart';
+import 'package:unihr/screen/score/Score.dart';
 import 'DiaryQuestion.dart';
 import 'misson/MyMission.dart';
 
