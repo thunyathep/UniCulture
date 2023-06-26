@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gradient_borders/gradient_borders.dart';
 import 'dart:math' as math;
 import 'package:drop_shadow_image/drop_shadow_image.dart';
+import 'package:unihr/screen/communicate/Suggestion.dart';
 
 
 import '../Search.dart';
@@ -262,7 +263,11 @@ class _CommunicateState extends State<Communicate> {
                     ),
                   ),
                   GestureDetector(
-                    onTap: (){},
+                    onTap: (){
+                      Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context)=>Suggestion())
+                      );
+                    },
                     child: Container(
                       margin: EdgeInsets.only(
                         top: MediaQuery.of(context).devicePixelRatio*10,
