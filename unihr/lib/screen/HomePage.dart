@@ -4,6 +4,9 @@ import 'package:unihr/screen/Activity/AllActivity.dart';
 import 'package:unihr/screen/Activity/MyReward.dart';
 import 'package:unihr/screen/Pocket.dart';
 import 'package:unihr/screen/SentHeart.dart';
+import 'package:unihr/screen/poll/Poll.dart';
+import 'package:unihr/screen/question/EvaluateThreeSixty.dart';
+import 'package:unihr/screen/question/YearQuestion.dart';
 import 'package:unihr/screen/score/Score.dart';
 import 'Activity/Allreward.dart';
 import 'Activity/MyActivity.dart';
@@ -329,7 +332,7 @@ class _HomePageState extends State<HomePage> {
                         _buildFeature(context, "ภาระกิจ\nของฉัน", MyMission()),
                         _buildFeature(context, "การสื่อสาร\n", Communicate()),
                         _buildFeature(context, "ตาราง\nคะแนน", ScorePage()),
-                        _buildFeature(context, "ผลโหวต\n", MyReward()),
+                        _buildFeature(context, "ผลโหวต\n", PollPage()),
                       ],
                     ),
                     Row(
@@ -342,9 +345,9 @@ class _HomePageState extends State<HomePage> {
                         _buildFeature(context, "คำถาม\nสุขภาพใจ\nรายวัน",
                             DiaryQuestion()),
                         _buildFeature(
-                            context, "คำถาม\nสุขภาพใจ\nประจำปี", MyReward()),
+                            context, "คำถาม\nสุขภาพใจ\nประจำปี", YearQuestion()),
                         _buildFeature(
-                            context, "ประเมิน\n360 องศา\n", MyReward()),
+                            context, "ประเมิน\n360 องศา\n", Evaluate()),
                         _buildFeature(context, "โค้ชชิ่ง\n\n", MyReward()),
                         Column(
                           children: [

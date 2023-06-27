@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:gradient_borders/gradient_borders.dart';
 import 'dart:math' as math;
 
+import 'AllScore.dart';
+
 class ScorePage extends StatefulWidget {
   const ScorePage({Key? key}) : super(key: key);
 
@@ -10,20 +12,9 @@ class ScorePage extends StatefulWidget {
 }
 
 class _ScorePageState extends State<ScorePage> {
-  List<Widget> generateCardScores(BuildContext context) {
-    List<Widget> cardScores = [];
-
-    for (int i = 4; i <= 10; i++) {
-      Widget cardScore = CardScore(context, i);
-      cardScores.add(cardScore);
-    }
-
-    return cardScores;
-  }
   
   @override
   Widget build(BuildContext context) {
-    List<Widget> cardScores = generateCardScores(context);
     return Scaffold(
       backgroundColor: Color(0xffffffff),
       body: SafeArea(
@@ -667,6 +658,49 @@ class _ScorePageState extends State<ScorePage> {
                 ),
               ),
               // ListView.builder(
+              //   itemCount: 10,
+              //   itemBuilder: (BuildContext context, int index) {
+              //     return CardScore(context, index + 1);
+              //   },
+              // ),
+
+              CardScore(context, 4),
+              CardScore(context, 5),
+              CardScore(context, 6),
+              CardScore(context, 7),
+              CardScore(context, 8),
+              CardScore(context, 9),
+              CardScore(context, 10),
+              Center(
+                child: GestureDetector(
+                  onTap: (){
+                    Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context)=>AllScore())
+                    );
+                  },
+                  child: Container(
+                    margin: EdgeInsets.only(
+                      top: MediaQuery.of(context).devicePixelRatio*5,
+                    ),
+                    width: MediaQuery.of(context).size.width*0.85,
+                    height: MediaQuery.of(context).size.height*0.05,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(50),
+                      color: Color(0xff757575).withOpacity(0.25),
+                    ),
+                    child: Center(
+                      child: Text(
+                        "ดูทั้งหมด",
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 16,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              // ListView.builder(
               //   itemCount: cardScores.length,
               //   itemBuilder: (BuildContext context, int index) {
               //     return cardScores[index];
@@ -682,17 +716,26 @@ class _ScorePageState extends State<ScorePage> {
       ),
     );
   }
-  Widget CardScore (BuildContext context,int number){
+}
+
+class CardScore extends StatelessWidget {
+  final BuildContext context;
+  final int number;
+
+  const CardScore(this.context, this.number);
+
+  @override
+  Widget build(BuildContext context) {
     return Center(
       child: Column(
         children: [
           Padding(
             padding: EdgeInsets.only(
-              top: MediaQuery.of(context).devicePixelRatio*5,
+              top: MediaQuery.of(context).devicePixelRatio * 5,
             ),
             child: Container(
-              width: MediaQuery.of(context).size.width*0.85,
-              height: MediaQuery.of(context).size.height*0.08,
+              width: MediaQuery.of(context).size.width * 0.85,
+              height: MediaQuery.of(context).size.height * 0.08,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
                 color: Colors.white,
@@ -701,20 +744,19 @@ class _ScorePageState extends State<ScorePage> {
                     color: Colors.black.withOpacity(0.1),
                     blurRadius: 10,
                     spreadRadius: 3,
-                  )
+                  ),
                 ],
               ),
               child: Row(
                 children: [
                   Container(
-                    width: MediaQuery.of(context).size.width*0.2,
+                    width: MediaQuery.of(context).size.width * 0.2,
                     decoration: const BoxDecoration(
                         color: Color(0xff8C76BB),
                         borderRadius: BorderRadius.only(
                           topLeft: Radius.circular(20),
                           bottomLeft: Radius.circular(20),
-                        )
-                    ),
+                        )),
                     child: Center(
                       child: Text(
                         "$number",
@@ -728,7 +770,7 @@ class _ScorePageState extends State<ScorePage> {
                   ),
                   Padding(
                     padding: EdgeInsets.only(
-                      left: MediaQuery.of(context).devicePixelRatio*3,
+                      left: MediaQuery.of(context).devicePixelRatio * 3,
                     ),
                     child: CircleAvatar(
                       backgroundImage: AssetImage('assets/pikachu.jpg'),
@@ -737,10 +779,10 @@ class _ScorePageState extends State<ScorePage> {
                   ),
                   Container(
                     margin: EdgeInsets.only(
-                      top: MediaQuery.of(context).devicePixelRatio*3,
-                      left: MediaQuery.of(context).devicePixelRatio*3,
+                      top: MediaQuery.of(context).devicePixelRatio * 3,
+                      left: MediaQuery.of(context).devicePixelRatio * 3,
                     ),
-                    width: MediaQuery.of(context).size.width*0.3,
+                    width: MediaQuery.of(context).size.width * 0.3,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -757,17 +799,17 @@ class _ScorePageState extends State<ScorePage> {
                             color: Color(0xff757575),
                             fontSize: 14,
                           ),
-                        )
+                        ),
                       ],
                     ),
                   ),
                   Container(
                     margin: EdgeInsets.only(
-                      top: MediaQuery.of(context).devicePixelRatio*5,
-                      left: MediaQuery.of(context).devicePixelRatio*3,
+                      top: MediaQuery.of(context).devicePixelRatio * 5,
+                      left: MediaQuery.of(context).devicePixelRatio * 3,
                     ),
-                    width: MediaQuery.of(context).size.width*0.1,
-                    height: MediaQuery.of(context).size.height*0.08,
+                    width: MediaQuery.of(context).size.width * 0.1,
+                    height: MediaQuery.of(context).size.height * 0.08,
                     child: Stack(
                       children: [
                         Image.asset(
@@ -775,15 +817,14 @@ class _ScorePageState extends State<ScorePage> {
                         ),
                         Padding(
                           padding: EdgeInsets.only(
-                            top: MediaQuery.of(context).devicePixelRatio*3,
-                            left: MediaQuery.of(context).devicePixelRatio*3.5,
+                            top: MediaQuery.of(context).devicePixelRatio * 3,
+                            left: MediaQuery.of(context).devicePixelRatio * 3.5,
                           ),
                           child: Text(
                             "23",
                             style: TextStyle(
                                 color: Colors.white,
-                                fontWeight: FontWeight.bold
-                            ),
+                                fontWeight: FontWeight.bold),
                           ),
                         ),
                       ],
