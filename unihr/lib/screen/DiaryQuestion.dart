@@ -1,5 +1,8 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:gradient_borders/gradient_borders.dart';
+import 'package:http/http.dart' as http;
 import 'dart:math' as math;
 
 class DiaryQuestion extends StatefulWidget {
@@ -9,7 +12,29 @@ class DiaryQuestion extends StatefulWidget {
   State<DiaryQuestion> createState() => _DiaryQuestionState();
 }
 
+String? questionDiary;
+Map? mapResponse;
+
 class _DiaryQuestionState extends State<DiaryQuestion> {
+  Future QuestionDiary() async{
+    http.Response response;
+    response = await http.get(Uri.parse("https://uniculture-371814.as.r.appspot.com/api/morale-daily-user/10068989")
+    );
+    if(response.statusCode == 200){
+      setState(() {
+        questionDiary = response.body;
+        mapResponse = json.decode(response.body);
+      });
+    }
+  }
+
+  @override
+  void initState() {
+    QuestionDiary();
+    super.initState();
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -186,7 +211,7 @@ class _DiaryQuestionState extends State<DiaryQuestion> {
                       child: Column(
                         children: [
                           Text(
-                            "มาทำงานวันนี้คุณรู้สึกยังไง?",
+                            questionDiary.toString(),
                             style: TextStyle(
                               color: Colors.black,
                               // fontWeight: FontWeight.bold,

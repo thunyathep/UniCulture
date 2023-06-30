@@ -345,6 +345,17 @@ class _CardHeartState extends State<CardHeart> {
               ),
             ),
           ),
+          Container(
+            margin: EdgeInsets.all(
+              MediaQuery.of(context).devicePixelRatio*5,
+            ),
+            height: MediaQuery.of(context).size.height*0.5,
+            width: MediaQuery.of(context).size.width*1,
+            child: Image.asset(
+              "assets/framecard.png",
+              fit: BoxFit.cover,
+            ),
+          ),
           Center(
             child: Column(
               children: [
@@ -366,12 +377,56 @@ class _CardHeartState extends State<CardHeart> {
                   height: MediaQuery.of(context).size.height*0.2,
                   fit: BoxFit.contain,
                 ),
-                Text(
-                  "10",
-                  style: TextStyle(
-                    fontSize: 34,
-                    fontWeight: FontWeight.bold,
-                  ),
+                Stack(
+                  children: [
+                    Container(
+                      margin: EdgeInsets.only(
+                        top: MediaQuery.of(context).devicePixelRatio*6.5,
+                      ),
+                      height: MediaQuery.of(context).size.height*0.007,
+                      width: MediaQuery.of(context).size.width*0.5,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(50),
+                        color: Color(0xffFEA1C3),
+                        border: Border.all(
+                          color: Colors.white,
+                          width: 2,
+                        ),
+                      ),
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(
+                        left: MediaQuery.of(context).devicePixelRatio*22,
+                      ),
+                      width: MediaQuery.of(context).size.width*0.12,
+                      height: MediaQuery.of(context).size.height*0.06,
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                            begin: Alignment.topCenter,
+                            end: Alignment.bottomCenter,
+                            colors: [
+                              Color(0xffFCDDDD),
+                              Color(0xffFEA1C3),
+                            ]
+                        ),
+                        shape: BoxShape.circle,
+                        border: Border.all(
+                          color: Colors.white,
+                          width: 3,
+                        ),
+                      ),
+                      child: Center(
+                        child: Text(
+                          "10",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 24,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),

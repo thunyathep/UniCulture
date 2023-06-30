@@ -35,7 +35,7 @@ class _HomePageState extends State<HomePage> {
               Stack(
                 children: [
                   Container(
-                    height: MediaQuery.of(context).size.height * 0.35,
+                    height: MediaQuery.of(context).size.height * 0.3,
                     child: ClipRRect(
                       child: Image.asset(
                         'assets/top_bar.png',
@@ -44,7 +44,7 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                   Container(
-                    height: MediaQuery.of(context).size.height * 0.4,
+                    height: MediaQuery.of(context).size.height * 0.3,
                     decoration: BoxDecoration(
                       gradient: LinearGradient(
                         begin: Alignment.topCenter,
@@ -59,7 +59,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                   Padding(
                     padding: EdgeInsets.only(
-                      top: MediaQuery.of(context).devicePixelRatio * 10,
+                      top: MediaQuery.of(context).devicePixelRatio * 5,
                     ),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.end,
@@ -77,7 +77,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                   Padding(
                     padding: EdgeInsets.only(
-                      top: MediaQuery.of(context).devicePixelRatio * 50,
+                      top: MediaQuery.of(context).devicePixelRatio * 40,
                       left: MediaQuery.of(context).devicePixelRatio * 5,
                     ),
                     child: Row(
@@ -892,10 +892,10 @@ class _HomePageState extends State<HomePage> {
           Container(
             margin: EdgeInsets.only(
               left: MediaQuery.of(context).devicePixelRatio * 5,
-              top: MediaQuery.of(context).devicePixelRatio * 5,
+              top: MediaQuery.of(context).devicePixelRatio * 3,
             ),
-            height: MediaQuery.of(context).size.height * 0.08,
-            width: MediaQuery.of(context).size.width * 0.17,
+            height: MediaQuery.of(context).size.height * 0.075,
+            width: MediaQuery.of(context).size.width * 0.16,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               gradient: LinearGradient(

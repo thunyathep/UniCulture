@@ -32,10 +32,12 @@ dependencies:
   gradient_borders: ^1.0.0
   table_calendar: ^3.0.9
   carousel_slider: ^4.2.1
+  http: ^1.1.0
   circular_bottom_navigation: ^2.3.0
   drop_shadow_image: ^0.9.1
   like_button: ^2.0.5
   flutter_polls: ^0.1.2
+#  flutter_svg: ^2.0.7
   flutter:
     sdk: flutter
 
