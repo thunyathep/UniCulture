@@ -233,12 +233,12 @@ class _DiaryQuestionState extends State<DiaryQuestion> {
                                           child: Stack(
                                             children: [
                                               // Confetti GIF as the background
-                                              Positioned.fill(
-                                                child: Image.asset(
-                                                  'assets/confetti.gif',
-                                                  fit: BoxFit.cover,
-                                                ),
-                                              ),
+                                              // Positioned.fill(
+                                              //   child: Image.asset(
+                                              //     'assets/confetti.gif',
+                                              //     fit: BoxFit.cover,
+                                              //   ),
+                                              // ),
                                               // Centered Dialog Container
                                               Dialog(
                                                 shape: RoundedRectangleBorder(
