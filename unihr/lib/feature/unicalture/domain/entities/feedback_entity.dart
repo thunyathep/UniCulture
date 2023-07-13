@@ -1,12 +1,10 @@
 // To parse this JSON data, do
-//
-//     final feedbackEntity = feedbackEntityFromJson(jsonString);
 
 import 'dart:convert';
 
 class FeedbackEntity {
   int? idFeedback;
-  DateTime? feedbackDate;
+  String? feedbackDate;
   String? feedbackType;
   String? feedback;
   int? idSender;
@@ -29,5 +27,6 @@ class FeedbackEntity {
     this.receiverLastname,
   });
 
-
+  @override
+  List<Object?> get prop => [];
 }

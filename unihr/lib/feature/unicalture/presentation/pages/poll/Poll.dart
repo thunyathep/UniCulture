@@ -1,19 +1,17 @@
+import 'package:drop_shadow_image/drop_shadow_image.dart';
 import 'package:flutter/material.dart';
 import 'package:gradient_borders/gradient_borders.dart';
 import 'dart:math' as math;
+import 'DetailPoll.dart';
 
-import '../../../../screen/feedback/AddFeedBack.dart';
-import '../../../../screen/feedback/SearchFeedBack.dart';
-import '../widgets/listFeedback.dart';
-
-class FeedBack extends StatefulWidget {
-  const FeedBack({Key? key}) : super(key: key);
+class PollPage extends StatefulWidget {
+  const PollPage({Key? key}) : super(key: key);
 
   @override
-  State<FeedBack> createState() => _FeedBackState();
+  State<PollPage> createState() => _PollPageState();
 }
 
-class _FeedBackState extends State<FeedBack> {
+class _PollPageState extends State<PollPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -53,10 +51,10 @@ class _FeedBackState extends State<FeedBack> {
                     child: Transform.rotate(
                       angle: 2 * math.pi/180,
                       child: Image.asset(
-                        'assets/handfeedback.png',
+                        'assets/poll.png',
                         width: MediaQuery.of(context).size.width*0.5,
                         height: MediaQuery.of(context).size.height*0.27,
-                        fit: BoxFit.cover,
+                        fit: BoxFit.contain,
                       ),
                     ),
                   ),
@@ -202,156 +200,12 @@ class _FeedBackState extends State<FeedBack> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         const Text(
-                          'ฟีดแบค',
+                          'โหวตโพล',
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 24,
                             color: Colors.black,
                           ),
-                        ),
-                        Row(
-                          children: [
-                            CircleAvatar(
-                              radius: 20,
-                              backgroundColor: Color(0xff5B4589), //<-- SEE HERE
-                              child: IconButton(
-                                icon: Icon(
-                                  Icons.add,
-                                  color: Colors.white,
-                                ),
-                                onPressed: () {
-                                  Navigator.of(context).push(
-                                    MaterialPageRoute(builder: (context)=>AddFeedBack()),
-                                  );
-                                },
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.only(
-                                left: MediaQuery.of(context).devicePixelRatio*2,
-                                right: MediaQuery.of(context).devicePixelRatio*5,
-                              ),
-                              child: CircleAvatar(
-                                radius: 20,
-                                backgroundColor: Color(0xff5B4589), //<-- SEE HERE
-                                child: IconButton(
-                                  icon: Icon(
-                                    Icons.search,
-                                    color: Colors.white,
-                                  ),
-                                  onPressed: () {
-                                    Navigator.of(context).push(
-                                      MaterialPageRoute(builder: (context)=>SearchFeedBack()),
-                                    );
-                                  },
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(
-                      top: MediaQuery.of(context).devicePixelRatio*70,
-                    ),
-                    child: Column(
-                      children: [
-                        Row(
-                          children: [
-                            GestureDetector(
-                              onTap: (){},
-                              child: Container(
-                                margin: EdgeInsets.only(
-                                    left: MediaQuery.of(context).devicePixelRatio*15
-                                ),
-                                width: MediaQuery.of(context).size.width*0.35,
-                                height: MediaQuery.of(context).size.height*0.05,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.all(
-                                    Radius.circular(40),
-                                  ),
-                                  gradient: LinearGradient(
-                                    begin: Alignment.centerRight,
-                                    end: Alignment.centerLeft,
-                                    colors: [
-                                      Color(0xffFCB0C2),
-                                      Color(0xffF4BFCF),
-                                      Color(0xffF0C5F1),
-                                      Color(0xffE3DEF4),
-                                      Color(0xffC1E1E7),
-                                      Color(0xffC1E1E6),
-                                    ],
-                                  ),
-                                ),
-                                child: Row(
-                                  children: [
-                                    Padding(
-                                      padding: EdgeInsets.only(
-                                          left: MediaQuery.of(context).devicePixelRatio*3,
-                                          right: MediaQuery.of(context).devicePixelRatio*2
-                                      ),
-                                      child: Transform.rotate(
-                                        angle: 180 * math.pi/180,
-                                        child: Icon(
-                                          Icons.file_upload_rounded,
-                                          color: Colors.black,
-                                        ),
-                                      ),
-                                    ),
-                                    Text(
-                                      "ฟีดแบคที่ได้รับ",
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 14,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                            GestureDetector(
-                              onTap: (){},
-                              child: Container(
-                                margin: EdgeInsets.only(
-                                  left: MediaQuery.of(context).devicePixelRatio*5,
-                                ),
-                                width: MediaQuery.of(context).size.width*0.35,
-                                height: MediaQuery.of(context).size.height*0.05,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.all(
-                                    Radius.circular(40),
-                                  ),
-                                  border: Border.all(
-                                    width: 1,
-                                    color: Color(0xff757575).withOpacity(0.3),
-                                  ),
-                                  color: Colors.white,
-                                ),
-                                child: Row(
-                                  children: [
-                                    Padding(
-                                      padding: EdgeInsets.only(
-                                          left: MediaQuery.of(context).devicePixelRatio*5,
-                                          right: MediaQuery.of(context).devicePixelRatio*2
-                                      ),
-                                      child: Icon(
-                                        Icons.file_upload_rounded,
-                                        color: Color(0xff757575),
-                                      ),
-                                    ),
-                                    Text(
-                                      "ฟีดแบคที่ส่ง",
-                                      style: TextStyle(
-                                        color: Color(0xff757575),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ],
                         ),
                       ],
                     ),
@@ -359,12 +213,81 @@ class _FeedBackState extends State<FeedBack> {
                 ],
               ),
               Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  ListFeedback(),
-                  ListFeedback(),
-                  ListFeedback(),
-                  ListFeedback(),
-                  ListFeedback(),
+                  Padding(
+                    padding: EdgeInsets.only(
+                      left: MediaQuery.of(context).devicePixelRatio*5,
+                      bottom: MediaQuery.of(context).devicePixelRatio*5,
+                    ),
+                    child: Text(
+                      "Open",
+                      style: TextStyle(
+                        color: Color(0xff757575),
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                  SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                      child: Row(
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.only(
+                              left: MediaQuery.of(context).devicePixelRatio*5,
+                              right: MediaQuery.of(context).devicePixelRatio*5,
+                            ),
+                            child: Card_Suggest(BuildContext),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.only(
+                              left: MediaQuery.of(context).devicePixelRatio*5,
+                              right: MediaQuery.of(context).devicePixelRatio*5,
+                            ),
+                            child: Card_Suggest(BuildContext),
+                          ),
+                        ],
+                      ),
+                  ),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height*0.01,
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(
+                      left: MediaQuery.of(context).devicePixelRatio*5,
+                      bottom: MediaQuery.of(context).devicePixelRatio*5,
+                    ),
+                    child: Text(
+                      "Ended",
+                      style: TextStyle(
+                        color: Color(0xff757575),
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                  SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.only(
+                            left: MediaQuery.of(context).devicePixelRatio*5,
+                            right: MediaQuery.of(context).devicePixelRatio*5,
+                          ),
+                          child: Card_Suggest(BuildContext),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(
+                            left: MediaQuery.of(context).devicePixelRatio*5,
+                            right: MediaQuery.of(context).devicePixelRatio*5,
+                          ),
+                          child: Card_Suggest(BuildContext),
+                        ),
+                      ],
+                    ),
+                  ),
                 ],
               ),
               SizedBox(
@@ -376,39 +299,133 @@ class _FeedBackState extends State<FeedBack> {
       ),
     );
   }
-  // Widget ListFeedback (BuildContext){
-  //   return InkWell(
-  //     onTap: (){},
-  //     child: Padding(
-  //       padding: EdgeInsets.all(
-  //           MediaQuery.of(context).devicePixelRatio*5
-  //       ),
-  //       child: Container(
-  //         width: MediaQuery.of(context).size.width*0.9,
-  //         height: MediaQuery.of(context).size.height*0.12,
-  //         decoration: BoxDecoration(
-  //           borderRadius: BorderRadius.circular(20),
-  //           color: Colors.white,
-  //           boxShadow: [
-  //             BoxShadow(
-  //               color: Colors.black.withOpacity(0.1),
-  //               blurRadius: 5,
-  //               spreadRadius: 1,
-  //             ),
-  //           ],
-  //         ),
-  //         child: Center(
-  //           child: ListTile(
-  //             leading: CircleAvatar(
-  //               backgroundImage: AssetImage('assets/pikachu.jpg'),
-  //               radius: 30,
-  //             ),
-  //             title: Text('อิ่มอร่อยได้ทุกที่กรอบดีถึงใจ'),
-  //             subtitle: Text('สมปอง นอนดึก, 30 Feb 5080'),
-  //           ),
-  //         ),
-  //       ),
-  //     ),
-  //   );
-  // }
+  Widget Card_Suggest (BuildContext){
+    return GestureDetector(
+      onTap: (){
+        Navigator.of(context).push(
+          MaterialPageRoute(builder: (context) =>DetailPoll()),
+        );
+      },
+      child: Container(
+        margin: EdgeInsets.only(
+          bottom: MediaQuery.of(context).devicePixelRatio*10,
+        ),
+        width: MediaQuery.of(context).size.width*0.8,
+        height: MediaQuery.of(context).size.height*0.2,
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(30),
+            color: Colors.white,
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.1),
+                blurRadius: 5,
+                spreadRadius: 1,
+              )
+            ]
+        ),
+        child: Column(
+          children: [
+            Container(
+              height: MediaQuery.of(context).size.height*0.13,
+              child: Stack(
+                children: [
+                  Container(
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.only(
+                        topRight: Radius.circular(30),
+                        topLeft: Radius.circular(30),
+                      ),
+                      child: Image.asset(
+                        "assets/mission_card.png",
+                        width: MediaQuery.of(context).size.width,
+                        height: MediaQuery.of(context).size.height*0.13,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width,
+                    height: MediaQuery.of(context).size.height*0.13,
+                    child: Padding(
+                      padding: EdgeInsets.only(
+                        top: MediaQuery.of(context).devicePixelRatio*10,
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Text(
+                            "Topic",
+                            style: TextStyle(
+                                fontSize: 32,
+                                fontWeight: FontWeight.bold
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Padding(
+                  padding: EdgeInsets.only(
+                    top: MediaQuery.of(context).devicePixelRatio*3,
+                    left: MediaQuery.of(context).devicePixelRatio*5,
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "End : 10 Jan 4041",
+                        style: TextStyle(
+                          color: Color(0xff757575),
+                          fontSize: 12,
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(
+                          top: MediaQuery.of(context).devicePixelRatio*1,
+                        ),
+                        child: Text(
+                          "Vote: 25.00%",
+                          style: TextStyle(
+                            color: Color(0xff757575),
+                            fontSize: 12,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Container(
+                  margin: EdgeInsets.only(
+                    top: MediaQuery.of(context).devicePixelRatio*5,
+                    right: MediaQuery.of(context).devicePixelRatio*10,
+                  ),
+                  width: MediaQuery.of(context).size.width*0.2,
+                  height: MediaQuery.of(context).size.height*0.025,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(50),
+                    color: Color(0xff6ED33F),
+                  ),
+                  child: Center(
+                    child: Text(
+                      "โหวต",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 12,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 }

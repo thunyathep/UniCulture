@@ -1,19 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:gradient_borders/gradient_borders.dart';
 import 'dart:math' as math;
+import 'package:drop_shadow_image/drop_shadow_image.dart';
+import 'OpenQuestion.dart';
+import 'YearQuestion.dart';
 
-import '../../BottomNavigate.dart';
-import 'DetailMission.dart';
-
-
-class MyMission extends StatefulWidget {
-  const MyMission({Key? key}) : super(key: key);
+class Evaluate extends StatefulWidget {
+  const Evaluate({Key? key}) : super(key: key);
 
   @override
-  State<MyMission> createState() => _MyMissionState();
+  State<Evaluate> createState() => _EvaluateState();
 }
 
-class _MyMissionState extends State<MyMission> {
+class _EvaluateState extends State<Evaluate> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -53,10 +52,10 @@ class _MyMissionState extends State<MyMission> {
                     child: Transform.rotate(
                       angle: 2 * math.pi/180,
                       child: Image.asset(
-                        'assets/arrow_target.png',
+                        'assets/phone.png',
                         width: MediaQuery.of(context).size.width*0.5,
                         height: MediaQuery.of(context).size.height*0.27,
-                        fit: BoxFit.cover,
+                        fit: BoxFit.contain,
                       ),
                     ),
                   ),
@@ -192,6 +191,7 @@ class _MyMissionState extends State<MyMission> {
                       ],
                     ),
                   ),
+
                   Padding(
                     padding: EdgeInsets.only(
                       top: MediaQuery.of(context).devicePixelRatio*50,
@@ -201,37 +201,11 @@ class _MyMissionState extends State<MyMission> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         const Text(
-                          'ภารกิจของฉัน',
+                          'ประเมิน 360 องศา',
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 24,
                             color: Colors.black,
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.only(
-                            left: MediaQuery.of(context).devicePixelRatio*2,
-                            right: MediaQuery.of(context).devicePixelRatio*5,
-                          ),
-                          child: Container(
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              gradient: LinearGradient(
-                                  begin: Alignment.topCenter,
-                                  end: Alignment.bottomCenter,
-                                  colors: [
-                                    Color(0xffFCDDDD),
-                                    Color(0xffFEA1C3),
-                                  ]
-                              )
-                            ),
-                            child: IconButton(
-                              icon: Icon(
-                                Icons.calendar_today_rounded,
-                                color: Colors.white,
-                              ),
-                              onPressed: () {},
-                            ),
                           ),
                         ),
                       ],
@@ -241,10 +215,8 @@ class _MyMissionState extends State<MyMission> {
               ),
               Column(
                 children: [
-                  Card_Mission(context),
-                  Card_Mission(context),
-                  Card_Mission(context),
-                  Card_Mission(context),
+                  Card_Evaluate(context, "ชื่อชุดคำถาม 360", YearQuestion()),
+                  Card_Evaluate(context, "ชื่อชุดคำถามคำถามปลาบเปิด", OpenQuestion()),
                 ],
               ),
               SizedBox(
@@ -256,11 +228,11 @@ class _MyMissionState extends State<MyMission> {
       ),
     );
   }
-  Widget Card_Mission (BuildContext){
+  Widget Card_Evaluate (BuildContext, String title, page){
     return GestureDetector(
       onTap: (){
         Navigator.of(context).push(
-          MaterialPageRoute(builder: (context) =>DetailMission()),
+          MaterialPageRoute(builder: (context) => page),
         );
       },
       child: Container(
@@ -268,40 +240,83 @@ class _MyMissionState extends State<MyMission> {
           bottom: MediaQuery.of(context).devicePixelRatio*10,
         ),
         width: MediaQuery.of(context).size.width*0.9,
-        height: MediaQuery.of(context).size.height*0.2,
+        height: MediaQuery.of(context).size.height*0.25,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(30),
-          color: Colors.white,
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withOpacity(0.1),
-              blurRadius: 5,
-              spreadRadius: 1,
-            )
-          ]
+            borderRadius: BorderRadius.circular(30),
+            color: Colors.white,
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.1),
+                blurRadius: 5,
+                spreadRadius: 1,
+              )
+            ]
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
+              height: MediaQuery.of(context).size.height*0.1,
               child: Stack(
                 children: [
-                  Image.asset(
-                    "assets/mission_card.png",
-                    width: MediaQuery.of(context).size.width,
-                  fit: BoxFit.cover,
+                  Container(
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.only(
+                        topRight: Radius.circular(30),
+                        topLeft: Radius.circular(30),
+                      ),
+                      child: Image.asset(
+                        "assets/mission_card.png",
+                        width: MediaQuery.of(context).size.width,
+                        height: MediaQuery.of(context).size.height*0.13,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
                   ),
                   Padding(
                     padding: EdgeInsets.only(
-                      top: MediaQuery.of(context).devicePixelRatio*5,
                       left: MediaQuery.of(context).devicePixelRatio*10,
                     ),
-                    child: Text(
-                      "Topic",
-                      style: TextStyle(
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold
-                      ),
+                    child: Row(
+                      children: [
+                        const CircleAvatar(
+                          backgroundImage: AssetImage('assets/pikachu.jpg'),
+                          radius: 30,
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(
+                            top: MediaQuery.of(context).devicePixelRatio*3,
+                            left: MediaQuery.of(context).devicePixelRatio*5,
+                          ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "Puttinun Moungprasert",
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 20,
+                                ),
+                              ),
+                              Text(
+                                "HRIS Officer",
+                                style: TextStyle(
+                                  color: Color(0xff757575),
+                                  fontSize: 14,
+                                ),
+                              ),
+                              Text(
+                                "HR Business Partner",
+                                style: TextStyle(
+                                  color: Color(0xff757575),
+                                  fontSize: 14,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ],
@@ -309,114 +324,45 @@ class _MyMissionState extends State<MyMission> {
             ),
             Padding(
               padding: EdgeInsets.only(
-                top: MediaQuery.of(context).devicePixelRatio*2,
+                top: MediaQuery.of(context).devicePixelRatio*3,
                 left: MediaQuery.of(context).devicePixelRatio*10,
               ),
-              child: Text(
-                "วันที่ได้รับมอบหมาย : 27 May 4070",
-                style: TextStyle(
-                  color: Color(0xff757575),
-                  fontSize: 14,
-                ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "แบบประเมิน: $title",
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  Text(
+                    "คำอธิบาย: คำอธิบายชุดคำถาม",
+                    style: TextStyle(
+                      color: Color(0xff757575),
+                      fontSize: 11,
+                    ),
+                  ),
+                  Text(
+                    "จำนวน: 7 ข้อ",
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 14,
+                    ),
+                  ),
+                  Text(
+                    "ระยะเวลาการประเมิน: 13 กพ. 2565 - 14 กพ. 2565",
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 14,
+                    ),
+                  ),
+                ],
               ),
             ),
-            Padding(
-              padding: EdgeInsets.only(
-                top: MediaQuery.of(context).devicePixelRatio*2,
-                left: MediaQuery.of(context).devicePixelRatio*10,
-                right: MediaQuery.of(context).devicePixelRatio*10,
-              ),
-              child: Text(
-                "ไปตีแบดกัน",
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis,
-                style: TextStyle(
-                  color: Color(0xff757575),
-                  fontSize: 16,
-                ),
-              ),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.only(
-                        top: MediaQuery.of(context).devicePixelRatio*8,
-                        left: MediaQuery.of(context).devicePixelRatio*10,
-                        right: MediaQuery.of(context).devicePixelRatio*2,
-                      ),
-                      child: Icon(
-                        Icons.group,
-                        color: Color(0xff757575),
-                        size: MediaQuery.of(context).devicePixelRatio*6,
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(
-                        top: MediaQuery.of(context).devicePixelRatio*7,
-                      ),
-                      child: Text(
-                        "สถานะกิจกรรม : ",
-                        style: TextStyle(
-                          color: Color(0xff757575),
-                          fontSize: 16,
-                        ),
-                      ),
-                    ),
-                    Container(
-                      margin: EdgeInsets.only(
-                        top: MediaQuery.of(context).devicePixelRatio*7,
-                      ),
-                      width: MediaQuery.of(context).size.width*0.15,
-                      height: MediaQuery.of(context).size.height*0.02,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(50),
-                        color: Color(0xff6ED33F),
-                      ),
-                      child: Center(
-                        child: Text(
-                          "approve",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 12,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                Row(
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.only(
-                        top: MediaQuery.of(context).devicePixelRatio*5,
-                      ),
-                      child: Image.asset(
-                        "assets/coin2.png",
-                        fit: BoxFit.contain,
-                        width: MediaQuery.of(context).size.width*0.08,
-                        height: MediaQuery.of(context).size.width*0.08,
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(
-                        top: MediaQuery.of(context).devicePixelRatio*5,
-                        right: MediaQuery.of(context).devicePixelRatio*10,
-                      ),
-                      child: Text(
-                        " x5",
-                        style: TextStyle(
-                          color: Color(0xff757575),
-                          fontSize: 16,
-                        ),
-                      ),
-                    )
-                  ],
-                ),
-              ],
-            ),
+
           ],
         ),
       ),

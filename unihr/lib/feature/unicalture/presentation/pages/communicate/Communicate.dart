@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:gradient_borders/gradient_borders.dart';
 import 'dart:math' as math;
 import 'package:drop_shadow_image/drop_shadow_image.dart';
-import 'package:unihr/screen/communicate/Suggestion.dart';
-import 'package:unihr/screen/popup/DetailPopUp.dart';
 
 
-import '../Search.dart';
+
+import '../heartfeature/Search.dart';
+import '../popup/DetailPopUp.dart';
+import 'Suggestion.dart';
 
 class Communicate extends StatefulWidget {
   const Communicate({Key? key}) : super(key: key);

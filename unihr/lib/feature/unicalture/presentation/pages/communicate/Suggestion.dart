@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:like_button/like_button.dart';
-import 'package:unihr/screen/communicate/AddSuggestion.dart';
-import 'package:unihr/screen/communicate/DetailSuggestion.dart';
 import 'dart:math' as math;
 
-import '../../BottomNavigate.dart';
+import 'AddSuggestion.dart';
+import 'DetailSuggestion.dart';
+
 
 
 class Suggestion extends StatefulWidget {

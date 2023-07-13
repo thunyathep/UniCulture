@@ -1,23 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:gradient_borders/gradient_borders.dart';
+import 'package:unihr/feature/unicalture/presentation/widgets/activity/cardAllActivity.dart';
 import 'dart:math' as math;
-import 'package:drop_shadow_image/drop_shadow_image.dart';
-import 'package:unihr/screen/question/YearQuestion.dart';
 
-import 'OpenQuestion.dart';
+import 'DetailAllActivity.dart';
 
-class Evaluate extends StatefulWidget {
-  const Evaluate({Key? key}) : super(key: key);
+
+class AllActivity extends StatefulWidget {
+  const AllActivity({Key? key}) : super(key: key);
 
   @override
-  State<Evaluate> createState() => _EvaluateState();
+  State<AllActivity> createState() => _AllActivityState();
 }
 
-class _EvaluateState extends State<Evaluate> {
+class _AllActivityState extends State<AllActivity> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xffffffff),
+      backgroundColor: Colors.white,
       body: SafeArea(
         child: SingleChildScrollView(
           scrollDirection: Axis.vertical,
@@ -26,7 +26,7 @@ class _EvaluateState extends State<Evaluate> {
               Stack(
                 children: [
                   SizedBox(
-                    height: MediaQuery.of(context).size.height*0.3,
+                    height: MediaQuery.of(context).size.height*0.25,
                     width: MediaQuery.of(context).size.width*1,
                     child: Image.asset(
                       'assets/top_bar.png',
@@ -34,7 +34,7 @@ class _EvaluateState extends State<Evaluate> {
                     ),
                   ),
                   Container(
-                    height: MediaQuery.of(context).size.height*0.3,
+                    height: MediaQuery.of(context).size.height*0.25,
                     width: MediaQuery.of(context).size.width*1,
                     decoration: BoxDecoration(
                       gradient: LinearGradient(
@@ -51,16 +51,15 @@ class _EvaluateState extends State<Evaluate> {
                   Align(
                     alignment: Alignment.topRight,
                     child: Transform.rotate(
-                      angle: 2 * math.pi/180,
+                      angle: 5 * math.pi/180,
                       child: Image.asset(
-                        'assets/phone.png',
-                        width: MediaQuery.of(context).size.width*0.5,
-                        height: MediaQuery.of(context).size.height*0.27,
-                        fit: BoxFit.contain,
+                        'assets/human.png',
+                        width: MediaQuery.of(context).size.width*0.45,
+                        height: MediaQuery.of(context).size.height*0.23,
+                        fit: BoxFit.cover,
                       ),
                     ),
                   ),
-
                   Padding(
                     padding: EdgeInsets.only(
                         top: MediaQuery.of(context).devicePixelRatio*20
@@ -136,6 +135,8 @@ class _EvaluateState extends State<Evaluate> {
                     ),
                   ),
 
+
+
                   Padding(
                     padding: EdgeInsets.only(
                         top: MediaQuery.of(context).devicePixelRatio*17,
@@ -195,176 +196,32 @@ class _EvaluateState extends State<Evaluate> {
 
                   Padding(
                     padding: EdgeInsets.only(
-                      top: MediaQuery.of(context).devicePixelRatio*50,
+                      top: MediaQuery.of(context).devicePixelRatio*40,
                       left: MediaQuery.of(context).devicePixelRatio*10,
                     ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        const Text(
-                          'ประเมิน 360 องศา',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 24,
-                            color: Colors.black,
-                          ),
-                        ),
-                      ],
+                    child: const Text(
+                      'กิจกรรมทั้งหมด',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 32,
+                        color: Colors.black,
+                      ),
                     ),
                   ),
                 ],
               ),
               Column(
                 children: [
-                  Card_Evaluate(context, "ชื่อชุดคำถาม 360", YearQuestion()),
-                  Card_Evaluate(context, "ชื่อชุดคำถามคำถามปลาบเปิด", OpenQuestion()),
+                  CardActivity(title: 'บ้านปลา SCG เคมีคอลส์',image: 'assets/pikachu.jpg',status: 'open'),
+                  CardActivity(title: 'บ้านปลา SCG เคมีคอลส์',image: 'assets/pikachu.jpg',status: 'open'),
+                  CardActivity(title: 'บ้านปลา SCG เคมีคอลส์',image: 'assets/pikachu.jpg',status: 'open'),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height*0.15,
+                  ),
                 ],
-              ),
-              SizedBox(
-                height: MediaQuery.of(context).size.height*0.1,
               ),
             ],
           ),
-        ),
-      ),
-    );
-  }
-  Widget Card_Evaluate (BuildContext, String title, page){
-    return GestureDetector(
-      onTap: (){
-        Navigator.of(context).push(
-          MaterialPageRoute(builder: (context) => page),
-        );
-      },
-      child: Container(
-        margin: EdgeInsets.only(
-          bottom: MediaQuery.of(context).devicePixelRatio*10,
-        ),
-        width: MediaQuery.of(context).size.width*0.9,
-        height: MediaQuery.of(context).size.height*0.25,
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(30),
-            color: Colors.white,
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black.withOpacity(0.1),
-                blurRadius: 5,
-                spreadRadius: 1,
-              )
-            ]
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              height: MediaQuery.of(context).size.height*0.1,
-              child: Stack(
-                children: [
-                  Container(
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.only(
-                        topRight: Radius.circular(30),
-                        topLeft: Radius.circular(30),
-                      ),
-                      child: Image.asset(
-                        "assets/mission_card.png",
-                        width: MediaQuery.of(context).size.width,
-                        height: MediaQuery.of(context).size.height*0.13,
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(
-                      left: MediaQuery.of(context).devicePixelRatio*10,
-                    ),
-                    child: Row(
-                      children: [
-                        const CircleAvatar(
-                          backgroundImage: AssetImage('assets/pikachu.jpg'),
-                          radius: 30,
-                        ),
-                        Padding(
-                          padding: EdgeInsets.only(
-                            top: MediaQuery.of(context).devicePixelRatio*3,
-                            left: MediaQuery.of(context).devicePixelRatio*5,
-                          ),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                "Puttinun Moungprasert",
-                                style: TextStyle(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 20,
-                                ),
-                              ),
-                              Text(
-                                "HRIS Officer",
-                                style: TextStyle(
-                                  color: Color(0xff757575),
-                                  fontSize: 14,
-                                ),
-                              ),
-                              Text(
-                                "HR Business Partner",
-                                style: TextStyle(
-                                  color: Color(0xff757575),
-                                  fontSize: 14,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(
-                top: MediaQuery.of(context).devicePixelRatio*3,
-                left: MediaQuery.of(context).devicePixelRatio*10,
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    "แบบประเมิน: $title",
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  Text(
-                    "คำอธิบาย: คำอธิบายชุดคำถาม",
-                    style: TextStyle(
-                      color: Color(0xff757575),
-                      fontSize: 11,
-                    ),
-                  ),
-                  Text(
-                    "จำนวน: 7 ข้อ",
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 14,
-                    ),
-                  ),
-                  Text(
-                    "ระยะเวลาการประเมิน: 13 กพ. 2565 - 14 กพ. 2565",
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 14,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-
-          ],
         ),
       ),
     );

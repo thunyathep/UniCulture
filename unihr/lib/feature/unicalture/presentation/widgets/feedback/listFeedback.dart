@@ -1,14 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:unihr/feature/unicalture/presentation/bloc/feedback/feedback_bloc.dart';
+
+import '../../../data/model/feedback/feedback_model.dart';
 
 
 class ListFeedback extends StatefulWidget {
-  const ListFeedback({Key? key}) : super(key: key);
+  final FeedbackBloc feedbackBloc ;
+  final String title;
+  final int firstName;
+  final int lastName;
+  final String date;
+  const ListFeedback({Key? key,
+    required this.feedbackBloc,
+    required this.title,
+    required this.firstName,
+    required this.lastName,
+    required this.date}) : super(key: key);
+
 
   @override
   State<ListFeedback> createState() => _ListFeedbackState();
 }
 
 class _ListFeedbackState extends State<ListFeedback> {
+  late List<FeedbackModel> feedback;
+
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -37,8 +53,13 @@ class _ListFeedbackState extends State<ListFeedback> {
                 backgroundImage: AssetImage('assets/pikachu.jpg'),
                 radius: 30,
               ),
-              title: Text('อิ่มอร่อยได้ทุกที่กรอบดีถึงใจ'),
-              subtitle: Text('สมปอง นอนดึก, 30 Feb 5080'),
+              title: Text(widget.title),
+              subtitle: Text(
+                  widget.firstName.toString() +
+                      ' '
+                      + widget.lastName.toString() +
+                  ", "+ widget.date.toString(),
+              ),
             ),
           ),
         ),

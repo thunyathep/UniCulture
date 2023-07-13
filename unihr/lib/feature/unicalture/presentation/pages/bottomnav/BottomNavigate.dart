@@ -1,10 +1,11 @@
 import 'package:circular_bottom_navigation/circular_bottom_navigation.dart';
 import 'package:circular_bottom_navigation/tab_item.dart';
 import 'package:flutter/material.dart';
-import 'package:unihr/screen/Activity/AllActivity.dart';
-import 'package:unihr/screen/DiaryQuestion.dart';
-import 'package:unihr/screen/HomePage.dart';
-import 'package:unihr/screen/SentHeart.dart';
+import 'package:unihr/feature/unicalture/presentation/pages/homepage/HomePage.dart';
+
+import '../activity/AllActivity.dart';
+import '../heartfeature/SentHeart.dart';
+import '../question/DiaryQuestion.dart';
 
 
 class BottomNavigateBar extends StatefulWidget {

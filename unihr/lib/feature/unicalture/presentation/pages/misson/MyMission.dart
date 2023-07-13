@@ -1,18 +1,18 @@
-import 'package:drop_shadow_image/drop_shadow_image.dart';
 import 'package:flutter/material.dart';
 import 'package:gradient_borders/gradient_borders.dart';
 import 'dart:math' as math;
 
-import 'package:unihr/screen/poll/DetailPoll.dart';
+import 'DetailMission.dart';
 
-class PollPage extends StatefulWidget {
-  const PollPage({Key? key}) : super(key: key);
+
+class MyMission extends StatefulWidget {
+  const MyMission({Key? key}) : super(key: key);
 
   @override
-  State<PollPage> createState() => _PollPageState();
+  State<MyMission> createState() => _MyMissionState();
 }
 
-class _PollPageState extends State<PollPage> {
+class _MyMissionState extends State<MyMission> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,10 +52,10 @@ class _PollPageState extends State<PollPage> {
                     child: Transform.rotate(
                       angle: 2 * math.pi/180,
                       child: Image.asset(
-                        'assets/poll.png',
+                        'assets/arrow_target.png',
                         width: MediaQuery.of(context).size.width*0.5,
                         height: MediaQuery.of(context).size.height*0.27,
-                        fit: BoxFit.contain,
+                        fit: BoxFit.cover,
                       ),
                     ),
                   ),
@@ -191,7 +191,6 @@ class _PollPageState extends State<PollPage> {
                       ],
                     ),
                   ),
-
                   Padding(
                     padding: EdgeInsets.only(
                       top: MediaQuery.of(context).devicePixelRatio*50,
@@ -201,11 +200,37 @@ class _PollPageState extends State<PollPage> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         const Text(
-                          'โหวตโพล',
+                          'ภารกิจของฉัน',
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 24,
                             color: Colors.black,
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(
+                            left: MediaQuery.of(context).devicePixelRatio*2,
+                            right: MediaQuery.of(context).devicePixelRatio*5,
+                          ),
+                          child: Container(
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              gradient: LinearGradient(
+                                  begin: Alignment.topCenter,
+                                  end: Alignment.bottomCenter,
+                                  colors: [
+                                    Color(0xffFCDDDD),
+                                    Color(0xffFEA1C3),
+                                  ]
+                              )
+                            ),
+                            child: IconButton(
+                              icon: Icon(
+                                Icons.calendar_today_rounded,
+                                color: Colors.white,
+                              ),
+                              onPressed: () {},
+                            ),
                           ),
                         ),
                       ],
@@ -214,81 +239,11 @@ class _PollPageState extends State<PollPage> {
                 ],
               ),
               Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Padding(
-                    padding: EdgeInsets.only(
-                      left: MediaQuery.of(context).devicePixelRatio*5,
-                      bottom: MediaQuery.of(context).devicePixelRatio*5,
-                    ),
-                    child: Text(
-                      "Open",
-                      style: TextStyle(
-                        color: Color(0xff757575),
-                        fontSize: 14,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                  SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                      child: Row(
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.only(
-                              left: MediaQuery.of(context).devicePixelRatio*5,
-                              right: MediaQuery.of(context).devicePixelRatio*5,
-                            ),
-                            child: Card_Suggest(BuildContext),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.only(
-                              left: MediaQuery.of(context).devicePixelRatio*5,
-                              right: MediaQuery.of(context).devicePixelRatio*5,
-                            ),
-                            child: Card_Suggest(BuildContext),
-                          ),
-                        ],
-                      ),
-                  ),
-                  SizedBox(
-                    height: MediaQuery.of(context).size.height*0.01,
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(
-                      left: MediaQuery.of(context).devicePixelRatio*5,
-                      bottom: MediaQuery.of(context).devicePixelRatio*5,
-                    ),
-                    child: Text(
-                      "Ended",
-                      style: TextStyle(
-                        color: Color(0xff757575),
-                        fontSize: 14,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                  SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    child: Row(
-                      children: [
-                        Padding(
-                          padding: EdgeInsets.only(
-                            left: MediaQuery.of(context).devicePixelRatio*5,
-                            right: MediaQuery.of(context).devicePixelRatio*5,
-                          ),
-                          child: Card_Suggest(BuildContext),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.only(
-                            left: MediaQuery.of(context).devicePixelRatio*5,
-                            right: MediaQuery.of(context).devicePixelRatio*5,
-                          ),
-                          child: Card_Suggest(BuildContext),
-                        ),
-                      ],
-                    ),
-                  ),
+                  Card_Mission(context),
+                  Card_Mission(context),
+                  Card_Mission(context),
+                  Card_Mission(context),
                 ],
               ),
               SizedBox(
@@ -300,127 +255,164 @@ class _PollPageState extends State<PollPage> {
       ),
     );
   }
-  Widget Card_Suggest (BuildContext){
+  Widget Card_Mission (BuildContext){
     return GestureDetector(
       onTap: (){
         Navigator.of(context).push(
-          MaterialPageRoute(builder: (context) =>DetailPoll()),
+          MaterialPageRoute(builder: (context) =>DetailMission()),
         );
       },
       child: Container(
         margin: EdgeInsets.only(
           bottom: MediaQuery.of(context).devicePixelRatio*10,
         ),
-        width: MediaQuery.of(context).size.width*0.8,
+        width: MediaQuery.of(context).size.width*0.9,
         height: MediaQuery.of(context).size.height*0.2,
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(30),
-            color: Colors.white,
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black.withOpacity(0.1),
-                blurRadius: 5,
-                spreadRadius: 1,
-              )
-            ]
+          borderRadius: BorderRadius.circular(30),
+          color: Colors.white,
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.1),
+              blurRadius: 5,
+              spreadRadius: 1,
+            )
+          ]
         ),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-              height: MediaQuery.of(context).size.height*0.13,
               child: Stack(
                 children: [
-                  Container(
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.only(
-                        topRight: Radius.circular(30),
-                        topLeft: Radius.circular(30),
-                      ),
-                      child: Image.asset(
-                        "assets/mission_card.png",
-                        width: MediaQuery.of(context).size.width,
-                        height: MediaQuery.of(context).size.height*0.13,
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                  ),
-                  SizedBox(
+                  Image.asset(
+                    "assets/mission_card.png",
                     width: MediaQuery.of(context).size.width,
-                    height: MediaQuery.of(context).size.height*0.13,
-                    child: Padding(
-                      padding: EdgeInsets.only(
-                        top: MediaQuery.of(context).devicePixelRatio*10,
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Text(
-                            "Topic",
-                            style: TextStyle(
-                                fontSize: 32,
-                                fontWeight: FontWeight.bold
-                            ),
-                          ),
-                        ],
+                  fit: BoxFit.cover,
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(
+                      top: MediaQuery.of(context).devicePixelRatio*5,
+                      left: MediaQuery.of(context).devicePixelRatio*10,
+                    ),
+                    child: Text(
+                      "Topic",
+                      style: TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold
                       ),
                     ),
                   ),
                 ],
               ),
             ),
+            Padding(
+              padding: EdgeInsets.only(
+                top: MediaQuery.of(context).devicePixelRatio*2,
+                left: MediaQuery.of(context).devicePixelRatio*10,
+              ),
+              child: Text(
+                "วันที่ได้รับมอบหมาย : 27 May 4070",
+                style: TextStyle(
+                  color: Color(0xff757575),
+                  fontSize: 14,
+                ),
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(
+                top: MediaQuery.of(context).devicePixelRatio*2,
+                left: MediaQuery.of(context).devicePixelRatio*10,
+                right: MediaQuery.of(context).devicePixelRatio*10,
+              ),
+              child: Text(
+                "ไปตีแบดกัน",
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                  color: Color(0xff757575),
+                  fontSize: 16,
+                ),
+              ),
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Padding(
-                  padding: EdgeInsets.only(
-                    top: MediaQuery.of(context).devicePixelRatio*3,
-                    left: MediaQuery.of(context).devicePixelRatio*5,
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "End : 10 Jan 4041",
+                Row(
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.only(
+                        top: MediaQuery.of(context).devicePixelRatio*8,
+                        left: MediaQuery.of(context).devicePixelRatio*10,
+                        right: MediaQuery.of(context).devicePixelRatio*2,
+                      ),
+                      child: Icon(
+                        Icons.group,
+                        color: Color(0xff757575),
+                        size: MediaQuery.of(context).devicePixelRatio*6,
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(
+                        top: MediaQuery.of(context).devicePixelRatio*7,
+                      ),
+                      child: Text(
+                        "สถานะกิจกรรม : ",
                         style: TextStyle(
                           color: Color(0xff757575),
-                          fontSize: 12,
+                          fontSize: 16,
                         ),
                       ),
-                      Padding(
-                        padding: EdgeInsets.only(
-                          top: MediaQuery.of(context).devicePixelRatio*1,
-                        ),
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(
+                        top: MediaQuery.of(context).devicePixelRatio*7,
+                      ),
+                      width: MediaQuery.of(context).size.width*0.15,
+                      height: MediaQuery.of(context).size.height*0.02,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(50),
+                        color: Color(0xff6ED33F),
+                      ),
+                      child: Center(
                         child: Text(
-                          "Vote: 25.00%",
+                          "approve",
                           style: TextStyle(
-                            color: Color(0xff757575),
+                            color: Colors.white,
                             fontSize: 12,
                           ),
                         ),
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
-                Container(
-                  margin: EdgeInsets.only(
-                    top: MediaQuery.of(context).devicePixelRatio*5,
-                    right: MediaQuery.of(context).devicePixelRatio*10,
-                  ),
-                  width: MediaQuery.of(context).size.width*0.2,
-                  height: MediaQuery.of(context).size.height*0.025,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(50),
-                    color: Color(0xff6ED33F),
-                  ),
-                  child: Center(
-                    child: Text(
-                      "โหวต",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 12,
+                Row(
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.only(
+                        top: MediaQuery.of(context).devicePixelRatio*5,
+                      ),
+                      child: Image.asset(
+                        "assets/coin2.png",
+                        fit: BoxFit.contain,
+                        width: MediaQuery.of(context).size.width*0.08,
+                        height: MediaQuery.of(context).size.width*0.08,
                       ),
                     ),
-                  ),
+                    Padding(
+                      padding: EdgeInsets.only(
+                        top: MediaQuery.of(context).devicePixelRatio*5,
+                        right: MediaQuery.of(context).devicePixelRatio*10,
+                      ),
+                      child: Text(
+                        " x5",
+                        style: TextStyle(
+                          color: Color(0xff757575),
+                          fontSize: 16,
+                        ),
+                      ),
+                    )
+                  ],
                 ),
               ],
             ),

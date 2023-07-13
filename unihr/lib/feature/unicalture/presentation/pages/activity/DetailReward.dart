@@ -418,7 +418,7 @@ class _DetailRewardState extends State<DetailReward> {
                                                 ),
 
 
-                                                GestureDetector(
+                                                InkWell(
                                                   onTap: (){
                                                     Navigator.of(context).pop();
                                                   },
@@ -453,7 +453,7 @@ class _DetailRewardState extends State<DetailReward> {
                                                 ),
 
 
-                                                GestureDetector(
+                                                InkWell(
                                                   onTap: (){
                                                     Navigator.of(context).pop();
                                                     showDialog(

@@ -4,11 +4,11 @@ import 'package:unihr/feature/unicalture/domain/repositories/feedback/feedback_r
 
 import '../../../../../core/error/failure.dart';
 
-class GetRecieveFeedback {
+class GetSendedFeedback {
   final FeedBackRepositories feedBackRepositories;
 
-  GetRecieveFeedback(this.feedBackRepositories);
+  GetSendedFeedback(this.feedBackRepositories);
 
-  Future<Either<Failures, List<FeedbackEntity>>> execute() async =>
-      await feedBackRepositories.getRecieveFeedback();
+  Future<Either<Failures, FeedbackEntity>> execute() async =>
+      await feedBackRepositories.getSendedFeedback();
 }
