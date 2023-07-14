@@ -27,10 +27,10 @@ class Feedback_remoteImpl implements Feedback_remote{
     // print(response.body);
     if(response.statusCode == 200){
       final List<dynamic> feedbackJsonList = json.decode(response.body);
-      final List<FeedbackModel> feedbackList = feedbackJsonList.cast<FeedbackModel>();
-      // final List<FeedbackModel> feedbackList = feedbackJsonList
-      //     .map((feedbackJson) => FeedbackModel.fromJson(feedbackJson))
-      //     .toList();
+      // final List<FeedbackModel> feedbackList = feedbackJsonList.cast<FeedbackModel>();
+      final List<FeedbackModel> feedbackList = feedbackJsonList
+          .map((feedbackJson) => FeedbackModel.fromJson(feedbackJson))
+          .toList();
       print(feedbackList);
       return feedbackList;
     } else{

@@ -7,6 +7,7 @@ import 'package:unihr/feature/unicalture/presentation/pages/score/Score.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:unihr/feature/unicalture/presentation/widgets/homepage/cardActivity.dart';
 import 'package:unihr/feature/unicalture/presentation/widgets/homepage/cardReward.dart';
+import '../../widgets/homepage/buttonNav.dart';
 import '../activity/AllActivity.dart';
 import '../activity/Allreward.dart';
 import '../activity/MyActivity.dart';
@@ -401,37 +402,37 @@ class _HomePageState extends State<HomePage> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            _buildFeature(context, "กระเป๋า\nเหรียญ", Pocket()),
-                            _buildFeature(
-                                context, "รับส่ง\nหัวใจ", SentHeart()),
-                            _buildFeature(context, "ฟีดแบค\n", FeedBack()),
-                            _buildFeature(
-                                context, "แลกของ\nรางวัล", AllReward()),
-                            _buildFeature(
-                                context, "ภาระกิจ\nของฉัน", MyMission()),
-                            _buildFeature(
-                                context, "การสื่อสาร\n", Communicate()),
-                            _buildFeature(context, "ตาราง\nคะแนน", ScorePage()),
-                            _buildFeature(context, "ผลโหวต\n", PollPage()),
+                            ButtonFeature(feature: "กระเป๋า\nเหรียญ",pages: Pocket()),
+                            ButtonFeature(
+                                feature: "รับส่ง\nหัวใจ",pages: SentHeart()),
+                            ButtonFeature(feature: "ฟีดแบค\n",pages: FeedBack()),
+                            ButtonFeature(
+                                feature: "แลกของ\nรางวัล",pages: AllReward()),
+                            ButtonFeature(
+                                feature: "ภาระกิจ\nของฉัน",pages: MyMission()),
+                            ButtonFeature(
+                                feature: "การสื่อสาร\n",pages: Communicate()),
+                            ButtonFeature(feature: "ตาราง\nคะแนน",pages: ScorePage()),
+                            ButtonFeature(feature: "ผลโหวต\n",pages: PollPage()),
                           ],
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            _buildFeature(
-                                context, "กิจกรรม\nของฉัน\n", MyActivity()),
-                            _buildFeature(
-                                context, "สมัคร\nกิจกรรม\n", MyReward()),
-                            _buildFeature(
-                                context, "รางวัล\nของฉัน\n", MyReward()),
-                            _buildFeature(context, "คำถาม\nสุขภาพใจ\nรายวัน",
-                                DiaryQuestion()),
-                            _buildFeature(
-                                context, "คำถาม\nสุขภาพใจ\nประจำปี",
-                                YearQuestion()),
-                            _buildFeature(
-                                context, "ประเมิน\n360 องศา\n", Evaluate()),
-                            _buildFeature(context, "โค้ชชิ่ง\n\n", MyReward()),
+                            ButtonFeature(
+                                feature: "กิจกรรม\nของฉัน\n",pages: MyActivity()),
+                            ButtonFeature(
+                                feature: "สมัคร\nกิจกรรม\n",pages: MyReward()),
+                            ButtonFeature(
+                                feature: "รางวัล\nของฉัน\n",pages: MyReward()),
+                            ButtonFeature(feature: "คำถาม\nสุขภาพใจ\nรายวัน",
+                                pages : DiaryQuestion()),
+                            ButtonFeature(
+                                feature: "คำถาม\nสุขภาพใจ\nประจำปี",
+                                pages: YearQuestion()),
+                            ButtonFeature(
+                                feature: "ประเมิน\n360 องศา\n",pages: Evaluate()),
+                            ButtonFeature(feature: "โค้ชชิ่ง\n\n",pages: MyReward()),
                             Column(
                               children: [
                                 Container(

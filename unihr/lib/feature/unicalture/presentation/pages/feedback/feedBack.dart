@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gradient_borders/gradient_borders.dart';
+import 'package:intl/intl.dart';
 import 'package:unihr/feature/unicalture/data/model/feedback/feedback_model.dart';
 import 'package:unihr/feature/unicalture/presentation/bloc/feedback/feedback_bloc.dart';
 import 'package:unihr/feature/unicalture/presentation/bloc/feedback/feedback_event.dart';
 import 'package:unihr/feature/unicalture/presentation/bloc/feedback/feedback_state.dart';
 import 'dart:math' as math;
 
+import '../../widgets/feedback/shimmerlist.dart';
 import 'AddFeedBack.dart';
 import 'SearchFeedBack.dart';
 import '../../widgets/feedback/listFeedback.dart';
@@ -388,24 +390,46 @@ class _FeedBackState extends State<FeedBack> {
                   BlocBuilder<FeedbackBloc, FeedbackState>(
                       builder: (context, state){
                         if(state is FeedbackLoadingState){
-                          return Text("loading");
+                          return ShimmerListFeedback();
                         }else if(state is FeedbackLoadedState){
-                          return ListView.builder(
-                            scrollDirection: Axis.vertical,
-                            shrinkWrap: true,
-                            physics: const NeverScrollableScrollPhysics(),
-                            padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
-                            itemCount: listfeedback.length,
-                            itemBuilder: (BuildContext context, int index) {
-                              return ListFeedback(
-                                  feedbackBloc: _feedbackBloc,
-                                  title: listfeedback[index].feedback ?? "",
-                                  firstName: listfeedback[index].idSender ?? 0,
-                                  lastName: listfeedback[index].idReceiver ?? 0,
-                                  date: listfeedback[index].feedbackDate ??
-                                      DateTime.now().toString(),
+                          listfeedback = state.listFeedback;
+                          return LayoutBuilder(
+                            builder: (BuildContext context, BoxConstraints constraints){
+                              return SizedBox(
+                                height: MediaQuery.of(context).size.height,
+                                width: MediaQuery.of(context).size.width,
+                                child: ListView.builder(
+                                  physics: const NeverScrollableScrollPhysics(),
+                                  padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
+                                  itemCount: listfeedback.length,
+                                  itemBuilder: (BuildContext context, int index) {
+                                    return ListFeedback(
+                                      feedbackBloc: _feedbackBloc,
+                                      title: listfeedback[index].feedback ?? "",
+                                      firstName: listfeedback[index].senderFirstname ?? "",
+                                      lastName: listfeedback[index].senderLastname ?? "",
+                                      date: listfeedback[index].feedbackDate
+                                          ?? DateTime.now().toString(),
+                                    );
+                                  },
+                                ),
                               );
                             },
+                            // child: ListView.builder(
+                            //   physics: const NeverScrollableScrollPhysics(),
+                            //   padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
+                            //   itemCount: listfeedback.length,
+                            //   itemBuilder: (BuildContext context, int index) {
+                            //     return ListFeedback(
+                            //         feedbackBloc: _feedbackBloc,
+                            //         title: listfeedback[index].feedback ?? "",
+                            //         firstName: listfeedback[index].senderFirstname ?? "",
+                            //         lastName: listfeedback[index].senderLastname ?? "",
+                            //         date: listfeedback[index].feedbackDate
+                            //             ?? DateTime.now().toString(),
+                            //     );
+                            //   },
+                            // ),
                           );
                         }else {
                           return Text(state.props.toString());
@@ -413,7 +437,7 @@ class _FeedBackState extends State<FeedBack> {
                       }
                   ),
                   SizedBox(
-                    height: MediaQuery.of(context).size.height*0.1,
+                    height: MediaQuery.of(context).size.height*0.05,
                   ),
                 ],
               ),
@@ -423,39 +447,5 @@ class _FeedBackState extends State<FeedBack> {
       ),
     );
   }
-  // Widget ListFeedback (BuildContext){
-  //   return InkWell(
-  //     onTap: (){},
-  //     child: Padding(
-  //       padding: EdgeInsets.all(
-  //           MediaQuery.of(context).devicePixelRatio*5
-  //       ),
-  //       child: Container(
-  //         width: MediaQuery.of(context).size.width*0.9,
-  //         height: MediaQuery.of(context).size.height*0.12,
-  //         decoration: BoxDecoration(
-  //           borderRadius: BorderRadius.circular(20),
-  //           color: Colors.white,
-  //           boxShadow: [
-  //             BoxShadow(
-  //               color: Colors.black.withOpacity(0.1),
-  //               blurRadius: 5,
-  //               spreadRadius: 1,
-  //             ),
-  //           ],
-  //         ),
-  //         child: Center(
-  //           child: ListTile(
-  //             leading: CircleAvatar(
-  //               backgroundImage: AssetImage('assets/pikachu.jpg'),
-  //               radius: 30,
-  //             ),
-  //             title: Text('อิ่มอร่อยได้ทุกที่กรอบดีถึงใจ'),
-  //             subtitle: Text('สมปอง นอนดึก, 30 Feb 5080'),
-  //           ),
-  //         ),
-  //       ),
-  //     ),
-  //   );
-  // }
+
 }
