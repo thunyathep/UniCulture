@@ -320,7 +320,7 @@ class _DetailMissionState extends State<DetailMission> {
                             ),
                           ),
                           Center(
-                            child: GestureDetector(
+                            child: InkWell(
                               onTap: () {
                                 Navigator.of(context).push(
                                   MaterialPageRoute(builder: (context)=>DoTask()),

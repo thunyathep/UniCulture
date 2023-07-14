@@ -56,27 +56,6 @@ class _DetailPopUpState extends State<DetailPopUp> {
                       ),
                     ),
                   ),
-
-                  // Padding(
-                  //   padding: EdgeInsets.only(
-                  //       top: MediaQuery.of(context).devicePixelRatio*20
-                  //   ),
-                  //   child: Row(
-                  //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  //     children: [
-                  //       IconButton(
-                  //         onPressed: (){
-                  //           Navigator.of(context).pop();
-                  //         },
-                  //         icon: Icon(
-                  //           Icons.arrow_back_ios_new_rounded,
-                  //           color: Colors.white,
-                  //           size: MediaQuery.of(context).size.height*0.04,
-                  //         ),
-                  //       ),
-                  //     ],
-                  //   ),
-                  // ),
                 ],
               ),
               Padding(
@@ -203,7 +182,7 @@ class _DetailPopUpState extends State<DetailPopUp> {
                       )
                   ),
                   child: Center(
-                    child: GestureDetector(
+                    child: InkWell(
                       onTap: () {
                         Navigator.of(context).pop();
                         showDialog(

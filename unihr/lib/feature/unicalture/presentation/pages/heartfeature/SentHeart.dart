@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gradient_borders/gradient_borders.dart';
+import 'package:unihr/feature/unicalture/presentation/widgets/sentheart/listUser.dart';
 import 'dart:math' as math;
 
 import '../calendar/Calender.dart';
@@ -694,9 +695,9 @@ class _SentHeartState extends State<SentHeart> {
                             scrollDirection: Axis.vertical,
                             child: Column(
                               children: [
-                                ListSentheart(context),
-                                ListSentheart(context),
-                                ListSentheart(context),
+                                ListUser(),
+                                ListUser(),
+                                ListUser(),
                               ],
                             ),
                           ),
@@ -708,54 +709,6 @@ class _SentHeartState extends State<SentHeart> {
               ),
               SizedBox(
                 height: MediaQuery.of(context).size.height*0.1,
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-  Widget ListSentheart (BuildContext){
-    return GestureDetector(
-      onTap: (){},
-      child: Container(
-        width: MediaQuery.of(context).size.width*0.8,
-        height: MediaQuery.of(context).size.height*0.1,
-        decoration: BoxDecoration(
-          border: Border(
-            bottom: BorderSide(
-              color: Colors.black.withOpacity(0.3),
-              width: 1,
-            ),
-          ),
-        ),
-        child: ListTile(
-          leading: CircleAvatar(
-            backgroundImage: AssetImage('assets/pikachu.jpg'),
-            radius: 30,
-          ),
-          title: Text('สมปอง นอนดึก'),
-          subtitle: Text('32 Jan 3080'),
-          trailing: Stack(
-            children: [
-              Icon(
-                  Icons.favorite,
-                color: Colors.red,
-                size: MediaQuery.of(context).size.width*0.09,
-              ),
-              Padding(
-                padding: EdgeInsets.only(
-                  top: MediaQuery.of(context).devicePixelRatio*3,
-                  left: MediaQuery.of(context).devicePixelRatio*4,
-                ),
-                child: Text(
-                    "1",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 14,
-                  ),
-                ),
               ),
             ],
           ),

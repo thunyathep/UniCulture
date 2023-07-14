@@ -22,7 +22,7 @@ class CardActivity extends StatefulWidget {
 class _CardActivityState extends State<CardActivity> {
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    return InkWell(
       onTap: (){
         Navigator.of(context).push(
             MaterialPageRoute(builder: (context) => DetailAllActivity())

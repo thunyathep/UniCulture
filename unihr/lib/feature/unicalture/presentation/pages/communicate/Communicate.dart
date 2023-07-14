@@ -219,7 +219,7 @@ class _CommunicateState extends State<Communicate> {
               ),
               Column(
                 children: [
-                  GestureDetector(
+                  InkWell(
                     onTap: () {
                       showDialog(
                           context: context,
@@ -396,7 +396,7 @@ class _CommunicateState extends State<Communicate> {
                                         ),
                                       ],
                                     ),
-                                    GestureDetector(
+                                    InkWell(
                                       onTap: (){
                                         Navigator.of(context).pop();
                                         Navigator.of(context).push(
@@ -445,39 +445,41 @@ class _CommunicateState extends State<Communicate> {
                                         ),
                                       ),
                                     ),
-                                    GestureDetector(
-                                      onTap: (){
-                                        Navigator.of(context).pop();
-                                      },
-                                      child: Container(
-                                        margin: EdgeInsets.only(
-                                          top: MediaQuery.of(context).devicePixelRatio*5,
-                                        ),
-                                        width: MediaQuery.of(context).size.width*0.4,
-                                        height: MediaQuery.of(context).size.height*0.05,
-                                        decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(50),
-                                          border: Border.all(
-                                            width: 1,
-                                            color: Colors.white,
+                                    Padding(
+                                      padding: EdgeInsets.only(
+                                        top: MediaQuery.of(context).devicePixelRatio*6,
+                                      ),
+                                      child: InkWell(
+                                        onTap: (){
+                                          Navigator.of(context).pop();
+                                        },
+                                        child: Container(
+                                          width: MediaQuery.of(context).size.width*0.4,
+                                          height: MediaQuery.of(context).size.height*0.05,
+                                          decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.circular(50),
+                                            border: Border.all(
+                                              width: 1,
+                                              color: Colors.white,
+                                            ),
+                                            color: Colors.transparent,
                                           ),
-                                          color: Colors.transparent,
-                                        ),
-                                        child: Row(
-                                          children: [
-                                            Padding(
-                                              padding: EdgeInsets.only(
-                                                left: MediaQuery.of(context).devicePixelRatio*20,
-                                              ),
-                                              child: Text(
-                                                "ปิด",
-                                                style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontSize: 20,
+                                          child: Row(
+                                            children: [
+                                              Padding(
+                                                padding: EdgeInsets.only(
+                                                  left: MediaQuery.of(context).devicePixelRatio*20,
+                                                ),
+                                                child: Text(
+                                                  "ปิด",
+                                                  style: TextStyle(
+                                                    color: Colors.white,
+                                                    fontSize: 20,
+                                                  ),
                                                 ),
                                               ),
-                                            ),
-                                          ],
+                                            ],
+                                          ),
                                         ),
                                       ),
                                     ),
@@ -530,59 +532,61 @@ class _CommunicateState extends State<Communicate> {
                       ),
                     ),
                   ),
-                  GestureDetector(
-                    onTap: (){
-                      Navigator.of(context).push(
-                        MaterialPageRoute(builder: (context)=>Suggestion())
-                      );
-                    },
-                    child: Container(
-                      margin: EdgeInsets.only(
-                        top: MediaQuery.of(context).devicePixelRatio*10,
-                      ),
-                      width: MediaQuery.of(context).size.width*0.95,
-                      height: MediaQuery.of(context).size.height*0.25,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      child: Stack(
-                        children: [
-                          DropShadowImage(
-                            offset: Offset(3,3),
-                            scale: 1,
-                            blurRadius: 0,
-                            borderRadius: 5,
-                            image: Image.asset(
-                              "assets/bg_commu.png",
-                              fit: BoxFit.cover,
-                              width: MediaQuery.of(context).size.width*1,
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.only(
-                              left: MediaQuery.of(context).devicePixelRatio*45,
-                            ),
-                            child: Image.asset(
-                              "assets/chatbox.png",
-                              fit: BoxFit.cover,
-                              width: MediaQuery.of(context).size.width*0.7,
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.only(
-                              top: MediaQuery.of(context).devicePixelRatio*25,
-                              left: MediaQuery.of(context).devicePixelRatio*10,
-                            ),
-                            child: Text(
-                              "พูดคุยเสนอแนะ",
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 24,
-                                fontWeight: FontWeight.bold,
+                  Padding(
+                    padding: EdgeInsets.only(
+                      top: MediaQuery.of(context).devicePixelRatio*6,
+                    ),
+                    child: InkWell(
+                      onTap: (){
+                        Navigator.of(context).push(
+                          MaterialPageRoute(builder: (context)=>Suggestion())
+                        );
+                      },
+                      child: Container(
+                        width: MediaQuery.of(context).size.width*0.95,
+                        height: MediaQuery.of(context).size.height*0.25,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: Stack(
+                          children: [
+                            DropShadowImage(
+                              offset: Offset(3,3),
+                              scale: 1,
+                              blurRadius: 0,
+                              borderRadius: 5,
+                              image: Image.asset(
+                                "assets/bg_commu.png",
+                                fit: BoxFit.cover,
+                                width: MediaQuery.of(context).size.width*1,
                               ),
                             ),
-                          ),
-                        ],
+                            Padding(
+                              padding: EdgeInsets.only(
+                                left: MediaQuery.of(context).devicePixelRatio*45,
+                              ),
+                              child: Image.asset(
+                                "assets/chatbox.png",
+                                fit: BoxFit.cover,
+                                width: MediaQuery.of(context).size.width*0.7,
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(
+                                top: MediaQuery.of(context).devicePixelRatio*25,
+                                left: MediaQuery.of(context).devicePixelRatio*10,
+                              ),
+                              child: Text(
+                                "พูดคุยเสนอแนะ",
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 24,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),

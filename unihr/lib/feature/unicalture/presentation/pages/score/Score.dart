@@ -672,7 +672,7 @@ class _ScorePageState extends State<ScorePage> {
               CardScore(context, 9),
               CardScore(context, 10),
               Center(
-                child: GestureDetector(
+                child: InkWell(
                   onTap: (){
                     Navigator.of(context).push(
                       MaterialPageRoute(builder: (context)=>AllScore())
@@ -700,12 +700,6 @@ class _ScorePageState extends State<ScorePage> {
                   ),
                 ),
               ),
-              // ListView.builder(
-              //   itemCount: cardScores.length,
-              //   itemBuilder: (BuildContext context, int index) {
-              //     return cardScores[index];
-              //   },
-              // ),
 
               SizedBox(
                 height: MediaQuery.of(context).size.height*0.1,
