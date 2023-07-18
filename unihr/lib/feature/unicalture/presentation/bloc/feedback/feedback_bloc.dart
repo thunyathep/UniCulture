@@ -19,10 +19,19 @@ class FeedbackBloc extends Bloc<FeedbackEvent, FeedbackState> {
       emit(FeedbackLoadingState());
       try {
         final List<FeedbackModel> listFeedback = await feedback_remoteImpl.getRecieveFeedback();
-        // final listFeedbackData = feedbackModelFromJson(listFeedback);
-        // print(listFeedback);
         final List<FeedbackModel> listfeedback = listFeedback;
-        print(listfeedback);
+        emit(FeedbackLoadedState(listfeedback));
+      } catch (e, stacktrace) {
+        print("Exception occurred: $e stackTrace: $stacktrace");
+        emit(FeedbackError(e.toString()));
+      }
+    });
+
+    on<GetSendedFeedback>((event, emit) async {
+      emit(FeedbackLoadingState());
+      try {
+        final List<FeedbackModel> listFeedback = await feedback_remoteImpl.getSendedFeedback();
+        final List<FeedbackModel> listfeedback = listFeedback;
         emit(FeedbackLoadedState(listfeedback));
       } catch (e, stacktrace) {
         print("Exception occurred: $e stackTrace: $stacktrace");

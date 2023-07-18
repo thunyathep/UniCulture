@@ -9,6 +9,6 @@ class GetSendedFeedback {
 
   GetSendedFeedback(this.feedBackRepositories);
 
-  Future<Either<Failures, FeedbackEntity>> execute() async =>
+  Future<Either<Failures, List<FeedbackEntity>>> execute() async =>
       await feedBackRepositories.getSendedFeedback();
 }

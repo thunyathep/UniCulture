@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gradient_borders/gradient_borders.dart';
 import 'package:intl/intl.dart';
+import 'package:unihr/feature/feedback/presentation/widget/buttonFeedback.dart';
 import 'package:unihr/feature/unicalture/data/model/feedback/feedback_model.dart';
 import 'package:unihr/feature/unicalture/presentation/bloc/feedback/feedback_bloc.dart';
 import 'package:unihr/feature/unicalture/presentation/bloc/feedback/feedback_event.dart';
@@ -24,6 +25,8 @@ class FeedBack extends StatefulWidget {
 class _FeedBackState extends State<FeedBack> {
   final FeedbackBloc _feedbackBloc = FeedbackBloc();
   late List<FeedbackModel> listfeedback;
+  bool _recieve = false;
+  bool _sended = false;
 
   @override
   void initState() {
@@ -289,8 +292,37 @@ class _FeedBackState extends State<FeedBack> {
                           children: [
                             Row(
                               children: [
+                                // Padding(
+                                //   padding: EdgeInsets.only(
+                                //     left: MediaQuery.of(context)
+                                //         .devicePixelRatio *15,
+                                //   ),
+                                //   child: const SelectFeedback(
+                                //       text: 'ฟีดแบคที่ได้รับ',
+                                //       icon: Icons.file_upload_rounded,
+                                //       isActive: true,
+                                //       value: 180,
+                                //   ),
+                                // ),
+                                // Padding(
+                                //   padding: EdgeInsets.only(
+                                //     left: MediaQuery.of(context)
+                                //         .devicePixelRatio *5,
+                                //   ),
+                                //   child: const SelectFeedback(
+                                //       text: 'ฟีดแบคที่ส่ง',
+                                //       icon: Icons.file_upload_rounded,
+                                //       isActive: false,
+                                //       value: 1,
+                                //   ),
+                                // ),
                                 InkWell(
-                                  onTap: (){},
+                                  onTap: (){
+                                    _feedbackBloc.add(GetRecieveFeedback());
+                                    setState(() {
+                                      _recieve = !_recieve;
+                                    });
+                                  },
                                   child: Container(
                                     margin: EdgeInsets.only(
                                         left: MediaQuery.of(context).devicePixelRatio*15
@@ -298,10 +330,14 @@ class _FeedBackState extends State<FeedBack> {
                                     width: MediaQuery.of(context).size.width*0.35,
                                     height: MediaQuery.of(context).size.height*0.05,
                                     decoration: BoxDecoration(
+                                      border: Border.all(
+                                        width: 1,
+                                        color: Color(0xff757575).withOpacity(0.3),
+                                      ),
                                       borderRadius: BorderRadius.all(
                                         Radius.circular(40),
                                       ),
-                                      gradient: LinearGradient(
+                                      gradient: _recieve ? LinearGradient(
                                         begin: Alignment.centerRight,
                                         end: Alignment.centerLeft,
                                         colors: [
@@ -312,26 +348,32 @@ class _FeedBackState extends State<FeedBack> {
                                           Color(0xffC1E1E7),
                                           Color(0xffC1E1E6),
                                         ],
-                                      ),
+                                      ) : null,
+                                      color: Colors.white,
                                     ),
                                     child: Row(
                                       children: [
                                         Padding(
                                           padding: EdgeInsets.only(
-                                              left: MediaQuery.of(context).devicePixelRatio*3,
-                                              right: MediaQuery.of(context).devicePixelRatio*2
+                                              left: MediaQuery.of(context)
+                                                  .devicePixelRatio*3,
+                                              right: MediaQuery.of(context)
+                                                  .devicePixelRatio*2
                                           ),
                                           child: Transform.rotate(
                                             angle: 180 * math.pi/180,
                                             child: Icon(
                                               Icons.file_upload_rounded,
-                                              color: Colors.black,
+                                              color: _recieve ? Colors.black
+                                                  : Color(0xff757575),
                                             ),
                                           ),
                                         ),
                                         Text(
                                           "ฟีดแบคที่ได้รับ",
                                           style: TextStyle(
+                                            color: _recieve ? Colors.black
+                                                : Color(0xff757575),
                                             fontWeight: FontWeight.bold,
                                             fontSize: 14,
                                           ),
@@ -341,7 +383,12 @@ class _FeedBackState extends State<FeedBack> {
                                   ),
                                 ),
                                 InkWell(
-                                  onTap: (){},
+                                  onTap: (){
+                                    _feedbackBloc.add(GetSendedFeedback());
+                                    setState(() {
+                                      _sended = !_sended;
+                                    });
+                                  },
                                   child: Container(
                                     margin: EdgeInsets.only(
                                       left: MediaQuery.of(context).devicePixelRatio*5,
@@ -352,11 +399,23 @@ class _FeedBackState extends State<FeedBack> {
                                       borderRadius: BorderRadius.all(
                                         Radius.circular(40),
                                       ),
+                                      gradient: _sended ? LinearGradient(
+                                        begin: Alignment.centerRight,
+                                        end: Alignment.centerLeft,
+                                        colors: [
+                                          Color(0xffFCB0C2),
+                                          Color(0xffF4BFCF),
+                                          Color(0xffF0C5F1),
+                                          Color(0xffE3DEF4),
+                                          Color(0xffC1E1E7),
+                                          Color(0xffC1E1E6),
+                                        ],
+                                      ) : null,
+                                      color: Colors.white,
                                       border: Border.all(
                                         width: 1,
                                         color: Color(0xff757575).withOpacity(0.3),
                                       ),
-                                      color: Colors.white,
                                     ),
                                     child: Row(
                                       children: [
@@ -365,15 +424,20 @@ class _FeedBackState extends State<FeedBack> {
                                               left: MediaQuery.of(context).devicePixelRatio*5,
                                               right: MediaQuery.of(context).devicePixelRatio*2
                                           ),
-                                          child: Icon(
-                                            Icons.file_upload_rounded,
-                                            color: Color(0xff757575),
+                                          child: Transform.rotate(
+                                            angle: 180 * math.pi/1,
+                                            child: Icon(
+                                              Icons.file_upload_rounded,
+                                              color: _sended ? Colors.black
+                                                  : Color(0xff757575),
+                                            ),
                                           ),
                                         ),
                                         Text(
                                           "ฟีดแบคที่ส่ง",
                                           style: TextStyle(
-                                            color: Color(0xff757575),
+                                            color: _sended ? Colors.black
+                                              : Color(0xff757575),
                                           ),
                                         ),
                                       ],
@@ -415,21 +479,6 @@ class _FeedBackState extends State<FeedBack> {
                                 ),
                               );
                             },
-                            // child: ListView.builder(
-                            //   physics: const NeverScrollableScrollPhysics(),
-                            //   padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
-                            //   itemCount: listfeedback.length,
-                            //   itemBuilder: (BuildContext context, int index) {
-                            //     return ListFeedback(
-                            //         feedbackBloc: _feedbackBloc,
-                            //         title: listfeedback[index].feedback ?? "",
-                            //         firstName: listfeedback[index].senderFirstname ?? "",
-                            //         lastName: listfeedback[index].senderLastname ?? "",
-                            //         date: listfeedback[index].feedbackDate
-                            //             ?? DateTime.now().toString(),
-                            //     );
-                            //   },
-                            // ),
                           );
                         }else {
                           return Text(state.props.toString());

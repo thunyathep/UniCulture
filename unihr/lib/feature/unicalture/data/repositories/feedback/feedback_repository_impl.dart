@@ -23,7 +23,7 @@ class FeedBackRepositoryImpl implements FeedBackRepositories{
   }
 
   @override
-  Future<Either<Failures, FeedbackModel>> getSendedFeedback() async {
+  Future<Either<Failures, List<FeedbackModel>>> getSendedFeedback() async {
     try{
       final sendedFeedback = await feedback_remote.getSendedFeedback();
       return Right(sendedFeedback);

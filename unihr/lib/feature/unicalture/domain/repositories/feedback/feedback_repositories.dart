@@ -4,5 +4,5 @@ import 'package:unihr/feature/unicalture/domain/entities/feedback_entity.dart';
 
 abstract class FeedBackRepositories{
   Future<Either<Failures, List<FeedbackEntity>>> getRecieveFeedback();
-  Future<Either<Failures, FeedbackEntity>> getSendedFeedback();
+  Future<Either<Failures, List<FeedbackEntity>>> getSendedFeedback();
 }
