@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 
 class ButtonFeature extends StatefulWidget {
   final String feature;
+  final String image;
   final Widget pages;
   const ButtonFeature({Key? key,
     required this.feature,
+    required this.image,
     required this.pages,
   }) : super(key: key);
 
@@ -33,13 +35,10 @@ class _ButtonFeatureState extends State<ButtonFeature> {
             width: MediaQuery.of(context).size.width * 0.16,
             decoration: const BoxDecoration(
               shape: BoxShape.circle,
-              gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: [
-                    Color(0xffFCDDDD),
-                    Color(0xffFEA1C3),
-                  ]),
+              color: Color(0xffFF7AAA),
+            ),
+            child: Center(
+              child: Image.asset(widget.image),
             ),
           ),
           Container(

@@ -25,12 +25,9 @@ class ListFeedback extends StatefulWidget {
 
 class _ListFeedbackState extends State<ListFeedback> {
   late DateTime dateTime;
-  late List<FeedbackModel> feedback;
-
   @override
   Widget build(BuildContext context) {
     dateTime = DateTime.parse(widget.date);
-    print(dateTime);
     return InkWell(
       onTap: (){},
       child: Padding(
