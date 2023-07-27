@@ -1,9 +1,9 @@
 import 'package:circular_bottom_navigation/circular_bottom_navigation.dart';
 import 'package:circular_bottom_navigation/tab_item.dart';
 import 'package:flutter/material.dart';
-import 'package:unihr/feature/unicalture/presentation/pages/homepage/HomePage.dart';
+import 'package:unihr/feature/homepage/presentation/pages/HomePage.dart';
 
-import '../activity/AllActivity.dart';
+import '../../../../activity/presentation/pages/AllActivity.dart';
 import '../heartfeature/SentHeart.dart';
 import '../question/DiaryQuestion.dart';
 

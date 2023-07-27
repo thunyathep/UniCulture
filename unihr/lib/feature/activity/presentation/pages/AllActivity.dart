@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:gradient_borders/gradient_borders.dart';
-import 'package:unihr/feature/unicalture/presentation/widgets/activity/cardAllActivity.dart';
+import 'package:unihr/feature/activity/presentation/widget/cardAllActivity.dart';
 import 'dart:math' as math;
 
-import 'DetailAllActivity.dart';
 
 
 class AllActivity extends StatefulWidget {

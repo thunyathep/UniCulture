@@ -22,5 +22,4 @@ class HomepageBloc extends Bloc<HomepageEvent, HomepageState>{
       }
     });
   }
-
 }

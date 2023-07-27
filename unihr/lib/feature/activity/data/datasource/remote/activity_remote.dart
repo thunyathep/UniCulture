@@ -1,22 +1,22 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:unihr/feature/homepage/data/model/reward_model.dart';
+import 'package:unihr/feature/activity/data/model/myactivity_model.dart';
 
 import '../../../../../core/error/failure.dart';
 
-abstract class Reward_remote{
-  Future<List<RewardModel>> getReward();
+abstract class Activity_remote{
+  Future<List<MyActivityModel>> getMyActivity();
 }
 
-class Reward_remoteIpml {
+class Activity_remoteImpl{
   final http.Client httpClient;
 
-  Reward_remoteIpml(this.httpClient);
+  Activity_remoteImpl(this.httpClient);
 
   @override
-  Future<List<RewardModel>> getReward() async {
+  Future<List<MyActivityModel>> getMyActivity() async{
     final url = Uri.parse(
-        "https://uniculture-371814.as.r.appspot.com/api/rewards/bestseller");
+        "https://uniculture-371814.as.r.appspot.com/api/activity-register/10068989");
     final response = await httpClient.get(url,
         headers: {
           'Content-Type': 'application/json',
@@ -25,11 +25,11 @@ class Reward_remoteIpml {
         }
     );
     if (response.statusCode == 200) {
-      final List<dynamic> RewardJsonList = json.decode(response.body);
-      final List<RewardModel> rewardlist = RewardJsonList
-          .map((rewardJson) => RewardModel.fromJson(rewardJson))
+      final List<dynamic> ActivityJsonList = json.decode(response.body);
+      final List<MyActivityModel> myactivitylist = ActivityJsonList
+          .map((activityJson) => MyActivityModel.fromJson(activityJson))
           .toList();
-      return rewardlist;
+      return myactivitylist;
     } else {
       throw ServerFailure();
     }

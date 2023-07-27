@@ -9,20 +9,20 @@ import 'package:unihr/feature/unicalture/presentation/pages/question/EvaluateThr
 import 'package:unihr/feature/unicalture/presentation/pages/question/YearQuestion.dart';
 import 'package:unihr/feature/unicalture/presentation/pages/score/Score.dart';
 import 'package:responsive_builder/responsive_builder.dart';
-import 'package:unihr/feature/unicalture/presentation/widgets/homepage/cardActivity.dart';
-import 'package:unihr/feature/unicalture/presentation/widgets/homepage/cardReward.dart';
-import '../../../../homepage/data/model/reward_model.dart';
-import '../../widgets/homepage/buttonNav.dart';
-import '../activity/AllActivity.dart';
-import '../activity/Allreward.dart';
-import '../activity/MyActivity.dart';
-import '../activity/MyReward.dart';
-import '../question/DiaryQuestion.dart';
-import '../pocket/Pocket.dart';
-import '../heartfeature/SentHeart.dart';
-import '../communicate/Communicate.dart';
-import '../feedback/feedBack.dart';
-import '../misson/MyMission.dart';
+import 'package:unihr/feature/homepage/presentation/widget/cardActivity.dart';
+import 'package:unihr/feature/homepage/presentation/widget/cardReward.dart';
+import '../../../activity/presentation/pages/MyActivity.dart';
+import '../../../reward/presentation/pages/redeem_reward.dart';
+import '../../data/model/reward_model.dart';
+import '../widget/buttonNav.dart';
+import '../../../activity/presentation/pages/AllActivity.dart';
+import '../../../reward/presentation/pages/MyReward.dart';
+import '../../../unicalture/presentation/pages/question/DiaryQuestion.dart';
+import '../../../unicalture/presentation/pages/pocket/Pocket.dart';
+import '../../../unicalture/presentation/pages/heartfeature/SentHeart.dart';
+import '../../../unicalture/presentation/pages/communicate/Communicate.dart';
+import '../../../unicalture/presentation/pages/feedback/feedBack.dart';
+import '../../../unicalture/presentation/pages/misson/MyMission.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -502,7 +502,7 @@ class _HomePageState extends State<HomePage> {
                                   image: 'assets/myactivity.png',pages: MyActivity()),
                               ButtonFeature(
                                   feature: "สมัคร\nกิจกรรม\n",
-                                  image: 'assets/addactivity.png',pages: MyReward()),
+                                  image: 'assets/addactivity.png',pages: AllActivity()),
                               ButtonFeature(
                                   feature: "รางวัล\nของฉัน\n",
                                   image: 'assets/myreward.png',pages: MyReward()),
@@ -651,7 +651,12 @@ class _HomePageState extends State<HomePage> {
                             ),
                           ),
                           TextButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.of(context).push(
+                                MaterialPageRoute(
+                                    builder: (context)=> AllReward())
+                              );
+                            },
                             child: const Text(
                               "ดูทั้งหมด",
                               style: TextStyle(

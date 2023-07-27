@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:unihr/feature/unicalture/presentation/bloc/feedback/feedback_bloc.dart';
 
-import '../../pages/activity/DetailAllActivity.dart';
+import '../pages/DetailAllActivity.dart';
 
 
 class CardActivity extends StatefulWidget {
