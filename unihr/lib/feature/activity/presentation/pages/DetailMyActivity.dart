@@ -1,17 +1,63 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gradient_borders/box_borders/gradient_box_border.dart';
+import 'package:icon_decoration/icon_decoration.dart';
+import 'package:intl/intl.dart';
+
+import '../bloc/activity_bloc.dart';
 
 class DetailMyActivity extends StatefulWidget {
-  const DetailMyActivity({Key? key}) : super(key: key);
+  final ActivityBloc activityBloc;
+  final int idActivity;
+  final String name;
+  final String detail;
+  final String location;
+  final String startDate;
+  final String endDate;
+  final String openRegisDate;
+  final String closeRegisDate;
+  final String organizer;
+  final String contact;
+  final String image;
+  final int idActivityStatus;
+  final String status;
+  final int idEmployee;
+  final int participantStatus;
+
+  const DetailMyActivity({Key? key,
+    required this.activityBloc,
+    required this.idActivity,
+    required this.name,
+    required this.detail,
+    required this.location,
+    required this.startDate,
+    required this.endDate,
+    required this.openRegisDate,
+    required this.closeRegisDate,
+    required this.organizer,
+    required this.contact,
+    required this.image,
+    required this.idActivityStatus,
+    required this.status,
+    required this.idEmployee,
+    required this.participantStatus,
+  }) : super(key: key);
 
   @override
   State<DetailMyActivity> createState() => _DetailMyActivityState();
 }
 
 class _DetailMyActivityState extends State<DetailMyActivity> {
+  late DateTime startRegisTime;
+  late DateTime endRegisTime;
+  late DateTime startTime;
+  late DateTime endTime;
   @override
   Widget build(BuildContext context) {
+    startRegisTime = DateTime.parse(widget.openRegisDate);
+    endRegisTime = DateTime.parse(widget.closeRegisDate);
+    startTime = DateTime.parse(widget.startDate);
+    endTime = DateTime.parse(widget.endDate);
     return Scaffold(
       body: SafeArea(
         child: Stack(
@@ -23,8 +69,8 @@ class _DetailMyActivityState extends State<DetailMyActivity> {
                     Container(
                       width: MediaQuery.of(context).size.width * 1,
                       height: MediaQuery.of(context).size.height * 0.45,
-                      child: Image.asset(
-                        'assets/shinosukeedit.jpg',
+                      child: Image.network(
+                        widget.image,
                         fit: BoxFit.cover,
                       ),
                     ),
@@ -39,10 +85,14 @@ class _DetailMyActivityState extends State<DetailMyActivity> {
                     onPressed: () {
                       Navigator.of(context).pop();
                     },
-                    icon: Icon(
-                      Icons.arrow_back_ios_new_rounded,
-                      color: Colors.white,
-                      size: MediaQuery.of(context).size.width * 0.07,
+                    icon: DecoratedIcon(
+                      icon : Icon(Icons.arrow_back_ios_new_rounded,
+                        color: Colors.white,
+                        size: MediaQuery.of(context).size.width * 0.07,
+                      ),
+                      decoration: IconDecoration(
+                        border: IconBorder(color: Color(0xff757575), width: 1),
+                      ),
                     ),
                   ),
                 ),
@@ -98,7 +148,7 @@ class _DetailMyActivityState extends State<DetailMyActivity> {
                                   MediaQuery.of(context).devicePixelRatio * 10,
                             ),
                             child: Text(
-                              "วิ่งเพื่อผู้พิทักษ์ป่า",
+                              widget.name,
                               overflow: TextOverflow.ellipsis,
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
@@ -146,22 +196,26 @@ class _DetailMyActivityState extends State<DetailMyActivity> {
                                             .devicePixelRatio *
                                         2,
                                   ),
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.12,
-                                  height:
-                                      MediaQuery.of(context).size.height * 0.02,
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.all(
                                       Radius.circular(20),
                                     ),
                                     color: Color(0xFF6ED33F),
                                   ),
-                                  child: Center(
-                                    child: Text(
-                                      "Open",
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 14,
+                                  child: Padding(
+                                    padding: EdgeInsets.only(
+                                      left: MediaQuery.of(context).devicePixelRatio*1.5,
+                                      right: MediaQuery.of(context).devicePixelRatio*1.5,
+                                      top: MediaQuery.of(context).devicePixelRatio*1,
+                                      bottom: MediaQuery.of(context).devicePixelRatio*1,
+                                    ),
+                                    child: Center(
+                                      child: Text(
+                                        widget.status,
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 14,
+                                        ),
                                       ),
                                     ),
                                   ),
@@ -209,7 +263,7 @@ class _DetailMyActivityState extends State<DetailMyActivity> {
                                       ),
                                     ),
                                     Text(
-                                      "สถานที่จัดกิจกรรม",
+                                      widget.location,
                                       style: TextStyle(
                                         fontSize: 14,
                                         color: Color(0xff757575),
@@ -266,14 +320,16 @@ class _DetailMyActivityState extends State<DetailMyActivity> {
                                       ),
                                     ),
                                     Text(
-                                      'เริ่ม : ',
+                                      'เริ่ม : '+ DateFormat("d MMM y")
+                                          .format(startRegisTime),
                                       style: TextStyle(
                                         fontSize: 14,
                                         color: Color(0xff757575),
                                       ),
                                     ),
                                     Text(
-                                      'สิ้นสุด : ',
+                                      'สิ้นสุด : '+ DateFormat("d MMM y")
+                                          .format(endRegisTime),
                                       style: TextStyle(
                                         fontSize: 14,
                                         color: Color(0xff757575),
@@ -330,14 +386,16 @@ class _DetailMyActivityState extends State<DetailMyActivity> {
                                       ),
                                     ),
                                     Text(
-                                      'เริ่ม : ',
+                                      'เริ่ม : '+ DateFormat("d MMM y")
+                                          .format(startTime),
                                       style: TextStyle(
                                         fontSize: 14,
                                         color: Color(0xff757575),
                                       ),
                                     ),
                                     Text(
-                                      'สิ้นสุด : ',
+                                      'สิ้นสุด : '+ DateFormat("d MMM y")
+                                          .format(endTime),
                                       style: TextStyle(
                                         fontSize: 14,
                                         color: Color(0xff757575),
@@ -394,14 +452,14 @@ class _DetailMyActivityState extends State<DetailMyActivity> {
                                       ),
                                     ),
                                     Text(
-                                      'ชื่อผู้จัด : ',
+                                      'ชื่อผู้จัด : '+widget.organizer,
                                       style: TextStyle(
                                         fontSize: 14,
                                         color: Color(0xff757575),
                                       ),
                                     ),
                                     Text(
-                                      'ช่องทางการติดต่อ : ',
+                                      'ช่องทางการติดต่อ : '+widget.contact,
                                       style: TextStyle(
                                         fontSize: 14,
                                         color: Color(0xff757575),
@@ -691,7 +749,8 @@ class _DetailMyActivityState extends State<DetailMyActivity> {
                               top: MediaQuery.of(context).devicePixelRatio * 2,
                             ),
                             child: Text(
-                              "1",
+                              DateFormat("d")
+                                  .format(startTime),
                               style: TextStyle(
                                 color: Colors.black,
                                 fontSize: 25,
@@ -700,7 +759,8 @@ class _DetailMyActivityState extends State<DetailMyActivity> {
                             ),
                           ),
                           Text(
-                            "May",
+                            DateFormat("MMM")
+                                .format(startTime),
                             style: TextStyle(
                               color: Colors.black,
                               fontWeight: FontWeight.bold,

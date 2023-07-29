@@ -8,3 +8,7 @@ class GetMyActivity extends ActivityEvent{
   @override
   List<Object?> get props => [];
 }
+class GetAllActivity extends ActivityEvent{
+  @override
+  List<Object?> get props => [];
+}

@@ -1,11 +1,13 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
 
+import '../../data/model/allactivity_model.dart';
 import '../../data/model/myactivity_model.dart';
 
 @immutable
 abstract class ActivityState extends Equatable{
   late List<MyActivityModel> listactivity = [];
+  late List<AllActivityModel> listallactivity = [];
 }
 
 class InitialActivity extends ActivityState{
@@ -30,6 +32,27 @@ class MyACtivityError extends ActivityState{
   final String error;
 
   MyACtivityError(this.error);
+  @override
+  List<Object?> get props => [];
+}
+
+class AllActivityLoadingState extends ActivityState {
+  @override
+  List<Object?> get props => [];
+}
+
+class AllActivityLoadedState extends ActivityState{
+  AllActivityLoadedState(List<AllActivityModel> list){
+    super.listallactivity = list;
+  }
+  @override
+  List<Object?> get props => [listallactivity];
+}
+
+class AllACtivityError extends ActivityState{
+  final String error;
+
+  AllACtivityError(this.error);
   @override
   List<Object?> get props => [];
 }

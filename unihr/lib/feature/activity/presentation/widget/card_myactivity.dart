@@ -55,7 +55,24 @@ class _CardMyActivityState extends State<CardMyActivity> {
     return InkWell(
       onTap: () {
         Navigator.of(context).push(
-          MaterialPageRoute(builder: (context) => DetailMyActivity()),
+          MaterialPageRoute(builder: (context) => DetailMyActivity(
+              activityBloc: widget.activityBloc,
+              idActivity: widget.idActivity,
+              name: widget.name,
+              detail: widget.detail,
+              location: widget.location,
+              startDate: widget.startDate,
+              endDate: widget.endDate,
+              openRegisDate: widget.openRegisDate,
+              closeRegisDate: widget.closeRegisDate,
+              organizer: widget.organizer,
+              contact: widget.contact,
+              image: widget.image,
+              idActivityStatus: widget.idActivityStatus,
+              status: widget.status,
+              idEmployee: widget.idEmployee,
+              participantStatus: widget.participantStatus,
+          )),
         );
       },
       child: Container(
@@ -290,9 +307,9 @@ class _CardMyActivityState extends State<CardMyActivity> {
                 color: Color(0xFF5B4589),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
+                  children: [
                     Text(
-                      "1",
+                      DateFormat("d").format(startTime),
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 24,
@@ -300,7 +317,7 @@ class _CardMyActivityState extends State<CardMyActivity> {
                       ),
                     ),
                     Text(
-                      "JUN",
+                      DateFormat("MMM").format(startTime),
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 18,

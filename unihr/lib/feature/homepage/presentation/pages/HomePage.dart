@@ -18,7 +18,7 @@ import '../widget/buttonNav.dart';
 import '../../../activity/presentation/pages/AllActivity.dart';
 import '../../../reward/presentation/pages/MyReward.dart';
 import '../../../unicalture/presentation/pages/question/DiaryQuestion.dart';
-import '../../../unicalture/presentation/pages/pocket/Pocket.dart';
+import '../../../pocket/presentation/pages/Pocket.dart';
 import '../../../unicalture/presentation/pages/heartfeature/SentHeart.dart';
 import '../../../unicalture/presentation/pages/communicate/Communicate.dart';
 import '../../../unicalture/presentation/pages/feedback/feedBack.dart';

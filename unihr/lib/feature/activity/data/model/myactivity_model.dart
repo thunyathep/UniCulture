@@ -1,6 +1,3 @@
-// To parse this JSON data, do
-//
-//     final rewardModel = rewardModelFromJson(jsonString);
 
 import 'dart:convert';
 

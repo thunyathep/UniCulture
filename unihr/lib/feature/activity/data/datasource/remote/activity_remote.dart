@@ -1,11 +1,13 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:unihr/feature/activity/data/model/allactivity_model.dart';
 import 'package:unihr/feature/activity/data/model/myactivity_model.dart';
 
 import '../../../../../core/error/failure.dart';
 
 abstract class Activity_remote{
   Future<List<MyActivityModel>> getMyActivity();
+  Future<List<AllActivityModel>> getAllActivity();
 }
 
 class Activity_remoteImpl{
@@ -28,6 +30,28 @@ class Activity_remoteImpl{
       final List<dynamic> ActivityJsonList = json.decode(response.body);
       final List<MyActivityModel> myactivitylist = ActivityJsonList
           .map((activityJson) => MyActivityModel.fromJson(activityJson))
+          .toList();
+      return myactivitylist;
+    } else {
+      throw ServerFailure();
+    }
+  }
+
+  @override
+  Future<List<AllActivityModel>> getAllActivity() async{
+    final url = Uri.parse(
+        "https://uniculture-371814.as.r.appspot.com/api/activity-open/10068989");
+    final response = await httpClient.get(url,
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          'x-access-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZEVtcGxveWVlIjoxMDA2ODk4OSwiaWF0IjoxNjg1Njk2MzU1LCJleHAiOjE3NDc5MDQzNTV9.DhEkFL75hsA3HrM339cn5Lf4QzHiZCuU_4RKJBlDbyg',
+        }
+    );
+    if (response.statusCode == 200) {
+      final List<dynamic> ActivityJsonList = json.decode(response.body);
+      final List<AllActivityModel> myactivitylist = ActivityJsonList
+          .map((activityJson) => AllActivityModel.fromJson(activityJson))
           .toList();
       return myactivitylist;
     } else {
