@@ -2,13 +2,25 @@ import 'package:flutter/material.dart';
 import 'package:gradient_borders/box_borders/gradient_box_border.dart';
 
 class DetailReward extends StatefulWidget {
-  const DetailReward({Key? key}) : super(key: key);
+  final int idreward;
+  final String name;
+  final String detail;
+  final String image;
+  final int quantity;
+  const DetailReward({Key? key,
+    required this.idreward,
+    required this.name,
+    required this.detail,
+    required this.image,
+    required this.quantity,
+  }) : super(key: key);
 
   @override
   State<DetailReward> createState() => _DetailRewardState();
 }
 
 class _DetailRewardState extends State<DetailReward> {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,9 +49,9 @@ class _DetailRewardState extends State<DetailReward> {
                         width: MediaQuery.of(context).size.width*0.5,
                         height: MediaQuery.of(context).size.height*0.25,
                         color: Colors.transparent,
-                        child: Image.asset(
-                          "assets/air_fryer2.png",
-                          fit: BoxFit.contain,
+                        child: Image.network(
+                          widget.image,
+                          fit: BoxFit.cover,
                         ),
                       ),
 
@@ -101,7 +113,7 @@ class _DetailRewardState extends State<DetailReward> {
                                 right: MediaQuery.of(context).devicePixelRatio*10,
                               ),
                               child: Text(
-                                "Hanabishi หม้อทอดไร้น้ำมัน",
+                                widget.name,
                                 overflow: TextOverflow.ellipsis,
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
@@ -118,7 +130,7 @@ class _DetailRewardState extends State<DetailReward> {
                                 right: MediaQuery.of(context).devicePixelRatio*10,
                               ),
                               child: Text(
-                                "คลัง : 9",
+                                "คลัง : "+widget.quantity.toString(),
                                 style: TextStyle(
                                   fontSize: 16,
                                   color: Color(0xff757575),
@@ -133,7 +145,7 @@ class _DetailRewardState extends State<DetailReward> {
                                 right: MediaQuery.of(context).devicePixelRatio*10,
                               ),
                               child: Text(
-                                "anabishi หม้อทอดไร้น้ำมัน 4 ลิตร รุ่น HAF-001 - 4 ลิตร",
+                                widget.detail,
                                 maxLines: 2,
                                 overflow: TextOverflow.ellipsis,
                                 style: TextStyle(
@@ -364,7 +376,7 @@ class _DetailRewardState extends State<DetailReward> {
                               ],
                             ),
                             Center(
-                              child: GestureDetector(
+                              child: InkWell(
                                 onTap: () {
                                   showDialog(
                                       context: context,
@@ -374,13 +386,13 @@ class _DetailRewardState extends State<DetailReward> {
                                               borderRadius:
                                               BorderRadius.circular(20.0)), //this right here
                                           child: Container(
-                                            height: MediaQuery.of(context).size.height*0.27,
+                                            height: MediaQuery.of(context).size.height*0.28,
                                             width: MediaQuery.of(context).size.width*0.8,
                                             child: Column(
                                               children: [
                                                 Padding(
                                                   padding: EdgeInsets.only(
-                                                    top: MediaQuery.of(context).devicePixelRatio*5,
+                                                    top: MediaQuery.of(context).devicePixelRatio*3,
                                                   ),
                                                   child: Text(
                                                     "ยืนยันการแลกของรางวัล",
@@ -396,23 +408,29 @@ class _DetailRewardState extends State<DetailReward> {
                                                     top: MediaQuery.of(context).devicePixelRatio*5,
                                                   ),
                                                   child: Text(
-                                                    "Hanabishi หม้อทอดไร้น้ำมัน",
+                                                    widget.name,
                                                     style: TextStyle(
                                                       color: Color(0xff757575),
                                                       fontWeight: FontWeight.bold,
-                                                      fontSize: 10,
+                                                      fontSize: 14,
                                                     ),
                                                   ),
                                                 ),
-                                                Padding(
+                                                Container(
+                                                  width: MediaQuery.of(context)
+                                                    .size.width * 0.5,
                                                   padding: EdgeInsets.only(
                                                     top: MediaQuery.of(context).devicePixelRatio*2,
                                                   ),
-                                                  child: Text(
-                                                    "anabishi หม้อทอดไร้น้ำมัน 4 ลิตร รุ่น HAF-001 - 4 ลิตร",
-                                                    style: TextStyle(
-                                                      color: Color(0xff757575),
-                                                      fontSize: 10,
+                                                  child: Center(
+                                                    child: Text(
+                                                      widget.detail,
+                                                      maxLines: 2,
+                                                      overflow: TextOverflow.ellipsis,
+                                                      style: TextStyle(
+                                                        color: Color(0xff757575),
+                                                        fontSize: 12,
+                                                      ),
                                                     ),
                                                   ),
                                                 ),

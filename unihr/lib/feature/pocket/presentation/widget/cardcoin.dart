@@ -2,7 +2,12 @@ import 'package:flutter/material.dart';
 
 
 class CardHeart extends StatefulWidget {
-  const CardHeart({Key? key}) : super(key: key);
+  // final int idEmployee;
+  // final int coinHeart;
+  const CardHeart({Key? key,
+    // required this.idEmployee,
+    // required this.coinHeart,
+  }) : super(key: key);
 
   @override
   State<CardHeart> createState() => _CardHeartState();
@@ -138,7 +143,12 @@ class _CardHeartState extends State<CardHeart> {
 }
 
 class Coin_SCGC extends StatefulWidget {
-  const Coin_SCGC({Key? key}) : super(key: key);
+  // final int idEmployee;
+  // final int coinSCGC;
+  const Coin_SCGC({Key? key,
+  //   required this.idEmployee,
+  //   required this.coinSCGC
+  }) : super(key: key);
 
   @override
   State<Coin_SCGC> createState() => _Coin_SCGCState();
@@ -219,7 +229,12 @@ class _Coin_SCGCState extends State<Coin_SCGC> {
 }
 
 class Coin_Unicorn extends StatefulWidget {
-  const Coin_Unicorn({Key? key}) : super(key: key);
+  // final int idEmployee;
+  // final int coinUnicorn;
+  const Coin_Unicorn({Key? key,
+  //   required this.idEmployee,
+  //   required this.coinUnicorn
+  }) : super(key: key);
 
   @override
   State<Coin_Unicorn> createState() => _Coin_UnicornState();
@@ -300,7 +315,12 @@ class _Coin_UnicornState extends State<Coin_Unicorn> {
 }
 
 class Coin_Pony extends StatefulWidget {
-  const Coin_Pony({Key? key}) : super(key: key);
+  // final int idEmployee;
+  // final int coinPony;
+  const Coin_Pony({Key? key,
+  //   required this.idEmployee,
+  //   required this.coinPony,
+  }) : super(key: key);
 
   @override
   State<Coin_Pony> createState() => _Coin_PonyState();
@@ -381,7 +401,12 @@ class _Coin_PonyState extends State<Coin_Pony> {
 }
 
 class Coin_Fast extends StatefulWidget {
-  const Coin_Fast({Key? key}) : super(key: key);
+  // final int idEmployee;
+  // final int coinFast;
+  const Coin_Fast({Key? key,
+  //   required this.idEmployee,
+  //   required this.coinFast,
+  }) : super(key: key);
 
   @override
   State<Coin_Fast> createState() => _Coin_FastState();
@@ -462,7 +487,12 @@ class _Coin_FastState extends State<Coin_Fast> {
 }
 
 class Coin_DoIt extends StatefulWidget {
-  const Coin_DoIt({Key? key}) : super(key: key);
+  // final int idEmployee;
+  // final int coinDoIt;
+  const Coin_DoIt({Key? key,
+    // required this.idEmployee,
+    // required this.coinDoIt,
+  }) : super(key: key);
 
   @override
   State<Coin_DoIt> createState() => _Coin_DoItState();
@@ -550,7 +580,12 @@ class _Coin_DoItState extends State<Coin_DoIt> {
 }
 
 class Coin_Caring extends StatefulWidget {
-  const Coin_Caring({Key? key}) : super(key: key);
+  // final int idEmployee;
+  // final int coinCaring;
+  const Coin_Caring({Key? key,
+    // required this.idEmployee,
+    // required this.coinCaring,
+  }) : super(key: key);
 
   @override
   State<Coin_Caring> createState() => _Coin_CaringState();
@@ -631,7 +666,12 @@ class _Coin_CaringState extends State<Coin_Caring> {
 }
 
 class Coin_Centaur extends StatefulWidget {
-  const Coin_Centaur({Key? key}) : super(key: key);
+  // final int idEmployee;
+  // final int coinCentaur;
+  const Coin_Centaur({Key? key,
+    // required this.idEmployee,
+    // required this.coinCentaur,
+  }) : super(key: key);
 
   @override
   State<Coin_Centaur> createState() => _Coin_CentaurState();
@@ -712,7 +752,12 @@ class _Coin_CentaurState extends State<Coin_Centaur> {
 }
 
 class Coin_CSR extends StatefulWidget {
-  const Coin_CSR({Key? key}) : super(key: key);
+  // final int idEmployee;
+  // final int coinCSR;
+  const Coin_CSR({Key? key,
+    // required this.idEmployee,
+    // required this.coinCSR,
+  }) : super(key: key);
 
   @override
   State<Coin_CSR> createState() => _Coin_CSRState();
@@ -793,7 +838,12 @@ class _Coin_CSRState extends State<Coin_CSR> {
 }
 
 class Coin_obsession extends StatefulWidget {
-  const Coin_obsession({Key? key}) : super(key: key);
+  // final int idEmployee;
+  // final int coinObsession;
+  const Coin_obsession({Key? key,
+    // required this.idEmployee,
+    // required this.coinObsession,
+  }) : super(key: key);
 
   @override
   State<Coin_obsession> createState() => _Coin_obsessionState();
@@ -874,7 +924,12 @@ class _Coin_obsessionState extends State<Coin_obsession> {
 }
 
 class Coin_Outperform extends StatefulWidget {
-  const Coin_Outperform({Key? key}) : super(key: key);
+  // final int idEmployee;
+  // final int coinOutperform;
+  const Coin_Outperform({Key? key,
+    // required this.idEmployee,
+    // required this.coinOutperform,
+  }) : super(key: key);
 
   @override
   State<Coin_Outperform> createState() => _Coin_OutperformState();

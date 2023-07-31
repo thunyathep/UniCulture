@@ -33,9 +33,17 @@ class _CardAllRewardState extends State<CardAllReward> {
     dateTime = DateTime.parse(widget.endDate);
     return InkWell(
       onTap: (){
-        // Navigator.of(context).push(
-        //   MaterialPageRoute(builder: (context) => DetailReward()),
-        // );
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) => DetailReward(
+                idreward: widget.idreward,
+                name: widget.name,
+                detail: widget.detail,
+                image: widget.image,
+                quantity: widget.quantity
+            ),
+          ),
+        );
       },
       child: Container(
         width: MediaQuery.of(context).size.width*0.85,

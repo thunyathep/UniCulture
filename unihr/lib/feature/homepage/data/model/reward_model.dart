@@ -25,8 +25,8 @@ class RewardModel extends RewardEntity {
     required String contact,
     required String location,
     required String image,
-    // required Coin coin,
-    // required Coin specialCoin,
+    required Coin? coin,
+    Coin? specialCoin,
   }):super(
     idReward: idReward,
     name : name,
@@ -39,8 +39,8 @@ class RewardModel extends RewardEntity {
     contact : contact,
     location : location,
     image : image,
-    // coin : coin,
-    // specialCoin : specialCoin ?? null,
+    coin : coin,
+    specialCoin : specialCoin,
   );
 
   factory RewardModel.fromJson(Map<String, dynamic> json) => RewardModel(
@@ -55,8 +55,8 @@ class RewardModel extends RewardEntity {
     contact: json["contact"],
     location: json["location"],
     image: json["image"],
-    // coin: json["coin"] == null ? null : Coin.fromJson(json["coin"]),
-    // specialCoin: json["specialCoin"] == null ? null : Coin.fromJson(json["specialCoin"]),
+    coin: json["coin"] == null ? null : Coin.fromJson(json["coin"]),
+    specialCoin: json["specialCoin"] == null ? null : Coin.fromJson(json["specialCoin"]),
   );
 
   Map<String, dynamic> toJson() => {
@@ -71,32 +71,9 @@ class RewardModel extends RewardEntity {
     "contact": contact,
     "location": location,
     "image": image,
-    // "coin": coin?.toJson(),
-    // "specialCoin": specialCoin?.toJson(),
+    "coin": coin?.toJson(),
+    "specialCoin": specialCoin?.toJson(),
   };
 }
 
-// class Coin {
-//   final int? idCoinType;
-//   final int? amount;
-//   final String? coinType;
-//
-//   Coin({
-//     this.idCoinType,
-//     this.amount,
-//     this.coinType,
-//   });
-//
-//   factory Coin.fromJson(Map<String, dynamic> json) => Coin(
-//     idCoinType: json["idCoinType"],
-//     amount: json["amount"],
-//     coinType: json["coinType"],
-//   );
-//
-//   Map<String, dynamic> toJson() => {
-//     "idCoinType": idCoinType,
-//     "amount": amount,
-//     "coinType": coinType,
-//   };
-// }
 

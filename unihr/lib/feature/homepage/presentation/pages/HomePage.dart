@@ -13,6 +13,7 @@ import 'package:unihr/feature/homepage/presentation/widget/cardActivity.dart';
 import 'package:unihr/feature/homepage/presentation/widget/cardReward.dart';
 import '../../../activity/presentation/pages/MyActivity.dart';
 import '../../../reward/presentation/pages/redeem_reward.dart';
+import '../../data/model/activity_model.dart';
 import '../../data/model/reward_model.dart';
 import '../widget/buttonNav.dart';
 import '../../../activity/presentation/pages/AllActivity.dart';
@@ -35,10 +36,11 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   final HomepageBloc _homepageBloc = HomepageBloc();
   late List<RewardModel> listreward;
+  late List<ActivityModel> listactivity;
 
   @override
   void initState() {
-    _homepageBloc.add(GetReward());
+    _homepageBloc.add(GetCard());
     super.initState();
   }
 
@@ -520,50 +522,6 @@ class _HomePageState extends State<HomePage> {
                                   image: 'assets/manager.png',pages: MyReward()),
                               ButtonFeature(feature: "Admin\n\n",
                                   image: 'assets/admin.png',pages: MyReward()),
-                              // Column(
-                              //   children: [
-                              //     Container(
-                              //       margin: EdgeInsets.only(
-                              //         left:
-                              //         MediaQuery
-                              //             .of(context)
-                              //             .devicePixelRatio * 5,
-                              //         top:
-                              //         MediaQuery
-                              //             .of(context)
-                              //             .devicePixelRatio * 5,
-                              //       ),
-                              //       height: MediaQuery
-                              //           .of(context)
-                              //           .size
-                              //           .height * 0.08,
-                              //       width: MediaQuery
-                              //           .of(context)
-                              //           .size
-                              //           .width * 0.17,
-                              //       decoration: BoxDecoration(
-                              //         borderRadius:
-                              //         BorderRadius.all(Radius.circular(100)),
-                              //       ),
-                              //     ),
-                              //     Container(
-                              //       margin: EdgeInsets.only(
-                              //         left:
-                              //         MediaQuery
-                              //             .of(context)
-                              //             .devicePixelRatio * 5,
-                              //         top:
-                              //         MediaQuery
-                              //             .of(context)
-                              //             .devicePixelRatio * 2,
-                              //       ),
-                              //       child: Text(
-                              //         "\n\n\n",
-                              //         textAlign: TextAlign.center,
-                              //       ),
-                              //     ),
-                              //   ],
-                              // ),
                             ],
                           ),
                         ],
@@ -579,7 +537,7 @@ class _HomePageState extends State<HomePage> {
                             .devicePixelRatio * 5,
                         top: MediaQuery
                             .of(context)
-                            .devicePixelRatio * 12,
+                            .devicePixelRatio * 8,
                       ),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -607,27 +565,62 @@ class _HomePageState extends State<HomePage> {
                         ],
                       ),
                     ),
-                    const SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: Row(
-                        children: [
-                          HomepageActivity(
-                              image: 'assets/pikachu.jpg',
-                              title: "บ้านปลา SCG เคมีคอลส์",
-                              status: 'open',
-                          ),
-                          HomepageActivity(
-                            image: 'assets/pikachu.jpg',
-                            title: "บ้านปลา SCG เคมีคอลส์",
-                            status: 'open',
-                          ),
-                          HomepageActivity(
-                            image: 'assets/pikachu.jpg',
-                            title: "บ้านปลา SCG เคมีคอลส์",
-                            status: 'open',
-                          ),
-                        ],
-                      ),
+                    BlocBuilder<HomepageBloc, HomepageState>(
+                        builder: (context, state){
+                          if(state is RewardLoadingState){
+                            return Text('');
+                          }else if(state is GetCardLoadedState){
+                            listactivity = state.listactivity;
+                            return LayoutBuilder(
+                                builder: (BuildContext context,
+                                    BoxConstraints constraints){
+                                  return SizedBox(
+                                    height: MediaQuery.of(context).size.height*0.325,
+                                    child: ListView.builder(
+                                      itemCount: listactivity.length,
+                                      scrollDirection: Axis.horizontal,
+                                      itemBuilder: (BuildContext context, int index) {
+                                        return HomepageActivity(
+                                          idActivity: listactivity[index]
+                                              .idActivity ?? 0,
+                                          name: listactivity[index]
+                                              .name ?? "",
+                                          detail: listactivity[index]
+                                              .detail ?? "",
+                                          location: listactivity[index]
+                                              .location ?? "",
+                                          startDate: listactivity[index]
+                                              .startDate ?? "",
+                                          endDate: listactivity[index]
+                                              .endDate ?? "",
+                                          openRegisDate: listactivity[index]
+                                              .openRegisterDate ?? "",
+                                          closeRegisDate: listactivity[index]
+                                              .closeRegisterDate ?? "",
+                                          organizer: listactivity[index]
+                                              .organizer ?? "",
+                                          contact: listactivity[index]
+                                              .contact ?? "",
+                                          image: listactivity[index]
+                                              .image ?? "",
+                                          idActivityStatus: listactivity[index]
+                                              .idActivityStatus ?? 0,
+                                          status: listactivity[index]
+                                              .status ?? "",
+                                          idEmployee: listactivity[index]
+                                              .idEmployee ?? 0,
+                                          participantStatus: listactivity[index]
+                                              .participantStatus ?? 0,
+                                        );
+                                      },
+                                    ),
+                                  );
+                                }
+                            );
+                          }else{
+                            return Text(state.props.toString());
+                          }
+                        }
                     ),
                     Padding(
                       padding: EdgeInsets.only(
@@ -671,7 +664,7 @@ class _HomePageState extends State<HomePage> {
                         builder: (context, state){
                           if(state is RewardLoadingState){
                             return Text('');
-                          }else if(state is RewardLoadedState){
+                          }else if(state is GetCardLoadedState){
                             listreward = state.listReward;
                             return LayoutBuilder(
                                 builder: (BuildContext context,
@@ -686,6 +679,7 @@ class _HomePageState extends State<HomePage> {
                                           homepageBloc: _homepageBloc,
                                           idreward: listreward[index].idReward ?? 0,
                                           name: listreward[index].name ?? "",
+                                          detail: listreward[index].detail ?? "",
                                           endDate: listreward[index].endDate ?? "",
                                           image: listreward[index].image ?? "",
                                           quantity: listreward[index].quantity ?? 0,
@@ -700,25 +694,6 @@ class _HomePageState extends State<HomePage> {
                           }
                         }
                     ),
-                    // const SingleChildScrollView(
-                    //   scrollDirection: Axis.horizontal,
-                    //   child: Row(
-                    //     children: [
-                    //       HomepageReward(
-                    //           title: "หม้อทอดไร้น้ำมัน",
-                    //           image: "assets/air_fryer.png",
-                    //           quantity: 9),
-                    //       HomepageReward(
-                    //           title: "หม้อทอดไร้น้ำมัน",
-                    //           image: "assets/air_fryer.png",
-                    //           quantity: 9),
-                    //       HomepageReward(
-                    //           title: "อะไรก็ได้",
-                    //           image: "assets/pikachu.jpg",
-                    //           quantity: 9),
-                    //     ],
-                    //   ),
-                    // ),
                   ],
                 ),
               ),

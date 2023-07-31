@@ -4,14 +4,14 @@ import 'package:unihr/feature/homepage/data/model/reward_model.dart';
 import 'package:unihr/feature/homepage/domain/entity/reward_entity.dart';
 
 import '../../../../core/error/failure.dart';
-import '../repository/reward_repository.dart';
+import '../repository/homepage_repository.dart';
 
 
 class GetReward{
-  final RewardRepository rewardRepository;
+  final HomepageRepository homepageRepository;
 
-  GetReward(this.rewardRepository);
+  GetReward(this.homepageRepository);
 
   Future<Either<Failures, List<RewardEntity>>> execute() async =>
-      await rewardRepository.getReward();
+      await homepageRepository.getReward();
 }

@@ -7,6 +7,8 @@ import 'package:unihr/feature/activity/presentation/widget/cardAllActivity.dart'
 import 'dart:math' as math;
 
 import '../bloc/activity_bloc.dart';
+import '../bloc/activity_state.dart';
+import '../widget/shimmer_cardactivity.dart';
 
 
 
@@ -234,12 +236,68 @@ class _AllActivityState extends State<AllActivity> {
                     ),
                   ],
                 ),
-                Column(
-                  children: [
-                    CardActivity(title: 'บ้านปลา SCG เคมีคอลส์',image: 'assets/pikachu.jpg',status: 'open'),
-                    CardActivity(title: 'บ้านปลา SCG เคมีคอลส์',image: 'assets/pikachu.jpg',status: 'open'),
-                    CardActivity(title: 'บ้านปลา SCG เคมีคอลส์',image: 'assets/pikachu.jpg',status: 'open'),
-                  ],
+                BlocBuilder<ActivityBloc, ActivityState>(
+                    builder: (context, state){
+                      if(state is AllActivityLoadingState){
+                        return ShimmerActivity();
+                      }else if (state is AllActivityLoadedState){
+                        listallactivity = state.listallactivity;
+                        return LayoutBuilder(
+                            builder: (BuildContext context,
+                                BoxConstraints constraints) {
+                              return ListView.builder(
+                                  shrinkWrap: true,
+                                  physics:
+                                  const NeverScrollableScrollPhysics(),
+                                  itemCount: listallactivity.length,
+                                  itemBuilder: (BuildContext context,
+                                      int index){
+                                    return Padding(
+                                      padding: EdgeInsets.all(
+                                        MediaQuery.of(context).devicePixelRatio*7,
+                                      ),
+                                      child: CardActivity(
+                                        activityBloc: _activityBloc,
+                                        idActivity: listallactivity[index]
+                                            .idActivity ?? 0,
+                                        name: listallactivity[index]
+                                            .name ?? "",
+                                        detail: listallactivity[index]
+                                            .detail ?? "",
+                                        location: listallactivity[index]
+                                            .location ?? "",
+                                        startDate: listallactivity[index]
+                                            .startDate ?? "",
+                                        endDate: listallactivity[index]
+                                            .endDate ?? "",
+                                        openRegisDate: listallactivity[index]
+                                            .openRegisterDate ?? "",
+                                        closeRegisDate: listallactivity[index]
+                                            .closeRegisterDate ?? "",
+                                        organizer: listallactivity[index]
+                                            .organizer ?? "",
+                                        contact: listallactivity[index]
+                                            .contact ?? "",
+                                        image: listallactivity[index]
+                                            .image ?? "",
+                                        idActivityStatus: listallactivity[index]
+                                            .idActivityStatus ?? 0,
+                                        status: listallactivity[index]
+                                            .status ?? "",
+                                        idEmployee: listallactivity[index]
+                                            .idEmployee ?? 0,
+                                        participantStatus: listallactivity[index]
+                                            .participantStatus ?? 0,
+                                      ),
+                                    );
+                                  }
+                              );
+                            }
+                        );
+                      }else{
+                        return Text(state.props.toString());
+                      }
+                    }
                 ),
               ],
             ),

@@ -1,18 +1,46 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:unihr/feature/unicalture/presentation/bloc/feedback/feedback_bloc.dart';
 
+import '../bloc/activity_bloc.dart';
 import '../pages/DetailAllActivity.dart';
 
 
 class CardActivity extends StatefulWidget {
+  final ActivityBloc activityBloc;
+  final int idActivity;
+  final String name;
+  final String detail;
+  final String location;
+  final String startDate;
+  final String endDate;
+  final String openRegisDate;
+  final String closeRegisDate;
+  final String organizer;
+  final String contact;
   final String image;
-  final String title;
+  final int idActivityStatus;
   final String status;
+  final int idEmployee;
+  final int participantStatus;
 
   const CardActivity({Key? key,
-    required this.title,
+    required this.activityBloc,
+    required this.idActivity,
+    required this.name,
+    required this.detail,
+    required this.location,
+    required this.startDate,
+    required this.endDate,
+    required this.openRegisDate,
+    required this.closeRegisDate,
+    required this.organizer,
+    required this.contact,
     required this.image,
+    required this.idActivityStatus,
     required this.status,
+    required this.idEmployee,
+    required this.participantStatus,
   }) : super(key: key);
 
   @override
@@ -20,8 +48,12 @@ class CardActivity extends StatefulWidget {
 }
 
 class _CardActivityState extends State<CardActivity> {
+  late DateTime startRegisTime;
+  late DateTime endRegisTime;
   @override
   Widget build(BuildContext context) {
+    startRegisTime = DateTime.parse(widget.openRegisDate);
+    endRegisTime = DateTime.parse(widget.closeRegisDate);
     return InkWell(
       onTap: (){
         Navigator.of(context).push(
@@ -64,7 +96,7 @@ class _CardActivityState extends State<CardActivity> {
                     topLeft: Radius.circular(20),
                     topRight: Radius.circular(20),
                   ),
-                  child: Image.asset(
+                  child: Image.network(
                     widget.image,
                     fit: BoxFit.cover,
                   ),
@@ -80,7 +112,7 @@ class _CardActivityState extends State<CardActivity> {
                     left: MediaQuery.of(context).devicePixelRatio*25,
                   ),
                   child: Text(
-                    widget.title,
+                    widget.name,
                     style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
@@ -156,7 +188,7 @@ class _CardActivityState extends State<CardActivity> {
                         ),
                       ),
                       Text(
-                        "จังหวัดระยอง",
+                        widget.location,
                         style: TextStyle(
                           fontSize: 14,
                           color:  Color(0xff757575),
@@ -183,7 +215,8 @@ class _CardActivityState extends State<CardActivity> {
                         ),
                       ),
                       Text(
-                        "เริ่มรับสมัคร : 1 May 2023 - 23 May 2023",
+                        "เริ่มรับสมัคร : "+DateFormat("d MMM y").format(startRegisTime)+
+                            " - "+ DateFormat("d MMM y").format(endRegisTime),
                         maxLines: 2,
                         style: TextStyle(
                           fontSize: 12,

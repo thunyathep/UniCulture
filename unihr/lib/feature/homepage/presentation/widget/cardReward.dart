@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:unihr/feature/homepage/presentation/bloc/homepage_bloc.dart';
+import 'package:unihr/feature/reward/presentation/pages/DetailReward.dart';
 
 class HomepageReward extends StatefulWidget {
   final HomepageBloc homepageBloc;
   final int idreward;
   final String name;
+  final String detail;
   final String endDate;
   final String image;
   final int quantity;
@@ -14,6 +16,7 @@ class HomepageReward extends StatefulWidget {
     required this.homepageBloc,
     required this.idreward,
     required this.name,
+    required this.detail,
     required this.endDate,
     required this.image,
     required this.quantity,
@@ -29,7 +32,19 @@ class _HomepageRewardState extends State<HomepageReward> {
   Widget build(BuildContext context) {
     dateTime = DateTime.parse(widget.endDate);
     return InkWell(
-      onTap: (){},
+      onTap: (){
+        Navigator.of(context).push(
+          MaterialPageRoute(
+              builder: (context) => DetailReward(
+                  idreward: widget.idreward,
+                  name: widget.name,
+                  detail: widget.detail,
+                  image: widget.image,
+                  quantity: widget.quantity
+              ),
+          ),
+        );
+      },
       child: Container(
         margin: EdgeInsets.symmetric(
           horizontal: MediaQuery.of(context).devicePixelRatio * 8,

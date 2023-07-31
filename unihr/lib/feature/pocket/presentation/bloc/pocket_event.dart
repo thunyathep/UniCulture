@@ -1,10 +1,10 @@
 import 'package:equatable/equatable.dart';
 
-abstract class PoketEvent extends Equatable{
-  const PoketEvent();
+abstract class PocketEvent extends Equatable{
+  const PocketEvent();
 }
 
-class GetPoket extends PoketEvent{
+class GetPocket extends PocketEvent{
   @override
   List<Object?> get props => [];
 }

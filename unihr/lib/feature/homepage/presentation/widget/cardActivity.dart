@@ -1,13 +1,40 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+
+import '../bloc/homepage_bloc.dart';
 
 class HomepageActivity extends StatefulWidget {
+  final int idActivity;
+  final String name;
+  final String detail;
+  final String location;
+  final String startDate;
+  final String endDate;
+  final String openRegisDate;
+  final String closeRegisDate;
+  final String organizer;
+  final String contact;
   final String image;
-  final String title;
+  final int idActivityStatus;
   final String status;
+  final int idEmployee;
+  final int participantStatus;
   const HomepageActivity({Key? key,
+    required this.idActivity,
+    required this.name,
+    required this.detail,
+    required this.location,
+    required this.startDate,
+    required this.endDate,
+    required this.openRegisDate,
+    required this.closeRegisDate,
+    required this.organizer,
+    required this.contact,
     required this.image,
-    required this.title,
+    required this.idActivityStatus,
     required this.status,
+    required this.idEmployee,
+    required this.participantStatus,
   }) : super(key: key);
 
   @override
@@ -15,8 +42,12 @@ class HomepageActivity extends StatefulWidget {
 }
 
 class _HomepageActivityState extends State<HomepageActivity> {
+  late DateTime startTime;
+  late DateTime endTime;
   @override
   Widget build(BuildContext context) {
+    startTime = DateTime.parse(widget.startDate);
+    endTime = DateTime.parse(widget.endDate);
     return InkWell(
       onTap: (){},
       child: Container(
@@ -55,7 +86,7 @@ class _HomepageActivityState extends State<HomepageActivity> {
                     topLeft: Radius.circular(20),
                     topRight: Radius.circular(20),
                   ),
-                  child: Image.asset(
+                  child: Image.network(
                     widget.image,
                     fit: BoxFit.cover,
                   ),
@@ -70,7 +101,7 @@ class _HomepageActivityState extends State<HomepageActivity> {
                     left: MediaQuery.of(context).devicePixelRatio * 18,
                   ),
                   child: Text(
-                    widget.title,
+                    widget.name,
                     style: TextStyle(
                       fontSize: 12,
                       fontWeight: FontWeight.bold,
@@ -94,7 +125,7 @@ class _HomepageActivityState extends State<HomepageActivity> {
                         ),
                       ),
                       Text(
-                        "จังหวัดระยอง",
+                        widget.location,
                         style: TextStyle(
                           fontSize: 10,
                           color: Color(0xff757575),
@@ -120,7 +151,8 @@ class _HomepageActivityState extends State<HomepageActivity> {
                         ),
                       ),
                       Text(
-                        "เริ่ม : 1 May 2023 / สิ้นสุด : 1 May 2023",
+                        "เริ่ม : "+DateFormat("d MMM y").format(startTime)+
+                            " - "+ DateFormat("d MMM y").format(endTime),
                         style: TextStyle(
                           fontSize: 8,
                           color: Color(0xff757575),
