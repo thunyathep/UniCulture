@@ -5,7 +5,7 @@ import 'package:unihr/feature/homepage/presentation/pages/HomePage.dart';
 
 import '../../../../activity/presentation/pages/AllActivity.dart';
 import '../heartfeature/SentHeart.dart';
-import '../question/DiaryQuestion.dart';
+import '../../../../question/presentation/pages/DiaryQuestion.dart';
 
 
 class BottomNavigateBar extends StatefulWidget {

@@ -5,25 +5,25 @@ import 'package:unihr/feature/homepage/presentation/bloc/homepage_event.dart';
 import 'package:unihr/feature/homepage/presentation/bloc/homepage_state.dart';
 import 'package:unihr/feature/unicalture/presentation/pages/bottomnav/BottomNavigate.dart';
 import 'package:unihr/feature/unicalture/presentation/pages/poll/Poll.dart';
-import 'package:unihr/feature/unicalture/presentation/pages/question/EvaluateThreeSixty.dart';
-import 'package:unihr/feature/unicalture/presentation/pages/question/YearQuestion.dart';
 import 'package:unihr/feature/unicalture/presentation/pages/score/Score.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:unihr/feature/homepage/presentation/widget/cardActivity.dart';
 import 'package:unihr/feature/homepage/presentation/widget/cardReward.dart';
 import '../../../activity/presentation/pages/MyActivity.dart';
+import '../../../question/presentation/pages/EvaluateThreeSixty.dart';
+import '../../../question/presentation/pages/YearQuestion.dart';
 import '../../../reward/presentation/pages/redeem_reward.dart';
 import '../../data/model/activity_model.dart';
 import '../../data/model/reward_model.dart';
 import '../widget/buttonNav.dart';
 import '../../../activity/presentation/pages/AllActivity.dart';
 import '../../../reward/presentation/pages/MyReward.dart';
-import '../../../unicalture/presentation/pages/question/DiaryQuestion.dart';
+import '../../../question/presentation/pages/DiaryQuestion.dart';
 import '../../../pocket/presentation/pages/Pocket.dart';
 import '../../../unicalture/presentation/pages/heartfeature/SentHeart.dart';
 import '../../../unicalture/presentation/pages/communicate/Communicate.dart';
 import '../../../unicalture/presentation/pages/feedback/feedBack.dart';
-import '../../../unicalture/presentation/pages/misson/MyMission.dart';
+import '../../../mission/presentation/pages/MyMission.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -584,7 +584,9 @@ class _HomePageState extends State<HomePage> {
                                 builder: (BuildContext context,
                                     BoxConstraints constraints){
                                   return SizedBox(
-                                    height: MediaQuery.of(context).size.height*0.325,
+                                    height: listactivity.length == 0 ? MediaQuery.of(context)
+                                        .size.height*0.05 : MediaQuery.of(context)
+                                        .size.height*0.325,
                                     child: ListView.builder(
                                       itemCount: listactivity.length,
                                       scrollDirection: Axis.horizontal,

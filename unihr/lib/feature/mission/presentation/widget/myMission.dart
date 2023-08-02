@@ -1,17 +1,34 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:unihr/feature/mission/presentation/bloc/mission_bloc.dart';
 
-import '../../pages/misson/DetailMission.dart';
+import '../pages/DetailMission.dart';
 
 class Card_Mission extends StatefulWidget {
-  const Card_Mission({Key? key}) : super(key: key);
+  final MissionBloc missionBloc;
+  final String nameTask;
+  final String detail;
+  final String status;
+  final String doDate;
+  final String nameprinciple;
+  const Card_Mission({Key? key,
+    required this.missionBloc,
+    required this.nameTask,
+    required this.detail,
+    required this.doDate,
+    required this.status,
+    required this.nameprinciple,
+  }) : super(key: key);
 
   @override
   State<Card_Mission> createState() => _Card_MissionState();
 }
 
 class _Card_MissionState extends State<Card_Mission> {
+  late DateTime doDateTime;
   @override
   Widget build(BuildContext context) {
+    doDateTime = DateTime.parse(widget.doDate);
     return InkWell(
       onTap: (){
         Navigator.of(context).push(
@@ -19,9 +36,6 @@ class _Card_MissionState extends State<Card_Mission> {
         );
       },
       child: Container(
-        margin: EdgeInsets.only(
-          bottom: MediaQuery.of(context).devicePixelRatio*10,
-        ),
         width: MediaQuery.of(context).size.width*0.9,
         height: MediaQuery.of(context).size.height*0.2,
         decoration: BoxDecoration(
@@ -52,7 +66,7 @@ class _Card_MissionState extends State<Card_Mission> {
                       left: MediaQuery.of(context).devicePixelRatio*10,
                     ),
                     child: Text(
-                      "Topic",
+                      widget.nameTask,
                       style: TextStyle(
                           fontSize: 24,
                           fontWeight: FontWeight.bold
@@ -68,7 +82,8 @@ class _Card_MissionState extends State<Card_Mission> {
                 left: MediaQuery.of(context).devicePixelRatio*10,
               ),
               child: Text(
-                "วันที่ได้รับมอบหมาย : 27 May 4070",
+                "วันที่ได้รับมอบหมาย : "
+                    +DateFormat("d MMM y ").format(doDateTime),
                 style: TextStyle(
                   color: Color(0xff757575),
                   fontSize: 14,
@@ -82,7 +97,7 @@ class _Card_MissionState extends State<Card_Mission> {
                 right: MediaQuery.of(context).devicePixelRatio*10,
               ),
               child: Text(
-                "ไปตีแบดกัน",
+                widget.detail,
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(
@@ -132,7 +147,7 @@ class _Card_MissionState extends State<Card_Mission> {
                       ),
                       child: Center(
                         child: Text(
-                          "approve",
+                          widget.status,
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 12,
