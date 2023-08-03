@@ -6,6 +6,7 @@ import '../pages/DetailMission.dart';
 
 class Card_Mission extends StatefulWidget {
   final MissionBloc missionBloc;
+  final String image;
   final String nameTask;
   final String detail;
   final String status;
@@ -13,6 +14,7 @@ class Card_Mission extends StatefulWidget {
   final String nameprinciple;
   const Card_Mission({Key? key,
     required this.missionBloc,
+    required this.image,
     required this.nameTask,
     required this.detail,
     required this.doDate,
@@ -32,7 +34,15 @@ class _Card_MissionState extends State<Card_Mission> {
     return InkWell(
       onTap: (){
         Navigator.of(context).push(
-          MaterialPageRoute(builder: (context) =>DetailMission()),
+          MaterialPageRoute(builder: (context) =>DetailMission(
+              missionBloc: widget.missionBloc,
+              image: widget.image,
+              nameTask: widget.nameTask,
+              status: widget.status,
+              detail: widget.detail,
+              doDate: widget.doDate,
+              nameprinciple: widget.nameprinciple,
+          )),
         );
       },
       child: Container(

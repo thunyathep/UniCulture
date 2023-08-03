@@ -10,6 +10,9 @@ import 'package:responsive_builder/responsive_builder.dart';
 import 'package:unihr/feature/homepage/presentation/widget/cardActivity.dart';
 import 'package:unihr/feature/homepage/presentation/widget/cardReward.dart';
 import '../../../activity/presentation/pages/MyActivity.dart';
+import '../../../communicate/presentation/page/Communicate.dart';
+import '../../../feedback/presentation/pages/feedBack.dart';
+import '../../../heart/presentation/page/SentHeart.dart';
 import '../../../question/presentation/pages/EvaluateThreeSixty.dart';
 import '../../../question/presentation/pages/YearQuestion.dart';
 import '../../../reward/presentation/pages/redeem_reward.dart';
@@ -20,9 +23,6 @@ import '../../../activity/presentation/pages/AllActivity.dart';
 import '../../../reward/presentation/pages/MyReward.dart';
 import '../../../question/presentation/pages/DiaryQuestion.dart';
 import '../../../pocket/presentation/pages/Pocket.dart';
-import '../../../unicalture/presentation/pages/heartfeature/SentHeart.dart';
-import '../../../unicalture/presentation/pages/communicate/Communicate.dart';
-import '../../../unicalture/presentation/pages/feedback/feedBack.dart';
 import '../../../mission/presentation/pages/MyMission.dart';
 
 class HomePage extends StatefulWidget {

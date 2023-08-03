@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:unihr/feature/unicalture/presentation/bloc/feedback/feedback_bloc.dart';
+import 'package:unihr/feature/feedback/presentation/bloc/feedback_bloc.dart';
 
 import '../bloc/activity_bloc.dart';
 import '../pages/DetailAllActivity.dart';

@@ -11,6 +11,7 @@ String MyMissionModelToJson(List<MyMissionModel> data)
 class MyMissionModel extends MissionEntity{
   MyMissionModel({
     required int idTasks,
+    required String image,
     required String nameTask,
     required String detail,
     required String status,
@@ -20,6 +21,7 @@ class MyMissionModel extends MissionEntity{
     Coin? specialCoin,
 }) :super(
     idTasks: idTasks,
+    image: image,
     nameTask: nameTask,
     detail: detail,
     status: status,
@@ -31,6 +33,7 @@ class MyMissionModel extends MissionEntity{
 
   factory MyMissionModel.fromJson(Map<String, dynamic> json) => MyMissionModel(
       idTasks: json["idTasks"],
+      image: json["image"],
       nameTask: json["nameTask"],
       detail: json["detail"],
       status: json["status"],
@@ -42,6 +45,7 @@ class MyMissionModel extends MissionEntity{
 
   Map<String, dynamic> toJson() => {
     "idTasks": idTasks,
+    "image": image,
     "nameTask" : nameTask,
     "detail" : detail,
     "status" : status,

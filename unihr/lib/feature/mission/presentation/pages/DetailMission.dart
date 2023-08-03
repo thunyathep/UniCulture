@@ -1,16 +1,34 @@
 import 'package:flutter/material.dart';
 import 'package:gradient_borders/box_borders/gradient_box_border.dart';
+import 'package:intl/intl.dart';
+import 'package:unihr/feature/mission/presentation/bloc/mission_bloc.dart';
 
 import 'DoTask.dart';
 
 class DetailMission extends StatefulWidget {
-  const DetailMission({Key? key}) : super(key: key);
+  final MissionBloc missionBloc;
+  final String image;
+  final String nameTask;
+  final String detail;
+  final String status;
+  final String doDate;
+  final String nameprinciple;
+  const DetailMission({Key? key,
+    required this.missionBloc,
+    required this.image,
+    required this.nameTask,
+    required this.status,
+    required this.detail,
+    required this.doDate,
+    required this.nameprinciple,
+  }) : super(key: key);
 
   @override
   State<DetailMission> createState() => _DetailMissionState();
 }
 
 class _DetailMissionState extends State<DetailMission> {
+  late DateTime doDateTime;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,7 +42,7 @@ class _DetailMissionState extends State<DetailMission> {
                     Container(
                       width: MediaQuery.of(context).size.width*1,
                       height: MediaQuery.of(context).size.height*0.5,
-                      child: Image.asset('assets/shinosukeedit.jpg',
+                      child: Image.network(widget.image,
                         fit: BoxFit.cover,
                       ),
                     ),
@@ -93,7 +111,7 @@ class _DetailMissionState extends State<DetailMission> {
                               right: MediaQuery.of(context).devicePixelRatio*10,
                             ),
                             child: Text(
-                              "ทำความรู้จักกับน้องๆฝึกงาน",
+                              widget.nameTask,
                               overflow: TextOverflow.ellipsis,
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
@@ -108,7 +126,7 @@ class _DetailMissionState extends State<DetailMission> {
                               right: MediaQuery.of(context).devicePixelRatio*10,
                             ),
                             child: Text(
-                              "ทำกิจกรรม รายละเอียด",
+                              widget.detail,
                               maxLines: 2,
                               overflow: TextOverflow.ellipsis,
                               style: TextStyle(
@@ -159,7 +177,7 @@ class _DetailMissionState extends State<DetailMission> {
                                   ),
                                   child: Center(
                                     child: Text(
-                                      "approve",
+                                      widget.status,
                                       style: TextStyle(
                                         color: Colors.white,
                                         fontSize: 14,
@@ -211,7 +229,7 @@ class _DetailMissionState extends State<DetailMission> {
                                         top: MediaQuery.of(context).devicePixelRatio*2,
                                       ),
                                       child: Text(
-                                        '27 May 4070',
+                                        DateFormat("d MMM y").format(doDateTime),
                                         style: TextStyle(
                                           fontSize: 14,
                                           color: Color(0xff757575),
@@ -264,7 +282,7 @@ class _DetailMissionState extends State<DetailMission> {
                                         top: MediaQuery.of(context).devicePixelRatio*2,
                                       ),
                                       child: Text(
-                                        'จิตดี จิตแจ่มใส',
+                                        widget.nameprinciple,
                                         style: TextStyle(
                                           fontSize: 14,
                                           color: Color(0xff757575),

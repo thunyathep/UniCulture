@@ -1,5 +1,6 @@
 class MissionEntity {
   int? idTasks;
+  String? image;
   String? status;
   String? doDate;
   String? nameTask;
@@ -10,6 +11,7 @@ class MissionEntity {
 
   MissionEntity({
     this.idTasks,
+    this.image,
     this.status,
     this.doDate,
     this.nameTask,

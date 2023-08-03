@@ -8,6 +8,7 @@ import 'dart:math' as math;
 
 import '../../data/model/mission_model.dart';
 import '../widget/myMission.dart';
+import '../widget/shimmer_card.dart';
 import 'DetailMission.dart';
 
 
@@ -266,7 +267,7 @@ class _MyMissionState extends State<MyMission> {
                 BlocBuilder<MissionBloc, MissionState>(
                     builder: (context, state){
                       if(state is MyMissionLoadingState){
-                        return Text("loading");
+                        return ShimmerMyMission();
                       }else if (state is MyMissionLoadedState){
                         listmission = state.listmission;
                         return LayoutBuilder(
@@ -285,6 +286,7 @@ class _MyMissionState extends State<MyMission> {
                                       ),
                                       child: Card_Mission(
                                           missionBloc: _missionBloc,
+                                          image: listmission[index].image??"",
                                           nameTask: listmission[index].nameTask??"",
                                           detail: listmission[index].detail??"",
                                           doDate: listmission[index].doDate??

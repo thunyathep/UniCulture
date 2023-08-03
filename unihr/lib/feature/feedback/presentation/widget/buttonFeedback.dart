@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gradient_borders/gradient_borders.dart';
 import 'dart:math' as math;
 
-import 'package:unihr/feature/unicalture/presentation/bloc/feedback/feedback_bloc.dart';
+import 'package:unihr/feature/feedback/presentation/bloc/feedback_bloc.dart';
 
 
 class SelectFeedback extends StatefulWidget {
