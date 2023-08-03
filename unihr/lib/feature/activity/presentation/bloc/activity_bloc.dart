@@ -39,5 +39,30 @@ class ActivityBloc extends Bloc<ActivityEvent, ActivityState>{
         emit(AllACtivityError(e.toString()));
       }
     });
+
+    on<GetMyActivityStatus>((event, emit) async{
+      emit(MyActivityLoadingState());
+      try{
+        List<MyActivityModel> activitystatus = [];
+        if(event.status == 0 ){
+          activitystatus = await activity_remoteImpl.getMyActivity();
+        }else if (event.status == 1 ){
+          activitystatus = activitystatus
+              .where((element) => element.idActivityStatus ==1).toList();
+        }
+        else if (event.status == 4 ){
+          activitystatus = activitystatus
+              .where((element) => element.idActivityStatus ==4).toList();
+        }
+        else if (event.status == 5){
+          activitystatus = activitystatus
+              .where((element) => element.idActivityStatus ==5).toList();
+        }
+        emit(MyActivityLoadedState(activitystatus));
+      }catch(e, stracktrace){
+        print("Exception occurred: $e stracktrace: $stracktrace");
+        emit(MyACtivityError(e.toString()));
+      }
+    });
   }
 }

@@ -12,3 +12,12 @@ class GetAllActivity extends ActivityEvent{
   @override
   List<Object?> get props => [];
 }
+
+class GetMyActivityStatus extends ActivityEvent{
+  int status;
+
+  GetMyActivityStatus(this.status);
+
+  @override
+  List<Object?> get props => [];
+}

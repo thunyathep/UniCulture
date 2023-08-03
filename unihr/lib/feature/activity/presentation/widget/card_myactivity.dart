@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:unihr/feature/activity/presentation/bloc/activity_bloc.dart';
 import 'package:intl/intl.dart';
+import 'package:unihr/feature/activity/domain/entity/myactivity_entity.dart';
 
 import '../pages/DetailMyActivity.dart';
 
@@ -21,6 +22,8 @@ class CardMyActivity extends StatefulWidget {
   final String status;
   final int idEmployee;
   final int participantStatus;
+  final Coin? coin;
+  final Coin? specialCoin;
 
   const CardMyActivity({Key? key,
     required this.activityBloc,
@@ -39,6 +42,8 @@ class CardMyActivity extends StatefulWidget {
     required this.status,
     required this.idEmployee,
     required this.participantStatus,
+    this.coin,
+    this.specialCoin,
   }) : super(key: key);
 
   @override

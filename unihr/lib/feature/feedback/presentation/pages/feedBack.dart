@@ -285,169 +285,141 @@ class _FeedBackState extends State<FeedBack> {
                           ],
                         ),
                       ),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
                       Padding(
                         padding: EdgeInsets.only(
-                          top: MediaQuery.of(context).devicePixelRatio*70,
+                          right: MediaQuery.of(context).devicePixelRatio*2.5
                         ),
-                        child: Column(
-                          children: [
-                            Row(
+                        child: InkWell(
+                          onTap: (){
+                            _feedbackBloc.add(GetRecieveFeedback());
+                            setState(() {
+                              _recieve = !_recieve;
+                            });
+                          },
+                          child: Container(
+                            width: MediaQuery.of(context).size.width*0.35,
+                            height: MediaQuery.of(context).size.height*0.05,
+                            decoration: BoxDecoration(
+                              border: Border.all(
+                                width: 1,
+                                color: Color(0xff757575).withOpacity(0.3),
+                              ),
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(40),
+                              ),
+                              gradient: _recieve ? LinearGradient(
+                                begin: Alignment.centerRight,
+                                end: Alignment.centerLeft,
+                                colors: [
+                                  Color(0xffFCB0C2),
+                                  Color(0xffF4BFCF),
+                                  Color(0xffF0C5F1),
+                                  Color(0xffE3DEF4),
+                                  Color(0xffC1E1E7),
+                                  Color(0xffC1E1E6),
+                                ],
+                              ) : null,
+                              color: Colors.white,
+                            ),
+                            child: Row(
                               children: [
-                                // Padding(
-                                //   padding: EdgeInsets.only(
-                                //     left: MediaQuery.of(context)
-                                //         .devicePixelRatio *15,
-                                //   ),
-                                //   child: const SelectFeedback(
-                                //       text: 'ฟีดแบคที่ได้รับ',
-                                //       icon: Icons.file_upload_rounded,
-                                //       isActive: true,
-                                //       value: 180,
-                                //   ),
-                                // ),
-                                // Padding(
-                                //   padding: EdgeInsets.only(
-                                //     left: MediaQuery.of(context)
-                                //         .devicePixelRatio *5,
-                                //   ),
-                                //   child: const SelectFeedback(
-                                //       text: 'ฟีดแบคที่ส่ง',
-                                //       icon: Icons.file_upload_rounded,
-                                //       isActive: false,
-                                //       value: 1,
-                                //   ),
-                                // ),
-                                InkWell(
-                                  onTap: (){
-                                    _feedbackBloc.add(GetRecieveFeedback());
-                                    setState(() {
-                                      _recieve = !_recieve;
-                                    });
-                                  },
-                                  child: Container(
-                                    margin: EdgeInsets.only(
-                                        left: MediaQuery.of(context).devicePixelRatio*15
-                                    ),
-                                    width: MediaQuery.of(context).size.width*0.35,
-                                    height: MediaQuery.of(context).size.height*0.05,
-                                    decoration: BoxDecoration(
-                                      border: Border.all(
-                                        width: 1,
-                                        color: Color(0xff757575).withOpacity(0.3),
-                                      ),
-                                      borderRadius: BorderRadius.all(
-                                        Radius.circular(40),
-                                      ),
-                                      gradient: _recieve ? LinearGradient(
-                                        begin: Alignment.centerRight,
-                                        end: Alignment.centerLeft,
-                                        colors: [
-                                          Color(0xffFCB0C2),
-                                          Color(0xffF4BFCF),
-                                          Color(0xffF0C5F1),
-                                          Color(0xffE3DEF4),
-                                          Color(0xffC1E1E7),
-                                          Color(0xffC1E1E6),
-                                        ],
-                                      ) : null,
-                                      color: Colors.white,
-                                    ),
-                                    child: Row(
-                                      children: [
-                                        Padding(
-                                          padding: EdgeInsets.only(
-                                              left: MediaQuery.of(context)
-                                                  .devicePixelRatio*3,
-                                              right: MediaQuery.of(context)
-                                                  .devicePixelRatio*2
-                                          ),
-                                          child: Transform.rotate(
-                                            angle: 180 * math.pi/180,
-                                            child: Icon(
-                                              Icons.file_upload_rounded,
-                                              color: _recieve ? Colors.black
-                                                  : Color(0xff757575),
-                                            ),
-                                          ),
-                                        ),
-                                        Text(
-                                          "ฟีดแบคที่ได้รับ",
-                                          style: TextStyle(
-                                            color: _recieve ? Colors.black
-                                                : Color(0xff757575),
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 14,
-                                          ),
-                                        ),
-                                      ],
+                                Padding(
+                                  padding: EdgeInsets.only(
+                                      left: MediaQuery.of(context)
+                                          .devicePixelRatio*3,
+                                      right: MediaQuery.of(context)
+                                          .devicePixelRatio*2
+                                  ),
+                                  child: Transform.rotate(
+                                    angle: 180 * math.pi/180,
+                                    child: Icon(
+                                      Icons.file_upload_rounded,
+                                      color: _recieve ? Colors.black
+                                          : Color(0xff757575),
                                     ),
                                   ),
                                 ),
-                                InkWell(
-                                  onTap: (){
-                                    _feedbackBloc.add(GetSendedFeedback());
-                                    setState(() {
-                                      _sended = !_sended;
-                                    });
-                                  },
-                                  child: Container(
-                                    margin: EdgeInsets.only(
-                                      left: MediaQuery.of(context).devicePixelRatio*5,
-                                    ),
-                                    width: MediaQuery.of(context).size.width*0.35,
-                                    height: MediaQuery.of(context).size.height*0.05,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.all(
-                                        Radius.circular(40),
-                                      ),
-                                      gradient: _sended ? LinearGradient(
-                                        begin: Alignment.centerRight,
-                                        end: Alignment.centerLeft,
-                                        colors: [
-                                          Color(0xffFCB0C2),
-                                          Color(0xffF4BFCF),
-                                          Color(0xffF0C5F1),
-                                          Color(0xffE3DEF4),
-                                          Color(0xffC1E1E7),
-                                          Color(0xffC1E1E6),
-                                        ],
-                                      ) : null,
-                                      color: Colors.white,
-                                      border: Border.all(
-                                        width: 1,
-                                        color: Color(0xff757575).withOpacity(0.3),
-                                      ),
-                                    ),
-                                    child: Row(
-                                      children: [
-                                        Padding(
-                                          padding: EdgeInsets.only(
-                                              left: MediaQuery.of(context).devicePixelRatio*5,
-                                              right: MediaQuery.of(context).devicePixelRatio*2
-                                          ),
-                                          child: Transform.rotate(
-                                            angle: 180 * math.pi/1,
-                                            child: Icon(
-                                              Icons.file_upload_rounded,
-                                              color: _sended ? Colors.black
-                                                  : Color(0xff757575),
-                                            ),
-                                          ),
-                                        ),
-                                        Text(
-                                          "ฟีดแบคที่ส่ง",
-                                          style: TextStyle(
-                                            color: _sended ? Colors.black
-                                              : Color(0xff757575),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
+                                Text(
+                                  "ฟีดแบคที่ได้รับ",
+                                  style: TextStyle(
+                                    color: _recieve ? Colors.black
+                                        : Color(0xff757575),
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 14,
                                   ),
                                 ),
                               ],
                             ),
-                          ],
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(
+                            left: MediaQuery.of(context).devicePixelRatio*2.5
+                        ),
+                        child: InkWell(
+                          onTap: (){
+                            _feedbackBloc.add(GetSendedFeedback());
+                            setState(() {
+                              _sended = !_sended;
+                            });
+                          },
+                          child: Container(
+                            width: MediaQuery.of(context).size.width*0.35,
+                            height: MediaQuery.of(context).size.height*0.05,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(40),
+                              ),
+                              gradient: _sended ? LinearGradient(
+                                begin: Alignment.centerRight,
+                                end: Alignment.centerLeft,
+                                colors: [
+                                  Color(0xffFCB0C2),
+                                  Color(0xffF4BFCF),
+                                  Color(0xffF0C5F1),
+                                  Color(0xffE3DEF4),
+                                  Color(0xffC1E1E7),
+                                  Color(0xffC1E1E6),
+                                ],
+                              ) : null,
+                              color: Colors.white,
+                              border: Border.all(
+                                width: 1,
+                                color: Color(0xff757575).withOpacity(0.3),
+                              ),
+                            ),
+                            child: Row(
+                              children: [
+                                Padding(
+                                  padding: EdgeInsets.only(
+                                      left: MediaQuery.of(context).devicePixelRatio*5,
+                                      right: MediaQuery.of(context).devicePixelRatio*2
+                                  ),
+                                  child: Transform.rotate(
+                                    angle: 180 * math.pi/1,
+                                    child: Icon(
+                                      Icons.file_upload_rounded,
+                                      color: _sended ? Colors.black
+                                          : Color(0xff757575),
+                                    ),
+                                  ),
+                                ),
+                                Text(
+                                  "ฟีดแบคที่ส่ง",
+                                  style: TextStyle(
+                                    color: _sended ? Colors.black
+                                        : Color(0xff757575),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
                         ),
                       ),
                     ],

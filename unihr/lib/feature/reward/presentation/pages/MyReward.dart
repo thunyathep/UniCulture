@@ -246,7 +246,9 @@ class _MyRewardState extends State<MyReward> {
                               ),
                             ),
                             TextButton(
-                              onPressed: (){},
+                              onPressed: (){
+                                _rewardBloc.add(GetMyRewardClick(1));
+                              },
                               child: const Text("รอตรวจสอบ",
                                 style: TextStyle(
                                   color: Color(0xff757575),

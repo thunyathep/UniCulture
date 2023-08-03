@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gradient_borders/gradient_borders.dart';
 import 'package:unihr/feature/activity/data/model/myactivity_model.dart';
+import 'package:unihr/feature/activity/domain/entity/allactivity_entity.dart';
 import 'package:unihr/feature/activity/presentation/bloc/activity_bloc.dart';
 import 'package:unihr/feature/activity/presentation/bloc/activity_event.dart';
 import 'package:unihr/feature/activity/presentation/bloc/activity_state.dart';
@@ -25,7 +26,7 @@ class _MyActivityState extends State<MyActivity> {
 
   @override
   void initState(){
-    _activityBloc.add(GetMyActivity());
+    _activityBloc.add(GetMyActivityStatus(0));
     super.initState();
   }
 
@@ -242,7 +243,9 @@ class _MyActivityState extends State<MyActivity> {
                         child: Row(
                           children: [
                             TextButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                _activityBloc.add(GetMyActivityStatus(0));
+                              },
                               child: const Text(
                                 "ทั้งหมด",
                                 style: TextStyle(
@@ -260,7 +263,9 @@ class _MyActivityState extends State<MyActivity> {
                               ),
                             ),
                             TextButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                _activityBloc.add(GetMyActivityStatus(5));
+                              },
                               child: const Text(
                                 "กิจกรรมที่เสร็จสิ้น",
                                 style: TextStyle(
@@ -269,7 +274,9 @@ class _MyActivityState extends State<MyActivity> {
                               ),
                             ),
                             TextButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                _activityBloc.add(GetMyActivityStatus(4));
+                              },
                               child: const Text(
                                 "กิจกรรมที่ยกเลิก",
                                 style: TextStyle(
@@ -335,6 +342,8 @@ class _MyActivityState extends State<MyActivity> {
                                               .idEmployee ?? 0,
                                           participantStatus: listactivity[index]
                                               .participantStatus ?? 0,
+                                          coin: listactivity[index].coin,
+                                        specialCoin: listactivity[index].specialCoin,
                                       ),
                                     );
                                   }
