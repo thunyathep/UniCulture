@@ -14,12 +14,18 @@ class FeedbackBloc extends Bloc<FeedbackEvent, FeedbackState> {
 
 
   FeedbackBloc() : super(InitialFeedback()) {
-    on<GetRecieveFeedback>((event, emit) async {
+    on<GetFeedback>((event, emit) async {
       emit(FeedbackLoadingState());
       try {
-        final List<FeedbackModel> listFeedback = await feedback_remoteImpl.getRecieveFeedback();
-        final List<FeedbackModel> listfeedback = listFeedback;
-        emit(FeedbackLoadedState(listfeedback));
+        List<FeedbackModel> listFeedback = await feedback_remoteImpl.getRecieveFeedback();
+        if(event.status == 0){
+          listFeedback = listFeedback.where((element) =>
+            element.idReceiver == 10068989).toList();
+        }else if(event.status == 1){
+          listFeedback = listFeedback.where((element) =>
+            element.idSender == 10068989).toList();
+        }
+        emit(FeedbackLoadedState(listFeedback));
       } catch (e, stacktrace) {
         print("Exception occurred: $e stackTrace: $stacktrace");
         emit(FeedbackError(e.toString()));

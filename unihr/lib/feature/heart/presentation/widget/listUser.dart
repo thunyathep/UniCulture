@@ -1,15 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:unihr/feature/heart/presentation/bloc/heart_bloc.dart';
 
 class ListUser extends StatefulWidget {
-  const ListUser({Key? key}) : super(key: key);
+  final HeartBloc heartBloc;
+  final String date;
+  final int value;
+  final String firstname;
+  final String lastname;
+  const ListUser({Key? key,
+    required this.heartBloc,
+    required this.date,
+    required this.value,
+    required this.firstname,
+    required this.lastname,
+  }) : super(key: key);
 
   @override
   State<ListUser> createState() => _ListUserState();
 }
 
 class _ListUserState extends State<ListUser> {
+  late DateTime dateTime;
   @override
   Widget build(BuildContext context) {
+    dateTime = DateTime.parse(widget.date);
     return InkWell(
       onTap: (){},
       child: Container(
@@ -29,8 +44,19 @@ class _ListUserState extends State<ListUser> {
             backgroundImage: AssetImage('assets/pikachu.jpg'),
             radius: 30,
           ),
-          title: Text('สมปอง นอนดึก'),
-          subtitle: Text('32 Jan 3080'),
+          title: Text(
+              widget.firstname.toString()
+                  + " " +
+                  widget.lastname.toString(),
+            style: TextStyle(
+              color: Colors.black,
+              fontSize: 14,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          subtitle: Text(
+            DateFormat("d MMM y").format(dateTime),
+          ),
           trailing: Stack(
             children: [
               Icon(
@@ -44,7 +70,7 @@ class _ListUserState extends State<ListUser> {
                   left: MediaQuery.of(context).devicePixelRatio*4,
                 ),
                 child: Text(
-                  "1",
+                  widget.value.toString(),
                   style: TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.bold,

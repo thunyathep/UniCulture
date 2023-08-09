@@ -747,7 +747,7 @@ class _HomePageState extends State<HomePage> {
                             children: [
                               ButtonFeature(feature: "กระเป๋า\nเหรียญ",
                                   image: 'assets/pocket.png',pages: Pocket(
-                                    listcoin: listcoin,)),
+                                    listCoin: listcoin,)),
                               ButtonFeature(
                                   feature: "รับส่ง\nหัวใจ",
                                   image: 'assets/sentHeart.png',pages: SentHeart()),
@@ -766,50 +766,6 @@ class _HomePageState extends State<HomePage> {
                                   image: 'assets/score.png',pages: ScorePage()),
                               ButtonFeature(feature: "ผลโหวต\n",
                                   image: 'assets/pollicon.png',pages: PollPage()),
-                              Column(
-                                children: [
-                                  Container(
-                                    margin: EdgeInsets.only(
-                                      left:
-                                      MediaQuery
-                                          .of(context)
-                                          .devicePixelRatio * 5,
-                                      top:
-                                      MediaQuery
-                                          .of(context)
-                                          .devicePixelRatio * 5,
-                                    ),
-                                    height: MediaQuery
-                                        .of(context)
-                                        .size
-                                        .height * 0.05,
-                                    width: MediaQuery
-                                        .of(context)
-                                        .size
-                                        .width * 0.15,
-                                    decoration: BoxDecoration(
-                                      borderRadius:
-                                      BorderRadius.all(Radius.circular(100)),
-                                    ),
-                                  ),
-                                  Container(
-                                    margin: EdgeInsets.only(
-                                      left:
-                                      MediaQuery
-                                          .of(context)
-                                          .devicePixelRatio * 5,
-                                      top:
-                                      MediaQuery
-                                          .of(context)
-                                          .devicePixelRatio * 2,
-                                    ),
-                                    child: Text(
-                                      "\n\n\n",
-                                      textAlign: TextAlign.center,
-                                    ),
-                                  ),
-                                ],
-                              ),
                             ],
                           ),
                           Row(
@@ -838,9 +794,6 @@ class _HomePageState extends State<HomePage> {
                                   feature: "ประเมิน\n360 องศา\n",
                                   image: 'assets/360.png',
                                   pages: Evaluate()),
-                              ButtonFeature(feature: "โค้ชชิ่ง\n\n",
-                                  image: 'assets/coaching.png',
-                                  pages: MyReward()),
                               ButtonFeature(feature: "Manager\n\n",
                                   image: 'assets/manager.png',
                                   pages: MyReward()),

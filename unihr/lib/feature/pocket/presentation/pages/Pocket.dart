@@ -11,31 +11,9 @@ import '../widget/cardcoin.dart';
 
 
 class Pocket extends StatefulWidget {
-  final List<PocketModel> listcoin;
-  // final int heart;
-  // final int scgc;
-  // final int unicorn;
-  // final int pony;
-  // final int fast;
-  // final int doit;
-  // final int caring;
-  // final int centaur;
-  // final int csr;
-  // final int obsession;
-  // final int outperform;
+  final List<PocketModel> listCoin;
   Pocket({Key? key,
-    required this.listcoin,
-    // required this.heart,
-    // required this.scgc,
-    // required this.unicorn,
-    // required this.pony,
-    // required this.fast,
-    // required this.doit,
-    // required this.caring,
-    // required this.centaur,
-    // required this.csr,
-    // required this.obsession,
-    // required this.outperform,
+    required this.listCoin,
   }) : super(key: key);
 
   @override
@@ -50,21 +28,21 @@ List<Widget> cardList = [];
 @override
 void initState(){
   // _pocketBloc.add(GetPocket());
-  if(widget.listcoin.isNotEmpty){
-      cardList = [
-        CardHeart(coinHeart: widget.listcoin[0].heart),
-        Coin_SCGC(coinSCGC: widget.listcoin[0].coin),
-        Coin_Unicorn(coinUnicorn: widget.listcoin[0].unicorn),
-        Coin_Pony(coinPony: widget.listcoin[0].pony),
-        Coin_Fast(coinFast: widget.listcoin[0].fastmove),
-        Coin_DoIt(coinDoIt: widget.listcoin[0].doit),
-        Coin_Caring(coinCaring: widget.listcoin[0].caring),
-        Coin_Centaur(coinCentaur: widget.listcoin[0].centaur),
-        Coin_CSR(coinCSR: widget.listcoin[0].csr),
-        Coin_obsession(coinObsession: widget.listcoin[0].obsession),
-        Coin_Outperform(coinOutperform: widget.listcoin[0].outperform),
-      ];
-    }
+  if(widget.listCoin.isNotEmpty) {
+    cardList = [
+      CardHeart(coinHeart: widget.listCoin[0].heart),
+      Coin_SCGC(coinSCGC: widget.listCoin[0].coin),
+      Coin_Unicorn(coinUnicorn: widget.listCoin[0].unicorn),
+      Coin_Pony(coinPony: widget.listCoin[0].pony),
+      Coin_Fast(coinFast: widget.listCoin[0].fastmove),
+      Coin_DoIt(coinDoIt: widget.listCoin[0].doit),
+      Coin_Caring(coinCaring: widget.listCoin[0].caring),
+      Coin_Centaur(coinCentaur: widget.listCoin[0].centaur),
+      Coin_CSR(coinCSR: widget.listCoin[0].csr),
+      Coin_obsession(coinObsession: widget.listCoin[0].obsession),
+      Coin_Outperform(coinOutperform: widget.listCoin[0].outperform),
+    ];
+  }
     super.initState();
 }
 
@@ -78,7 +56,7 @@ void dispose(){
 }
 
 // cardList=[
-//   CardHeart(coinHeart: listcoin[0].heart),
+//   CardHeart(coinHeart: listCoin[0].heart),
 //   Coin_SCGC(coinSCGC: widget.scgc),
 //   Coin_Unicorn(coinUnicorn: widget.unicorn),
 //   Coin_Pony(coinPony: widget.pony),
@@ -188,7 +166,7 @@ List<T> map<T>(List list, Function handler){
                                         left: MediaQuery.of(context).devicePixelRatio*3,
                                       ),
                                       child: Text(
-                                        widget.listcoin[0].coin.toString(),
+                                        widget.listCoin[0].coin.toString(),
                                         style: TextStyle(
                                           fontWeight: FontWeight.bold,
                                         ),
@@ -207,7 +185,7 @@ List<T> map<T>(List list, Function handler){
                                         left: MediaQuery.of(context).devicePixelRatio*3,
                                       ),
                                       child: Text(
-                                        widget.listcoin[0].heart.toString(),
+                                        widget.listCoin[0].heart.toString(),
                                         style: TextStyle(
                                           fontWeight: FontWeight.bold,
                                         ),
