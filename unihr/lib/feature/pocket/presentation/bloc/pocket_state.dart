@@ -26,10 +26,7 @@ class PocketLoadedState extends PocketState{
   List<Object?> get props => [listcoin];
 }
 
-class PocketGetState extends PocketState{
-  PocketGetState(List<PocketModel> list){
-    super.listcoin = list;
-  }
+class LoadedPocketState extends PocketState{
   @override
   List<Object?> get props => [listcoin];
 }

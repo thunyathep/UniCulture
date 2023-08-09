@@ -1,7 +1,7 @@
 class PocketEntity{
   int? idEmployee;
   int? heart;
-  int? scgc;
+  int? coin;
   int? unicorn;
   int? pony;
   int? fastmove;
@@ -15,7 +15,7 @@ class PocketEntity{
   PocketEntity({
     this.idEmployee,
     this.heart,
-    this.scgc,
+    this.coin,
     this.unicorn,
     this.pony,
     this.fastmove,

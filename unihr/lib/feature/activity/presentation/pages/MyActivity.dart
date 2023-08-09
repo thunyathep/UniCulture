@@ -254,7 +254,9 @@ class _MyActivityState extends State<MyActivity> {
                               ),
                             ),
                             TextButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                _activityBloc.add(GetMyActivityStatus(2));
+                              },
                               child: const Text(
                                 "กิจกรรมที่กำลังจะมาถึง",
                                 style: TextStyle(

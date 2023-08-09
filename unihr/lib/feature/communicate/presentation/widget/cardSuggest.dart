@@ -1,10 +1,42 @@
 import 'package:flutter/material.dart';
 import 'package:like_button/like_button.dart';
 
+import '../../domain/entity/communicate_entity.dart';
+import '../bloc/communicate_bloc.dart';
 import '../page/DetailSuggestion.dart';
 
 class Card_Suggestion extends StatefulWidget {
-  const Card_Suggestion({Key? key}) : super(key: key);
+  final CommunicateBloc communicateBloc;
+  final int idCommunicate;
+  final String? type;
+  final String detail;
+  final dynamic file;
+  final String createDate;
+  final String? status;
+  final int? reward;
+  final String? rewardDate;
+  final int createBy;
+  final String firstName;
+  final String lastName;
+  final List<ReplyList> replyList;
+  final List<LikeList> likeList;
+
+  const Card_Suggestion({Key? key,
+    required this.communicateBloc,
+    required this.idCommunicate,
+    required this.type,
+    required this.detail,
+    required this.file,
+    required this.createDate,
+    required this.status,
+    required this.reward,
+    required this.rewardDate,
+    required this.createBy,
+    required this.firstName,
+    required this.lastName,
+    required this.replyList,
+    required this.likeList,
+  }) : super(key: key);
 
   @override
   State<Card_Suggestion> createState() => _Card_SuggestionState();
@@ -16,7 +48,22 @@ class _Card_SuggestionState extends State<Card_Suggestion> {
     return InkWell(
       onTap: (){
         Navigator.of(context).push(
-          MaterialPageRoute(builder: (context) =>DetailSuggestion()),
+          MaterialPageRoute(builder: (context) =>DetailSuggestion(
+              communicateBloc: widget.communicateBloc,
+              idCommunicate: widget.idCommunicate,
+              type: widget.type?? "",
+              detail: widget.detail,
+              file: widget.file,
+              createDate: widget.createDate,
+              status: widget.status??"",
+              reward: widget.reward??0,
+              rewardDate: widget.rewardDate??"",
+              createBy: widget.createBy,
+              firstName: widget.firstName,
+              lastName: widget.lastName,
+              replyList: widget.replyList,
+              likeList: widget.likeList
+          )),
         );
       },
       child: Container(

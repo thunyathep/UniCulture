@@ -1,8 +1,41 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../../domain/entity/communicate_entity.dart';
+import '../bloc/communicate_bloc.dart';
+
 class DetailSuggestion extends StatefulWidget {
-  const DetailSuggestion({Key? key}) : super(key: key);
+  final CommunicateBloc communicateBloc;
+  final int idCommunicate;
+  final String? type;
+  final String detail;
+  final dynamic file;
+  final String createDate;
+  final String? status;
+  final int? reward;
+  final String? rewardDate;
+  final int createBy;
+  final String firstName;
+  final String lastName;
+  final List<ReplyList> replyList;
+  final List<LikeList> likeList;
+
+  const DetailSuggestion({Key? key,
+    required this.communicateBloc,
+    required this.idCommunicate,
+    required this.type,
+    required this.detail,
+    required this.file,
+    required this.createDate,
+    required this.status,
+    required this.reward,
+    required this.rewardDate,
+    required this.createBy,
+    required this.firstName,
+    required this.lastName,
+    required this.replyList,
+    required this.likeList,
+  }) : super(key: key);
 
   @override
   State<DetailSuggestion> createState() => _DetailSuggestionState();

@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 
 class CardHeart extends StatefulWidget {
   // final int idEmployee;
-  // final int coinHeart;
+  final int? coinHeart;
   const CardHeart({Key? key,
     // required this.idEmployee,
-    // required this.coinHeart,
+    required this.coinHeart,
   }) : super(key: key);
 
   @override
@@ -122,7 +122,7 @@ class _CardHeartState extends State<CardHeart> {
                       ),
                       child: Center(
                         child: Text(
-                          "10",
+                          widget.coinHeart.toString(),
                           style: TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.bold,
@@ -144,10 +144,10 @@ class _CardHeartState extends State<CardHeart> {
 
 class Coin_SCGC extends StatefulWidget {
   // final int idEmployee;
-  // final int coinSCGC;
+  final int? coinSCGC;
   const Coin_SCGC({Key? key,
   //   required this.idEmployee,
-  //   required this.coinSCGC
+    required this.coinSCGC
   }) : super(key: key);
 
   @override
@@ -213,7 +213,7 @@ class _Coin_SCGCState extends State<Coin_SCGC> {
                   fit: BoxFit.contain,
                 ),
                 Text(
-                  "10",
+                  widget.coinSCGC.toString(),
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 34,
@@ -230,10 +230,10 @@ class _Coin_SCGCState extends State<Coin_SCGC> {
 
 class Coin_Unicorn extends StatefulWidget {
   // final int idEmployee;
-  // final int coinUnicorn;
+  final int? coinUnicorn;
   const Coin_Unicorn({Key? key,
   //   required this.idEmployee,
-  //   required this.coinUnicorn
+    required this.coinUnicorn
   }) : super(key: key);
 
   @override
@@ -299,7 +299,7 @@ class _Coin_UnicornState extends State<Coin_Unicorn> {
                   fit: BoxFit.contain,
                 ),
                 Text(
-                  "10",
+                  widget.coinUnicorn.toString(),
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 34,
@@ -316,10 +316,10 @@ class _Coin_UnicornState extends State<Coin_Unicorn> {
 
 class Coin_Pony extends StatefulWidget {
   // final int idEmployee;
-  // final int coinPony;
+  final int? coinPony;
   const Coin_Pony({Key? key,
   //   required this.idEmployee,
-  //   required this.coinPony,
+    required this.coinPony,
   }) : super(key: key);
 
   @override
@@ -385,7 +385,7 @@ class _Coin_PonyState extends State<Coin_Pony> {
                   fit: BoxFit.contain,
                 ),
                 Text(
-                  "10",
+                  widget.coinPony.toString(),
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 34,
@@ -402,10 +402,10 @@ class _Coin_PonyState extends State<Coin_Pony> {
 
 class Coin_Fast extends StatefulWidget {
   // final int idEmployee;
-  // final int coinFast;
+  final int? coinFast;
   const Coin_Fast({Key? key,
   //   required this.idEmployee,
-  //   required this.coinFast,
+    required this.coinFast,
   }) : super(key: key);
 
   @override
@@ -471,7 +471,7 @@ class _Coin_FastState extends State<Coin_Fast> {
                   fit: BoxFit.contain,
                 ),
                 Text(
-                  "10",
+                  widget.coinFast.toString(),
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 34,
@@ -488,10 +488,10 @@ class _Coin_FastState extends State<Coin_Fast> {
 
 class Coin_DoIt extends StatefulWidget {
   // final int idEmployee;
-  // final int coinDoIt;
+  final int? coinDoIt;
   const Coin_DoIt({Key? key,
     // required this.idEmployee,
-    // required this.coinDoIt,
+    required this.coinDoIt,
   }) : super(key: key);
 
   @override
@@ -581,10 +581,10 @@ class _Coin_DoItState extends State<Coin_DoIt> {
 
 class Coin_Caring extends StatefulWidget {
   // final int idEmployee;
-  // final int coinCaring;
+  final int? coinCaring;
   const Coin_Caring({Key? key,
     // required this.idEmployee,
-    // required this.coinCaring,
+    required this.coinCaring,
   }) : super(key: key);
 
   @override
@@ -667,10 +667,10 @@ class _Coin_CaringState extends State<Coin_Caring> {
 
 class Coin_Centaur extends StatefulWidget {
   // final int idEmployee;
-  // final int coinCentaur;
+  final int? coinCentaur;
   const Coin_Centaur({Key? key,
     // required this.idEmployee,
-    // required this.coinCentaur,
+    required this.coinCentaur,
   }) : super(key: key);
 
   @override
@@ -736,7 +736,7 @@ class _Coin_CentaurState extends State<Coin_Centaur> {
                   fit: BoxFit.contain,
                 ),
                 Text(
-                  "10",
+                  widget.coinCentaur.toString(),
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 34,
@@ -753,10 +753,10 @@ class _Coin_CentaurState extends State<Coin_Centaur> {
 
 class Coin_CSR extends StatefulWidget {
   // final int idEmployee;
-  // final int coinCSR;
+  final int? coinCSR;
   const Coin_CSR({Key? key,
     // required this.idEmployee,
-    // required this.coinCSR,
+    required this.coinCSR,
   }) : super(key: key);
 
   @override
@@ -822,7 +822,7 @@ class _Coin_CSRState extends State<Coin_CSR> {
                   fit: BoxFit.contain,
                 ),
                 Text(
-                  "10",
+                  widget.coinCSR.toString(),
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 34,
@@ -839,10 +839,10 @@ class _Coin_CSRState extends State<Coin_CSR> {
 
 class Coin_obsession extends StatefulWidget {
   // final int idEmployee;
-  // final int coinObsession;
+  final int? coinObsession;
   const Coin_obsession({Key? key,
     // required this.idEmployee,
-    // required this.coinObsession,
+    required this.coinObsession,
   }) : super(key: key);
 
   @override
@@ -908,7 +908,7 @@ class _Coin_obsessionState extends State<Coin_obsession> {
                   fit: BoxFit.contain,
                 ),
                 Text(
-                  "10",
+                  widget.coinObsession.toString(),
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 34,
@@ -925,10 +925,10 @@ class _Coin_obsessionState extends State<Coin_obsession> {
 
 class Coin_Outperform extends StatefulWidget {
   // final int idEmployee;
-  // final int coinOutperform;
+  final int? coinOutperform;
   const Coin_Outperform({Key? key,
     // required this.idEmployee,
-    // required this.coinOutperform,
+    required this.coinOutperform,
   }) : super(key: key);
 
   @override
@@ -994,7 +994,7 @@ class _Coin_OutperformState extends State<Coin_Outperform> {
                   fit: BoxFit.contain,
                 ),
                 Text(
-                  "10",
+                  widget.coinOutperform.toString(),
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 34,

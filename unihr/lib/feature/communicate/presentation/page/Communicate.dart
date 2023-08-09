@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gradient_borders/gradient_borders.dart';
 import 'dart:math' as math;
 import 'package:drop_shadow_image/drop_shadow_image.dart';
+import 'package:unihr/feature/communicate/presentation/bloc/communicate_bloc.dart';
 
 
 
 import '../../../unicalture/presentation/pages/popup/DetailPopUp.dart';
+import '../../data/model/communicate_model.dart';
 import 'Suggestion.dart';
 
 class Communicate extends StatefulWidget {

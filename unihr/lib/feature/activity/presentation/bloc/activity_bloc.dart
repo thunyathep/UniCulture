@@ -48,15 +48,19 @@ class ActivityBloc extends Bloc<ActivityEvent, ActivityState>{
           activitystatus = await activity_remoteImpl.getMyActivity();
         }else if (event.status == 1 ){
           activitystatus = activitystatus
-              .where((element) => element.idActivityStatus ==1).toList();
+              .where((element) => element.idActivityStatus == 1).toList();
+        }
+        else if (event.status == 2 ){
+          activitystatus = activitystatus
+              .where((element) => element.idActivityStatus == 2).toList();
         }
         else if (event.status == 4 ){
           activitystatus = activitystatus
-              .where((element) => element.idActivityStatus ==4).toList();
+              .where((element) => element.idActivityStatus == 4).toList();
         }
         else if (event.status == 5){
           activitystatus = activitystatus
-              .where((element) => element.idActivityStatus ==5).toList();
+              .where((element) => element.idActivityStatus == 5).toList();
         }
         emit(MyActivityLoadedState(activitystatus));
       }catch(e, stracktrace){

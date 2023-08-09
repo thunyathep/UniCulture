@@ -11,7 +11,32 @@ import '../widget/cardcoin.dart';
 
 
 class Pocket extends StatefulWidget {
-  const Pocket({Key? key}) : super(key: key);
+  final List<PocketModel> listcoin;
+  // final int heart;
+  // final int scgc;
+  // final int unicorn;
+  // final int pony;
+  // final int fast;
+  // final int doit;
+  // final int caring;
+  // final int centaur;
+  // final int csr;
+  // final int obsession;
+  // final int outperform;
+  Pocket({Key? key,
+    required this.listcoin,
+    // required this.heart,
+    // required this.scgc,
+    // required this.unicorn,
+    // required this.pony,
+    // required this.fast,
+    // required this.doit,
+    // required this.caring,
+    // required this.centaur,
+    // required this.csr,
+    // required this.obsession,
+    // required this.outperform,
+  }) : super(key: key);
 
   @override
   State<Pocket> createState() => _PocketState();
@@ -20,12 +45,27 @@ class Pocket extends StatefulWidget {
 class _PocketState extends State<Pocket> {
 int _currentIndex = 0;
 final PocketBloc _pocketBloc = PocketBloc();
-late List<PocketModel> listcoin;
+List<Widget> cardList = [];
 
 @override
 void initState(){
-  _pocketBloc.add(GetPocket());
-  super.initState();
+  // _pocketBloc.add(GetPocket());
+  if(widget.listcoin.isNotEmpty){
+      cardList = [
+        CardHeart(coinHeart: widget.listcoin[0].heart),
+        Coin_SCGC(coinSCGC: widget.listcoin[0].coin),
+        Coin_Unicorn(coinUnicorn: widget.listcoin[0].unicorn),
+        Coin_Pony(coinPony: widget.listcoin[0].pony),
+        Coin_Fast(coinFast: widget.listcoin[0].fastmove),
+        Coin_DoIt(coinDoIt: widget.listcoin[0].doit),
+        Coin_Caring(coinCaring: widget.listcoin[0].caring),
+        Coin_Centaur(coinCentaur: widget.listcoin[0].centaur),
+        Coin_CSR(coinCSR: widget.listcoin[0].csr),
+        Coin_obsession(coinObsession: widget.listcoin[0].obsession),
+        Coin_Outperform(coinOutperform: widget.listcoin[0].outperform),
+      ];
+    }
+    super.initState();
 }
 
 bool _isDisposed = false;
@@ -37,19 +77,19 @@ void dispose(){
   _isDisposed = true;
 }
 
-List cardList=[
-  CardHeart(),
-  Coin_SCGC(),
-  Coin_Unicorn(),
-  Coin_Pony(),
-  Coin_Fast(),
-  Coin_DoIt(),
-  Coin_Caring(),
-  Coin_Centaur(),
-  Coin_CSR(),
-  Coin_obsession(),
-  Coin_Outperform(),
-];
+// cardList=[
+//   CardHeart(coinHeart: listcoin[0].heart),
+//   Coin_SCGC(coinSCGC: widget.scgc),
+//   Coin_Unicorn(coinUnicorn: widget.unicorn),
+//   Coin_Pony(coinPony: widget.pony),
+//   Coin_Fast(coinFast: widget.fast,),
+//   Coin_DoIt(coinDoIt: widget.doit),
+//   Coin_Caring(coinCaring: widget.caring,),
+//   Coin_Centaur(coinCentaur: widget.centaur,),
+//   Coin_CSR(coinCSR: widget.csr,),
+//   Coin_obsession(coinObsession: widget.obsession,),
+//   Coin_Outperform(coinOutperform: widget.obsession,),
+// ];
 List<T> map<T>(List list, Function handler){
   List<T> result = [];
   for(var i = 0; i < list.length; i++){
@@ -148,7 +188,7 @@ List<T> map<T>(List list, Function handler){
                                         left: MediaQuery.of(context).devicePixelRatio*3,
                                       ),
                                       child: Text(
-                                        '26',
+                                        widget.listcoin[0].coin.toString(),
                                         style: TextStyle(
                                           fontWeight: FontWeight.bold,
                                         ),
@@ -167,7 +207,7 @@ List<T> map<T>(List list, Function handler){
                                         left: MediaQuery.of(context).devicePixelRatio*3,
                                       ),
                                       child: Text(
-                                        '10',
+                                        widget.listcoin[0].heart.toString(),
                                         style: TextStyle(
                                           fontWeight: FontWeight.bold,
                                         ),
@@ -256,7 +296,6 @@ List<T> map<T>(List list, Function handler){
                     ),
                   ],
                 ),
-
                 CarouselSlider(
                   options: CarouselOptions(
                     height: MediaQuery.of(context).size.height*0.5,
