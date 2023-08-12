@@ -6,10 +6,10 @@ class HeartTransferEntity {
   int? idReceiver;
   String? detail;
   String? reply;
-  String? senderfirstname;
-  String? senderlastname;
-  String? receiverfirstname;
-  String? receiverlastname;
+  String? senderFirstname;
+  String? senderLastname;
+  String? receiverFirstname;
+  String? receiverLastname;
 
   HeartTransferEntity({
       this.idHeartTransfer,
@@ -19,10 +19,10 @@ class HeartTransferEntity {
       this.idReceiver,
       this.detail,
       this.reply,
-      this.senderfirstname,
-      this.senderlastname,
-      this.receiverfirstname,
-      this.receiverlastname
+      this.senderFirstname,
+      this.senderLastname,
+      this.receiverFirstname,
+      this.receiverLastname
   });
 
   @override

@@ -5,15 +5,16 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:unihr/feature/pocket/data/model/pocket_model.dart';
 import 'package:unihr/feature/pocket/presentation/bloc/pocket_bloc.dart';
 import 'package:unihr/feature/pocket/presentation/bloc/pocket_event.dart';
+import 'package:unihr/feature/pocket/presentation/bloc/pocket_state.dart';
 import 'dart:math' as math;
 
 import '../widget/cardcoin.dart';
 
 
 class Pocket extends StatefulWidget {
-  final List<PocketModel> listCoin;
+  final List<PocketModel> coin;
   Pocket({Key? key,
-    required this.listCoin,
+    required this.coin,
   }) : super(key: key);
 
   @override
@@ -23,27 +24,44 @@ class Pocket extends StatefulWidget {
 class _PocketState extends State<Pocket> {
 int _currentIndex = 0;
 final PocketBloc _pocketBloc = PocketBloc();
-List<Widget> cardList = [];
+late List<Widget> cardList = [];
+
 
 @override
 void initState(){
-  // _pocketBloc.add(GetPocket());
-  if(widget.listCoin.isNotEmpty) {
+  PocketState pocketState = _pocketBloc.state;
+  List<PocketModel> listcoin = pocketState.listcoin;
+  if(listcoin.isNotEmpty) {
     cardList = [
-      CardHeart(coinHeart: widget.listCoin[0].heart),
-      Coin_SCGC(coinSCGC: widget.listCoin[0].coin),
-      Coin_Unicorn(coinUnicorn: widget.listCoin[0].unicorn),
-      Coin_Pony(coinPony: widget.listCoin[0].pony),
-      Coin_Fast(coinFast: widget.listCoin[0].fastmove),
-      Coin_DoIt(coinDoIt: widget.listCoin[0].doit),
-      Coin_Caring(coinCaring: widget.listCoin[0].caring),
-      Coin_Centaur(coinCentaur: widget.listCoin[0].centaur),
-      Coin_CSR(coinCSR: widget.listCoin[0].csr),
-      Coin_obsession(coinObsession: widget.listCoin[0].obsession),
-      Coin_Outperform(coinOutperform: widget.listCoin[0].outperform),
+      CardHeart(coinHeart: listcoin[0].heart),
+      Coin_SCGC(coinSCGC: listcoin[0].coin),
+      Coin_Unicorn(coinUnicorn: listcoin[0].unicorn),
+      Coin_Pony(coinPony: listcoin[0].pony),
+      Coin_Fast(coinFast: listcoin[0].fastMove),
+      Coin_DoIt(coinDoIt: listcoin[0].doIt),
+      Coin_Caring(coinCaring: listcoin[0].caring),
+      Coin_Centaur(coinCentaur: listcoin[0].centaur),
+      Coin_CSR(coinCSR: listcoin[0].csr),
+      Coin_obsession(coinObsession: listcoin[0].obsession),
+      Coin_Outperform(coinOutperform: listcoin[0].outperform),
     ];
   }
-    super.initState();
+  else if (listcoin.isEmpty){
+    cardList = [
+      CardHeart(coinHeart: 0),
+      Coin_SCGC(coinSCGC: 0),
+      Coin_Unicorn(coinUnicorn: 0),
+      Coin_Pony(coinPony: 0),
+      Coin_Fast(coinFast: 0),
+      Coin_DoIt(coinDoIt: 0),
+      Coin_Caring(coinCaring: 0),
+      Coin_Centaur(coinCentaur: 0),
+      Coin_CSR(coinCSR: 0),
+      Coin_obsession(coinObsession: 0),
+      Coin_Outperform(coinOutperform: 0),
+    ];
+  }
+  super.initState();
 }
 
 bool _isDisposed = false;
@@ -56,7 +74,7 @@ void dispose(){
 }
 
 // cardList=[
-//   CardHeart(coinHeart: listCoin[0].heart),
+//   CardHeart(coinHeart: listcoin[0].heart),
 //   Coin_SCGC(coinSCGC: widget.scgc),
 //   Coin_Unicorn(coinUnicorn: widget.unicorn),
 //   Coin_Pony(coinPony: widget.pony),
@@ -166,7 +184,8 @@ List<T> map<T>(List list, Function handler){
                                         left: MediaQuery.of(context).devicePixelRatio*3,
                                       ),
                                       child: Text(
-                                        widget.listCoin[0].coin.toString(),
+                                        widget.coin.isNotEmpty ?
+                                        widget.coin[0].coin.toString() : "0",
                                         style: TextStyle(
                                           fontWeight: FontWeight.bold,
                                         ),
@@ -185,7 +204,9 @@ List<T> map<T>(List list, Function handler){
                                         left: MediaQuery.of(context).devicePixelRatio*3,
                                       ),
                                       child: Text(
-                                        widget.listCoin[0].heart.toString(),
+                                        widget.coin.isNotEmpty ?
+                                          widget.coin[0].heart.toString() :
+                                            "0",
                                         style: TextStyle(
                                           fontWeight: FontWeight.bold,
                                         ),

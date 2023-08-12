@@ -3,22 +3,23 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gradient_borders/gradient_borders.dart';
 import 'package:unihr/feature/heart/presentation/bloc/heart_bloc.dart';
 import 'package:unihr/feature/heart/presentation/bloc/heart_event.dart';
+import 'package:unihr/feature/heart/presentation/page/send_heart.dart';
 import 'package:unihr/feature/heart/presentation/widget/listUser.dart';
 import 'dart:math' as math;
-
 import '../../../unicalture/presentation/pages/calendar/Calender.dart';
 import '../../data/model/heart_model.dart';
 import '../bloc/heart_state.dart';
+import '../widget/shimmer_list_user.dart';
 import 'Search.dart';
 
-class SentHeart extends StatefulWidget {
-  const SentHeart({Key? key}) : super(key: key);
+class HeartTransfer extends StatefulWidget {
+  const HeartTransfer({Key? key}) : super(key: key);
 
   @override
-  State<SentHeart> createState() => _SentHeartState();
+  State<HeartTransfer> createState() => _HeartTransferState();
 }
 
-class _SentHeartState extends State<SentHeart> {
+class _HeartTransferState extends State<HeartTransfer> {
   final HeartBloc _heartBloc = HeartBloc();
   late List<HeartTransferModel> listheart;
   int current = 0;
@@ -179,7 +180,11 @@ class _SentHeartState extends State<SentHeart> {
                         ),
                       ),
                       InkWell(
-                        onTap: (){},
+                        onTap: (){
+                          Navigator.of(context).push(
+                            MaterialPageRoute(builder: (context) => SendHeart()),
+                          );
+                        },
                         child: Padding(
                           padding: EdgeInsets.only(
                             top: MediaQuery.of(context).devicePixelRatio*55,
@@ -693,7 +698,7 @@ class _SentHeartState extends State<SentHeart> {
                             child: BlocBuilder<HeartBloc, HeartState>(
                               builder: (context, state){
                                 if(state is HeartLoadingState){
-                                  return Text("Loading");
+                                  return ShimmerListUser();
                                 }else if (state is HeartLoadedState){
                                   listheart = state.listheart;
                                   return ListView.builder(
@@ -707,14 +712,14 @@ class _SentHeartState extends State<SentHeart> {
                                             value: listheart[index].value??0,
                                             firstname: current == 0 ?
                                               listheart[index]
-                                                .senderfirstname??"" :
+                                                .senderFirstname??"" :
                                               listheart[index]
-                                                  .receiverfirstname??"",
+                                                  .receiverFirstname??"",
                                             lastname: current == 0 ?
                                             listheart[index]
-                                                .senderlastname??"" :
+                                                .senderLastname??"" :
                                             listheart[index]
-                                                .receiverlastname??"",
+                                                .receiverLastname??"",
                                         );
                                       }
                                   );
@@ -728,7 +733,6 @@ class _SentHeartState extends State<SentHeart> {
                       ),
                     ],
                   ),
-                  Text(listheart[0].senderfirstname.toString()),
                   SizedBox(
                     height: MediaQuery.of(context).size.height*0.1,
                   ),

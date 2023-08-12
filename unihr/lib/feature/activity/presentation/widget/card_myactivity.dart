@@ -61,7 +61,6 @@ class _CardMyActivityState extends State<CardMyActivity> {
       onTap: () {
         Navigator.of(context).push(
           MaterialPageRoute(builder: (context) => DetailMyActivity(
-              activityBloc: widget.activityBloc,
               idActivity: widget.idActivity,
               name: widget.name,
               detail: widget.detail,
@@ -178,14 +177,16 @@ class _CardMyActivityState extends State<CardMyActivity> {
                           size: MediaQuery.of(context).size.height * 0.03,
                         ),
                       ),
-                      Text(
-                        "เริ่มกิจกรรม : "+DateFormat("d MMM y").format(startTime)+
-                        " - "+ DateFormat("d MMM y").format(endTime),
-                        overflow: TextOverflow.ellipsis,
-                        maxLines: 2,
-                        style: TextStyle(
-                          fontSize: 12,
-                          color: Color(0xff757575),
+                      Container(
+                        child: Text(
+                          "เริ่มกิจกรรม : "+DateFormat("d MMM y").format(startTime)+
+                          " - "+ DateFormat("d MMM y").format(endTime),
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 2,
+                          style: TextStyle(
+                            fontSize: 12,
+                            color: Color(0xff757575),
+                          ),
                         ),
                       ),
                     ],

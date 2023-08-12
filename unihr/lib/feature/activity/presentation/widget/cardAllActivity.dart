@@ -214,13 +214,15 @@ class _CardActivityState extends State<CardActivity> {
                           size: MediaQuery.of(context).size.height*0.03,
                         ),
                       ),
-                      Text(
-                        "เริ่มรับสมัคร : "+DateFormat("d MMM y").format(startRegisTime)+
-                            " - "+ DateFormat("d MMM y").format(endRegisTime),
-                        maxLines: 2,
-                        style: TextStyle(
-                          fontSize: 12,
-                          color:  Color(0xff757575),
+                      Container(
+                        child: Text(
+                          "เริ่มรับสมัคร : "+DateFormat("d MMM y").format(startRegisTime)+
+                              " - "+ DateFormat("d MMM y").format(endRegisTime),
+                          maxLines: 2,
+                          style: TextStyle(
+                            fontSize: 12,
+                            color:  Color(0xff757575),
+                          ),
                         ),
                       ),
                     ],

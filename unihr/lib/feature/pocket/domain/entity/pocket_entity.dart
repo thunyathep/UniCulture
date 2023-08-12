@@ -4,8 +4,8 @@ class PocketEntity{
   int? coin;
   int? unicorn;
   int? pony;
-  int? fastmove;
-  int? doit;
+  int? fastMove;
+  int? doIt;
   int? caring;
   int? centaur;
   int? csr;
@@ -18,8 +18,8 @@ class PocketEntity{
     this.coin,
     this.unicorn,
     this.pony,
-    this.fastmove,
-    this.doit,
+    this.fastMove,
+    this.doIt,
     this.caring,
     this.centaur,
     this.csr,

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:unihr/feature/homepage/presentation/pages/HomePage.dart';
 
 import '../../../../activity/presentation/pages/AllActivity.dart';
-import '../../../../heart/presentation/page/SentHeart.dart';
+import '../../../../heart/presentation/page/heart_transfer.dart';
 import '../../../../question/presentation/pages/DiaryQuestion.dart';
 
 
@@ -94,7 +94,7 @@ class _BottomNavigateBarState extends State<BottomNavigateBar> {
         Page = HomePage();
         break;
       case 1:
-        Page = SentHeart();
+        Page = HeartTransfer();
         break;
       case 2:
         Page = DiaryQuestion();

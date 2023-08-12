@@ -11,3 +11,14 @@ class GetHeart extends HeartEvent{
   @override
   List<Object?> get props => [];
 }
+
+class SendingHeart extends HeartEvent{
+  String? reply;
+  int valueHeart;
+  int idReceiver;
+
+  SendingHeart(this.reply, this.valueHeart, this.idReceiver);
+
+  @override
+  List<Object?> get props => [];
+}

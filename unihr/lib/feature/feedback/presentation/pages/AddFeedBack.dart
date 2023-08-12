@@ -323,20 +323,6 @@ class _AddFeedBackState extends State<AddFeedBack> {
                                         ),
                                       ),
                                     ),
-                                    // Align(
-                                    //   alignment: Alignment.bottomRight,
-                                    //   child: Padding(
-                                    //     padding: EdgeInsets.all(
-                                    //       MediaQuery.of(context).devicePixelRatio*5,
-                                    //     ),
-                                    //     child: Text(
-                                    //         '$_wordCount / 60',
-                                    //       style: TextStyle(
-                                    //         color: Color(0xff757575),
-                                    //       ),
-                                    //     ),
-                                    //   ),
-                                    // ),
                                   ]
                                 ),
                               ),

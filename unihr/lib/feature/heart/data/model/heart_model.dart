@@ -30,10 +30,10 @@ class HeartTransferModel extends HeartTransferEntity {
     idReceiver: idReceiver,
     detail: detail,
     reply: reply,
-    senderfirstname: senderFirstname,
-    senderlastname: senderLastname,
-    receiverfirstname: receiverFirstname,
-    receiverlastname: receiverLastname,
+    senderFirstname: senderFirstname,
+    senderLastname: senderLastname,
+    receiverFirstname: receiverFirstname,
+    receiverLastname: receiverLastname,
   );
 
   factory HeartTransferModel.fromJson(Map<String, dynamic> json) => HeartTransferModel(
@@ -59,10 +59,10 @@ class HeartTransferModel extends HeartTransferEntity {
     "idReceiver" : idReceiver,
     "detail" : detail,
     "reply" : reply,
-    "senderFirstname" : senderfirstname,
-    "senderLastname" : senderlastname,
-    "receiverFirstname" : receiverfirstname,
-    "receiverLastname" : receiverlastname,
+    "senderFirstname" : senderFirstname,
+    "senderLastname" : senderLastname,
+    "receiverFirstname" : receiverFirstname,
+    "receiverLastname" : receiverLastname,
   };
 
   @override

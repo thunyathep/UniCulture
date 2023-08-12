@@ -1,5 +1,7 @@
+import 'package:dartz/dartz_unsafe.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:unihr/feature/heart/presentation/page/heart_transfer.dart';
 import 'package:unihr/feature/homepage/presentation/bloc/homepage_bloc.dart';
 import 'package:unihr/feature/homepage/presentation/bloc/homepage_event.dart';
 import 'package:unihr/feature/homepage/presentation/bloc/homepage_state.dart';
@@ -15,7 +17,6 @@ import 'package:unihr/feature/homepage/presentation/widget/cardReward.dart';
 import '../../../activity/presentation/pages/MyActivity.dart';
 import '../../../communicate/presentation/page/Communicate.dart';
 import '../../../feedback/presentation/pages/feedBack.dart';
-import '../../../heart/presentation/page/SentHeart.dart';
 import '../../../pocket/data/model/pocket_model.dart';
 import '../../../question/presentation/pages/EvaluateThreeSixty.dart';
 import '../../../question/presentation/pages/YearQuestion.dart';
@@ -30,7 +31,8 @@ import '../../../pocket/presentation/pages/Pocket.dart';
 import '../../../mission/presentation/pages/MyMission.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({Key? key,}) : super(key: key);
+  HomePage({Key? key,
+  }) : super(key: key);
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -441,6 +443,7 @@ class _HomePageState extends State<HomePage> {
                                 );
                               }else if (state is PocketLoadedState){
                                 listcoin = state.listcoin;
+                                List<PocketModel> listCoin = listcoin;
                                 return Row(
                                   children: [
                                     Stack(
@@ -746,11 +749,12 @@ class _HomePageState extends State<HomePage> {
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               ButtonFeature(feature: "กระเป๋า\nเหรียญ",
-                                  image: 'assets/pocket.png',pages: Pocket(
-                                    listCoin: listcoin,)),
+                                  image: 'assets/pocket.png',pages:
+                                  Pocket(
+                                    coin: listcoin,)),
                               ButtonFeature(
                                   feature: "รับส่ง\nหัวใจ",
-                                  image: 'assets/sentHeart.png',pages: SentHeart()),
+                                  image: 'assets/sentHeart.png',pages: HeartTransfer()),
                               ButtonFeature(feature: "ฟีดแบค\n",
                                   image: 'assets/feedback.png',pages: FeedBack()),
                               ButtonFeature(

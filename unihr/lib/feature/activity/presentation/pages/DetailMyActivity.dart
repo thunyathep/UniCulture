@@ -1,13 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gradient_borders/box_borders/gradient_box_border.dart';
 import 'package:icon_decoration/icon_decoration.dart';
 import 'package:intl/intl.dart';
+import 'package:unihr/feature/activity/presentation/bloc/activity_state.dart';
 
 import '../bloc/activity_bloc.dart';
 
 class DetailMyActivity extends StatefulWidget {
-  final ActivityBloc activityBloc;
   final int idActivity;
   final String name;
   final String detail;
@@ -24,8 +25,7 @@ class DetailMyActivity extends StatefulWidget {
   final int idEmployee;
   final int participantStatus;
 
-  const DetailMyActivity({Key? key,
-    required this.activityBloc,
+  DetailMyActivity({Key? key,
     required this.idActivity,
     required this.name,
     required this.detail,
@@ -48,6 +48,7 @@ class DetailMyActivity extends StatefulWidget {
 }
 
 class _DetailMyActivityState extends State<DetailMyActivity> {
+  final ActivityBloc _activityBloc = ActivityBloc();
   late DateTime startRegisTime;
   late DateTime endRegisTime;
   late DateTime startTime;
@@ -522,189 +523,190 @@ class _DetailMyActivityState extends State<DetailMyActivity> {
                             ),
                           ),
                           Center(
-                            child: GestureDetector(
-                              onTap: () {
-                                showDialog(
-                                    context: context,
-                                    builder: (BuildContext context) {
-                                      return Dialog(
-                                        shape: RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.circular(
-                                                20.0)), //this right here
-                                        child: Container(
-                                          height: MediaQuery.of(context)
-                                                  .size
-                                                  .height *
-                                              0.27,
-                                          width: MediaQuery.of(context)
-                                                  .size
-                                                  .width *
-                                              0.8,
-                                          child: Column(
-                                            children: [
-                                              Padding(
-                                                padding: EdgeInsets.only(
-                                                  top: MediaQuery.of(context)
-                                                          .devicePixelRatio *
-                                                      5,
-                                                ),
-                                                child: Text(
-                                                  "ยกเลิกการเข้าร่วมกิจกรรม",
-                                                  style: TextStyle(
-                                                    color: Colors.black,
-                                                    fontWeight: FontWeight.bold,
-                                                    fontSize: 20,
-                                                  ),
-                                                ),
-                                              ),
-                                              Padding(
-                                                padding: EdgeInsets.only(
-                                                  top: MediaQuery.of(context)
-                                                          .devicePixelRatio *
-                                                      5,
-                                                ),
-                                                child: Text(
-                                                  "คุณต้องยืนยันการยกเลิกลงทะเบียนเข้าร่วมกิจกรรม",
-                                                  style: TextStyle(
-                                                    color: Color(0xff757575),
-                                                    fontSize: 10,
-                                                  ),
-                                                ),
-                                              ),
-                                              Padding(
-                                                padding: EdgeInsets.only(
-                                                  top: MediaQuery.of(context)
-                                                          .devicePixelRatio *
-                                                      2,
-                                                ),
-                                                child: Text(
-                                                  "วิ่งเพื่อผู้พิทักษ์ป่า",
-                                                  style: TextStyle(
-                                                    color: Color(0xff757575),
-                                                    fontSize: 11,
-                                                    fontWeight: FontWeight.bold,
-                                                  ),
-                                                ),
-                                              ),
-                                              GestureDetector(
-                                                onTap: () {
-                                                  Navigator.of(context).pop();
-                                                },
-                                                child: Padding(
+                            child: Padding(
+                              padding: EdgeInsets.only(
+                                top: MediaQuery.of(context).devicePixelRatio*5,
+                              ),
+                              child: InkWell(
+                                onTap: () {
+                                  showDialog(
+                                      context: context,
+                                      builder: (BuildContext context) {
+                                        return Dialog(
+                                          shape: RoundedRectangleBorder(
+                                              borderRadius: BorderRadius.circular(
+                                                  20.0)), //this right here
+                                          child: Container(
+                                            height: MediaQuery.of(context)
+                                                .size
+                                                .height *
+                                                0.27,
+                                            width: MediaQuery.of(context)
+                                                .size
+                                                .width *
+                                                0.8,
+                                            child: Column(
+                                              children: [
+                                                Padding(
                                                   padding: EdgeInsets.only(
                                                     top: MediaQuery.of(context)
-                                                            .devicePixelRatio *
+                                                        .devicePixelRatio *
                                                         5,
                                                   ),
-                                                  child: Container(
-                                                    width:
-                                                        MediaQuery.of(context)
-                                                                .size
-                                                                .width *
-                                                            0.6,
-                                                    height:
-                                                        MediaQuery.of(context)
-                                                                .size
-                                                                .height *
-                                                            0.05,
-                                                    decoration: BoxDecoration(
-                                                        borderRadius:
-                                                            BorderRadius.all(
-                                                          Radius.circular(20),
-                                                        ),
-                                                        color:
-                                                            Color(0xffF05F5F),
-                                                        border: Border.all(
-                                                          color:
-                                                              Color(0xffF05F5F),
-                                                          width: 2,
-                                                        )),
-                                                    child: Center(
-                                                      child: Text(
-                                                        "ยืนยัน",
-                                                        style: TextStyle(
-                                                          color: Colors.white,
-                                                          fontWeight:
-                                                              FontWeight.bold,
-                                                          fontSize: 12,
-                                                        ),
-                                                      ),
+                                                  child: Text(
+                                                    "ยกเลิกการเข้าร่วมกิจกรรม",
+                                                    style: TextStyle(
+                                                      color: Colors.black,
+                                                      fontWeight: FontWeight.bold,
+                                                      fontSize: 20,
                                                     ),
                                                   ),
                                                 ),
-                                              ),
-                                              GestureDetector(
-                                                onTap: () {
-                                                  Navigator.of(context).pop();
-                                                },
-                                                child: Padding(
+                                                Padding(
                                                   padding: EdgeInsets.only(
                                                     top: MediaQuery.of(context)
-                                                            .devicePixelRatio *
+                                                        .devicePixelRatio *
+                                                        5,
+                                                  ),
+                                                  child: Text(
+                                                    "คุณต้องยืนยันการยกเลิกลงทะเบียนเข้าร่วมกิจกรรม",
+                                                    style: TextStyle(
+                                                      color: Color(0xff757575),
+                                                      fontSize: 10,
+                                                    ),
+                                                  ),
+                                                ),
+                                                Padding(
+                                                  padding: EdgeInsets.only(
+                                                    top: MediaQuery.of(context)
+                                                        .devicePixelRatio *
                                                         2,
                                                   ),
-                                                  child: Container(
-                                                    width:
-                                                        MediaQuery.of(context)
-                                                                .size
-                                                                .width *
-                                                            0.6,
-                                                    height:
-                                                        MediaQuery.of(context)
-                                                                .size
-                                                                .height *
-                                                            0.05,
-                                                    decoration: BoxDecoration(
-                                                        borderRadius:
-                                                            BorderRadius.all(
-                                                          Radius.circular(20),
-                                                        ),
-                                                        color: Colors.white,
-                                                        border: Border.all(
+                                                  child: Text(
+                                                    widget.name,
+                                                    style: TextStyle(
+                                                      color: Color(0xff757575),
+                                                      fontSize: 12,
+                                                      fontWeight: FontWeight.bold,
+                                                    ),
+                                                  ),
+                                                ),
+                                                GestureDetector(
+                                                  onTap: () {
+                                                    Navigator.of(context).pop();
+                                                  },
+                                                  child: Padding(
+                                                    padding: EdgeInsets.only(
+                                                      top: MediaQuery.of(context)
+                                                          .devicePixelRatio *
+                                                          5,
+                                                    ),
+                                                    child: Container(
+                                                      width:
+                                                      MediaQuery.of(context)
+                                                          .size
+                                                          .width *
+                                                          0.6,
+                                                      height:
+                                                      MediaQuery.of(context)
+                                                          .size
+                                                          .height *
+                                                          0.05,
+                                                      decoration: BoxDecoration(
+                                                          borderRadius:
+                                                          BorderRadius.all(
+                                                            Radius.circular(20),
+                                                          ),
                                                           color:
-                                                              Color(0xff5581F1),
-                                                          width: 2,
-                                                        )),
-                                                    child: Center(
-                                                      child: Text(
-                                                        "ยกเลิก",
-                                                        style: TextStyle(
-                                                          color:
-                                                              Color(0xff5581F1),
-                                                          fontSize: 12,
+                                                          Color(0xffF05F5F),
+                                                          border: Border.all(
+                                                            color:
+                                                            Color(0xffF05F5F),
+                                                            width: 2,
+                                                          )),
+                                                      child: Center(
+                                                        child: Text(
+                                                          "ยืนยัน",
+                                                          style: TextStyle(
+                                                            color: Colors.white,
+                                                            fontWeight:
+                                                            FontWeight.bold,
+                                                            fontSize: 12,
+                                                          ),
                                                         ),
                                                       ),
                                                     ),
                                                   ),
                                                 ),
-                                              ),
-                                            ],
+                                                GestureDetector(
+                                                  onTap: () {
+                                                    Navigator.of(context).pop();
+                                                  },
+                                                  child: Padding(
+                                                    padding: EdgeInsets.only(
+                                                      top: MediaQuery.of(context)
+                                                          .devicePixelRatio *
+                                                          2,
+                                                    ),
+                                                    child: Container(
+                                                      width:
+                                                      MediaQuery.of(context)
+                                                          .size
+                                                          .width *
+                                                          0.6,
+                                                      height:
+                                                      MediaQuery.of(context)
+                                                          .size
+                                                          .height *
+                                                          0.05,
+                                                      decoration: BoxDecoration(
+                                                          borderRadius:
+                                                          BorderRadius.all(
+                                                            Radius.circular(20),
+                                                          ),
+                                                          color: Colors.white,
+                                                          border: Border.all(
+                                                            color:
+                                                            Color(0xff5581F1),
+                                                            width: 2,
+                                                          )),
+                                                      child: Center(
+                                                        child: Text(
+                                                          "ยกเลิก",
+                                                          style: TextStyle(
+                                                            color:
+                                                            Color(0xff5581F1),
+                                                            fontSize: 12,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
                                           ),
-                                        ),
-                                      );
-                                    });
-                              },
-                              child: Container(
-                                margin: EdgeInsets.only(
-                                  top: MediaQuery.of(context).devicePixelRatio *
-                                      5,
-                                ),
-                                width: MediaQuery.of(context).size.width * 0.7,
-                                height:
-                                    MediaQuery.of(context).size.height * 0.05,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.all(
-                                    Radius.circular(20),
+                                        );
+                                      });
+                                },
+                                child: Container(
+                                  width: MediaQuery.of(context).size.width * 0.7,
+                                  height:
+                                  MediaQuery.of(context).size.height * 0.05,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.all(
+                                      Radius.circular(20),
+                                    ),
+                                    color: Color(0xffF05F5F),
                                   ),
-                                  color: Color(0xffF05F5F),
-                                ),
-                                child: Center(
-                                  child: Text(
-                                    "ยกเลิกการลงทะเบียน",
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 18,
+                                  child: Center(
+                                    child: Text(
+                                      "ยกเลิกการลงทะเบียน",
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 18,
+                                      ),
                                     ),
                                   ),
                                 ),
