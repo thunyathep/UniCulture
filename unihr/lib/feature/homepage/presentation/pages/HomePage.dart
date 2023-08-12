@@ -14,6 +14,7 @@ import 'package:unihr/feature/unicalture/presentation/pages/score/Score.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:unihr/feature/homepage/presentation/widget/cardActivity.dart';
 import 'package:unihr/feature/homepage/presentation/widget/cardReward.dart';
+import '../../../../core/feature/nothing/not_ready_page.dart';
 import '../../../activity/presentation/pages/MyActivity.dart';
 import '../../../communicate/presentation/page/Communicate.dart';
 import '../../../feedback/presentation/pages/feedBack.dart';
@@ -800,10 +801,10 @@ class _HomePageState extends State<HomePage> {
                                   pages: Evaluate()),
                               ButtonFeature(feature: "Manager\n\n",
                                   image: 'assets/manager.png',
-                                  pages: MyReward()),
+                                  pages: NotReady()),
                               ButtonFeature(feature: "Admin\n\n",
                                   image: 'assets/admin.png',
-                                  pages: MyReward()),
+                                  pages: NotReady()),
                             ],
                           ),
                         ],

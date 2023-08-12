@@ -3,6 +3,7 @@ import 'package:circular_bottom_navigation/tab_item.dart';
 import 'package:flutter/material.dart';
 import 'package:unihr/feature/homepage/presentation/pages/HomePage.dart';
 
+import '../../../../../core/feature/nothing/not_ready_page.dart';
 import '../../../../activity/presentation/pages/AllActivity.dart';
 import '../../../../heart/presentation/page/heart_transfer.dart';
 import '../../../../question/presentation/pages/DiaryQuestion.dart';
@@ -103,7 +104,7 @@ class _BottomNavigateBarState extends State<BottomNavigateBar> {
         Page = AllActivity();
         break;
       case 4:
-        Page = HomePage();
+        Page = NotReady();
         break;
       default:
         Page = HomePage(); // Assign a default page in case of an unknown selectedPos value
