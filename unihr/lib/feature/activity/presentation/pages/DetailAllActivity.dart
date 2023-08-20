@@ -1,16 +1,56 @@
 import 'package:flutter/material.dart';
 import 'package:gradient_borders/box_borders/gradient_box_border.dart';
+import 'package:intl/intl.dart';
 
 class DetailAllActivity extends StatefulWidget {
-  const DetailAllActivity({Key? key}) : super(key: key);
+  final int idActivity;
+  final String name;
+  final String detail;
+  final String location;
+  final String startDate;
+  final String endDate;
+  final String openRegisDate;
+  final String closeRegisDate;
+  final String organizer;
+  final String contact;
+  final String image;
+  final int idActivityStatus;
+  final String status;
+  final int idEmployee;
+  final int participantStatus;
+  const DetailAllActivity({Key? key,
+    required this.idActivity,
+    required this.name,
+    required this.detail,
+    required this.location,
+    required this.startDate,
+    required this.endDate,
+    required this.openRegisDate,
+    required this.closeRegisDate,
+    required this.organizer,
+    required this.contact,
+    required this.image,
+    required this.idActivityStatus,
+    required this.status,
+    required this.idEmployee,
+    required this.participantStatus,
+  }) : super(key: key);
 
   @override
   State<DetailAllActivity> createState() => _DetailAllActivityState();
 }
 
 class _DetailAllActivityState extends State<DetailAllActivity> {
+  late DateTime startRegisTime;
+  late DateTime endRegisTime;
+  late DateTime startTime;
+  late DateTime endTime;
   @override
   Widget build(BuildContext context) {
+    startRegisTime = DateTime.parse(widget.openRegisDate);
+    endRegisTime = DateTime.parse(widget.closeRegisDate);
+    startTime = DateTime.parse(widget.startDate);
+    endTime = DateTime.parse(widget.endDate);
     return Scaffold(
       body: SafeArea(
         child: Stack(
@@ -22,7 +62,8 @@ class _DetailAllActivityState extends State<DetailAllActivity> {
                     Container(
                       width: MediaQuery.of(context).size.width*1,
                       height: MediaQuery.of(context).size.height*0.45,
-                      child: Image.asset('assets/shinosukeedit.jpg',
+                      child: Image.network(
+                        widget.image,
                         fit: BoxFit.cover,
                       ),
                     ),
@@ -91,7 +132,7 @@ class _DetailAllActivityState extends State<DetailAllActivity> {
                               right: MediaQuery.of(context).devicePixelRatio*10,
                             ),
                             child: Text(
-                              "วิ่งเพื่อผู้พิทักษ์ป่า",
+                              widget.name,
                               overflow: TextOverflow.ellipsis,
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
@@ -143,7 +184,7 @@ class _DetailAllActivityState extends State<DetailAllActivity> {
                                   ),
                                   child: Center(
                                     child: Text(
-                                      "Open",
+                                      widget.status,
                                       style: TextStyle(
                                         color: Colors.white,
                                         fontSize: 14,
@@ -186,7 +227,7 @@ class _DetailAllActivityState extends State<DetailAllActivity> {
                                       ),
                                     ),
                                     Text(
-                                      "สถานที่จัดกิจกรรม",
+                                      widget.location,
                                       style: TextStyle(
                                         fontSize: 14,
                                         color:  Color(0xff757575),
@@ -234,14 +275,16 @@ class _DetailAllActivityState extends State<DetailAllActivity> {
                                       ),
                                     ),
                                     Text(
-                                        'เริ่ม : ',
+                                        'เริ่ม : '+ DateFormat("d MMM y")
+                                            .format(startRegisTime),
                                       style: TextStyle(
                                         fontSize: 14,
                                         color: Color(0xff757575),
                                       ),
                                     ),
                                     Text(
-                                      'สิ้นสุด : ',
+                                      'สิ้นสุด : '+ DateFormat("d MMM y")
+                                          .format(endRegisTime),
                                       style: TextStyle(
                                         fontSize: 14,
                                         color: Color(0xff757575),
@@ -289,14 +332,16 @@ class _DetailAllActivityState extends State<DetailAllActivity> {
                                       ),
                                     ),
                                     Text(
-                                      'เริ่ม : ',
+                                      'เริ่ม : '+ DateFormat("d MMM y")
+                                          .format(startTime),
                                       style: TextStyle(
                                         fontSize: 14,
                                         color: Color(0xff757575),
                                       ),
                                     ),
                                     Text(
-                                      'สิ้นสุด : ',
+                                      'สิ้นสุด : '+ DateFormat("d MMM y")
+                                          .format(endTime),
                                       style: TextStyle(
                                         fontSize: 14,
                                         color: Color(0xff757575),
@@ -344,14 +389,14 @@ class _DetailAllActivityState extends State<DetailAllActivity> {
                                       ),
                                     ),
                                     Text(
-                                      'ชื่อผู้จัด : ',
+                                      'ชื่อผู้จัด : '+ widget.organizer,
                                       style: TextStyle(
                                         fontSize: 14,
                                         color: Color(0xff757575),
                                       ),
                                     ),
                                     Text(
-                                      'ช่องทางการติดต่อ : ',
+                                      'ช่องทางการติดต่อ : '+widget.contact,
                                       style: TextStyle(
                                         fontSize: 14,
                                         color: Color(0xff757575),
@@ -364,7 +409,6 @@ class _DetailAllActivityState extends State<DetailAllActivity> {
                           ),
                           Container(
                             margin: EdgeInsets.only(
-                              top: MediaQuery.of(context).devicePixelRatio*7,
                               right: MediaQuery.of(context).devicePixelRatio*5,
                             ),
                             height: MediaQuery.of(context).size.height*0.03,
@@ -406,7 +450,7 @@ class _DetailAllActivityState extends State<DetailAllActivity> {
                             ),
                           ),
                           Center(
-                            child: GestureDetector(
+                            child: InkWell(
                               onTap: () {
                                 showDialog(
                                     context: context,
@@ -610,7 +654,8 @@ class _DetailAllActivityState extends State<DetailAllActivity> {
                               top: MediaQuery.of(context).devicePixelRatio*2,
                             ),
                             child: Text(
-                              "1",
+                              DateFormat("d")
+                                  .format(startTime),
                               style: TextStyle(
                                 color: Colors.black,
                                 fontSize: 25,
@@ -619,7 +664,8 @@ class _DetailAllActivityState extends State<DetailAllActivity> {
                             ),
                           ),
                           Text(
-                            "May",
+                            DateFormat("MMM")
+                                .format(endTime),
                             style: TextStyle(
                               color: Colors.black,
                               fontWeight: FontWeight.bold,

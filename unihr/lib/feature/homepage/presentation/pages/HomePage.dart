@@ -15,6 +15,7 @@ import 'package:responsive_builder/responsive_builder.dart';
 import 'package:unihr/feature/homepage/presentation/widget/cardActivity.dart';
 import 'package:unihr/feature/homepage/presentation/widget/cardReward.dart';
 import '../../../../core/feature/nothing/not_ready_page.dart';
+import '../../../../core/feature/profile/user/presentation/profile_provider.dart';
 import '../../../activity/presentation/pages/MyActivity.dart';
 import '../../../communicate/presentation/page/Communicate.dart';
 import '../../../feedback/presentation/pages/feedBack.dart';
@@ -43,15 +44,19 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   final HomepageBloc _homepageBloc = HomepageBloc();
   final PocketBloc _pocketBloc = PocketBloc();
+  late ProfileProvider profileProvider;
   late List<RewardModel> listreward;
   late List<ActivityModel> listactivity;
   late List<PocketModel> listcoin = [];
+
 
   @override
   void initState() {
     listcoin =[];
     _homepageBloc.add(GetCard());
     _pocketBloc.add(GetPocket());
+    profileProvider = ProfileProvider.of(context, listen: false);
+    profileProvider.getProfileData();
     super.initState();
   }
 

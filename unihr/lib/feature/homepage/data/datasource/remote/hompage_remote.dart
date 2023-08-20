@@ -4,6 +4,7 @@ import 'package:unihr/feature/homepage/data/model/activity_model.dart';
 import 'package:unihr/feature/homepage/data/model/reward_model.dart';
 
 import '../../../../../core/error/failure.dart';
+import '../../../../../core/storage/secure_storage.dart';
 
 abstract class Homepage_remote{
   Future<List<RewardModel>> getReward();
@@ -40,7 +41,7 @@ class Homepage_remoteIpml {
   @override
   Future<List<ActivityModel>> getActivity() async {
     final url = Uri.parse(
-        "https://uniculture-371814.as.r.appspot.com/api/activity-open/10068989");
+        "https://uniculture-371814.as.r.appspot.com/api/activity-open/${await LoginStorage.readEmployeeId()}");
     final response = await httpClient.get(url,
         headers: {
           'Content-Type': 'application/json',

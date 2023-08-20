@@ -66,7 +66,7 @@ class _ListUserState extends State<ListUser> {
               ),
               Padding(
                 padding: EdgeInsets.only(
-                  top: MediaQuery.of(context).devicePixelRatio*3,
+                  top: MediaQuery.of(context).devicePixelRatio*2.5,
                   left: MediaQuery.of(context).devicePixelRatio*4,
                 ),
                 child: Text(

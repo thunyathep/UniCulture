@@ -4,6 +4,7 @@ import 'package:unihr/feature/reward/data/model/myreward_model.dart';
 import 'package:unihr/feature/reward/data/model/redeem_reward_model.dart';
 
 import '../../../../../core/error/failure.dart';
+import '../../../../../core/storage/secure_storage.dart';
 
 abstract class MyReward_remote{
   Future<List<MyRewardModel>> getMyReward();
@@ -18,7 +19,7 @@ class MyReward_remoteImpl {
   @override
   Future<List<MyRewardModel>> getMyReward() async {
     final url = Uri.parse(
-        "https://uniculture-371814.as.r.appspot.com/api/my-redeem-reward/10068989");
+        "https://uniculture-371814.as.r.appspot.com/api/my-redeem-reward/${await LoginStorage.readEmployeeId()}");
     final response = await httpClient.get(url,
         headers: {
           'Content-Type': 'application/json',

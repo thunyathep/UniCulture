@@ -4,6 +4,7 @@ import 'package:unihr/feature/activity/data/model/allactivity_model.dart';
 import 'package:unihr/feature/activity/data/model/myactivity_model.dart';
 
 import '../../../../../core/error/failure.dart';
+import '../../../../../core/storage/secure_storage.dart';
 
 abstract class Activity_remote{
   Future<List<MyActivityModel>> getMyActivity();
@@ -18,7 +19,7 @@ class Activity_remoteImpl{
   @override
   Future<List<MyActivityModel>> getMyActivity() async{
     final url = Uri.parse(
-        "https://uniculture-371814.as.r.appspot.com/api/activity-register/10068989");
+        "https://uniculture-371814.as.r.appspot.com/api/activity-register/${await LoginStorage.readEmployeeId()}");
     final response = await httpClient.get(url,
         headers: {
           'Content-Type': 'application/json',
@@ -40,7 +41,7 @@ class Activity_remoteImpl{
   @override
   Future<List<AllActivityModel>> getAllActivity() async{
     final url = Uri.parse(
-        "https://uniculture-371814.as.r.appspot.com/api/activity-open/10068989");
+        "https://uniculture-371814.as.r.appspot.com/api/activity-open/${await LoginStorage.readEmployeeId()}");
     final response = await httpClient.get(url,
         headers: {
           'Content-Type': 'application/json',

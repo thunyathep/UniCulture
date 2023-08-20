@@ -473,7 +473,7 @@ class _DetailMyActivityState extends State<DetailMyActivity> {
                           ),
                           Container(
                             margin: EdgeInsets.only(
-                              top: MediaQuery.of(context).devicePixelRatio * 7,
+                              top: MediaQuery.of(context).devicePixelRatio,
                               right:
                                   MediaQuery.of(context).devicePixelRatio * 5,
                             ),

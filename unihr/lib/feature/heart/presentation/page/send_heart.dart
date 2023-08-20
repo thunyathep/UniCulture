@@ -347,42 +347,11 @@ class _SendHeartState extends State<SendHeart> {
                                           ),
                                           child: Row(
                                             children: [
-                                              Container(
-                                                height: MediaQuery.of(context).size.height *0.04,
-                                                width: MediaQuery.of(context).size.width*0.2,
-                                                decoration: BoxDecoration(
-                                                  color: Colors.white,
-                                                  borderRadius: BorderRadius.circular(20),
-                                                  border: Border.all(
-                                                    width: 1,
-                                                    color: Color(0xFFEC6C8B),
-                                                  ),
-                                                ),
-                                                child: Row(
-                                                  mainAxisAlignment: MainAxisAlignment.center,
-                                                  children: [
-                                                    Image.asset(
-                                                      "assets/heart.png",
-                                                      width: MediaQuery.of(context).size.width*0.05,
-                                                    ),
-                                                    Image.asset(
-                                                      "assets/heart.png",
-                                                      width: MediaQuery.of(context).size.width*0.05,
-                                                    ),
-                                                    Image.asset(
-                                                      "assets/heart.png",
-                                                      width: MediaQuery.of(context).size.width*0.05,
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                              Padding(
-                                                padding: EdgeInsets.only(
-                                                  left: MediaQuery.of(context).devicePixelRatio*5,
-                                                ),
+                                              InkWell(
+                                                onTap: (){},
                                                 child: Container(
                                                   height: MediaQuery.of(context).size.height *0.04,
-                                                  width: MediaQuery.of(context).size.width*0.15,
+                                                  width: MediaQuery.of(context).size.width*0.2,
                                                   decoration: BoxDecoration(
                                                     color: Colors.white,
                                                     borderRadius: BorderRadius.circular(20),
@@ -402,6 +371,10 @@ class _SendHeartState extends State<SendHeart> {
                                                         "assets/heart.png",
                                                         width: MediaQuery.of(context).size.width*0.05,
                                                       ),
+                                                      Image.asset(
+                                                        "assets/heart.png",
+                                                        width: MediaQuery.of(context).size.width*0.05,
+                                                      ),
                                                     ],
                                                   ),
                                                 ),
@@ -410,25 +383,61 @@ class _SendHeartState extends State<SendHeart> {
                                                 padding: EdgeInsets.only(
                                                   left: MediaQuery.of(context).devicePixelRatio*5,
                                                 ),
-                                                child: Container(
-                                                  height: MediaQuery.of(context).size.height *0.04,
-                                                  width: MediaQuery.of(context).size.width*0.1,
-                                                  decoration: BoxDecoration(
-                                                    color: Colors.white,
-                                                    borderRadius: BorderRadius.circular(20),
-                                                    border: Border.all(
-                                                      width: 1,
-                                                      color: Color(0xFFEC6C8B),
+                                                child: InkWell(
+                                                  onTap: (){},
+                                                  child: Container(
+                                                    height: MediaQuery.of(context).size.height *0.04,
+                                                    width: MediaQuery.of(context).size.width*0.15,
+                                                    decoration: BoxDecoration(
+                                                      color: Colors.white,
+                                                      borderRadius: BorderRadius.circular(20),
+                                                      border: Border.all(
+                                                        width: 1,
+                                                        color: Color(0xFFEC6C8B),
+                                                      ),
+                                                    ),
+                                                    child: Row(
+                                                      mainAxisAlignment: MainAxisAlignment.center,
+                                                      children: [
+                                                        Image.asset(
+                                                          "assets/heart.png",
+                                                          width: MediaQuery.of(context).size.width*0.05,
+                                                        ),
+                                                        Image.asset(
+                                                          "assets/heart.png",
+                                                          width: MediaQuery.of(context).size.width*0.05,
+                                                        ),
+                                                      ],
                                                     ),
                                                   ),
-                                                  child: Row(
-                                                    mainAxisAlignment: MainAxisAlignment.center,
-                                                    children: [
-                                                      Image.asset(
-                                                        "assets/heart.png",
-                                                        width: MediaQuery.of(context).size.width*0.05,
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: EdgeInsets.only(
+                                                  left: MediaQuery.of(context).devicePixelRatio*5,
+                                                ),
+                                                child: InkWell(
+                                                  onTap: (){},
+                                                  child: Container(
+                                                    height: MediaQuery.of(context).size.height *0.04,
+                                                    width: MediaQuery.of(context).size.width*0.1,
+                                                    decoration: BoxDecoration(
+                                                      color: Colors.white,
+                                                      borderRadius: BorderRadius.circular(20),
+                                                      border: Border.all(
+                                                        width: 1,
+                                                        color: Color(0xFFEC6C8B),
                                                       ),
-                                                    ],
+                                                    ),
+                                                    child: Row(
+                                                      mainAxisAlignment: MainAxisAlignment.center,
+                                                      children: [
+                                                        Image.asset(
+                                                          "assets/heart.png",
+                                                          width: MediaQuery.of(context).size.width*0.05,
+                                                        ),
+                                                      ],
+                                                    ),
                                                   ),
                                                 ),
                                               ),

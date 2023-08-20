@@ -3,6 +3,8 @@ import 'package:http/http.dart' as http;
 import 'package:unihr/core/error/failure.dart';
 import 'package:unihr/feature/heart/data/model/heart_model.dart';
 
+import '../../../../../core/storage/secure_storage.dart';
+
 abstract class Heart_remote{
   Future<List<HeartTransferModel>> getHeartTransfer();
 }
@@ -15,7 +17,7 @@ class Heart_remoteImpl implements Heart_remote {
   @override
   Future<List<HeartTransferModel>> getHeartTransfer() async {
     final url = Uri.parse(
-        "https://uniculture-371814.as.r.appspot.com/api/heart-transfer/10068989");
+        "https://uniculture-371814.as.r.appspot.com/api/heart-transfer/${await LoginStorage.readEmployeeId()}");
     final response = await httpClient.get(url,
         headers: {
           'Content-Type': 'application/json',

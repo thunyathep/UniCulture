@@ -57,7 +57,23 @@ class _CardActivityState extends State<CardActivity> {
     return InkWell(
       onTap: (){
         Navigator.of(context).push(
-            MaterialPageRoute(builder: (context) => DetailAllActivity())
+            MaterialPageRoute(builder: (context) => DetailAllActivity(
+              idActivity: widget.idActivity,
+              name: widget.name,
+              detail: widget.detail,
+              location: widget.location,
+              startDate: widget.startDate,
+              endDate: widget.endDate,
+              openRegisDate: widget.openRegisDate,
+              closeRegisDate: widget.closeRegisDate,
+              organizer: widget.organizer,
+              contact: widget.contact,
+              image: widget.image,
+              idActivityStatus: widget.idActivityStatus,
+              status: widget.status,
+              idEmployee: widget.idEmployee,
+              participantStatus: widget.participantStatus,
+            ))
         );
       },
       child: Container(

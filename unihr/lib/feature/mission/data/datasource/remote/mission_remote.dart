@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import '../../../../../core/error/failure.dart';
+import '../../../../../core/storage/secure_storage.dart';
 import '../../model/mission_model.dart';
 
 
@@ -16,7 +17,7 @@ class Mission_remoteImpl {
   @override
   Future<List<MyMissionModel>> getMyMission() async{
     final url = Uri.parse(
-      "https://uniculture-371814.as.r.appspot.com/api/mission-user/10068989"
+      "https://uniculture-371814.as.r.appspot.com/api/mission-user/${await LoginStorage.readEmployeeId()}"
     );
     final response = await httpClient.get(url,
         headers: {
