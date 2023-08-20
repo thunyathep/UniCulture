@@ -8,6 +8,7 @@ import '../../data/model/myactivity_model.dart';
 abstract class ActivityState extends Equatable{
   late List<MyActivityModel> listactivity = [];
   late List<AllActivityModel> listallactivity = [];
+  late List<AllActivityModel> listhomepageactivity = [];
 }
 
 class InitialActivity extends ActivityState{
@@ -53,6 +54,27 @@ class AllACtivityError extends ActivityState{
   final String error;
 
   AllACtivityError(this.error);
+  @override
+  List<Object?> get props => [];
+}
+
+class HomePageActivityLoadingState extends ActivityState {
+  @override
+  List<Object?> get props => [];
+}
+
+class HomePageActivityLoadedState extends ActivityState{
+  HomePageActivityLoadedState(List<AllActivityModel> list){
+    super.listhomepageactivity = list;
+  }
+  @override
+  List<Object?> get props => [listhomepageactivity];
+}
+
+class HomePageACtivityError extends ActivityState{
+  final String error;
+
+  HomePageACtivityError(this.error);
   @override
   List<Object?> get props => [];
 }

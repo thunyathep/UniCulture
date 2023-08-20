@@ -30,4 +30,14 @@ class ActivityRepositoryImpl implements ActivityRepository{
       return Left(ServerFailure());
     }
   }
+
+  @override
+  Future<Either<Failures, List<AllActivityModel>>> getHomePageActivity()async{
+    try{
+      final activity = await activity_remote.getHomePageActivity();
+      return Right(activity);
+    }on SeverException{
+      return Left(ServerFailure());
+    }
+  }
 }

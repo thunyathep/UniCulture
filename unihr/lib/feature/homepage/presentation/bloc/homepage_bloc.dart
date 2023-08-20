@@ -23,6 +23,20 @@ class HomepageBloc extends Bloc<HomepageEvent, HomepageState>{
       }
     });
 
+
+    on<GetActivity>((event, emit) async {
+      emit(ActivityLoadingState());
+      try{
+        final List<ActivityModel> listActivity = await homepage_remoteIpml.getActivity();
+        final List<ActivityModel> listactivity = listActivity;
+        emit(ActivityLoadedState(listactivity));
+      }catch(e, stracktrace){
+        print("Exception occurred: $e stracktrace: $stracktrace");
+        emit(RewardError(e.toString()));
+      }
+    });
+
+
     on<GetCard>((event, emit) async {
       emit(RewardLoadingState());
       try{

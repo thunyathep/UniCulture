@@ -21,3 +21,8 @@ class GetMyActivityStatus extends ActivityEvent{
   @override
   List<Object?> get props => [];
 }
+
+class GetCardActivityHomePage extends ActivityEvent{
+  @override
+  List<Object?> get props => [];
+}

@@ -1,6 +1,10 @@
 import 'package:dartz/dartz_unsafe.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:unihr/feature/activity/data/model/allactivity_model.dart';
+import 'package:unihr/feature/activity/presentation/bloc/activity_bloc.dart';
+import 'package:unihr/feature/activity/presentation/bloc/activity_event.dart';
+import 'package:unihr/feature/activity/presentation/bloc/activity_state.dart';
 import 'package:unihr/feature/heart/presentation/page/heart_transfer.dart';
 import 'package:unihr/feature/homepage/presentation/bloc/homepage_bloc.dart';
 import 'package:unihr/feature/homepage/presentation/bloc/homepage_event.dart';
@@ -44,16 +48,18 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   final HomepageBloc _homepageBloc = HomepageBloc();
   final PocketBloc _pocketBloc = PocketBloc();
+  final ActivityBloc _activityBloc = ActivityBloc();
   late ProfileProvider profileProvider;
   late List<RewardModel> listreward;
-  late List<ActivityModel> listactivity;
+  late List<AllActivityModel> listactivity;
   late List<PocketModel> listcoin = [];
 
 
   @override
   void initState() {
     listcoin =[];
-    _homepageBloc.add(GetCard());
+    _activityBloc.add(GetCardActivityHomePage());
+    _homepageBloc.add(GetReward());
     _pocketBloc.add(GetPocket());
     profileProvider = ProfileProvider.of(context, listen: false);
     profileProvider.getProfileData();
@@ -65,6 +71,7 @@ class _HomePageState extends State<HomePage> {
   @override
   void dispose() {
     super.dispose();
+    _activityBloc.close();
     _homepageBloc.close();
     _pocketBloc.close();
     _isDisposed = true;
@@ -84,6 +91,9 @@ class _HomePageState extends State<HomePage> {
                 ),
                 BlocProvider<PocketBloc>(
                   create: (_) => _pocketBloc,
+                ),
+                BlocProvider<ActivityBloc>(
+                  create: (_) => _activityBloc,
                 ),
               ],
               child: SingleChildScrollView(
@@ -853,58 +863,66 @@ class _HomePageState extends State<HomePage> {
                         ],
                       ),
                     ),
-                    BlocBuilder<HomepageBloc, HomepageState>(
+                    BlocBuilder<ActivityBloc, ActivityState>(
                         builder: (context, state){
-                          if(state is RewardLoadingState){
+                          if(state is HomePageActivityLoadingState){
                             return Text('');
-                          }else if(state is GetCardLoadedState){
-                            listactivity = state.listactivity;
+                          }else if(state is HomePageActivityLoadedState){
+                            listactivity = state.listhomepageactivity;
                             return LayoutBuilder(
                                 builder: (BuildContext context,
                                     BoxConstraints constraints){
-                                  return SizedBox(
-                                    height: listactivity.length == 0 ? MediaQuery.of(context)
-                                        .size.height*0.05 : MediaQuery.of(context)
-                                        .size.height*0.325,
-                                    child: ListView.builder(
-                                      itemCount: listactivity.length,
-                                      scrollDirection: Axis.horizontal,
-                                      itemBuilder: (BuildContext context, int index) {
-                                        return HomepageActivity(
-                                          idActivity: listactivity[index]
-                                              .idActivity ?? 0,
-                                          name: listactivity[index]
-                                              .name ?? "",
-                                          detail: listactivity[index]
-                                              .detail ?? "",
-                                          location: listactivity[index]
-                                              .location ?? "",
-                                          startDate: listactivity[index]
-                                              .startDate ?? "",
-                                          endDate: listactivity[index]
-                                              .endDate ?? "",
-                                          openRegisDate: listactivity[index]
-                                              .openRegisterDate ?? "",
-                                          closeRegisDate: listactivity[index]
-                                              .closeRegisterDate ?? "",
-                                          organizer: listactivity[index]
-                                              .organizer ?? "",
-                                          contact: listactivity[index]
-                                              .contact ?? "",
-                                          image: listactivity[index]
-                                              .image ?? "",
-                                          idActivityStatus: listactivity[index]
-                                              .idActivityStatus ?? 0,
-                                          status: listactivity[index]
-                                              .status ?? "",
-                                          idEmployee: listactivity[index]
-                                              .idEmployee ?? 0,
-                                          participantStatus: listactivity[index]
-                                              .participantStatus ?? 0,
-                                        );
-                                      },
-                                    ),
-                                  );
+                                  if(listactivity.length==0){
+                                    return SizedBox(
+                                      height: listactivity.length == 0 ? MediaQuery.of(context)
+                                          .size.height*0.05 : MediaQuery.of(context)
+                                          .size.height*0.325,
+                                    );
+                                  }else{
+                                    return SizedBox(
+                                      height: listactivity.length == 0 ? MediaQuery.of(context)
+                                          .size.height*0.05 : MediaQuery.of(context)
+                                          .size.height*0.325,
+                                      child: ListView.builder(
+                                        itemCount: listactivity.length,
+                                        scrollDirection: Axis.horizontal,
+                                        itemBuilder: (BuildContext context, int index) {
+                                          return HomepageActivity(
+                                            idActivity: listactivity[index]
+                                                .idActivity ?? 0,
+                                            name: listactivity[index]
+                                                .name ?? "",
+                                            detail: listactivity[index]
+                                                .detail ?? "",
+                                            location: listactivity[index]
+                                                .location ?? "",
+                                            startDate: listactivity[index]
+                                                .startDate ?? "",
+                                            endDate: listactivity[index]
+                                                .endDate ?? "",
+                                            openRegisDate: listactivity[index]
+                                                .openRegisterDate ?? "",
+                                            closeRegisDate: listactivity[index]
+                                                .closeRegisterDate ?? "",
+                                            organizer: listactivity[index]
+                                                .organizer ?? "",
+                                            contact: listactivity[index]
+                                                .contact ?? "",
+                                            image: listactivity[index]
+                                                .image ?? "",
+                                            idActivityStatus: listactivity[index]
+                                                .idActivityStatus ?? 0,
+                                            status: listactivity[index]
+                                                .status ?? "",
+                                            idEmployee: listactivity[index]
+                                                .idEmployee ?? 0,
+                                            participantStatus: listactivity[index]
+                                                .participantStatus ?? 0,
+                                          );
+                                        },
+                                      ),
+                                    );
+                                  }
                                 }
                             );
                           }else{
@@ -954,29 +972,39 @@ class _HomePageState extends State<HomePage> {
                         builder: (context, state){
                           if(state is RewardLoadingState){
                             return Text('');
-                          }else if(state is GetCardLoadedState){
+                          }else if(state is RewardLoadedState){
                             listreward = state.listReward;
                             return LayoutBuilder(
                                 builder: (BuildContext context,
                                     BoxConstraints constraints){
-                                  return SizedBox(
-                                    height: MediaQuery.of(context).size.height*0.325,
-                                    child: ListView.builder(
-                                      itemCount: listreward.length,
-                                      scrollDirection: Axis.horizontal,
-                                      itemBuilder: (BuildContext context, int index) {
-                                        return HomepageReward(
-                                          homepageBloc: _homepageBloc,
-                                          idreward: listreward[index].idReward ?? 0,
-                                          name: listreward[index].name ?? "",
-                                          detail: listreward[index].detail ?? "",
-                                          endDate: listreward[index].endDate ?? "",
-                                          image: listreward[index].image ?? "",
-                                          quantity: listreward[index].quantity ?? 0,
-                                        );
-                                      },
-                                    ),
-                                  );
+                                  if(listreward.length == 0){
+                                    return SizedBox(
+                                      height: listreward.length == 0 ? MediaQuery.of(context)
+                                          .size.height*0.05 : MediaQuery.of(context)
+                                          .size.height*0.325,
+                                    );
+                                  }else{
+                                    return SizedBox(
+                                      height: listreward.length == 0 ? MediaQuery.of(context)
+                                          .size.height*0.05 : MediaQuery.of(context)
+                                          .size.height*0.325,
+                                      child: ListView.builder(
+                                        itemCount: listreward.length,
+                                        scrollDirection: Axis.horizontal,
+                                        itemBuilder: (BuildContext context, int index) {
+                                          return HomepageReward(
+                                            homepageBloc: _homepageBloc,
+                                            idreward: listreward[index].idReward ?? 0,
+                                            name: listreward[index].name ?? "",
+                                            detail: listreward[index].detail ?? "",
+                                            endDate: listreward[index].endDate ?? "",
+                                            image: listreward[index].image ?? "",
+                                            quantity: listreward[index].quantity ?? 0,
+                                          );
+                                        },
+                                      ),
+                                    );
+                                  }
                                 }
                             );
                           }else{

@@ -40,6 +40,18 @@ class ActivityBloc extends Bloc<ActivityEvent, ActivityState>{
       }
     });
 
+    on<GetCardActivityHomePage>((event, emit) async {
+      emit(HomePageActivityLoadingState());
+      try{
+        final List<AllActivityModel> listActivity = await activity_remoteImpl.getHomePageActivity();
+        final List<AllActivityModel> listactivity = listActivity;
+        emit(HomePageActivityLoadedState(listactivity));
+      }catch(e, stracktrace){
+        print("Exception occurred: $e stracktrace: $stracktrace");
+        emit(HomePageACtivityError(e.toString()));
+      }
+    });
+
     on<GetMyActivityStatus>((event, emit) async{
       emit(MyActivityLoadingState());
       try{

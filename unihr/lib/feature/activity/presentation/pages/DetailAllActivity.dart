@@ -494,7 +494,7 @@ class _DetailAllActivityState extends State<DetailAllActivity> {
                                                   top: MediaQuery.of(context).devicePixelRatio*2,
                                                 ),
                                                 child: Text(
-                                                  "วิ่งเพื่อผู้พิทักษ์ป่า",
+                                                  widget.name,
                                                   style: TextStyle(
                                                     color: Color(0xff757575),
                                                     fontSize: 11,

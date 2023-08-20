@@ -50,7 +50,7 @@ class ActivityLoadingState extends HomepageState{
 }
 
 class ActivityLoadedState extends HomepageState {
-  RewardLoadedState(List<ActivityModel> list){
+  ActivityLoadedState(List<ActivityModel> list){
     super.listactivity = list;
   }
 

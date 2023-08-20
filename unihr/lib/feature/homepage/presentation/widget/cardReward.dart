@@ -62,7 +62,7 @@ class _HomepageRewardState extends State<HomepageReward> {
           ],
         ),
         height: MediaQuery.of(context).size.height * 0.25,
-        width: MediaQuery.of(context).size.width * 0.5,
+        width: MediaQuery.of(context).size.width * 0.6,
         child: Column(
           children: [
             Align(
