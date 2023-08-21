@@ -6,9 +6,9 @@ import '../domain/entity/all_user_profile_entity.dart';
 import '../domain/usecase/get_all_profile.dart';
 
 
-class ALlProfileProvider extends ChangeNotifier {
+class AllProfileProvider extends ChangeNotifier {
   final GetAllProfile getAllProfile;
-  ALlProfileProvider({required this.getAllProfile});
+  AllProfileProvider({required this.getAllProfile});
 
   AllProfileEntity _allprofileData = const AllProfileEntity();
   String? _telephoneMobile;
@@ -27,7 +27,7 @@ class ALlProfileProvider extends ChangeNotifier {
   String? _emergencyPhone;
 
 
-  AllProfileEntity get profileData => _allprofileData;
+  AllProfileEntity get allprofileData => _allprofileData;
   String? get telephoneMobile => _telephoneMobile;
   String? get address => _address;
   String? get houseNo => _houseNo;
@@ -105,6 +105,6 @@ class ALlProfileProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  static ALlProfileProvider of(BuildContext context, {listen = true}) =>
-      Provider.of<ALlProfileProvider>(context, listen: listen);
+  static AllProfileProvider of(BuildContext context, {listen = true}) =>
+      Provider.of<AllProfileProvider>(context, listen: listen);
 }

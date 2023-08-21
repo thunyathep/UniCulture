@@ -1,6 +1,7 @@
 import 'package:dartz/dartz_unsafe.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:provider/provider.dart';
 import 'package:unihr/feature/activity/data/model/allactivity_model.dart';
 import 'package:unihr/feature/activity/presentation/bloc/activity_bloc.dart';
 import 'package:unihr/feature/activity/presentation/bloc/activity_event.dart';
@@ -87,6 +88,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final profileProvider = Provider.of<ProfileProvider>(context);
     return ResponsiveApp(
       builder: (context) {
         return Scaffold(
@@ -164,6 +166,33 @@ class _HomePageState extends State<HomePage> {
                                       .size
                                       .height * 0.3,
                                   fit: BoxFit.cover,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(
+                            top: MediaQuery.of(context).devicePixelRatio * 12,
+                            left: MediaQuery.of(context).devicePixelRatio * 10,
+                          ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                  "สวัสดี,",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 32,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              Text(
+                                "${profileProvider.profileData.firstnameTh}"+" "+"${profileProvider.profileData.lastnameTh}",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 22,
                                 ),
                               ),
                             ],

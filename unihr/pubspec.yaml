@@ -33,6 +33,7 @@ dependencies:
   flutter_secure_storage: ^8.0.0
   loading_animation_widget: ^1.2.0+4
   get_it: ^7.6.0
+  flutter_typeahead: ^4.6.2
 
 
   flutter:
