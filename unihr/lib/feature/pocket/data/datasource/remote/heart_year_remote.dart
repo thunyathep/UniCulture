@@ -3,23 +3,22 @@ import 'dart:math';
 import 'package:http/http.dart' as http;
 import 'package:unihr/core/storage/secure_storage.dart';
 import 'package:unihr/feature/pocket/data/model/heart_receive_year_model.dart';
-import 'package:unihr/feature/pocket/data/model/pocket_model.dart';
 
 import '../../../../../core/error/failure.dart';
 
-abstract class Pocket_remote{
-  Future<List<PocketModel>> getPocket();
+abstract class HeartYear_Remote{
+  Future<List<HeartYearModel>> getHeartYear();
 }
 
-class Pocket_remoteImpl{
+class HeartYear_RemoteImpl{
   final http.Client httpClient;
 
-  Pocket_remoteImpl(this.httpClient);
+  HeartYear_RemoteImpl(this.httpClient);
 
   @override
-  Future<List<PocketModel>> getPocket() async{
+  Future<List<HeartYearModel>> getHeartYear() async{
     final url = Uri.parse(
-        "https://uniculture-371814.as.r.appspot.com/api/user-coin/${await LoginStorage.readEmployeeId()}");
+        "https://uniculture-371814.as.r.appspot.com/api/heart-receive-year/${await LoginStorage.readEmployeeId()}");
     final response = await httpClient.get(url,
         headers: {
           'Content-Type': 'application/json',
@@ -29,15 +28,14 @@ class Pocket_remoteImpl{
     );
 
     if (response.statusCode == 200) {
-      final List<dynamic> PocketJsonList = json.decode(response.body);
-      final List<PocketModel> pocketlist = PocketJsonList
-          .map((activityJson) => PocketModel.fromJson(activityJson))
+      final List<dynamic> HeartYearJsonList = json.decode(response.body);
+      final List<HeartYearModel> heartyearlist = HeartYearJsonList
+          .map((heartyearJson) => HeartYearModel.fromJson(heartyearJson))
           .toList();
-      return pocketlist;
+      return heartyearlist;
     } else {
       throw ServerFailure();
     }
   }
-
 
 }

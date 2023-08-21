@@ -1,11 +1,13 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:unihr/feature/pocket/data/model/heart_receive_year_model.dart';
 
 import '../../data/model/pocket_model.dart';
 
 @immutable
 abstract class PocketState extends Equatable{
   late List<PocketModel> listcoin = [];
+  late List<HeartYearModel> listheartyear = [];
 }
 
 class InitialPocket extends PocketState{

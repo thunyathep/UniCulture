@@ -9,6 +9,9 @@ import 'package:unihr/feature/heart/presentation/page/heart_transfer.dart';
 import 'package:unihr/feature/homepage/presentation/bloc/homepage_bloc.dart';
 import 'package:unihr/feature/homepage/presentation/bloc/homepage_event.dart';
 import 'package:unihr/feature/homepage/presentation/bloc/homepage_state.dart';
+import 'package:unihr/feature/pocket/presentation/bloc/heart_year_bloc.dart';
+import 'package:unihr/feature/pocket/presentation/bloc/heart_year_event.dart';
+import 'package:unihr/feature/pocket/presentation/bloc/heart_year_state.dart';
 import 'package:unihr/feature/pocket/presentation/bloc/pocket_bloc.dart';
 import 'package:unihr/feature/pocket/presentation/bloc/pocket_event.dart';
 import 'package:unihr/feature/pocket/presentation/bloc/pocket_state.dart';
@@ -23,6 +26,7 @@ import '../../../../core/feature/profile/user/presentation/profile_provider.dart
 import '../../../activity/presentation/pages/MyActivity.dart';
 import '../../../communicate/presentation/page/Communicate.dart';
 import '../../../feedback/presentation/pages/feedBack.dart';
+import '../../../pocket/data/model/heart_receive_year_model.dart';
 import '../../../pocket/data/model/pocket_model.dart';
 import '../../../question/presentation/pages/EvaluateThreeSixty.dart';
 import '../../../question/presentation/pages/YearQuestion.dart';
@@ -49,10 +53,12 @@ class _HomePageState extends State<HomePage> {
   final HomepageBloc _homepageBloc = HomepageBloc();
   final PocketBloc _pocketBloc = PocketBloc();
   final ActivityBloc _activityBloc = ActivityBloc();
+  final HeartYearBloc _heartYearBloc = HeartYearBloc();
   late ProfileProvider profileProvider;
   late List<RewardModel> listreward;
   late List<AllActivityModel> listactivity;
   late List<PocketModel> listcoin = [];
+  late List<HeartYearModel> listheartyear;
 
 
   @override
@@ -61,6 +67,7 @@ class _HomePageState extends State<HomePage> {
     _activityBloc.add(GetCardActivityHomePage());
     _homepageBloc.add(GetReward());
     _pocketBloc.add(GetPocket());
+    _heartYearBloc.add(GetHeartYear());
     profileProvider = ProfileProvider.of(context, listen: false);
     profileProvider.getProfileData();
     super.initState();
@@ -74,6 +81,7 @@ class _HomePageState extends State<HomePage> {
     _activityBloc.close();
     _homepageBloc.close();
     _pocketBloc.close();
+    _heartYearBloc.close();
     _isDisposed = true;
   }
 
@@ -94,6 +102,9 @@ class _HomePageState extends State<HomePage> {
                 ),
                 BlocProvider<ActivityBloc>(
                   create: (_) => _activityBloc,
+                ),
+                BlocProvider<HeartYearBloc>(
+                  create: (_) => _heartYearBloc,
                 ),
               ],
               child: SingleChildScrollView(
@@ -162,7 +173,7 @@ class _HomePageState extends State<HomePage> {
                           padding: EdgeInsets.only(
                             top: MediaQuery
                                 .of(context)
-                                .devicePixelRatio * 40,
+                                .devicePixelRatio * 50,
                             left: MediaQuery
                                 .of(context)
                                 .devicePixelRatio * 5,
@@ -308,6 +319,171 @@ class _HomePageState extends State<HomePage> {
                                         ),
                                       ],
                                     ),
+                                  ],
+                                );
+                              }else if (state is PocketLoadedState){
+                                listcoin = state.listcoin;
+                                List<PocketModel> listCoin = listcoin;
+                                return Row(
+                                  children: [
+                                    Stack(
+                                      children: [
+                                        Container(
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                            const BorderRadius.all(Radius.circular(20)),
+                                            gradient: const LinearGradient(
+                                              begin: Alignment.topCenter,
+                                              end: Alignment.bottomCenter,
+                                              colors: [
+                                                Color(0xFFFFDD87),
+                                                Color(0xFFFFF5E2),
+                                              ],
+                                            ),
+                                            boxShadow: [
+                                              BoxShadow(
+                                                color: Colors.black.withOpacity(0.3),
+                                                blurRadius: 10,
+                                                spreadRadius: 5,
+                                              )
+                                            ],
+                                          ),
+                                          height: MediaQuery
+                                              .of(context)
+                                              .size
+                                              .height * 0.13,
+                                          width: MediaQuery
+                                              .of(context)
+                                              .size
+                                              .width * 0.4,
+                                          child: Column(
+                                            mainAxisAlignment: MainAxisAlignment.start,
+                                            children: [
+                                              Padding(
+                                                padding: EdgeInsets.only(
+                                                  right: MediaQuery
+                                                      .of(context)
+                                                      .devicePixelRatio *
+                                                      7,
+                                                  top: MediaQuery
+                                                      .of(context)
+                                                      .devicePixelRatio *
+                                                      2,
+                                                ),
+                                                child: const Text(
+                                                  "เหรียญทองที่ได้รับ",
+                                                  style: TextStyle(
+                                                    color: Colors.black,
+                                                  ),
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: EdgeInsets.only(
+                                                  right: MediaQuery
+                                                      .of(context)
+                                                      .devicePixelRatio *
+                                                      25,
+                                                  top: MediaQuery
+                                                      .of(context)
+                                                      .devicePixelRatio *
+                                                      2,
+                                                ),
+                                                child: Text(
+                                                  listcoin[0].coin.toString(),
+                                                  style: TextStyle(
+                                                    color: Colors.black,
+                                                    fontSize: 32,
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
+                                                ),
+                                              ),
+                                              Container(
+                                                margin: EdgeInsets.only(
+                                                  top: MediaQuery
+                                                      .of(context)
+                                                      .devicePixelRatio *
+                                                      3,
+                                                  right: MediaQuery
+                                                      .of(context)
+                                                      .devicePixelRatio *
+                                                      15,
+                                                ),
+                                                height: MediaQuery
+                                                    .of(context)
+                                                    .size
+                                                    .height *
+                                                    0.022,
+                                                width: MediaQuery
+                                                    .of(context)
+                                                    .size
+                                                    .width *
+                                                    0.22,
+                                                decoration: BoxDecoration(
+                                                  borderRadius:
+                                                  BorderRadius.all(Radius.circular(50)),
+                                                  color: Color(0xFFFFC355),
+                                                ),
+                                                child: Padding(
+                                                  padding: EdgeInsets.only(
+                                                    left: MediaQuery
+                                                        .of(context)
+                                                        .devicePixelRatio *
+                                                        2,
+                                                    top: MediaQuery
+                                                        .of(context)
+                                                        .devicePixelRatio *
+                                                        0.5,
+                                                  ),
+                                                  child: Text(
+                                                    "แลกของรางวัล",
+                                                    style: TextStyle(
+                                                      fontSize: 12,
+                                                      // fontWeight: FontWeight.bold,
+                                                      color: Colors.white,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: EdgeInsets.only(
+                                            top: MediaQuery
+                                                .of(context)
+                                                .devicePixelRatio *
+                                                15,
+                                            left: MediaQuery
+                                                .of(context)
+                                                .devicePixelRatio *
+                                                30,
+                                          ),
+                                          child: Image.asset("assets/gold.png"),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                );
+                              }else{
+                                return Text(state.props.toString());
+                              }
+                            },
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(
+                            top: MediaQuery
+                                .of(context)
+                                .devicePixelRatio * 40,
+                            left: MediaQuery
+                                .of(context)
+                                .devicePixelRatio * 50,
+                          ),
+                          child: BlocBuilder<HeartYearBloc, HeartYearState>(
+                            builder: (context, state){
+                              if(state is HeartYearLoadingState){
+                                return Row(
+                                  children: [
                                     Stack(
                                       children: [
                                         Container(
@@ -457,147 +633,11 @@ class _HomePageState extends State<HomePage> {
                                     ),
                                   ],
                                 );
-                              }else if (state is PocketLoadedState){
-                                listcoin = state.listcoin;
-                                List<PocketModel> listCoin = listcoin;
+                              }else if (state is HeartYearLoadedState){
+                                listheartyear = state.listheartyear;
+                                List<HeartYearModel> listHeartYear = listheartyear;
                                 return Row(
                                   children: [
-                                    Stack(
-                                      children: [
-                                        Container(
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                            const BorderRadius.all(Radius.circular(20)),
-                                            gradient: const LinearGradient(
-                                              begin: Alignment.topCenter,
-                                              end: Alignment.bottomCenter,
-                                              colors: [
-                                                Color(0xFFFFDD87),
-                                                Color(0xFFFFF5E2),
-                                              ],
-                                            ),
-                                            boxShadow: [
-                                              BoxShadow(
-                                                color: Colors.black.withOpacity(0.3),
-                                                blurRadius: 10,
-                                                spreadRadius: 5,
-                                              )
-                                            ],
-                                          ),
-                                          height: MediaQuery
-                                              .of(context)
-                                              .size
-                                              .height * 0.13,
-                                          width: MediaQuery
-                                              .of(context)
-                                              .size
-                                              .width * 0.4,
-                                          child: Column(
-                                            mainAxisAlignment: MainAxisAlignment.start,
-                                            children: [
-                                              Padding(
-                                                padding: EdgeInsets.only(
-                                                  right: MediaQuery
-                                                      .of(context)
-                                                      .devicePixelRatio *
-                                                      7,
-                                                  top: MediaQuery
-                                                      .of(context)
-                                                      .devicePixelRatio *
-                                                      2,
-                                                ),
-                                                child: const Text(
-                                                  "เหรียญทองที่ได้รับ",
-                                                  style: TextStyle(
-                                                    color: Colors.black,
-                                                  ),
-                                                ),
-                                              ),
-                                              Padding(
-                                                padding: EdgeInsets.only(
-                                                  right: MediaQuery
-                                                      .of(context)
-                                                      .devicePixelRatio *
-                                                      25,
-                                                  top: MediaQuery
-                                                      .of(context)
-                                                      .devicePixelRatio *
-                                                      2,
-                                                ),
-                                                child: Text(
-                                                  listcoin[0].coin.toString(),
-                                                  style: TextStyle(
-                                                    color: Colors.black,
-                                                    fontSize: 32,
-                                                    fontWeight: FontWeight.bold,
-                                                  ),
-                                                ),
-                                              ),
-                                              Container(
-                                                margin: EdgeInsets.only(
-                                                  top: MediaQuery
-                                                      .of(context)
-                                                      .devicePixelRatio *
-                                                      3,
-                                                  right: MediaQuery
-                                                      .of(context)
-                                                      .devicePixelRatio *
-                                                      15,
-                                                ),
-                                                height: MediaQuery
-                                                    .of(context)
-                                                    .size
-                                                    .height *
-                                                    0.022,
-                                                width: MediaQuery
-                                                    .of(context)
-                                                    .size
-                                                    .width *
-                                                    0.22,
-                                                decoration: BoxDecoration(
-                                                  borderRadius:
-                                                  BorderRadius.all(Radius.circular(50)),
-                                                  color: Color(0xFFFFC355),
-                                                ),
-                                                child: Padding(
-                                                  padding: EdgeInsets.only(
-                                                    left: MediaQuery
-                                                        .of(context)
-                                                        .devicePixelRatio *
-                                                        2,
-                                                    top: MediaQuery
-                                                        .of(context)
-                                                        .devicePixelRatio *
-                                                        0.5,
-                                                  ),
-                                                  child: Text(
-                                                    "แลกของรางวัล",
-                                                    style: TextStyle(
-                                                      fontSize: 12,
-                                                      // fontWeight: FontWeight.bold,
-                                                      color: Colors.white,
-                                                    ),
-                                                  ),
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                        Padding(
-                                          padding: EdgeInsets.only(
-                                            top: MediaQuery
-                                                .of(context)
-                                                .devicePixelRatio *
-                                                15,
-                                            left: MediaQuery
-                                                .of(context)
-                                                .devicePixelRatio *
-                                                30,
-                                          ),
-                                          child: Image.asset("assets/gold.png"),
-                                        ),
-                                      ],
-                                    ),
                                     Stack(
                                       children: [
                                         Container(
@@ -672,7 +712,7 @@ class _HomePageState extends State<HomePage> {
                                                       2,
                                                 ),
                                                 child: Text(
-                                                  listcoin[0].heart.toString(),
+                                                  listheartyear[0].heartReceiveYear.toString(),
                                                   style: TextStyle(
                                                     color: Colors.black,
                                                     fontSize: 32,
@@ -719,7 +759,7 @@ class _HomePageState extends State<HomePage> {
                                                   ),
                                                   child: Text(
                                                     "ส่งหัวใจ("+
-                                                        listcoin[0].heart.toString()
+                                                        listheartyear[0].heartReceiveYear.toString()
                                                         +"/10)",
                                                     style: TextStyle(
                                                       fontSize: 12,
