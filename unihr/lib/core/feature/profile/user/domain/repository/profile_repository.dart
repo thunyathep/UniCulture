@@ -5,5 +5,5 @@ import '../entity/profile_entity.dart';
 
 abstract class ProfileRepository{
   Future<Either<Failures , ProfileEntity>> getProfile();
-  Future<Either<Failures, AllProfileEntity>> getAllProfile();
+  Future<Either<Failures, List<AllProfileEntity>>> getAllProfile(String query);
 }

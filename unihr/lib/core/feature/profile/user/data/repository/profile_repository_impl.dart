@@ -23,9 +23,9 @@ class ProfileRepositoryImpl implements ProfileRepository{
   }
 
   @override
-  Future<Either<Failures, AllProfileEntity>> getAllProfile() async{
+  Future<Either<Failures, List<AllProfileEntity>>> getAllProfile(String query) async{
     try {
-      final data = await remoteDataSource.getAllProfile();
+      final data = await remoteDataSource.getAllProfile(query);
       return Right(data);
     } on SeverException {
       return Left(ServerFailure());

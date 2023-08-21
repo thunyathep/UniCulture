@@ -2,9 +2,12 @@ import 'dart:convert';
 
 import 'package:unihr/core/feature/profile/user/domain/entity/all_user_profile_entity.dart';
 
-AllProfileModel allprofileFromJson(String str) => AllProfileModel.fromJson(json.decode(str));
+List<AllProfileModel> allprofileFromJson(String str) =>
+    List<AllProfileModel>.from(json.decode(str).map((x) =>
+        AllProfileModel.fromJson(x)));
 
-String allprofileToJson(AllProfileModel data) => json.encode(data.toJson());
+String AllProfileModelToJson(List<AllProfileModel> data)
+=> json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
 class AllProfileModel extends AllProfileEntity{
 

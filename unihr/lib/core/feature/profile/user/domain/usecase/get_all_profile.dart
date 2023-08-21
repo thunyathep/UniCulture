@@ -7,7 +7,7 @@ class GetAllProfile{
   final ProfileRepository repository;
   GetAllProfile({required this.repository});
 
-  Future<Either<Failures, AllProfileEntity>> call() async {
-    return await repository.getAllProfile();
+  Future<Either<Failures, List<AllProfileEntity>>> call(String query) async {
+    return await repository.getAllProfile(query);
   }
 }

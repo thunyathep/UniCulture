@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
 import '../../../../../../error/exception.dart';
@@ -7,7 +9,7 @@ import '../../model/profile_model.dart';
 
 abstract class ProfileRemoteDataSource{
   Future<ProfileModel> getProfile();
-  Future<AllProfileModel> getAllProfile();
+  Future<List<AllProfileModel>> getAllProfile(String query);
 }
 
 class ProfileRemoteDataSourceImpl implements ProfileRemoteDataSource{
@@ -36,7 +38,7 @@ class ProfileRemoteDataSourceImpl implements ProfileRemoteDataSource{
 
 
   @override
-  Future<AllProfileModel> getAllProfile() async{
+  Future<List<AllProfileModel>> getAllProfile(String query) async{
     final url = Uri.parse(
         "https://uniculture-371814.as.r.appspot.com/api/users");
     final response = await client.get(url,
@@ -48,7 +50,15 @@ class ProfileRemoteDataSourceImpl implements ProfileRemoteDataSource{
     );
 
     if (response.statusCode == 200) {
-      return allprofileFromJson(response.body);
+      final List users = json.decode(response.body);
+      final List<AllProfileModel> profileList =
+      users.map((json) => AllProfileModel.fromJson(json)).where((user){
+        final firstnameLower = user.firstnameEn?.toLowerCase();
+        final queryLower = query.toLowerCase();
+
+        return firstnameLower?.contains(queryLower) ?? false;
+      }).toList();
+      return profileList;
     } else {
       throw SeverException();
     }

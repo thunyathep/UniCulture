@@ -1,6 +1,15 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:gradient_borders/gradient_borders.dart';
+import 'package:unihr/core/feature/profile/user/domain/repository/profile_repository.dart';
 import 'dart:math' as math;
+import 'package:http/http.dart' as http;
+import '../../../../core/error/exception.dart';
+import '../../../../core/feature/profile/user/data/datasource/remote/profile_remote.dart';
+import '../../../../core/feature/profile/user/data/model/all_profile_user_model.dart';
+import '../../../../core/storage/secure_storage.dart';
 
 
 class Search extends StatefulWidget {
@@ -11,6 +20,7 @@ class Search extends StatefulWidget {
 }
 
 class _SearchState extends State<Search> {
+  final ProfileRemoteDataSourceImpl profileRemoteDataSourceImpl = ProfileRemoteDataSourceImpl(client: http.Client());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -91,36 +101,12 @@ class _SearchState extends State<Search> {
                         SizedBox(
                           width: MediaQuery.of(context).size.width*0.85,
                           height: MediaQuery.of(context).size.height*0.05,
-                          child: TextField(
-                            decoration: InputDecoration(
-                                filled: true,
-                                fillColor: Colors.white,
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(50),
-                                  borderSide: BorderSide.none,
-                                ),
-                              hintText: "ค้นหารายชื่อ",
-                              hintStyle: TextStyle(
-                                color: Color(0xff757575),
-                                fontSize: 12,
-                              ),
-                              suffixIcon: Container(
-                                margin: EdgeInsets.all(
-                                  MediaQuery.of(context).devicePixelRatio*1,
-                                ),
-                                decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  color: Color(0xffE994C0),
-                                ),
-                                child: IconButton(
-                                  onPressed: (){},
-                                    icon: Icon(
-                                      Icons.search,
-                                    ),
-                                    color: Colors.white,
-                                ),
-                              ),
-                            ),
+                          child: TypeAheadField<AllProfileModel?>(
+                            suggestionsCallback: ,
+                            //     (String query) async {
+                            //   final result = await profileRemoteDataSourceImpl.getAllProfile();
+                            //   return [result]; // Wrap the result in an iterable if it's a single item
+                            // },
                           ),
                         ),
                       ],
@@ -135,3 +121,45 @@ class _SearchState extends State<Search> {
     );
   }
 }
+
+// class User{
+//   final String firstName;
+//   final String lastName;
+//
+//   const User({
+//     required this.firstName,
+//     required this.lastName
+//   });
+//
+//   static User fromJson(Map<String, dynamic> json ) => User(
+//     firstName: json["firstName"],
+//     lastName: json["lastName"],
+//   );
+// }
+
+// class UserApi {
+//   static Future<List<AllProfileModel>> getUserSuggestion(String query) async{
+//     final url = Uri.parse(
+//         "https://uniculture-371814.as.r.appspot.com/api/users");
+//     final response = await http.get(url,
+//         headers: {
+//           'Content-Type': 'application/json',
+//           'Accept': 'application/json',
+//           'x-access-token': '${await LoginStorage.readToken()}',
+//         }
+//     );
+//     if (response.statusCode == 200) {
+//       final List users = json.decode(response.body);
+//       final List<AllProfileModel> profileList =
+//       users.map((json) => AllProfileModel.fromJson(json)).where((user){
+//         final firstnameLower = user.firstnameEn?.toLowerCase();
+//         final queryLower = query.toLowerCase();
+//
+//         return firstnameLower?.contains(queryLower);
+//       }).toList();
+//       return profileList;
+//     } else {
+//       throw SeverException();
+//     }
+//   }
+// }
