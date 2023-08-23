@@ -84,7 +84,7 @@ class _SearchState extends State<Search> {
                   ),
                   Padding(
                     padding: EdgeInsets.only(
-                        top: MediaQuery.of(context).devicePixelRatio*20
+                        top: MediaQuery.of(context).devicePixelRatio*20,
                     ),
                     child: Row(
                       children: [
@@ -98,15 +98,70 @@ class _SearchState extends State<Search> {
                             size: MediaQuery.of(context).size.height*0.04,
                           ),
                         ),
-                        SizedBox(
-                          width: MediaQuery.of(context).size.width*0.85,
+                        Container(
+                          width: MediaQuery.of(context).size.width*0.8,
                           height: MediaQuery.of(context).size.height*0.05,
                           child: TypeAheadField<AllProfileModel?>(
-                            suggestionsCallback: ,
-                            //     (String query) async {
-                            //   final result = await profileRemoteDataSourceImpl.getAllProfile();
-                            //   return [result]; // Wrap the result in an iterable if it's a single item
-                            // },
+                            hideSuggestionsOnKeyboardHide: false,
+                            textFieldConfiguration: TextFieldConfiguration(
+                              decoration: InputDecoration(
+                                prefix: Icon(
+                                  Icons.search,
+                                  color: Colors.transparent,
+                                ),
+                                suffixIcon: Icon(
+                                    Icons.search,
+                                  color: Colors.white,
+                                ),
+                                hintText: "ค้นหารายชื่อ",
+                                enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: Color(0xffE994C0),
+                                    width: 2.5,
+                                  ),
+                                  borderRadius: BorderRadius.circular(50),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: Color(0xffE994C0),
+                                    width: 2.5,
+                                  ),
+                                  borderRadius: BorderRadius.circular(50),
+                                ),
+                              ),
+                            ),
+
+                            noItemsFoundBuilder: (context) => Center(
+                              child: Text(
+                                "No User Found.",
+                                style: TextStyle(
+                                  fontSize: 24
+                                ),
+                              ),
+                            ),
+                            suggestionsCallback: profileRemoteDataSourceImpl.getAllProfile,
+                            itemBuilder: (context, AllProfileModel? suggestion){
+                              final user = suggestion!;
+                              return ListTile(
+                                title: Text(
+                                  user.firstName!+" " + user.lastName!,
+                                ),
+                              );
+                            },
+                            onSuggestionSelected: (AllProfileModel? suggestion){
+                              final user = suggestion!;
+
+
+
+                              ScaffoldMessenger.of(context)
+                              ..removeCurrentSnackBar()
+                              ..showSnackBar(SnackBar(
+                                  content: Text(
+                                      ""
+                                  ),
+                                ),
+                              );
+                            },
                           ),
                         ),
                       ],

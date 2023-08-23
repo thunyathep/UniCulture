@@ -5,6 +5,8 @@ import 'package:unihr/feature/heart/data/model/heart_model.dart';
 import 'package:unihr/feature/heart/presentation/bloc/heart_event.dart';
 import 'package:unihr/feature/heart/presentation/bloc/heart_state.dart';
 
+import '../../../../core/storage/secure_storage.dart';
+
 
 
 class HeartBloc extends Bloc<HeartEvent, HeartState> {
@@ -16,13 +18,14 @@ class HeartBloc extends Bloc<HeartEvent, HeartState> {
     on<GetHeart>((event, emit) async {
       emit(HeartLoadingState());
       try {
+        int idUser = int.parse(await LoginStorage.readEmployeeId());
         List<HeartTransferModel> listHeart = await heart_remoteImpl.getHeartTransfer();
         if(event.status == 0){
           listHeart = listHeart.where((element) =>
-          element.idReceiver == 10068989).toList();
+          element.idReceiver == idUser).toList();
         }else if(event.status == 1){
           listHeart = listHeart.where((element) =>
-          element.idSender == 10068989).toList();
+          element.idSender == idUser).toList();
         }
         emit(HeartLoadedState(listHeart));
       } catch (e, stacktrace) {

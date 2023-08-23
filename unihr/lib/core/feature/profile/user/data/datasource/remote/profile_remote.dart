@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:math';
 
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
@@ -49,11 +50,12 @@ class ProfileRemoteDataSourceImpl implements ProfileRemoteDataSource{
         }
     );
 
+
     if (response.statusCode == 200) {
       final List users = json.decode(response.body);
       final List<AllProfileModel> profileList =
       users.map((json) => AllProfileModel.fromJson(json)).where((user){
-        final firstnameLower = user.firstnameEn?.toLowerCase();
+        final firstnameLower = user.firstName?.toLowerCase();
         final queryLower = query.toLowerCase();
 
         return firstnameLower?.contains(queryLower) ?? false;

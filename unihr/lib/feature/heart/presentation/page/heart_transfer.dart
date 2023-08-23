@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gradient_borders/gradient_borders.dart';
+import 'package:unihr/core/feature/profile/user/data/model/all_profile_user_model.dart';
 import 'package:unihr/feature/heart/presentation/bloc/heart_bloc.dart';
 import 'package:unihr/feature/heart/presentation/bloc/heart_event.dart';
 import 'package:unihr/feature/heart/presentation/page/send_heart.dart';
