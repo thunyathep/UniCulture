@@ -1,140 +1,122 @@
 import 'package:equatable/equatable.dart';
 
 class ProfileEntity extends Equatable{
-  final int? idEmployees;
-  final String? employeeId;
-  final String? titleTh;
-  final String? firstnameTh;
-  final String? lastnameTh;
-  final String? nicknameTh;
-  final String? titleEn;
-  final DateTime? hiringDate;
-  final String? personalId;
-  final String? email;
+  final int? idEmployee;
+  final String? scgEmployeeId;
+  final String? namePrefix;
+  final String? firstName;
+  final String? lastName;
+  final String? positionId;
+  final String? plEsop;
+  final String? plGroup;
+  final String? organizationId;
+  final String? position;
+  final String? section;
+  final dynamic? division;
+  final int? idDepartment;
+  final String? companyCode;
+  final String? location;
+  final String? workingLocation;
+  final String? employeeGroupCode;
+  final String? employeeGroupText;
+  final DateTime? birthDate;
+  final DateTime? serviceDate;
+  final DateTime? positionEntryDate;
+  final DateTime? plDate;
+  final int? outsideEquivalentServiceYear;
+  final int? outsideEquivalentServiceMonth;
+  final String? employeeTypeId;
+  final String? reportToPersonnelNumber;
+  final String? reportToName;
+  final String? reportToPosition;
+  final String? reportToEmail;
+  final String? managerPersonnelNumber;
+  final String? managerName;
+  final String? managerPosition;
+  final String? managerEmail;
+  final String? gender;
+  final dynamic? profile;
+  final dynamic? experience;
+  final dynamic? gap;
   final String? telephoneMobile;
-  final String? positionName;
-  final String? sectionName;
-  final String? departmentName;
-  final dynamic divisionName;
-  final String? address;
-  final String? houseNo;
-  final dynamic village;
-  final String? villageNo;
-  final dynamic alley;
-  final dynamic road;
-  final String? subDistrict;
-  final String? district;
-  final String? provience;
-  final String? areaCode;
-  final String? companyName;
-  final String? firstnameEn;
-  final String? lastnameEn;
-  final dynamic nicknameEn;
+  final String? emailAddressBusiness;
+  final String? username;
   final int? idRole;
-  final int? isActive;
-  final DateTime? createDate;
-  final dynamic createBy;
-  final int? idPaymentType;
-  final int? idCompany;
-  final String? imageName;
-  final int? servY;
-  final int? servM;
-  final int? userPf;
-  final String? taxId;
-  final String? maritalStatus;
-  final int? idManagerLv1;
-  final String? managerLv1FirstnameTh;
-  final String? managerLv1LastnameTh;
-  final String? managerLv1FirstnameEn;
-  final String? managerLv1LastnameEn;
-  final String? managerLv1Email;
-  final int? idManagerLv2;
-  final String? managerLv2FirstnameTh;
-  final String? managerLv2LastnameTh;
-  final String? managerLv2FirstnameEn;
-  final String? managerLv2LastnameEn;
-  final String? managerLv2Email;
-  final String? managerLv1PositionName;
-  final String? managerLv2PositionName;
-  final String? emergencyContact;
-  final String? emergencyRelationship;
-  final String? emergencyPhone;
-  final DateTime? birthday;
-  final String? workingType;
-  final DateTime? updateDate;
   final int? updateBy;
-  final String? roleName;
-  final List<String>? roles;
-  final List<dynamic>? educations;
-  final String? imageProfile;
+  final dynamic? updateAt;
+  final int? heart;
+  final int? coin;
+  final int? pony;
+  final int? unicorn;
+  final String? department;
+  final int? idCompany;
+  final String? company;
+  final int? idCoach;
+  final int? price;
+  final String? coachProfile;
+  final String? coachExperience;
+  final String? image;
+  final List<dynamic>? education;
+  final String? rating;
 
   const ProfileEntity({
-    this.idEmployees,
-    this.employeeId,
-    this.titleTh,
-    this.firstnameTh,
-    this.lastnameTh,
-    this.nicknameTh,
-    this.titleEn,
-    this.hiringDate,
-    this.personalId,
-    this.email,
+    this.idEmployee,
+    this.scgEmployeeId,
+    this.namePrefix,
+    this.firstName,
+    this.lastName,
+    this.positionId,
+    this.plEsop,
+    this.plGroup,
+    this.organizationId,
+    this.position,
+    this.section,
+    this.division,
+    this.idDepartment,
+    this.companyCode,
+    this.location,
+    this.workingLocation,
+    this.employeeGroupCode,
+    this.employeeGroupText,
+    this.birthDate,
+    this.serviceDate,
+    this.positionEntryDate,
+    this.plDate,
+    this.outsideEquivalentServiceYear,
+    this.outsideEquivalentServiceMonth,
+    this.employeeTypeId,
+    this.reportToPersonnelNumber,
+    this.reportToName,
+    this.reportToPosition,
+    this.reportToEmail,
+    this.managerPersonnelNumber,
+    this.managerName,
+    this.managerPosition,
+    this.managerEmail,
+    this.gender,
+    this.profile,
+    this.experience,
+    this.gap,
     this.telephoneMobile,
-    this.positionName,
-    this.sectionName,
-    this.departmentName,
-    this.divisionName,
-    this.address,
-    this.houseNo,
-    this.village,
-    this.villageNo,
-    this.alley,
-    this.road,
-    this.subDistrict,
-    this.district,
-    this.provience,
-    this.areaCode,
-    this.companyName,
-    this.firstnameEn,
-    this.lastnameEn,
-    this.nicknameEn,
+    this.emailAddressBusiness,
+    this.username,
     this.idRole,
-    this.isActive,
-    this.createDate,
-    this.createBy,
-    this.idPaymentType,
-    this.idCompany,
-    this.imageName,
-    this.servY,
-    this.servM,
-    this.userPf,
-    this.taxId,
-    this.maritalStatus,
-    this.idManagerLv1,
-    this.managerLv1FirstnameTh,
-    this.managerLv1LastnameTh,
-    this.managerLv1FirstnameEn,
-    this.managerLv1LastnameEn,
-    this.managerLv1Email,
-    this.idManagerLv2,
-    this.managerLv2FirstnameTh,
-    this.managerLv2LastnameTh,
-    this.managerLv2FirstnameEn,
-    this.managerLv2LastnameEn,
-    this.managerLv2Email,
-    this.managerLv1PositionName,
-    this.managerLv2PositionName,
-    this.emergencyContact,
-    this.emergencyRelationship,
-    this.emergencyPhone,
-    this.birthday,
-    this.workingType,
-    this.updateDate,
     this.updateBy,
-    this.roleName,
-    this.roles,
-    this.educations,
-    this.imageProfile,
+    this.updateAt,
+    this.heart,
+    this.coin,
+    this.pony,
+    this.unicorn,
+    this.department,
+    this.idCompany,
+    this.company,
+    this.idCoach,
+    this.price,
+    this.coachProfile,
+    this.coachExperience,
+    this.image,
+    this.education,
+    this.rating,
   });
   @override
   List<Object?> get props => [];

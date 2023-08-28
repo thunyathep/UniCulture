@@ -5,6 +5,7 @@ import 'package:unihr/feature/unicalture/presentation/pages/bottomnav/BottomNavi
 import '../../component/widget/loading.dart';
 import '../../storage/secure_storage.dart';
 import '../login/presentation/page/login.dart';
+import '../profile/user/presentation/profile_provider.dart';
 
 
 class LoadingPage extends StatefulWidget {
@@ -22,14 +23,11 @@ class _LoadingPageState extends State<LoadingPage> {
     return Timer(const Duration(seconds: 2), () async{
       if(widget.isLogIn){
         String idRole =  await LoginStorage.readIdRoles();
-        log(idRole);
         if(idRole == "1"){
           log("IdRole = 1");
           log("Role : User");
           Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const BottomNavigateBar()),);
-        }else if(idRole == "null"){
-          log("IdRole = null");
-          log("Role : User(null)");
+        }else if(idRole == "4"){
           Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const BottomNavigateBar()),);
         }
         // else if(idRole == "3"){

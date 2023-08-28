@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:dartz/dartz_unsafe.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -30,7 +32,8 @@ import '../../../feedback/presentation/pages/feedBack.dart';
 import '../../../pocket/data/model/heart_receive_year_model.dart';
 import '../../../pocket/data/model/pocket_model.dart';
 import '../../../question/presentation/pages/EvaluateThreeSixty.dart';
-import '../../../question/presentation/pages/YearQuestion.dart';
+import '../../../question/presentation/pages/YearQuestionDetail.dart';
+import '../../../question/presentation/pages/morale_year.dart';
 import '../../../reward/presentation/pages/redeem_reward.dart';
 import '../../data/model/activity_model.dart';
 import '../../data/model/reward_model.dart';
@@ -188,7 +191,7 @@ class _HomePageState extends State<HomePage> {
                                 ),
                               ),
                               Text(
-                                "${profileProvider.profileData.firstnameTh}"+" "+"${profileProvider.profileData.lastnameTh}",
+                                "${profileProvider.profileData.firstName}"+" "+"${profileProvider.profileData.lastName}",
                                 style: TextStyle(
                                   color: Colors.white,
                                   fontWeight: FontWeight.bold,
@@ -878,7 +881,7 @@ class _HomePageState extends State<HomePage> {
                               ButtonFeature(
                                   feature: "คำถาม\nสุขภาพใจ\nประจำปี",
                                   image: 'assets/yearquestion.png',
-                                  pages: YearQuestion()),
+                                  pages: Morale_Year()),
                               ButtonFeature(
                                   feature: "ประเมิน\n360 องศา\n",
                                   image: 'assets/360.png',

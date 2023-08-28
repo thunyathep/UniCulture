@@ -1,7 +1,10 @@
 import 'dart:developer';
+import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:unihr/core/feature/profile/user/data/model/profile_model.dart';
 
+import '../../../../error/failure.dart';
 import '../domain/entity/profile_entity.dart';
 import '../domain/usecase/get_profile.dart';
 
@@ -45,23 +48,14 @@ class ProfileProvider extends ChangeNotifier {
 
 
   Future<void> getProfileData() async {
+    print("เข้าแล้วจ้า");
     try {
+      print("เข้าแล้วจ้า");
       var data = await getProfile();
       _profileData = data.foldRight(_profileData, (r, previous) => r);
+      log("${data.foldRight(_profileData, (r, previous) => r)}");
+      print(_profileData.firstName!);
       _telephoneMobile = _profileData.telephoneMobile;
-      _address = _profileData.address;
-      _houseNo = _profileData.houseNo;
-      _village = _profileData.village;
-      _villageNo = _profileData.villageNo;
-      _alley = _profileData.alley;
-      _road = _profileData.road;
-      _subDistrict = _profileData.subDistrict;
-      _district = _profileData.district;
-      _province = _profileData.provience;
-      _areaCode = _profileData.areaCode;
-      _emergencyContact = _profileData.emergencyContact;
-      _emergencyRelationship = _profileData.emergencyRelationship;
-      _emergencyPhone = _profileData.emergencyPhone;
       notifyListeners();
     } catch (error) {
       log(error.toString());
@@ -75,35 +69,6 @@ class ProfileProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void setAddress(
-      String zipcode,
-      String district,
-      String province,
-      String alley,
-      String houseNo,
-      String road,
-      String subDistrict,
-      String village,
-      String villageNo
-      ) {
-    _district = district;
-    _province = province;
-    _alley = alley;
-    _houseNo = houseNo;
-    _road = road;
-    _subDistrict = subDistrict;
-    _village = village;
-    _villageNo = villageNo;
-    _areaCode = zipcode;
-    notifyListeners();
-  }
-
-  void setEmergency(String contract, String relationship, String phone) {
-    _emergencyContact = contract;
-    _emergencyRelationship = relationship;
-    _emergencyPhone = phone;
-    notifyListeners();
-  }
 
   static ProfileProvider of(BuildContext context, {listen = true}) =>
       Provider.of<ProfileProvider>(context, listen: listen);

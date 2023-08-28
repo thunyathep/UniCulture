@@ -150,17 +150,6 @@ class _SearchState extends State<Search> {
                             },
                             onSuggestionSelected: (AllProfileModel? suggestion){
                               final user = suggestion!;
-
-
-
-                              ScaffoldMessenger.of(context)
-                              ..removeCurrentSnackBar()
-                              ..showSnackBar(SnackBar(
-                                  content: Text(
-                                      ""
-                                  ),
-                                ),
-                              );
                             },
                           ),
                         ),

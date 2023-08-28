@@ -23,6 +23,7 @@ class HeartTransfer extends StatefulWidget {
 class _HeartTransferState extends State<HeartTransfer> {
   final HeartBloc _heartBloc = HeartBloc();
   late List<HeartTransferModel> listheart;
+
   int current = 0;
 
   List<String> items = [

@@ -4,7 +4,7 @@ import 'dart:math' as math;
 import 'package:drop_shadow_image/drop_shadow_image.dart';
 
 import 'OpenQuestion.dart';
-import 'YearQuestion.dart';
+import 'YearQuestionDetail.dart';
 
 
 class Evaluate extends StatefulWidget {

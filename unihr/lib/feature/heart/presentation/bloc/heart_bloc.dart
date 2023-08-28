@@ -33,6 +33,17 @@ class HeartBloc extends Bloc<HeartEvent, HeartState> {
         emit(HeartError(e.toString()));
       }
     });
+
+    on<SendingHeart>((event, emit) async {
+      emit(HeartSendingState());
+      try {
+        int idUser = int.parse(await LoginStorage.readEmployeeId());
+
+      } catch (e, stacktrace) {
+        print("Exception occurred: $e stackTrace: $stacktrace");
+        emit(HeartError(e.toString()));
+      }
+    });
   }
 }
 

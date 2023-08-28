@@ -38,3 +38,8 @@ class HeartError extends HeartState {
   @override
   List<Object?> get props => [];
 }
+
+class HeartSendingState extends HeartState {
+  @override
+  List<Object?> get props => [];
+}
