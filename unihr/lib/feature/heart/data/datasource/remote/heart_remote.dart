@@ -8,7 +8,11 @@ import '../../../../../core/storage/secure_storage.dart';
 
 abstract class Heart_remote{
   Future<List<HeartTransferModel>> getHeartTransfer();
-  Future<HeartTransferModel> sendHeart();
+  Future<HeartTransferModel> sendHeart(
+      String? reply,
+      int valueHeart,
+      int idReceiver,
+      String detail);
 }
 
 class Heart_remoteImpl implements Heart_remote {
@@ -39,10 +43,15 @@ class Heart_remoteImpl implements Heart_remote {
   }
 
   @override
-  Future<HeartTransferModel> sendHeart() async {
+  Future<HeartTransferModel> sendHeart(
+      String? reply,
+      int valueHeart,
+      int idReceiver,
+      String detail ) async {
     final url = Uri.parse(
         "https://uniculture-371814.as.r.appspot.com/api/heart-transfer");
     final response = await httpClient.post(url,
+        // body: heartTransferModelToJson(),
         headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json',

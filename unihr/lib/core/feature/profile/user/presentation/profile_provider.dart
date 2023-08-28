@@ -48,9 +48,7 @@ class ProfileProvider extends ChangeNotifier {
 
 
   Future<void> getProfileData() async {
-    print("เข้าแล้วจ้า");
     try {
-      print("เข้าแล้วจ้า");
       var data = await getProfile();
       _profileData = data.foldRight(_profileData, (r, previous) => r);
       log("${data.foldRight(_profileData, (r, previous) => r)}");

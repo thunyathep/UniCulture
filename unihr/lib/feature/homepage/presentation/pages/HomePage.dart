@@ -355,7 +355,6 @@ class _HomePageState extends State<HomePage> {
                                 );
                               }else if (state is PocketLoadedState){
                                 listcoin = state.listcoin;
-                                List<PocketModel> listCoin = listcoin;
                                 return Row(
                                   children: [
                                     Stack(

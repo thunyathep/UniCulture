@@ -9,6 +9,8 @@ List<HeartTransferModel> heartTransferModelFromJson(String str) =>
 String heartTransferModelToJson(List<HeartTransferModel> data) =>
     json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
+
+
 class HeartTransferModel extends HeartTransferEntity {
   HeartTransferModel({
     required int? idHeartTransfer,
@@ -35,6 +37,7 @@ class HeartTransferModel extends HeartTransferEntity {
     receiverFirstname: receiverFirstname,
     receiverLastname: receiverLastname,
   );
+
 
   factory HeartTransferModel.fromJson(Map<String, dynamic> json) => HeartTransferModel(
     idHeartTransfer: json["idHeartTransfer"],
