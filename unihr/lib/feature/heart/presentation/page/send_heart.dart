@@ -563,7 +563,7 @@ class _SendHeartState extends State<SendHeart> {
                                 ),
                                 child: InkWell(
                                   onTap: (){
-                                    if(idReceiver != 0 && valueHeart != 0){
+                                    if(idReceiver != 0 && valueHeart != 0 ){
                                       Navigator.of(context).pop();
                                       showDialog(
                                           context: context,

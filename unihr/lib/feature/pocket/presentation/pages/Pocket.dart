@@ -7,7 +7,6 @@ import 'package:unihr/feature/pocket/data/model/pocket_model.dart';
 import 'package:unihr/feature/pocket/presentation/bloc/pocket_bloc.dart';
 import 'package:unihr/feature/pocket/presentation/bloc/pocket_event.dart';
 import 'package:unihr/feature/pocket/presentation/bloc/pocket_state.dart';
-import 'package:unihr/feature/pocket/presentation/provider/pocket_provider.dart';
 import 'dart:math' as math;
 
 import '../widget/cardcoin.dart';
