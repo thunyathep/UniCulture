@@ -1,12 +1,12 @@
 class MoraleDiaryEntity {
-  final int? idEmployee;
-  final String? status;
+  final int? idMoraledaily;
+  final int? reward;
   final String? question;
   final String? questiontype;
 
   MoraleDiaryEntity({
-    this.idEmployee,
-    this.status,
+    this.idMoraledaily,
+    this.reward,
     this.question,
     this.questiontype,
   });

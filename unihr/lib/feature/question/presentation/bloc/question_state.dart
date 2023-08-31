@@ -2,11 +2,14 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:unihr/feature/question/data/model/question_model.dart';
 
+import '../../data/model/moralediary_model.dart';
+
 
 
 @immutable
 abstract class QuestionState extends Equatable{
   late List<QuestionModel> listquestion = [];
+  late List<MoraleDiaryModel> listmoralediary = [];
 
 }
 
@@ -32,6 +35,28 @@ class MyQuestionError extends QuestionState{
   final String error;
 
   MyQuestionError(this.error);
+  @override
+  List<Object?> get props => [];
+}
+
+
+class MoraleDiaryLoadingState extends QuestionState {
+  @override
+  List<Object?> get props => [];
+}
+
+class MoraleDiaryLoadedState extends QuestionState{
+  MoraleDiaryLoadedState(List<MoraleDiaryModel> list){
+    super.listmoralediary = list;
+  }
+  @override
+  List<Object?> get props => [listquestion];
+}
+
+class MoraleDiaryError extends QuestionState{
+  final String error;
+
+  MoraleDiaryError(this.error);
   @override
   List<Object?> get props => [];
 }

@@ -13,11 +13,6 @@ void main() async{
   Intl.defaultLocale = 'th';
   await initializeDateFormatting();
   await di.init();
-  // if (kReleaseMode) {
-  //   await dotenv.load(fileName: ".env.production");
-  // } else {
-  //   await dotenv.load(fileName: ".env.development");
-  // }
   SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown])
       .then((value) => runApp(const Injection(router: MyApp())));

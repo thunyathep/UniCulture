@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 import 'package:dartz/dartz_streaming.dart';
 import 'package:http/http.dart' as http;
 import 'package:unihr/core/error/failure.dart';
@@ -8,11 +9,18 @@ import '../../../../../core/storage/secure_storage.dart';
 
 abstract class Heart_remote{
   Future<List<HeartTransferModel>> getHeartTransfer();
-  Future<HeartTransferModel> sendHeart(
+  Future<void> sendHeart(
       String? reply,
+      DateTime transferdat,
       int valueHeart,
       int idReceiver,
-      String detail);
+      int idSender,
+      String detail,
+      String senderFirstname,
+      String senderLastname,
+      String receiverFirstname,
+      String receiverLastname,
+      );
 }
 
 class Heart_remoteImpl implements Heart_remote {
@@ -43,11 +51,18 @@ class Heart_remoteImpl implements Heart_remote {
   }
 
   @override
-  Future<HeartTransferModel> sendHeart(
+  Future<void> sendHeart(
       String? reply,
+      DateTime transferdat,
       int valueHeart,
       int idReceiver,
-      String detail ) async {
+      int idSender,
+      String detail,
+      String senderFirstname,
+      String senderLastname,
+      String receiverFirstname,
+      String receiverLastname,
+      ) async {
     final url = Uri.parse(
         "https://uniculture-371814.as.r.appspot.com/api/heart-transfer");
     final response = await httpClient.post(url,
@@ -59,11 +74,7 @@ class Heart_remoteImpl implements Heart_remote {
         }
     );
     if (response.statusCode == 200) {
-      final List<dynamic> heartJsonList = json.decode(response.body);
-      final List<HeartTransferModel> heartTransferList = heartJsonList
-          .map((heartJson) => HeartTransferModel.fromJson(heartJson))
-          .toList();
-      return heartTransferList[0];
+      log("Sent Heart Success");
     } else {
       throw ServerFailure();
     }

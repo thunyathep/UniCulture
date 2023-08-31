@@ -8,3 +8,8 @@ class GetQuestion extends QuestionEvent{
   @override
   List<Object?> get props => [];
 }
+
+class GetMoraleDiary extends QuestionEvent{
+  @override
+  List<Object?> get props => [];
+}
