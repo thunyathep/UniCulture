@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gradient_borders/box_borders/gradient_box_border.dart';
+import 'package:icon_decoration/icon_decoration.dart';
 import 'package:intl/intl.dart';
 
 class DetailAllActivity extends StatefulWidget {
@@ -78,11 +79,16 @@ class _DetailAllActivityState extends State<DetailAllActivity> {
                     onPressed: (){
                       Navigator.of(context).pop();
                     },
-                    icon: Icon(
-                      Icons.arrow_back_ios_new_rounded,
-                      color: Colors.white,
-                      size: MediaQuery.of(context).size.width*0.07,
+                    icon: DecoratedIcon(
+                      icon : Icon(Icons.arrow_back_ios_new_rounded,
+                        color: Colors.white,
+                        size: MediaQuery.of(context).size.width * 0.07,
+                      ),
+                      decoration: IconDecoration(
+                        border: IconBorder(color: Color(0xff757575), width: 1),
+                      ),
                     ),
+
                   ),
                 ),
                 Column(
