@@ -66,6 +66,18 @@
       <excludeFolder url="file://$MODULE_DIR$/unihr/linux/flutter/ephemeral/.plugin_symlinks/flutter_keyboard_visibility_linux/.pub" />
       <excludeFolder url="file://$MODULE_DIR$/unihr/linux/flutter/ephemeral/.plugin_symlinks/flutter_keyboard_visibility_linux/.dart_tool" />
       <excludeFolder url="file://$MODULE_DIR$/unihr/linux/flutter/ephemeral/.plugin_symlinks/flutter_keyboard_visibility_linux/build" />
+      <excludeFolder url="file://$MODULE_DIR$/unihr/windows/flutter/ephemeral/.plugin_symlinks/awesome_notifications/example/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/unihr/windows/flutter/ephemeral/.plugin_symlinks/awesome_notifications/example/build" />
+      <excludeFolder url="file://$MODULE_DIR$/unihr/windows/flutter/ephemeral/.plugin_symlinks/awesome_notifications/example/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/unihr/linux/flutter/ephemeral/.plugin_symlinks/awesome_notifications/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/unihr/linux/flutter/ephemeral/.plugin_symlinks/awesome_notifications/build" />
+      <excludeFolder url="file://$MODULE_DIR$/unihr/linux/flutter/ephemeral/.plugin_symlinks/awesome_notifications/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/unihr/linux/flutter/ephemeral/.plugin_symlinks/awesome_notifications/example/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/unihr/linux/flutter/ephemeral/.plugin_symlinks/awesome_notifications/example/build" />
+      <excludeFolder url="file://$MODULE_DIR$/unihr/linux/flutter/ephemeral/.plugin_symlinks/awesome_notifications/example/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/unihr/windows/flutter/ephemeral/.plugin_symlinks/awesome_notifications/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/unihr/windows/flutter/ephemeral/.plugin_symlinks/awesome_notifications/build" />
+      <excludeFolder url="file://$MODULE_DIR$/unihr/windows/flutter/ephemeral/.plugin_symlinks/awesome_notifications/.pub" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

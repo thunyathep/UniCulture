@@ -6,4 +6,12 @@ import '../entity/moralediary_entity.dart';
 
 abstract class MoraleRepository{
   Future<Either<Failures, List<MoraleDiaryEntity>>> getMoraleDiary();
+  Future<Either<Failures,void>> sendAnswerDiary(
+      int idEmployee,
+      int idMoraledaily,
+      String answer,
+      DateTime answerDate,
+      String firstName,
+      String lastName,
+      );
 }

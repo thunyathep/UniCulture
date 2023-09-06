@@ -60,3 +60,18 @@ class MoraleDiaryError extends QuestionState{
   @override
   List<Object?> get props => [];
 }
+
+class SendAnswerLoadingState extends QuestionState {
+  @override
+  List<Object?> get props => [];
+}
+
+class SendAnswerFailuresState extends QuestionState {
+  @override
+  List<Object?> get props => [];
+}
+
+class SendAnswerSuccessState extends QuestionState {
+  @override
+  List<Object?> get props => [];
+}
