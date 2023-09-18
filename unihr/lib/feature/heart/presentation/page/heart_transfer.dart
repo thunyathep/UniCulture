@@ -6,8 +6,11 @@ import 'package:unihr/feature/heart/presentation/bloc/heart_bloc.dart';
 import 'package:unihr/feature/heart/presentation/bloc/heart_event.dart';
 import 'package:unihr/feature/heart/presentation/page/send_heart.dart';
 import 'package:unihr/feature/heart/presentation/widget/listUser.dart';
+import 'package:unihr/feature/pocket/presentation/widget/show_coin.dart';
 import 'package:unihr/injection_container.dart';
 import 'dart:math' as math;
+import '../../../pocket/data/model/pocket_model.dart';
+import '../../../pocket/presentation/bloc/pocket_bloc.dart';
 import '../../../unicalture/presentation/pages/calendar/Calender.dart';
 import '../../data/model/heart_model.dart';
 import '../bloc/heart_state.dart';
@@ -23,7 +26,9 @@ class HeartTransfer extends StatefulWidget {
 
 class _HeartTransferState extends State<HeartTransfer> {
   final HeartBloc _heartBloc = sl<HeartBloc>();
+  final PocketBloc _pocketBloc = PocketBloc();
   late List<HeartTransferModel> listheart;
+  late List<PocketModel> listcoin = [];
 
   int current = 0;
 
@@ -54,8 +59,15 @@ class _HeartTransferState extends State<HeartTransfer> {
     return Scaffold(
       backgroundColor: Color(0xffffffff),
       body: SafeArea(
-        child: BlocProvider(
-          create: (_) => _heartBloc,
+        child: MultiBlocProvider(
+          providers: [
+            BlocProvider<PocketBloc>(
+              create: (_) => _pocketBloc,
+            ),
+            BlocProvider<HeartBloc>(
+              create: (_) => _heartBloc,
+            ),
+          ],
           child: RefreshIndicator(
             onRefresh: () async => _heartBloc.add(GetHeart(current)),
             child: SingleChildScrollView(
@@ -252,60 +264,7 @@ class _HeartTransferState extends State<HeartTransfer> {
                                 size: MediaQuery.of(context).size.height*0.04,
                               ),
                             ),
-                            Container(
-                              width: MediaQuery.of(context).size.width*0.35,
-                              height: MediaQuery.of(context).size.height*0.035,
-                              decoration: const BoxDecoration(
-                                borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(50),
-                                  bottomLeft: Radius.circular(50),
-                                ),
-                                color: Colors.white,
-                              ),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                children: [
-                                  Row(
-                                    children: [
-                                      Image.asset(
-                                        'assets/coin2.png',
-                                        width: MediaQuery.of(context).size.width*0.06,
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsets.only(
-                                          left: MediaQuery.of(context).devicePixelRatio*3,
-                                        ),
-                                        child: Text(
-                                          '26',
-                                          style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  Row(
-                                    children: [
-                                      Image.asset(
-                                        'assets/heart.png',
-                                        width: MediaQuery.of(context).size.width*0.06,
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsets.only(
-                                          left: MediaQuery.of(context).devicePixelRatio*3,
-                                        ),
-                                        child: Text(
-                                          '10',
-                                          style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            ),
+                            ShowCoin(),
                           ],
                         ),
                       ),
