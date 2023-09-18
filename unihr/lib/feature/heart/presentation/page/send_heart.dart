@@ -3,6 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import '../../../../core/feature/profile/user/data/datasource/remote/profile_remote.dart';
 import '../../../../core/feature/profile/user/data/model/all_profile_user_model.dart';
+import '../../../../core/storage/secure_storage.dart';
+import '../../../../injection_container.dart';
 import '../../data/model/heart_model.dart';
 import '../bloc/heart_bloc.dart';
 import '../bloc/heart_event.dart';
@@ -20,14 +22,27 @@ class SendHeart extends StatefulWidget {
 
 class _SendHeartState extends State<SendHeart> {
   int selectIndex = -1;
+  TextEditingController _typeAheadController = TextEditingController();
   final ProfileRemoteDataSourceImpl profileRemoteDataSourceImpl = ProfileRemoteDataSourceImpl(client: http.Client());
-  final HeartBloc _heartBloc = HeartBloc();
+  final HeartBloc _heartBloc = sl<HeartBloc>();
   late List<HeartTransferModel> listheart;
   TextEditingController? textController;
   int idReceiver = 0;
   int valueHeart = 0;
-  late String? reply;
   String selectedUserName = "";
+  String detail = "";
+  int idSender = 0;
+  Future<void>getId() async{
+    String id = await LoginStorage.readEmployeeId();
+    try {
+      idSender = int.parse(id);
+      // Now, you can use idSender as an int.
+      print("Parsed integer ID: $idSender");
+    } catch (e) {
+      // Handle the case where the string cannot be parsed as an integer.
+      print("Error parsing string to int: $e");
+    }
+  }
 
 
   @override
@@ -316,6 +331,7 @@ class _SendHeartState extends State<SendHeart> {
                                                 TypeAheadField<AllProfileModel?>(
                                                   hideSuggestionsOnKeyboardHide: false,
                                                   textFieldConfiguration: TextFieldConfiguration(
+                                                    controller: _typeAheadController,
                                                     decoration: InputDecoration(
                                                       prefix: Icon(
                                                         Icons.search,
@@ -350,6 +366,7 @@ class _SendHeartState extends State<SendHeart> {
                                                       ),
                                                     ),
                                                   ),
+
                                                   suggestionsCallback: profileRemoteDataSourceImpl.getAllProfile,
                                                   itemBuilder: (context, AllProfileModel? suggestion){
                                                     final user = suggestion!;
@@ -359,7 +376,10 @@ class _SendHeartState extends State<SendHeart> {
                                                       ),
                                                     );
                                                   },
+
                                                   onSuggestionSelected: (AllProfileModel? suggestion){
+                                                    _typeAheadController.clear();
+                                                    getId();
                                                     final user = suggestion!;
                                                     idReceiver = user.idEmployee!;
                                                     selectedUserName = user.firstName! + " " + user.lastName!;
@@ -524,6 +544,11 @@ class _SendHeartState extends State<SendHeart> {
                                               color: Color(0xfff5f5f5),
                                             ),
                                             child: TextFormField(
+                                              onChanged: (value){
+                                                setState(() {
+                                                  detail = value;
+                                                });
+                                              },
                                               controller: textController,
                                               autovalidateMode: AutovalidateMode
                                                   .onUserInteraction,
@@ -563,7 +588,13 @@ class _SendHeartState extends State<SendHeart> {
                                 ),
                                 child: InkWell(
                                   onTap: (){
-                                    if(idReceiver != 0 && valueHeart != 0 ){
+                                    if(idReceiver != 0 && valueHeart != 0 && idSender !=0 && detail != ""){
+                                      _heartBloc.add(SendingHeart(
+                                          idSender: idSender,
+                                          valueHeart: valueHeart,
+                                          idReceiver: idReceiver,
+                                          detail: detail
+                                      ));
                                       Navigator.of(context).pop();
                                       showDialog(
                                           context: context,
@@ -635,7 +666,7 @@ class _SendHeartState extends State<SendHeart> {
                                       borderRadius: BorderRadius.all(
                                         Radius.circular(20),
                                       ),
-                                      gradient: idReceiver != 0 && valueHeart != 0 ?  LinearGradient(
+                                      gradient: idReceiver != 0 && valueHeart != 0 && idSender !=0 && detail != "" ?  LinearGradient(
                                           begin: Alignment.centerLeft,
                                           end: Alignment.centerRight,
                                           colors: [

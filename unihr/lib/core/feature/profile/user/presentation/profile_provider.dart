@@ -13,7 +13,7 @@ class ProfileProvider extends ChangeNotifier {
   final GetProfile getProfile;
   ProfileProvider({required this.getProfile});
 
-  ProfileEntity _profileData = const ProfileEntity();
+  ProfileEntity _profileData = const ProfileEntity(firstName: '');
   String? _telephoneMobile;
   String? _address;
   String? _houseNo;
@@ -51,8 +51,7 @@ class ProfileProvider extends ChangeNotifier {
     try {
       var data = await getProfile();
       _profileData = data.foldRight(_profileData, (r, previous) => r);
-      log("${data.foldRight(_profileData, (r, previous) => r)}");
-      print(_profileData.firstName!);
+      // log("${data.foldRight(_profileData, (r, previous) => r)}");
       _telephoneMobile = _profileData.telephoneMobile;
       notifyListeners();
     } catch (error) {

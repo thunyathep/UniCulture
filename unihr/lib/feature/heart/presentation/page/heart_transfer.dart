@@ -6,6 +6,7 @@ import 'package:unihr/feature/heart/presentation/bloc/heart_bloc.dart';
 import 'package:unihr/feature/heart/presentation/bloc/heart_event.dart';
 import 'package:unihr/feature/heart/presentation/page/send_heart.dart';
 import 'package:unihr/feature/heart/presentation/widget/listUser.dart';
+import 'package:unihr/injection_container.dart';
 import 'dart:math' as math;
 import '../../../unicalture/presentation/pages/calendar/Calender.dart';
 import '../../data/model/heart_model.dart';
@@ -21,7 +22,7 @@ class HeartTransfer extends StatefulWidget {
 }
 
 class _HeartTransferState extends State<HeartTransfer> {
-  final HeartBloc _heartBloc = HeartBloc();
+  final HeartBloc _heartBloc = sl<HeartBloc>();
   late List<HeartTransferModel> listheart;
 
   int current = 0;

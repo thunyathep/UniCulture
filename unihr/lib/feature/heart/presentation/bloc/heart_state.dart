@@ -43,3 +43,7 @@ class HeartSendingState extends HeartState {
   @override
   List<Object?> get props => [];
 }
+class HeartSendingSuccessState extends HeartState {
+  @override
+  List<Object?> get props => [];
+}

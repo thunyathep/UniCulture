@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:dartz/dartz_unsafe.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -67,9 +68,14 @@ class _HomePageState extends State<HomePage> {
 
   @override
   void initState() {
+    AwesomeNotifications().isNotificationAllowed().then((isAllowed){
+      if(!isAllowed){
+        AwesomeNotifications().requestPermissionToSendNotifications();
+      }
+    });
     listcoin =[];
     _activityBloc.add(GetCardActivityHomePage());
-    _homepageBloc.add(GetReward());
+    // _homepageBloc.add(GetReward());
     _pocketBloc.add(GetPocket());
     _heartYearBloc.add(GetHeartYear());
     profileProvider = ProfileProvider.of(context, listen: false);
@@ -420,7 +426,7 @@ class _HomePageState extends State<HomePage> {
                                                       2,
                                                 ),
                                                 child: Text(
-                                                  listcoin[0].coin.toString(),
+                                                  listcoin[1].amount.toString(),
                                                   style: TextStyle(
                                                     color: Colors.black,
                                                     fontSize: 32,

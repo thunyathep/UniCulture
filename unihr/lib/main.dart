@@ -1,3 +1,6 @@
+import 'dart:ffi';
+
+import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -9,6 +12,17 @@ import 'injection_container.dart' as di;
 import 'injection.dart';
 
 void main() async{
+  // AwesomeNotifications().initialize(
+  //     null,
+  //     [
+  //       NotificationChannel(
+  //           channelKey: "basic_channel",
+  //           channelName: "Basic Notification",
+  //           channelDescription: "Notificaation channel",
+  //       ),
+  //     ],
+  //   debug: true,
+  // );
   WidgetsFlutterBinding.ensureInitialized();
   Intl.defaultLocale = 'th';
   await initializeDateFormatting();
@@ -23,6 +37,35 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    AwesomeNotifications().initialize(
+      null,
+      [
+        NotificationChannel(
+          channelKey: 'daily_notification',
+          channelName: 'Daily Notifications',
+          channelDescription: 'Shows daily notifications',
+          defaultColor: Color(0xFF9D50DD),
+          ledColor: Colors.white,
+        ),
+      ],
+    );
+
+    // Schedule a daily notification
+    AwesomeNotifications().createNotification(
+      content: NotificationContent(
+        id: 0,
+        channelKey: 'daily_notification',
+        title: 'คำถามรายวัน',
+        body: 'มาทำคำถามรายวันเพื่อรับเหรียญกัน!',
+
+      ),
+      schedule: NotificationCalendar(
+        second: 0,
+        hour: 8, // Adjust the time here (e.g., 8 AM)
+        minute: 0,
+        repeats: true,
+      ),
+    );
     return MaterialApp(
       debugShowCheckedModeBanner:false,
       title: 'UniHR',

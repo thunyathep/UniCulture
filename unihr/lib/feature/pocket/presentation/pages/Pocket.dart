@@ -48,17 +48,17 @@ void initState(){
   // ];
   if(listcoin.isNotEmpty) {
     cardList = [
-      CardHeart(coinHeart: listcoin[0].heart),
-      Coin_SCGC(coinSCGC: listcoin[0].coin),
-      Coin_Unicorn(coinUnicorn: listcoin[0].unicorn),
-      Coin_Pony(coinPony: listcoin[0].pony),
-      Coin_Fast(coinFast: listcoin[0].fastMove),
-      Coin_DoIt(coinDoIt: listcoin[0].doIt),
-      Coin_Caring(coinCaring: listcoin[0].caring),
-      Coin_Centaur(coinCentaur: listcoin[0].centaur),
-      Coin_CSR(coinCSR: listcoin[0].csr),
-      Coin_obsession(coinObsession: listcoin[0].obsession),
-      Coin_Outperform(coinOutperform: listcoin[0].outperform),
+      CardHeart(coinHeart: listcoin[0].amount),
+      Coin_SCGC(coinSCGC: listcoin[1].amount),
+      Coin_Unicorn(coinUnicorn: listcoin[3].amount),
+      Coin_Pony(coinPony: listcoin[2].amount),
+      Coin_Fast(coinFast: listcoin[9].amount),
+      Coin_DoIt(coinDoIt: listcoin[7].amount),
+      Coin_Caring(coinCaring: listcoin[6].amount),
+      Coin_Centaur(coinCentaur: listcoin[4].amount),
+      Coin_CSR(coinCSR: listcoin[5].amount),
+      Coin_obsession(coinObsession: listcoin[8].amount),
+      Coin_Outperform(coinOutperform: listcoin[10].amount),
     ];
   }
   else if (listcoin.isEmpty){
@@ -200,7 +200,7 @@ List<T> map<T>(List list, Function handler){
                                       ),
                                       child: Text(
                                         widget.coin.isNotEmpty ?
-                                        widget.coin[0].coin.toString() : "0",
+                                        widget.coin[1].amount.toString() : "0",
                                         style: TextStyle(
                                           fontWeight: FontWeight.bold,
                                         ),
@@ -220,7 +220,7 @@ List<T> map<T>(List list, Function handler){
                                       ),
                                       child: Text(
                                         widget.coin.isNotEmpty ?
-                                          widget.coin[0].heart.toString() :
+                                          widget.coin[0].amount.toString() :
                                             "0",
                                         style: TextStyle(
                                           fontWeight: FontWeight.bold,

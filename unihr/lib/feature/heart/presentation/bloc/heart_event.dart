@@ -13,14 +13,23 @@ class GetHeart extends HeartEvent{
 }
 
 class SendingHeart extends HeartEvent{
-  String? reply;
+  int idSender;
   int valueHeart;
   int idReceiver;
   String detail;
   // DateTime transferDate;
 
-  SendingHeart(this.reply, this.valueHeart, this.idReceiver, this.detail);
+  SendingHeart({
+    required this.idSender,
+    required this.valueHeart,
+    required this.idReceiver,
+    required this.detail});
 
   @override
-  List<Object?> get props => [];
+  List<Object?> get props => [
+    idSender,
+    valueHeart,
+    idReceiver,
+    detail,
+  ];
 }

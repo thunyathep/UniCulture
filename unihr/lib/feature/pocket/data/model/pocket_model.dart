@@ -12,60 +12,23 @@ String MyactivityModelToJson(List<PocketModel> data)
 class PocketModel extends PocketEntity{
   PocketModel({
     required int? idEmployee,
-    required int? heart,
-    required int? coin,
-    required int? unicorn,
-    required int? pony,
-    required int? fastMove,
-    required int? doIt,
-    required int? caring,
-    required int? centaur,
-    required int? csr,
-    required int? obsession,
-    required int? outperform,
+    required int? idCoinType,
+    required int? amount,
   }):super(
     idEmployee: idEmployee,
-    heart: heart,
-    coin: coin,
-    unicorn: unicorn,
-    pony: pony,
-    fastMove: fastMove,
-    doIt: doIt,
-    caring: caring,
-    centaur: centaur,
-    csr: csr,
-    obsession: obsession,
-    outperform: outperform,
+    idCoinType: idCoinType,
+    amount: amount,
   );
 
   factory PocketModel.fromJson(Map<String, dynamic> json) => PocketModel(
     idEmployee: json["idEmployee"],
-    heart: json["heart"],
-    coin: json["coin"],
-    unicorn: json["unicorn"],
-    pony: json["pony"],
-    fastMove: json["fastMove"],
-    doIt: json["doIt"],
-    caring: json["caring"],
-    centaur: json["centaur"],
-    csr: json["csr"],
-    obsession: json["obsession"],
-    outperform: json["outperform"],
+    idCoinType: json["idCoinType"],
+    amount: json["amount"],
   );
 
   Map<String, dynamic> toJson() => {
     "idEmployee": idEmployee,
-    "heart": heart,
-    "coin": coin,
-    "unicorn": unicorn,
-    "pony": pony,
-    "fastMove": fastMove,
-    "doIt": doIt,
-    "caring": caring,
-    "centaur": centaur,
-    "csr": csr,
-    "obsession": obsession,
-    "outperform": outperform,
-
+    "idCoinType" : idCoinType,
+    "amount" : amount,
   };
 }

@@ -58,12 +58,15 @@ class MoraleDiary_remoteImpl implements MoraleDiary_Remote {
     final url = Uri.parse(
       // "https://uniculture-371814.as.r.appspot.com/api/morale-daily-user/${await LoginStorage.readEmployeeId()}"
         "https://uniculture-371814.as.r.appspot.com/api/morale-daily/1");
-    final response = await httpClient.get(url,
+    final response = await httpClient.post(url,
         headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json',
           'x-access-token': '${await LoginStorage.readToken()}',
         }
+        // body: {
+        //
+        // }
     );
     if (response.statusCode == 200) {
       final List<dynamic> moraleDiaryJsonList = json.decode(response.body);

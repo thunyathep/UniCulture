@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gradient_borders/gradient_borders.dart';
@@ -557,7 +558,14 @@ class _DiaryQuestionState extends State<DiaryQuestion> {
                                         top: MediaQuery.of(context).devicePixelRatio * 5,
                                       ),
                                       child: InkWell(
-                                        onTap: () {},
+                                        onTap: () async {
+                                          bool isAllowed = await checkNotificationStatus();
+                                          if (isAllowed) {
+                                            print('Notifications are enabled');
+                                          } else {
+                                            print('Notifications are not enabled');
+                                          }
+                                        },
                                         child: Container(
                                           width: MediaQuery.of(context).size.width * 0.6,
                                           height:
@@ -619,5 +627,8 @@ class _DiaryQuestionState extends State<DiaryQuestion> {
         ),
       ),
     );
+  }
+  Future<bool> checkNotificationStatus() async {
+    return await AwesomeNotifications().isNotificationAllowed();
   }
 }
