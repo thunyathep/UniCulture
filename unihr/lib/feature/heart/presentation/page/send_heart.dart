@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
+import 'package:unihr/feature/pocket/presentation/widget/show_coin.dart';
 import '../../../../core/feature/profile/user/data/datasource/remote/profile_remote.dart';
 import '../../../../core/feature/profile/user/data/model/all_profile_user_model.dart';
 import '../../../../core/storage/secure_storage.dart';
@@ -205,60 +206,7 @@ class _SendHeartState extends State<SendHeart> {
                               size: MediaQuery.of(context).size.height*0.04,
                             ),
                           ),
-                          Container(
-                            width: MediaQuery.of(context).size.width*0.35,
-                            height: MediaQuery.of(context).size.height*0.035,
-                            decoration: const BoxDecoration(
-                              borderRadius: BorderRadius.only(
-                                topLeft: Radius.circular(50),
-                                bottomLeft: Radius.circular(50),
-                              ),
-                              color: Colors.white,
-                            ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: [
-                                Row(
-                                  children: [
-                                    Image.asset(
-                                      'assets/coin2.png',
-                                      width: MediaQuery.of(context).size.width*0.06,
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsets.only(
-                                        left: MediaQuery.of(context).devicePixelRatio*3,
-                                      ),
-                                      child: Text(
-                                        '26',
-                                        style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                Row(
-                                  children: [
-                                    Image.asset(
-                                      'assets/heart.png',
-                                      width: MediaQuery.of(context).size.width*0.06,
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsets.only(
-                                        left: MediaQuery.of(context).devicePixelRatio*3,
-                                      ),
-                                      child: Text(
-                                        '10',
-                                        style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ),
+                          ShowCoin(),
                         ],
                       ),
                     ),

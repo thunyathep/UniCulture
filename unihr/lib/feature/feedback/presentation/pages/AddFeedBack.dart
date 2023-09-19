@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:gradient_borders/gradient_borders.dart';
 import 'dart:math' as math;
 
+import 'package:unihr/feature/pocket/presentation/widget/show_coin.dart';
+
 class AddFeedBack extends StatefulWidget {
   const AddFeedBack({Key? key}) : super(key: key);
 
@@ -104,60 +106,7 @@ class _AddFeedBackState extends State<AddFeedBack> {
                             size: MediaQuery.of(context).size.height*0.04,
                           ),
                         ),
-                        Container(
-                          width: MediaQuery.of(context).size.width*0.35,
-                          height: MediaQuery.of(context).size.height*0.035,
-                          decoration: const BoxDecoration(
-                            borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(50),
-                              bottomLeft: Radius.circular(50),
-                            ),
-                            color: Colors.white,
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [
-                              Row(
-                                children: [
-                                  Image.asset(
-                                    'assets/coin2.png',
-                                    width: MediaQuery.of(context).size.width*0.06,
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsets.only(
-                                      left: MediaQuery.of(context).devicePixelRatio*3,
-                                    ),
-                                    child: Text(
-                                      '26',
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              Row(
-                                children: [
-                                  Image.asset(
-                                    'assets/heart.png',
-                                    width: MediaQuery.of(context).size.width*0.06,
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsets.only(
-                                      left: MediaQuery.of(context).devicePixelRatio*3,
-                                    ),
-                                    child: Text(
-                                      '10',
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
+                        ShowCoin(),
                       ],
                     ),
                   ),
