@@ -69,6 +69,275 @@ class _BottomNavigateBarState extends State<BottomNavigateBar> {
 
   @override
   void initState() {
+    WidgetsBinding.instance?.addPostFrameCallback((_) {
+      showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return Scaffold(
+              backgroundColor: Colors.black.withOpacity(0.5),
+              body: SafeArea(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    // Centered Dialog Container
+                    Stack(
+                      children: [
+                        Column(
+                          children: [
+                            SizedBox(
+                              height: MediaQuery.of(context).size.height*0.15,
+                              width: MediaQuery.of(context).size.height*0.8,
+                            ),
+                            Dialog(
+                              shape: RoundedRectangleBorder(
+                                  borderRadius:
+                                  BorderRadius.circular(
+                                      20.0)), //this right here
+                              child: Container(
+                                height: MediaQuery.of(context)
+                                    .size
+                                    .height *
+                                    0.55,
+                                width: MediaQuery.of(context)
+                                    .size
+                                    .width *
+                                    0.8,
+                                child: Stack(
+                                  children: [
+                                    ClipRRect(
+                                      borderRadius: BorderRadius.circular(20),
+                                      child: Image.asset(
+                                        "assets/pop_up.png",
+                                        height: MediaQuery.of(context)
+                                            .size
+                                            .height *
+                                            0.55,
+                                        width: MediaQuery.of(context)
+                                            .size
+                                            .width *
+                                            0.8,
+                                        fit: BoxFit.cover,
+                                      ),
+                                    ),
+                                    Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        Padding(
+                                          padding: EdgeInsets.only(
+                                            top: MediaQuery.of(context).devicePixelRatio*10,
+                                          ),
+                                          child: Row(
+                                            mainAxisAlignment: MainAxisAlignment.center,
+                                            children: [
+                                              Text(
+                                                "WORK",
+                                                style: TextStyle(
+                                                  color: Color(0xffF04E75),
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 32,
+                                                ),
+                                              ),
+                                              Container(
+                                                width: MediaQuery.of(context).size.width*0.1,
+                                                height: MediaQuery.of(context).size.height*0.04,
+                                                decoration: BoxDecoration(
+                                                  shape: BoxShape.circle,
+                                                  color: Color(0xffF04E75),
+                                                ),
+                                                child: Padding(
+                                                  padding: EdgeInsets.only(
+                                                    top: MediaQuery.of(context).devicePixelRatio*3,
+                                                    left: MediaQuery.of(context).devicePixelRatio*1.5,
+                                                  ),
+                                                  child: Text(
+                                                    "FROM",
+                                                    style: TextStyle(
+                                                      color: Colors.white,
+                                                      fontSize: 11,
+                                                      fontWeight: FontWeight.bold,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                              Text(
+                                                "HOME",
+                                                style: TextStyle(
+                                                  color: Color(0xffF04E75),
+                                                  fontSize: 32,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: EdgeInsets.only(
+                                            left: MediaQuery.of(context).devicePixelRatio*10,
+                                            right: MediaQuery.of(context).devicePixelRatio*10,
+                                            top: MediaQuery.of(context).devicePixelRatio*5,
+                                          ),
+                                          child: Text(
+                                            "SCG ประกาศนโยบายให้พนักงาน WORK FROM HOME เพื่อป้องกันและลดความเสี่ยงการติดเชื้อ COVID-19",
+                                            maxLines: 3,
+                                            style: TextStyle(
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.bold,
+                                              color: Colors.black,
+                                            ),
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: EdgeInsets.only(
+                                            top: MediaQuery.of(context).devicePixelRatio*5,
+                                            left: MediaQuery.of(context).devicePixelRatio*10,
+                                          ),
+                                          child: Text(
+                                            "ตั้งแต่วันที่",
+                                            style: TextStyle(
+                                              fontSize: 16,
+                                              color: Color(0xffF04E75),
+                                            ),
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: EdgeInsets.only(
+                                            top: MediaQuery.of(context).devicePixelRatio*5,
+                                            left: MediaQuery.of(context).devicePixelRatio*10,
+                                          ),
+                                          child: Text(
+                                            "8 พฤษภาคม 2565 เป็นต้นไป",
+                                            style: TextStyle(
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.bold,
+                                              color: Color(0xffF04E75),
+                                            ),
+                                          ),
+                                        ),
+                                        Container(
+                                          height: MediaQuery.of(context).size.height*0.212,
+                                          width: MediaQuery.of(context).size.width,
+                                          margin: EdgeInsets.only(
+                                            top: MediaQuery.of(context).devicePixelRatio*2,
+                                          ),
+                                          child: Image.asset(
+                                            "assets/human_popup.png",
+                                            fit: BoxFit.cover,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        Align(
+                          alignment: Alignment.topRight,
+                          child: Padding(
+                            padding: EdgeInsets.only(
+                              top: MediaQuery.of(context).devicePixelRatio*10,
+                            ),
+                            child: Image.asset(
+                              "assets/megaphone.png",
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    InkWell(
+                      onTap: (){
+                        Navigator.of(context).pop();
+                        // Navigator.of(context).push(
+                        //   MaterialPageRoute(builder: (context)=>DetailPopUp()),
+                        // );
+                      },
+                      child: Container(
+                        width: MediaQuery.of(context).size.width*0.6,
+                        height: MediaQuery.of(context).size.height*0.05,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(50),
+                          color: Color(0xffF04E75),
+                        ),
+                        child: Row(
+                          children: [
+                            Padding(
+                              padding: EdgeInsets.only(
+                                left: MediaQuery.of(context).devicePixelRatio*10,
+                                right: MediaQuery.of(context).devicePixelRatio*3,
+                              ),
+                              child: Text(
+                                "อ่านต่อเพื่อรับ",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 20,
+                                ),
+                              ),
+                            ),
+                            Image.asset(
+                              "assets/coin2.png",
+                              width: MediaQuery.of(context).size.width*0.07,
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(
+                                left: MediaQuery.of(context).devicePixelRatio*3,
+                              ),
+                              child: Text(
+                                "1",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 20,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    // Padding(
+                    //   padding: EdgeInsets.only(
+                    //     top: MediaQuery.of(context).devicePixelRatio*6,
+                    //   ),
+                    //   child: InkWell(
+                    //     onTap: (){
+                    //       Navigator.of(context).pop();
+                    //     },
+                    //     child: Container(
+                    //       width: MediaQuery.of(context).size.width*0.4,
+                    //       height: MediaQuery.of(context).size.height*0.05,
+                    //       decoration: BoxDecoration(
+                    //         borderRadius: BorderRadius.circular(50),
+                    //         border: Border.all(
+                    //           width: 1,
+                    //           color: Colors.white,
+                    //         ),
+                    //         color: Colors.transparent,
+                    //       ),
+                    //       child: Row(
+                    //         children: [
+                    //           Padding(
+                    //             padding: EdgeInsets.only(
+                    //               left: MediaQuery.of(context).devicePixelRatio*20,
+                    //             ),
+                    //             child: Text(
+                    //               "ปิด",
+                    //               style: TextStyle(
+                    //                 color: Colors.white,
+                    //                 fontSize: 20,
+                    //               ),
+                    //             ),
+                    //           ),
+                    //         ],
+                    //       ),
+                    //     ),
+                    //   ),
+                    // ),
+                  ],
+                ),
+              ),
+            );
+          });
+    });
     super.initState();
     _navigationController = CircularBottomNavigationController(selectedPos);
   }

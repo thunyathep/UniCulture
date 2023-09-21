@@ -78,3 +78,20 @@ class HomePageACtivityError extends ActivityState{
   @override
   List<Object?> get props => [];
 }
+
+class RegisteringActivity extends ActivityState{
+  @override
+  List<Object?> get props => [];
+}
+
+class RegisteredActivity extends ActivityState{
+  @override
+  List<Object?> get props => [];
+}
+class ErrorRegisterActivity extends ActivityState{
+  final String error;
+
+  ErrorRegisterActivity(this.error);
+  @override
+  List<Object?> get props => [];
+}

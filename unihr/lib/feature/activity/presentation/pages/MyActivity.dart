@@ -10,6 +10,7 @@ import 'package:unihr/feature/activity/presentation/widget/card_myactivity.dart'
 import 'package:unihr/feature/activity/presentation/widget/shimmer_cardactivity.dart';
 import 'dart:math' as math;
 
+import '../../../../injection_container.dart';
 import '../../../pocket/presentation/widget/show_coin.dart';
 import 'DetailMyActivity.dart';
 

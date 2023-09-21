@@ -40,4 +40,20 @@ class ActivityRepositoryImpl implements ActivityRepository{
       return Left(ServerFailure());
     }
   }
+
+  @override
+  Future<Either<Failures, void>> registerActivity(
+      int idActivity,
+      int idEmployee,
+      )async{
+    try{
+      final data = await activity_remote.registerActivity(
+          idActivity,
+          idEmployee,
+      );
+      return Right(data);
+    } on SeverException {
+      return left(ServerFailure());
+    }
+  }
 }

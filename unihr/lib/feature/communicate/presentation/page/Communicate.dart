@@ -250,7 +250,7 @@ class _CommunicateState extends State<Communicate> {
                                                 height: MediaQuery.of(context)
                                                     .size
                                                     .height *
-                                                    0.5,
+                                                    0.55,
                                                 width: MediaQuery.of(context)
                                                     .size
                                                     .width *
@@ -264,7 +264,7 @@ class _CommunicateState extends State<Communicate> {
                                                         height: MediaQuery.of(context)
                                                             .size
                                                             .height *
-                                                            0.5,
+                                                            0.55,
                                                         width: MediaQuery.of(context)
                                                             .size
                                                             .width *

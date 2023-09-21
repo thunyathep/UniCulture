@@ -27,6 +27,7 @@ import 'package:unihr/feature/homepage/presentation/widget/cardActivity.dart';
 import 'package:unihr/feature/homepage/presentation/widget/cardReward.dart';
 import '../../../../core/feature/nothing/not_ready_page.dart';
 import '../../../../core/feature/profile/user/presentation/profile_provider.dart';
+import '../../../../injection_container.dart';
 import '../../../activity/presentation/pages/MyActivity.dart';
 import '../../../communicate/presentation/page/Communicate.dart';
 import '../../../feedback/presentation/pages/feedBack.dart';
@@ -73,6 +74,7 @@ class _HomePageState extends State<HomePage> {
         AwesomeNotifications().requestPermissionToSendNotifications();
       }
     });
+
     listcoin =[];
     _activityBloc.add(GetCardActivityHomePage());
     // _homepageBloc.add(GetReward());

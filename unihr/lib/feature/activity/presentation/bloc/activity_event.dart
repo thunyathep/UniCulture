@@ -26,3 +26,19 @@ class GetCardActivityHomePage extends ActivityEvent{
   @override
   List<Object?> get props => [];
 }
+
+class RegisterActivity extends ActivityEvent{
+    int idActivity;
+    int idEmployee;
+
+    RegisterActivity({
+    required this.idActivity,
+    required this.idEmployee,
+    });
+
+  @override
+  List<Object?> get props => [
+    idActivity,
+    idEmployee,
+  ];
+}

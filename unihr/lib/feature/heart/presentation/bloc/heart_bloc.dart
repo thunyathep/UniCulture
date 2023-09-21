@@ -40,21 +40,14 @@ class HeartBloc extends Bloc<HeartEvent, HeartState> {
     on<SendingHeart>((event, emit) async {
       emit(HeartSendingState());
       var response = await sendHeartTransfer(
-        event.idReceiver,
         event.valueHeart,
+        event.idReceiver,
         event.idSender,
         event.detail,
       );
       response.fold(
               (l) => emit(HeartError("Something wrong")),
               (r) => emit(HeartSendingSuccessState()));
-      // try {
-      //   int idUser = int.parse(await LoginStorage.readEmployeeId());
-      //
-      // } catch (e, stacktrace) {
-      //   print("Exception occurred: $e stackTrace: $stacktrace");
-      //   emit(HeartError(e.toString()));
-      // }
     });
   }
 }

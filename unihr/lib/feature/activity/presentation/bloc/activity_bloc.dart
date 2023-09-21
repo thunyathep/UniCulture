@@ -4,12 +4,14 @@ import 'package:unihr/feature/activity/data/datasource/remote/activity_remote.da
 import 'package:unihr/feature/activity/data/model/allactivity_model.dart';
 
 import '../../data/model/myactivity_model.dart';
+import '../../domain/usecase/register_activitiy.dart';
 import 'activity_event.dart';
 import 'activity_state.dart';
 
 class ActivityBloc extends Bloc<ActivityEvent, ActivityState>{
   List<MyActivityModel> listmyactivity = [];
   List<AllActivityModel> listallactivity = [];
+  // RegisterActivityUsecase registerActivityUsecase;
 
   Activity_remoteImpl activity_remoteImpl = Activity_remoteImpl(http.Client());
 
@@ -80,5 +82,16 @@ class ActivityBloc extends Bloc<ActivityEvent, ActivityState>{
         emit(MyACtivityError(e.toString()));
       }
     });
+
+    // on<RegisterActivity>((event, emit) async {
+    //   emit(RegisteringActivity());
+    //   var response = await registerActivityUsecase(
+    //     event.idActivity,
+    //     event.idEmployee,
+    //   );
+    //   response.fold(
+    //           (l) => emit(ErrorRegisterActivity("Something wrong")),
+    //           (r) => emit(RegisteredActivity()));
+    // });
   }
 }

@@ -2,6 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:gradient_borders/box_borders/gradient_box_border.dart';
 import 'package:icon_decoration/icon_decoration.dart';
 import 'package:intl/intl.dart';
+import 'package:unihr/feature/activity/presentation/bloc/activity_bloc.dart';
+import 'package:unihr/feature/activity/presentation/bloc/activity_event.dart';
+
+import '../../../../core/storage/secure_storage.dart';
+import '../../../../injection_container.dart';
 
 class DetailAllActivity extends StatefulWidget {
   final int idActivity;
@@ -42,16 +47,33 @@ class DetailAllActivity extends StatefulWidget {
 }
 
 class _DetailAllActivityState extends State<DetailAllActivity> {
+  ActivityBloc _activityBloc = ActivityBloc();
   late DateTime startRegisTime;
   late DateTime endRegisTime;
   late DateTime startTime;
   late DateTime endTime;
+  int idEmployee = 0;
+  Future<void>getId() async{
+    String id = await LoginStorage.readEmployeeId();
+    try {
+      idEmployee = int.parse(id);
+      // Now, you can use idSender as an int.
+      print("Parsed integer ID: $idEmployee");
+    } catch (e) {
+      // Handle the case where the string cannot be parsed as an integer.
+      print("Error parsing string to int: $e");
+    }
+  }
+
+
   @override
   Widget build(BuildContext context) {
     startRegisTime = DateTime.parse(widget.openRegisDate);
     endRegisTime = DateTime.parse(widget.closeRegisDate);
     startTime = DateTime.parse(widget.startDate);
     endTime = DateTime.parse(widget.endDate);
+    int idActivity = widget.idActivity;
+
     return Scaffold(
       body: SafeArea(
         child: Stack(
@@ -512,6 +534,10 @@ class _DetailAllActivityState extends State<DetailAllActivity> {
 
                                               GestureDetector(
                                                 onTap: (){
+                                                  getId();
+                                                  _activityBloc.add(RegisterActivity(
+                                                      idActivity: idActivity,
+                                                      idEmployee: idEmployee));
                                                   Navigator.of(context).pop();
                                                 },
                                                 child: Padding(

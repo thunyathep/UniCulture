@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 import 'package:http/http.dart' as http;
 import 'package:unihr/feature/activity/data/model/allactivity_model.dart';
 import 'package:unihr/feature/activity/data/model/myactivity_model.dart';
@@ -10,6 +11,10 @@ abstract class Activity_remote{
   Future<List<MyActivityModel>> getMyActivity();
   Future<List<AllActivityModel>> getAllActivity();
   Future<List<AllActivityModel>> getHomePageActivity();
+  Future<void> registerActivity(
+      int idActivity,
+      int idEmployee,
+      );
 
 }
 
@@ -79,6 +84,32 @@ class Activity_remoteImpl{
           .map((activityJson) => AllActivityModel.fromJson(activityJson))
           .toList();
       return myactivitylist;
+    } else {
+      throw ServerFailure();
+    }
+  }
+
+  @override
+  Future<void> registerActivity(
+      int idActivity,
+      int idEmployee,
+      ) async {
+    final url = Uri.parse(
+        "https://uniculture-371814.as.r.appspot.com/api/activity-register");
+    final response = await httpClient.post(url,
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'x-access-token': '${await LoginStorage.readToken()}',
+      },
+      body: jsonEncode({
+        "idActivity" : idActivity,
+        "idEmployee" : idEmployee,
+      }
+      ),
+    );
+    if (response.statusCode == 200) {
+      log("Register Activity Success");
     } else {
       throw ServerFailure();
     }

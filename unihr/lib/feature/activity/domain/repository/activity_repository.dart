@@ -8,4 +8,8 @@ abstract class ActivityRepository{
   Future<Either<Failures, List<MyActivityModel>>> getMyActivity();
   Future<Either<Failures, List<AllActivityModel>>> getAllActivity();
   Future<Either<Failures, List<AllActivityModel>>> getHomePageActivity();
+  Future<Either<Failures, void>> registerActivity(
+      int idActivity,
+      int idEmployee,
+      );
 }

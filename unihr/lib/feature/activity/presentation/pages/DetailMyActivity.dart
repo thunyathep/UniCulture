@@ -6,6 +6,7 @@ import 'package:icon_decoration/icon_decoration.dart';
 import 'package:intl/intl.dart';
 import 'package:unihr/feature/activity/presentation/bloc/activity_state.dart';
 
+import '../../../../injection_container.dart';
 import '../bloc/activity_bloc.dart';
 
 class DetailMyActivity extends StatefulWidget {
