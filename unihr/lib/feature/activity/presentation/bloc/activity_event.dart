@@ -42,3 +42,19 @@ class RegisterActivity extends ActivityEvent{
     idEmployee,
   ];
 }
+
+class UnRegisterActivity extends ActivityEvent{
+  int idActivity;
+  int idEmployee;
+
+  UnRegisterActivity({
+    required this.idActivity,
+    required this.idEmployee,
+  });
+
+  @override
+  List<Object?> get props => [
+    idActivity,
+    idEmployee,
+  ];
+}

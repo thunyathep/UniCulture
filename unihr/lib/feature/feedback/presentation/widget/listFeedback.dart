@@ -7,12 +7,16 @@ import '../../data/model/feedback_model.dart';
 
 class ListFeedback extends StatefulWidget {
   final FeedbackBloc feedbackBloc ;
+  final String feedbackType;
+  final int currentpage;
   final String title;
   final String firstName;
   final String lastName;
   final String date;
   const ListFeedback({Key? key,
     required this.feedbackBloc,
+    required this.feedbackType,
+    required this.currentpage,
     required this.title,
     required this.firstName,
     required this.lastName,
@@ -50,15 +54,27 @@ class _ListFeedbackState extends State<ListFeedback> {
           ),
           child: Center(
             child: ListTile(
-              leading: CircleAvatar(
-                backgroundImage: AssetImage('assets/pikachu.jpg'),
+              leading: widget.feedbackType == "anonymous" && widget.currentpage == 0 ?
+              CircleAvatar(
+                backgroundImage:
+                  AssetImage('assets/profilepic.png'),
+                radius: 30,
+              ) : CircleAvatar(
+                backgroundImage:
+                AssetImage('assets/pikachu.jpg'),
                 radius: 30,
               ),
               title: Text(
                 "\""+widget.title+"\"",
                 overflow: TextOverflow.ellipsis,
               ),
-              subtitle: Text(
+              subtitle: widget.feedbackType == "anonymous" && widget.currentpage == 0 ?
+              Text("Anonymous" + ", " +
+                  DateFormat("d MMM y , H:M").format(dateTime),
+                style: TextStyle(
+                  fontSize: 10,
+                ),):
+              Text(
                   widget.firstName.toString() +
                       ' '
                       + widget.lastName.toString() +

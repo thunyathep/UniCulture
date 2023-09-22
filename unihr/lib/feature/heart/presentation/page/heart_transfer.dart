@@ -29,7 +29,7 @@ class _HeartTransferState extends State<HeartTransfer> {
   final PocketBloc _pocketBloc = PocketBloc();
   late List<HeartTransferModel> listheart;
   late List<PocketModel> listcoin = [];
-
+  int numheart = 0;
   int current = 0;
 
   List<String> items = [
@@ -470,9 +470,20 @@ class _HeartTransferState extends State<HeartTransfer> {
                                                     ),
                                                   ),
                                                 ),
-                                                GestureDetector(
-                                                  onTap: (){},
+                                                InkWell(
+                                                  onTap: (){
+                                                    Navigator.of(context).pop();
+                                                    setState(() {
+                                                      numheart = 0;
+                                                    });
+                                                    _heartBloc.add(GetValueHeart(
+                                                      current,
+                                                      numheart,
+                                                      )
+                                                    );
+                                                  },
                                                   child: Container(
+                                                    width: MediaQuery.of(context).size.width,
                                                     padding: EdgeInsets.only(
                                                       top: MediaQuery.of(context).devicePixelRatio*5,
                                                       left: MediaQuery.of(context).devicePixelRatio*10,
@@ -486,9 +497,20 @@ class _HeartTransferState extends State<HeartTransfer> {
                                                     ),
                                                   ),
                                                 ),
-                                                GestureDetector(
-                                                  onTap: (){},
+                                                InkWell(
+                                                  onTap: (){
+                                                    Navigator.of(context).pop();
+                                                    setState(() {
+                                                      numheart = 1;
+                                                    });
+                                                    _heartBloc.add(GetValueHeart(
+                                                      current,
+                                                      numheart,
+                                                    )
+                                                    );
+                                                  },
                                                   child: Container(
+                                                    width: MediaQuery.of(context).size.width,
                                                     padding: EdgeInsets.only(
                                                       top: MediaQuery.of(context).devicePixelRatio*10,
                                                       left: MediaQuery.of(context).devicePixelRatio*10,
@@ -516,13 +538,24 @@ class _HeartTransferState extends State<HeartTransfer> {
                                                     ),
                                                   ),
                                                 ),
-                                                GestureDetector(
-                                                  onTap: (){},
+                                                InkWell(
+                                                  onTap: (){
+                                                    Navigator.of(context).pop();
+                                                    setState(() {
+                                                      numheart = 2;
+                                                    });
+                                                    _heartBloc.add(GetValueHeart(
+                                                      current,
+                                                      numheart,
+                                                    )
+                                                    );
+                                                  },
                                                   child: Container(
                                                     padding: EdgeInsets.only(
                                                       top: MediaQuery.of(context).devicePixelRatio*10,
                                                       left: MediaQuery.of(context).devicePixelRatio*10,
                                                     ),
+                                                    width: MediaQuery.of(context).size.width,
                                                     child: Row(
                                                       children: [
                                                         Text(
@@ -554,8 +587,18 @@ class _HeartTransferState extends State<HeartTransfer> {
                                                     ),
                                                   ),
                                                 ),
-                                                GestureDetector(
-                                                  onTap: (){},
+                                                InkWell(
+                                                  onTap: (){
+                                                    Navigator.of(context).pop();
+                                                    setState(() {
+                                                      numheart = 3;
+                                                    });
+                                                    _heartBloc.add(GetValueHeart(
+                                                      current,
+                                                      numheart,
+                                                    )
+                                                    );
+                                                  },
                                                   child: Container(
                                                     padding: EdgeInsets.only(
                                                       top: MediaQuery.of(context).devicePixelRatio*10,
@@ -672,6 +715,7 @@ class _HeartTransferState extends State<HeartTransfer> {
                                             date: listheart[index]
                                                 .transferDate??"",
                                             value: listheart[index].value??0,
+                                            numheart: numheart,
                                             firstname: current == 0 ?
                                               listheart[index]
                                                 .senderFirstname??"" :

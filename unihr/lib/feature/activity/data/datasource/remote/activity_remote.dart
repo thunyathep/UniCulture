@@ -16,9 +16,13 @@ abstract class Activity_remote{
       int idEmployee,
       );
 
+  Future<void> unregisterActivity(
+      int idActivity,
+      int idEmployee,
+      );
 }
 
-class Activity_remoteImpl{
+class Activity_remoteImpl implements Activity_remote{
   final http.Client httpClient;
 
   Activity_remoteImpl(this.httpClient);
@@ -108,8 +112,36 @@ class Activity_remoteImpl{
       }
       ),
     );
+    print(response.body);
     if (response.statusCode == 200) {
       log("Register Activity Success");
+    } else {
+      throw ServerFailure();
+    }
+  }
+
+  @override
+  Future<void> unregisterActivity(
+      int idActivity,
+      int idEmployee,
+      ) async {
+    final url = Uri.parse(
+        "https://uniculture-371814.as.r.appspot.com/api/activity-register");
+    final response = await httpClient.delete(url,
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'x-access-token': '${await LoginStorage.readToken()}',
+      },
+      body: jsonEncode({
+        "idActivity" : idActivity,
+        "idEmployee" : idEmployee,
+      }
+      ),
+    );
+    print(response.statusCode);
+    if (response.statusCode == 200) {
+      log("UnRegister Activity Success");
     } else {
       throw ServerFailure();
     }

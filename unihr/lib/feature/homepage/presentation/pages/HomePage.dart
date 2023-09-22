@@ -58,7 +58,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   final HomepageBloc _homepageBloc = HomepageBloc();
   final PocketBloc _pocketBloc = PocketBloc();
-  final ActivityBloc _activityBloc = ActivityBloc();
+  final ActivityBloc _activityBloc = sl<ActivityBloc>();
   final HeartYearBloc _heartYearBloc = HeartYearBloc();
   late ProfileProvider profileProvider;
   late List<RewardModel> listreward;

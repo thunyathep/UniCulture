@@ -30,22 +30,7 @@ late List<Widget> cardList = [];
 
 @override
 void initState(){
-  // PocketState pocketState = _pocketBloc.state;
   List<PocketModel> listcoin = widget.coin;
-  // pocketProvider = PocketProvider.of(context, listen: false);
-  // cardList = [
-  //   CardHeart(coinHeart: pocket_Provider.heart),
-  //   Coin_SCGC(coinSCGC: pocket_Provider.coin),
-  //   Coin_Unicorn(coinUnicorn: pocket_Provider.unicorn),
-  //   Coin_Pony(coinPony: pocket_Provider.pony),
-  //   Coin_Fast(coinFast: pocket_Provider.fastMove),
-  //   Coin_DoIt(coinDoIt: pocket_Provider.doItProfessionally),
-  //   Coin_Caring(coinCaring: pocket_Provider.caring),
-  //   Coin_Centaur(coinCentaur: pocket_Provider.centaur),
-  //   Coin_CSR(coinCSR: pocket_Provider.csr),
-  //   Coin_obsession(coinObsession: pocket_Provider.obsession),
-  //   Coin_Outperform(coinOutperform: pocket_Provider.outperform),
-  // ];
   if(listcoin.isNotEmpty) {
     cardList = [
       CardHeart(coinHeart: listcoin[0].amount),
@@ -88,19 +73,6 @@ void dispose(){
   _isDisposed = true;
 }
 
-// cardList=[
-//   CardHeart(coinHeart: listcoin[0].heart),
-//   Coin_SCGC(coinSCGC: widget.scgc),
-//   Coin_Unicorn(coinUnicorn: widget.unicorn),
-//   Coin_Pony(coinPony: widget.pony),
-//   Coin_Fast(coinFast: widget.fast,),
-//   Coin_DoIt(coinDoIt: widget.doit),
-//   Coin_Caring(coinCaring: widget.caring,),
-//   Coin_Centaur(coinCentaur: widget.centaur,),
-//   Coin_CSR(coinCSR: widget.csr,),
-//   Coin_obsession(coinObsession: widget.obsession,),
-//   Coin_Outperform(coinOutperform: widget.obsession,),
-// ];
 List<T> map<T>(List list, Function handler){
   List<T> result = [];
   for(var i = 0; i < list.length; i++){

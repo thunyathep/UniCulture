@@ -2,6 +2,7 @@ import 'package:http/http.dart' as http;
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:unihr/feature/activity/data/datasource/remote/activity_remote.dart';
 import 'package:unihr/feature/activity/data/model/allactivity_model.dart';
+import 'package:unihr/feature/activity/domain/usecase/unregis_activity.dart';
 
 import '../../data/model/myactivity_model.dart';
 import '../../domain/usecase/register_activitiy.dart';
@@ -11,11 +12,13 @@ import 'activity_state.dart';
 class ActivityBloc extends Bloc<ActivityEvent, ActivityState>{
   List<MyActivityModel> listmyactivity = [];
   List<AllActivityModel> listallactivity = [];
-  // RegisterActivityUsecase registerActivityUsecase;
+  RegisterActivityUsecase registerActivityUsecase;
+  UnRegisterActivityUsecase unRegisterActivityUsecase;
 
   Activity_remoteImpl activity_remoteImpl = Activity_remoteImpl(http.Client());
 
-  ActivityBloc() : super(InitialActivity()){
+  ActivityBloc({required this.registerActivityUsecase,
+    required this.unRegisterActivityUsecase}) : super(InitialActivity()){
     on<GetMyActivity>((event, emit) async{
       emit(MyActivityLoadingState());
       try{
@@ -83,15 +86,26 @@ class ActivityBloc extends Bloc<ActivityEvent, ActivityState>{
       }
     });
 
-    // on<RegisterActivity>((event, emit) async {
-    //   emit(RegisteringActivity());
-    //   var response = await registerActivityUsecase(
-    //     event.idActivity,
-    //     event.idEmployee,
-    //   );
-    //   response.fold(
-    //           (l) => emit(ErrorRegisterActivity("Something wrong")),
-    //           (r) => emit(RegisteredActivity()));
-    // });
+    on<RegisterActivity>((event, emit) async {
+      emit(RegisteringActivity());
+      var response = await registerActivityUsecase(
+        event.idActivity,
+        event.idEmployee,
+      );
+      response.fold(
+              (l) => emit(ErrorRegisterActivity("Something wrong")),
+              (r) => emit(RegisteredActivity()));
+    });
+
+    on<UnRegisterActivity>((event, emit) async {
+      emit(UnRegisteringActivity());
+      var response = await unRegisterActivityUsecase(
+        event.idActivity,
+        event.idEmployee,
+      );
+      response.fold(
+              (l) => emit(ErrorRegisterActivity("Something wrong")),
+              (r) => emit(UnRegisteredActivity()));
+    });
   }
 }

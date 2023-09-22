@@ -45,6 +45,11 @@ class _SendHeartState extends State<SendHeart> {
     }
   }
 
+  void clearSelectedUserName() {
+    setState(() {
+      selectedUserName = "";
+    });
+  }
 
   @override
   void initState() {
@@ -277,13 +282,16 @@ class _SendHeartState extends State<SendHeart> {
                                             child: Stack(
                                               children: [
                                                 TypeAheadField<AllProfileModel?>(
-                                                  hideSuggestionsOnKeyboardHide: false,
+                                                  hideSuggestionsOnKeyboardHide: true,
                                                   textFieldConfiguration: TextFieldConfiguration(
                                                     controller: _typeAheadController,
+                                                    onTap: (){
+                                                      clearSelectedUserName();
+                                                    },
                                                     decoration: InputDecoration(
                                                       prefix: Icon(
                                                         Icons.search,
-                                                        color: Colors.transparent,
+                                                        color: Colors.black,
                                                       ),
                                                       suffixIcon: Icon(
                                                         Icons.search,

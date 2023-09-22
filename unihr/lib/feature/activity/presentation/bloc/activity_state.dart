@@ -88,6 +88,16 @@ class RegisteredActivity extends ActivityState{
   @override
   List<Object?> get props => [];
 }
+
+class UnRegisteringActivity extends ActivityState{
+  @override
+  List<Object?> get props => [];
+}
+
+class UnRegisteredActivity extends ActivityState{
+  @override
+  List<Object?> get props => [];
+}
 class ErrorRegisterActivity extends ActivityState{
   final String error;
 
@@ -95,3 +105,4 @@ class ErrorRegisterActivity extends ActivityState{
   @override
   List<Object?> get props => [];
 }
+

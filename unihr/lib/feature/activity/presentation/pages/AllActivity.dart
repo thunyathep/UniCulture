@@ -22,7 +22,7 @@ class AllActivity extends StatefulWidget {
 }
 
 class _AllActivityState extends State<AllActivity> {
-  final ActivityBloc _activityBloc = ActivityBloc();
+  final ActivityBloc _activityBloc = sl<ActivityBloc>();
   late List<AllActivityModel> listallactivity;
 
   @override

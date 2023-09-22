@@ -12,6 +12,15 @@ class GetHeart extends HeartEvent{
   List<Object?> get props => [];
 }
 
+class GetValueHeart extends HeartEvent{
+  int status;
+  int valueheart;
+  GetValueHeart(this.status,this.valueheart);
+
+  @override
+  List<Object?> get props => [];
+}
+
 class SendingHeart extends HeartEvent{
   int idSender;
   int valueHeart;

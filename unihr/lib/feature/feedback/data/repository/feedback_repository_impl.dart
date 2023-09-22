@@ -31,4 +31,24 @@ class FeedBackRepositoryImpl implements FeedBackRepositories{
       return Left(ServerFailure());
     }
   }
+
+  @override
+  Future<Either<Failures, void>> sendFeedback(
+      String feedback,
+      String feedbackType,
+      int idReceiver,
+      int idSender,
+      )async{
+    try{
+      final data = await feedback_remote.sendFeedback(
+        feedback,
+        feedbackType,
+        idReceiver,
+        idSender,
+      );
+      return Right(data);
+    } on SeverException {
+      return left(ServerFailure());
+    }
+  }
 }

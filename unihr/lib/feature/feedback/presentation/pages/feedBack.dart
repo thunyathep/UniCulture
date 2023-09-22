@@ -9,6 +9,7 @@ import 'package:unihr/feature/pocket/presentation/widget/show_coin.dart';
 
 import 'dart:math' as math;
 
+import '../../../../injection_container.dart';
 import '../widget/listFeedback.dart';
 import '../widget/shimmerlist.dart';
 import '../bloc/feedback_event.dart';
@@ -25,7 +26,7 @@ class FeedBack extends StatefulWidget {
 }
 
 class _FeedBackState extends State<FeedBack> {
-  final FeedbackBloc _feedbackBloc = FeedbackBloc();
+  final FeedbackBloc _feedbackBloc = sl<FeedbackBloc>();
   late List<FeedbackModel> listfeedback;
   int current = 0;
 
@@ -318,6 +319,9 @@ class _FeedBackState extends State<FeedBack> {
                                   itemBuilder: (BuildContext context, int index) {
                                     return ListFeedback(
                                       feedbackBloc: _feedbackBloc,
+                                      feedbackType: listfeedback[index]
+                                            .feedbackType ?? "",
+                                      currentpage: current ?? 0,
                                       title: listfeedback[index].feedback ?? "",
                                       firstName:current == 0 ?
                                         listfeedback[index]

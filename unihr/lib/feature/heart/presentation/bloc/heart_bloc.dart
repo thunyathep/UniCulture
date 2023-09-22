@@ -26,9 +26,38 @@ class HeartBloc extends Bloc<HeartEvent, HeartState> {
         if(event.status == 0){
           listHeart = listHeart.where((element) =>
           element.idReceiver == idUser).toList();
+          listheart = listHeart;
         }else if(event.status == 1){
           listHeart = listHeart.where((element) =>
           element.idSender == idUser).toList();
+          listheart = listHeart;
+        }
+        emit(HeartLoadedState(listHeart));
+      } catch (e, stacktrace) {
+        print("Exception occurred: $e stackTrace: $stacktrace");
+        emit(HeartError(e.toString()));
+      }
+    });
+
+    on<GetValueHeart>((event, emit) async {
+      emit(HeartLoadingState());
+      try {
+        int idUser = int.parse(await LoginStorage.readEmployeeId());
+        List<HeartTransferModel> listHeart = listheart;
+        if(event.valueheart == 0){
+          event.status == 0 ? listHeart = listHeart.where((element) =>
+          element.idReceiver == idUser).toList():
+          listHeart = listHeart.where((element) =>
+          element.idSender == idUser).toList();
+        }else if(event.valueheart == 1){
+          listHeart = listHeart.where((element) =>
+          element.value == 1).toList();
+        }else if(event.valueheart == 2){
+          listHeart = listHeart.where((element) =>
+          element.value == 2).toList();
+        }else if(event.valueheart == 3){
+          listHeart = listHeart.where((element) =>
+          element.value == 3).toList();
         }
         emit(HeartLoadedState(listHeart));
       } catch (e, stacktrace) {

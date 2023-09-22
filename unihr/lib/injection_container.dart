@@ -2,6 +2,11 @@ import 'package:get_it/get_it.dart';
 import 'package:http/http.dart' as http;
 import 'package:unihr/feature/activity/data/datasource/remote/activity_remote.dart';
 import 'package:unihr/feature/activity/domain/repository/activity_repository.dart';
+import 'package:unihr/feature/feedback/data/datasource/remote/feedback_remote.dart';
+import 'package:unihr/feature/feedback/data/repository/feedback_repository_impl.dart';
+import 'package:unihr/feature/feedback/domain/repository/feedback_repositories.dart';
+import 'package:unihr/feature/feedback/domain/usecase/send_feedback.dart';
+import 'package:unihr/feature/feedback/presentation/bloc/feedback_bloc.dart';
 import 'package:unihr/feature/heart/data/datasource/remote/heart_remote.dart';
 import 'package:unihr/feature/heart/data/repository/heart_repository_impl.dart';
 import 'package:unihr/feature/heart/domain/repository/heart_repository.dart';
@@ -14,6 +19,7 @@ import 'core/feature/login/domain/usecase/login_usecase.dart';
 import 'core/feature/login/presentation/bloc/login_bloc.dart';
 import 'feature/activity/data/repository/activity_repository_impl.dart';
 import 'feature/activity/domain/usecase/register_activitiy.dart';
+import 'feature/activity/domain/usecase/unregis_activity.dart';
 import 'feature/activity/presentation/bloc/activity_bloc.dart';
 import 'feature/heart/domain/usecase/send_heart_transfer.dart';
 
@@ -26,13 +32,18 @@ Future<void> init() async{
   // * Bloc
   sl.registerFactory(() => LoginBloc(loginUseCase: sl(),));
   sl.registerFactory(()=> HeartBloc(sendHeartTransfer: sl()));
-  // sl.registerFactory(()=> ActivityBloc(registerActivityUsecase: sl()));
+  sl.registerFactory(()=> ActivityBloc(registerActivityUsecase: sl(),
+      unRegisterActivityUsecase: sl()));
+  sl.registerFactory(()=> FeedbackBloc(sendFeedbackUsecase: sl()));
+
 
 
   // * UseCase
   sl.registerLazySingleton(() => LoginUseCase(repository: sl()));
   sl.registerLazySingleton(() => SendHeartTransfer(sl()));
   sl.registerLazySingleton(() => RegisterActivityUsecase(sl()));
+  sl.registerLazySingleton(() => UnRegisterActivityUsecase(sl()));
+  sl.registerLazySingleton(() => SendFeedbackUsecase(sl()));
   // sl.registerLazySingleton(() => GetProfile(repository: sl()));
 
 
@@ -48,10 +59,13 @@ Future<void> init() async{
   sl.registerLazySingleton<LoginRepository>(() => LoginRepositoryImpl(loginApi: sl()));
   sl.registerLazySingleton<HeartRepository>(() => HeartRepositoryImpl(sl()));
   sl.registerLazySingleton<ActivityRepository>(() => ActivityRepositoryImpl(sl()));
+  sl.registerLazySingleton<FeedBackRepositories>(() => FeedBackRepositoryImpl(sl()));
+
   // * Data Source
   sl.registerLazySingleton<LoginApi>(() => LoginApiImpl(client: sl()));
   sl.registerLazySingleton<Heart_remote>(() => Heart_remoteImpl(sl()));
-  // sl.registerLazySingleton<Activity_remote>(() => Activity_remoteImpl(sl()));
+  sl.registerLazySingleton<Activity_remote>(() => Activity_remoteImpl(sl()));
+  sl.registerLazySingleton<Feedback_remote>(() => Feedback_remoteImpl(sl()));
 
   sl.registerLazySingleton(() => http.Client());
 

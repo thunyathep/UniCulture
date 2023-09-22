@@ -12,4 +12,8 @@ abstract class ActivityRepository{
       int idActivity,
       int idEmployee,
       );
+  Future<Either<Failures, void>> unregisterActivity(
+      int idActivity,
+      int idEmployee,
+      );
 }

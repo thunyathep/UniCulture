@@ -5,4 +5,10 @@ import 'package:unihr/feature/feedback/domain/entity/feedback_entity.dart';
 abstract class FeedBackRepositories{
   Future<Either<Failures, List<FeedbackEntity>>> getRecieveFeedback();
   Future<Either<Failures, List<FeedbackEntity>>> getSendedFeedback();
+  Future<Either<Failures, void>> sendFeedback(
+      String feedback,
+      String feedbackType,
+      int idReceiver,
+      int idSender,
+      );
 }

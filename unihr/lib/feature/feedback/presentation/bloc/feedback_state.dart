@@ -38,3 +38,20 @@ class FeedbackError extends FeedbackState {
   @override
   List<Object?> get props => [];
 }
+
+class SendingFeedBackState extends FeedbackState{
+  @override
+  List<Object?> get props => [];
+}
+
+class SendedFeedBackState extends FeedbackState{
+  @override
+  List<Object?> get props => [];
+}
+class ErrorFeedback extends FeedbackState{
+  final String error;
+
+  ErrorFeedback(this.error);
+  @override
+  List<Object?> get props => [];
+}
