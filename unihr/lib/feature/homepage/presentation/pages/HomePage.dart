@@ -33,7 +33,7 @@ import '../../../communicate/presentation/page/Communicate.dart';
 import '../../../feedback/presentation/pages/feedBack.dart';
 import '../../../pocket/data/model/heart_receive_year_model.dart';
 import '../../../pocket/data/model/pocket_model.dart';
-import '../../../question/presentation/pages/EvaluateThreeSixty.dart';
+import '../../../threesixty/presentation/pages/EvaluateThreeSixty.dart';
 import '../../../question/presentation/pages/YearQuestionDetail.dart';
 import '../../../question/presentation/pages/morale_year.dart';
 import '../../../reward/presentation/pages/redeem_reward.dart';
