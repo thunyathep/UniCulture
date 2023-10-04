@@ -146,3 +146,22 @@ class AnswerList {
     "idAppraisee_SampleSize": idAppraiseeSampleSize,
   };
 }
+
+class AnswerQuestionToJson {
+  int idAppraiseeSampleSize;
+  int idAssessmentQuestion;
+  String value;
+
+  AnswerQuestionToJson({
+    required this.idAppraiseeSampleSize,
+    required this.idAssessmentQuestion,
+    required this.value,
+  });
+
+
+  Map<String, dynamic> toJson() => {
+    "idAppraisee_SampleSize": idAppraiseeSampleSize,
+    "idAssessment_Question": idAssessmentQuestion,
+    "value": value,
+  };
+}

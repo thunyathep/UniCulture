@@ -19,6 +19,7 @@ class CardThreeSixty extends StatefulWidget {
   final String assessmentDescription;
   final DateTime startdate;
   final DateTime enddate;
+  final List<SampleSize>? sampleSize;
   final List<QuestionListThreeSixty>? questionlist;
 
   CardThreeSixty({
@@ -36,6 +37,7 @@ class CardThreeSixty extends StatefulWidget {
     required this.assessmentDescription,
     required this.startdate,
     required this.enddate,
+    required this.sampleSize,
     required this.questionlist,
   }) : super(key: key);
 
@@ -64,6 +66,7 @@ class _CardThreeSixtyState extends State<CardThreeSixty> {
               assessmentDescription: widget.assessmentDescription,
               startdate: widget.startdate,
               enddate: widget.enddate,
+              sampleSize: widget.sampleSize,
               questionlist: widget.questionlist,
             ),
           ),

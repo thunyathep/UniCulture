@@ -225,6 +225,7 @@ class _EvaluateState extends State<Evaluate> {
                                     DateTime.now(),
                                 enddate: listquestion[index].endDate ??
                                     DateTime.now(),
+                                sampleSize: listquestion[index].sampleSize as List<SampleSize>?,
                                 questionlist: listquestion[index].questionList
                                     as List<QuestionListThreeSixty>?,
                               ),

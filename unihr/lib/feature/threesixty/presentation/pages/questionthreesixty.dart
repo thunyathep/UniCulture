@@ -6,9 +6,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gradient_borders/gradient_borders.dart';
 import 'dart:math' as math;
 
+import '../../../../core/storage/secure_storage.dart';
 import '../../../pocket/presentation/widget/show_coin.dart';
 import '../../domain/entities/threesixty_entity.dart';
-
 
 class ThreeSixtyQuestion extends StatefulWidget {
   final int idAppraisee;
@@ -24,9 +24,11 @@ class ThreeSixtyQuestion extends StatefulWidget {
   final String assessmentDescription;
   final DateTime startdate;
   final DateTime enddate;
+  final List<SampleSize>? sampleSize;
   final List<QuestionListThreeSixty>? questionlist;
 
-  ThreeSixtyQuestion({Key? key,
+  ThreeSixtyQuestion({
+    Key? key,
     required this.idAppraisee,
     required this.idAssessment,
     required this.idEmployee,
@@ -40,20 +42,74 @@ class ThreeSixtyQuestion extends StatefulWidget {
     required this.assessmentDescription,
     required this.startdate,
     required this.enddate,
+    required this.sampleSize,
     required this.questionlist,
   }) : super(key: key);
+
+  // Method to get idAppraisee_SampleSize for the given idEmployee
+  List<int> getIdAppraiseeSampleSize(int idUser) {
+    List<int> idAppraiseeSampleSizeList = [];
+
+    if (sampleSize != null) {
+      for (var size in sampleSize!) {
+        if (size.idAppraiser == idUser) {
+          idAppraiseeSampleSizeList.add(size.idAppraiseeSampleSize!);
+        }
+      }
+    }
+
+    return idAppraiseeSampleSizeList;
+  }
+
+
 
   @override
   State<ThreeSixtyQuestion> createState() => _ThreeSixtyQuestionState();
 }
 
-
 class _ThreeSixtyQuestionState extends State<ThreeSixtyQuestion> {
   ValueNotifier<int> indexNotifier = ValueNotifier<int>(0);
+  String value = "100";
   int index = 0;
+  int idUser = 0;
+  int currentAnswer = 0;
+  List<int> idAppraiseeSampleSize = [];
+  int idAssessmentQuestion = 0;
+  final List<AnswerQuestionToJson> dataAnswerArray = [];
+
+  Future<void>getId() async{
+    String id = await LoginStorage.readEmployeeId();
+    try {
+      idUser = int.parse(id);
+      // Now, you can use idSender as an int.
+      print("Parsed integer ID: $idUser");
+    } catch (e) {
+      // Handle the case where the string cannot be parsed as an integer.
+      print("Error parsing string to int: $e");
+    }
+  }
+
+  List<String> items = [
+    "Very Happy",
+    "Happy",
+    "Little Happy",
+    "Little Bad",
+    "Bad",
+    "Very Bad",
+  ];
+
+  List<String> images = [
+    "assets/very_happy.png",
+    "assets/happy.png",
+    "assets/not_bad.png",
+    "assets/not_good.png",
+    "assets/bad.png",
+    "assets/very_bad.png",
+  ];
 
   @override
   void initState() {
+    getId();
     super.initState();
   }
 
@@ -66,11 +122,30 @@ class _ThreeSixtyQuestionState extends State<ThreeSixtyQuestion> {
     _isDisposed = true;
   }
 
-
   @override
   Widget build(BuildContext context) {
     int numberofQuestion = widget.questionlist!.length;
     int indexofQuestion = numberofQuestion - 1;
+    ThreeSixtyQuestion questionInstance = ThreeSixtyQuestion(
+      idAppraisee: widget.idAppraisee,
+      idAssessment: widget.idAssessment,
+      idEmployee: widget.idEmployee,
+      scale: widget.scale,
+      firstname: widget.firstname,
+      lastname: widget.lastname,
+      position: widget.position,
+      department: widget.department,
+      assessmentName: widget.assessmentName,
+      assessmentType: widget.assessmentType,
+      assessmentDescription: widget.assessmentDescription,
+      startdate: widget.startdate,
+      enddate: widget.enddate,
+      sampleSize: widget.sampleSize,
+      questionlist: widget.questionlist,
+    );
+    idAppraiseeSampleSize = questionInstance.getIdAppraiseeSampleSize(idUser);
+    print("id$idAppraiseeSampleSize");
+
 
     return Scaffold(
       backgroundColor: Color(0xffffffff),
@@ -186,7 +261,8 @@ class _ThreeSixtyQuestionState extends State<ThreeSixtyQuestion> {
                       child: Column(
                         children: [
                           Text(
-                            widget.questionlist != null && index < widget.questionlist!.length
+                            widget.questionlist != null &&
+                                    index < widget.questionlist!.length
                                 ? widget.questionlist![index].question ?? ""
                                 : "No question available",
                             style: TextStyle(
@@ -197,327 +273,455 @@ class _ThreeSixtyQuestionState extends State<ThreeSixtyQuestion> {
                           ),
                           Padding(
                             padding: EdgeInsets.only(
-                              top: MediaQuery.of(context).devicePixelRatio*10,
+                              top: MediaQuery.of(context).devicePixelRatio * 10,
                             ),
-                            child: widget.assessmentType == "close" ? Column(
-                              children: [
-                                Padding(
-                                  padding: EdgeInsets.only(
-                                    top: MediaQuery.of(context).devicePixelRatio * 5,
-                                  ),
-                                  child: InkWell(
-                                    onTap: () {},
-                                    child: Container(
-                                      width: MediaQuery.of(context).size.width * 0.6,
+                            child: widget.assessmentType == "close"
+                                ?
+                                // Column(
+                                //   children: [
+                                //
+                                //     Padding(
+                                //       padding: EdgeInsets.only(
+                                //         top: MediaQuery.of(context).devicePixelRatio * 5,
+                                //       ),
+                                //       child: InkWell(
+                                //         onTap: () {},
+                                //         child: Container(
+                                //           width: MediaQuery.of(context).size.width * 0.6,
+                                //           height:
+                                //           MediaQuery.of(context).size.height * 0.05,
+                                //           decoration: BoxDecoration(
+                                //               borderRadius: BorderRadius.circular(50),
+                                //               color: Colors.white),
+                                //           child: Row(
+                                //             mainAxisAlignment:
+                                //             MainAxisAlignment.spaceBetween,
+                                //             children: [
+                                //               Image.asset(
+                                //                 "assets/very_happy.png",
+                                //                 width: MediaQuery.of(context).size.width *
+                                //                     0.1,
+                                //               ),
+                                //               Text(
+                                //                 "Very Happy",
+                                //                 style: TextStyle(
+                                //                   fontSize: 18,
+                                //                 ),
+                                //               ),
+                                //               Padding(
+                                //                 padding: EdgeInsets.only(
+                                //                   right: MediaQuery.of(context)
+                                //                       .devicePixelRatio *
+                                //                       2,
+                                //                 ),
+                                //                 child: Image.asset(
+                                //                   "assets/coin2.png",
+                                //                   width:
+                                //                   MediaQuery.of(context).size.width *
+                                //                       0.08,
+                                //                 ),
+                                //               ),
+                                //             ],
+                                //           ),
+                                //         ),
+                                //       ),
+                                //     ),
+                                //     Padding(
+                                //       padding: EdgeInsets.only(
+                                //         top: MediaQuery.of(context).devicePixelRatio * 5,
+                                //       ),
+                                //       child: InkWell(
+                                //         onTap: () {},
+                                //         child: Container(
+                                //           width: MediaQuery.of(context).size.width * 0.6,
+                                //           height:
+                                //           MediaQuery.of(context).size.height * 0.05,
+                                //           decoration: BoxDecoration(
+                                //               borderRadius: BorderRadius.circular(50),
+                                //               color: Colors.white),
+                                //           child: Row(
+                                //             mainAxisAlignment:
+                                //             MainAxisAlignment.spaceBetween,
+                                //             children: [
+                                //               Image.asset(
+                                //                 "assets/happy.png",
+                                //                 width: MediaQuery.of(context).size.width *
+                                //                     0.1,
+                                //               ),
+                                //               Text(
+                                //                 "Happy",
+                                //                 style: TextStyle(
+                                //                   fontSize: 18,
+                                //                 ),
+                                //               ),
+                                //               Padding(
+                                //                 padding: EdgeInsets.only(
+                                //                   right: MediaQuery.of(context)
+                                //                       .devicePixelRatio *
+                                //                       2,
+                                //                 ),
+                                //                 child: Image.asset(
+                                //                   "assets/coin2.png",
+                                //                   width:
+                                //                   MediaQuery.of(context).size.width *
+                                //                       0.08,
+                                //                 ),
+                                //               ),
+                                //             ],
+                                //           ),
+                                //         ),
+                                //       ),
+                                //     ),
+                                //     Padding(
+                                //       padding: EdgeInsets.only(
+                                //         top: MediaQuery.of(context).devicePixelRatio * 5,
+                                //       ),
+                                //       child: InkWell(
+                                //         onTap: () {},
+                                //         child: Container(
+                                //           width: MediaQuery.of(context).size.width * 0.6,
+                                //           height:
+                                //           MediaQuery.of(context).size.height * 0.05,
+                                //           decoration: BoxDecoration(
+                                //               borderRadius: BorderRadius.circular(50),
+                                //               color: Colors.white),
+                                //           child: Row(
+                                //             mainAxisAlignment:
+                                //             MainAxisAlignment.spaceBetween,
+                                //             children: [
+                                //               Image.asset(
+                                //                 "assets/not_bad.png",
+                                //                 width: MediaQuery.of(context).size.width *
+                                //                     0.1,
+                                //               ),
+                                //               Text(
+                                //                 "Little Happy",
+                                //                 style: TextStyle(
+                                //                   fontSize: 18,
+                                //                 ),
+                                //               ),
+                                //               Padding(
+                                //                 padding: EdgeInsets.only(
+                                //                   right: MediaQuery.of(context)
+                                //                       .devicePixelRatio *
+                                //                       2,
+                                //                 ),
+                                //                 child: Image.asset(
+                                //                   "assets/coin2.png",
+                                //                   width:
+                                //                   MediaQuery.of(context).size.width *
+                                //                       0.08,
+                                //                 ),
+                                //               ),
+                                //             ],
+                                //           ),
+                                //         ),
+                                //       ),
+                                //     ),
+                                //     Padding(
+                                //       padding: EdgeInsets.only(
+                                //         top: MediaQuery.of(context).devicePixelRatio * 5,
+                                //       ),
+                                //       child: InkWell(
+                                //         onTap: () {},
+                                //         child: Container(
+                                //           width: MediaQuery.of(context).size.width * 0.6,
+                                //           height:
+                                //           MediaQuery.of(context).size.height * 0.05,
+                                //           decoration: BoxDecoration(
+                                //               borderRadius: BorderRadius.circular(50),
+                                //               color: Colors.white),
+                                //           child: Row(
+                                //             mainAxisAlignment:
+                                //             MainAxisAlignment.spaceBetween,
+                                //             children: [
+                                //               Image.asset(
+                                //                 "assets/not_good.png",
+                                //                 width: MediaQuery.of(context).size.width *
+                                //                     0.1,
+                                //               ),
+                                //               Text(
+                                //                 "Little Bad",
+                                //                 style: TextStyle(
+                                //                   fontSize: 18,
+                                //                 ),
+                                //               ),
+                                //               Padding(
+                                //                 padding: EdgeInsets.only(
+                                //                   right: MediaQuery.of(context)
+                                //                       .devicePixelRatio *
+                                //                       2,
+                                //                 ),
+                                //                 child: Image.asset(
+                                //                   "assets/coin2.png",
+                                //                   width:
+                                //                   MediaQuery.of(context).size.width *
+                                //                       0.08,
+                                //                 ),
+                                //               ),
+                                //             ],
+                                //           ),
+                                //         ),
+                                //       ),
+                                //     ),
+                                //     Padding(
+                                //       padding: EdgeInsets.only(
+                                //         top: MediaQuery.of(context).devicePixelRatio * 5,
+                                //       ),
+                                //       child: InkWell(
+                                //         onTap: () {},
+                                //         child: Container(
+                                //           width: MediaQuery.of(context).size.width * 0.6,
+                                //           height:
+                                //           MediaQuery.of(context).size.height * 0.05,
+                                //           decoration: BoxDecoration(
+                                //               borderRadius: BorderRadius.circular(50),
+                                //               color: Colors.white),
+                                //           child: Row(
+                                //             mainAxisAlignment:
+                                //             MainAxisAlignment.spaceBetween,
+                                //             children: [
+                                //               Image.asset(
+                                //                 "assets/bad.png",
+                                //                 width: MediaQuery.of(context).size.width *
+                                //                     0.1,
+                                //               ),
+                                //               Text(
+                                //                 "Bad",
+                                //                 style: TextStyle(
+                                //                   fontSize: 18,
+                                //                 ),
+                                //               ),
+                                //               Padding(
+                                //                 padding: EdgeInsets.only(
+                                //                   right: MediaQuery.of(context)
+                                //                       .devicePixelRatio *
+                                //                       2,
+                                //                 ),
+                                //                 child: Image.asset(
+                                //                   "assets/coin2.png",
+                                //                   width:
+                                //                   MediaQuery.of(context).size.width *
+                                //                       0.08,
+                                //                 ),
+                                //               ),
+                                //             ],
+                                //           ),
+                                //         ),
+                                //       ),
+                                //     ),
+                                //     Padding(
+                                //       padding: EdgeInsets.only(
+                                //         top: MediaQuery.of(context).devicePixelRatio * 5,
+                                //       ),
+                                //       child: InkWell(
+                                //         onTap: () {},
+                                //         child: Container(
+                                //           width: MediaQuery.of(context).size.width * 0.6,
+                                //           height:
+                                //           MediaQuery.of(context).size.height * 0.05,
+                                //           decoration: BoxDecoration(
+                                //               borderRadius: BorderRadius.circular(50),
+                                //               color: Colors.white),
+                                //           child: Row(
+                                //             mainAxisAlignment:
+                                //             MainAxisAlignment.spaceBetween,
+                                //             children: [
+                                //               Image.asset(
+                                //                 "assets/very_bad.png",
+                                //                 width: MediaQuery.of(context).size.width *
+                                //                     0.1,
+                                //               ),
+                                //               Text(
+                                //                 "Very Bad",
+                                //                 style: TextStyle(
+                                //                   fontSize: 18,
+                                //                 ),
+                                //               ),
+                                //               Padding(
+                                //                 padding: EdgeInsets.only(
+                                //                   right: MediaQuery.of(context)
+                                //                       .devicePixelRatio *
+                                //                       2,
+                                //                 ),
+                                //                 child: Image.asset(
+                                //                   "assets/coin2.png",
+                                //                   width:
+                                //                   MediaQuery.of(context).size.width *
+                                //                       0.08,
+                                //                 ),
+                                //               ),
+                                //             ],
+                                //           ),
+                                //         ),
+                                //       ),
+                                //     ),
+                                //   ],
+                                // )
+                                Center(
+                                    child: SizedBox(
                                       height:
-                                      MediaQuery.of(context).size.height * 0.05,
-                                      decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(50),
-                                          color: Colors.white),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Image.asset(
-                                            "assets/very_happy.png",
-                                            width: MediaQuery.of(context).size.width *
-                                                0.1,
-                                          ),
-                                          Text(
-                                            "Very Happy",
-                                            style: TextStyle(
-                                              fontSize: 18,
-                                            ),
-                                          ),
-                                          Padding(
-                                            padding: EdgeInsets.only(
-                                              right: MediaQuery.of(context)
-                                                  .devicePixelRatio *
-                                                  2,
-                                            ),
-                                            child: Image.asset(
-                                              "assets/coin2.png",
-                                              width:
-                                              MediaQuery.of(context).size.width *
-                                                  0.08,
-                                            ),
-                                          ),
-                                        ],
+                                          MediaQuery.of(context).size.height *
+                                              0.5,
+                                      width: MediaQuery.of(context).size.width *
+                                          0.6,
+                                      child: ListView.builder(
+                                          itemCount: items.length,
+                                          scrollDirection: Axis.vertical,
+                                          itemBuilder: (context, Answer) {
+                                            return Padding(
+                                              padding: EdgeInsets.only(
+                                                top: MediaQuery.of(context)
+                                                        .devicePixelRatio *
+                                                    5,
+                                              ),
+                                              child: Stack(
+                                                children: [
+                                                  Container(
+                                                    width:
+                                                        MediaQuery.of(context)
+                                                                .size
+                                                                .width *
+                                                            0.6,
+                                                    height:
+                                                        MediaQuery.of(context)
+                                                                .size
+                                                                .height *
+                                                            0.05,
+                                                    decoration: BoxDecoration(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(50),
+                                                        color: Colors.white),
+                                                    child: Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceBetween,
+                                                      children: [
+                                                        Image.asset(
+                                                          images[Answer],
+                                                          width: MediaQuery.of(
+                                                                      context)
+                                                                  .size
+                                                                  .width *
+                                                              0.1,
+                                                        ),
+                                                        Text(
+                                                          items[Answer],
+                                                          style: TextStyle(
+                                                            fontSize: 18,
+                                                          ),
+                                                        ),
+                                                        Padding(
+                                                          padding:
+                                                              EdgeInsets.only(
+                                                            right: MediaQuery.of(
+                                                                        context)
+                                                                    .devicePixelRatio *
+                                                                2,
+                                                          ),
+                                                          child: Image.asset(
+                                                            "assets/coin2.png",
+                                                            width: MediaQuery.of(
+                                                                        context)
+                                                                    .size
+                                                                    .width *
+                                                                0.08,
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                  InkWell(
+                                                    onTap: () {
+                                                      setState(() {
+                                                        currentAnswer = Answer;
+                                                        if(currentAnswer == 0){
+                                                          value = "100";
+                                                        }else if(currentAnswer == 1){
+                                                          value = "80";
+                                                        }else if(currentAnswer == 2){
+                                                          value = "60";
+                                                        }else if(currentAnswer == 3){
+                                                          value = "40";
+                                                        }else if(currentAnswer == 4){
+                                                          value = "20";
+                                                        }else if(currentAnswer == 5){
+                                                          value = "0";
+                                                        }
+                                                      });
+                                                      print(value);
+                                                    },
+                                                    child: Container(
+                                                      width:
+                                                          MediaQuery.of(context)
+                                                                  .size
+                                                                  .width *
+                                                              0.6,
+                                                      height:
+                                                          MediaQuery.of(context)
+                                                                  .size
+                                                                  .height *
+                                                              0.05,
+                                                      decoration: BoxDecoration(
+                                                        borderRadius:
+                                                            BorderRadius.circular(
+                                                                50),
+                                                        color: currentAnswer ==
+                                                                Answer
+                                                            ? Color(0xff757575)
+                                                                .withOpacity(0.2)
+                                                            : Colors.transparent,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            );
+                                          }),
+                                    ),
+                                  )
+                                : Container(
+                                    width:
+                                        MediaQuery.of(context).size.width * 0.9,
+                                    height: MediaQuery.of(context).size.height *
+                                        0.15,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(20),
+                                      color: Color(0xfff5f5f5),
+                                    ),
+                                    child: TextFormField(
+                                      onChanged: (value) {
+                                        // setState(() {
+                                        //   detail = value;
+                                        // });
+                                      },
+                                      autovalidateMode:
+                                          AutovalidateMode.onUserInteraction,
+                                      validator: (value) {
+                                        if (value == null || value.isEmpty) {
+                                          return 'กรุณากรอกข้อความ';
+                                        } else {
+                                          return null;
+                                        }
+                                      },
+                                      maxLines: null,
+                                      decoration: InputDecoration(
+                                        filled: true,
+                                        fillColor: Color(0xfff5f5f5),
+                                        border: OutlineInputBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(50),
+                                          borderSide: BorderSide.none,
+                                        ),
+                                        hintText: "คำตอบ",
+                                        hintStyle: TextStyle(
+                                          color: Color(0xff757575),
+                                          fontSize: 14,
+                                        ),
                                       ),
                                     ),
                                   ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.only(
-                                    top: MediaQuery.of(context).devicePixelRatio * 5,
-                                  ),
-                                  child: InkWell(
-                                    onTap: () {},
-                                    child: Container(
-                                      width: MediaQuery.of(context).size.width * 0.6,
-                                      height:
-                                      MediaQuery.of(context).size.height * 0.05,
-                                      decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(50),
-                                          color: Colors.white),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Image.asset(
-                                            "assets/happy.png",
-                                            width: MediaQuery.of(context).size.width *
-                                                0.1,
-                                          ),
-                                          Text(
-                                            "Happy",
-                                            style: TextStyle(
-                                              fontSize: 18,
-                                            ),
-                                          ),
-                                          Padding(
-                                            padding: EdgeInsets.only(
-                                              right: MediaQuery.of(context)
-                                                  .devicePixelRatio *
-                                                  2,
-                                            ),
-                                            child: Image.asset(
-                                              "assets/coin2.png",
-                                              width:
-                                              MediaQuery.of(context).size.width *
-                                                  0.08,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.only(
-                                    top: MediaQuery.of(context).devicePixelRatio * 5,
-                                  ),
-                                  child: InkWell(
-                                    onTap: () {},
-                                    child: Container(
-                                      width: MediaQuery.of(context).size.width * 0.6,
-                                      height:
-                                      MediaQuery.of(context).size.height * 0.05,
-                                      decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(50),
-                                          color: Colors.white),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Image.asset(
-                                            "assets/not_bad.png",
-                                            width: MediaQuery.of(context).size.width *
-                                                0.1,
-                                          ),
-                                          Text(
-                                            "Little Happy",
-                                            style: TextStyle(
-                                              fontSize: 18,
-                                            ),
-                                          ),
-                                          Padding(
-                                            padding: EdgeInsets.only(
-                                              right: MediaQuery.of(context)
-                                                  .devicePixelRatio *
-                                                  2,
-                                            ),
-                                            child: Image.asset(
-                                              "assets/coin2.png",
-                                              width:
-                                              MediaQuery.of(context).size.width *
-                                                  0.08,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.only(
-                                    top: MediaQuery.of(context).devicePixelRatio * 5,
-                                  ),
-                                  child: InkWell(
-                                    onTap: () {},
-                                    child: Container(
-                                      width: MediaQuery.of(context).size.width * 0.6,
-                                      height:
-                                      MediaQuery.of(context).size.height * 0.05,
-                                      decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(50),
-                                          color: Colors.white),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Image.asset(
-                                            "assets/not_good.png",
-                                            width: MediaQuery.of(context).size.width *
-                                                0.1,
-                                          ),
-                                          Text(
-                                            "Little Bad",
-                                            style: TextStyle(
-                                              fontSize: 18,
-                                            ),
-                                          ),
-                                          Padding(
-                                            padding: EdgeInsets.only(
-                                              right: MediaQuery.of(context)
-                                                  .devicePixelRatio *
-                                                  2,
-                                            ),
-                                            child: Image.asset(
-                                              "assets/coin2.png",
-                                              width:
-                                              MediaQuery.of(context).size.width *
-                                                  0.08,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.only(
-                                    top: MediaQuery.of(context).devicePixelRatio * 5,
-                                  ),
-                                  child: InkWell(
-                                    onTap: () {},
-                                    child: Container(
-                                      width: MediaQuery.of(context).size.width * 0.6,
-                                      height:
-                                      MediaQuery.of(context).size.height * 0.05,
-                                      decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(50),
-                                          color: Colors.white),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Image.asset(
-                                            "assets/bad.png",
-                                            width: MediaQuery.of(context).size.width *
-                                                0.1,
-                                          ),
-                                          Text(
-                                            "Bad",
-                                            style: TextStyle(
-                                              fontSize: 18,
-                                            ),
-                                          ),
-                                          Padding(
-                                            padding: EdgeInsets.only(
-                                              right: MediaQuery.of(context)
-                                                  .devicePixelRatio *
-                                                  2,
-                                            ),
-                                            child: Image.asset(
-                                              "assets/coin2.png",
-                                              width:
-                                              MediaQuery.of(context).size.width *
-                                                  0.08,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.only(
-                                    top: MediaQuery.of(context).devicePixelRatio * 5,
-                                  ),
-                                  child: InkWell(
-                                    onTap: () {},
-                                    child: Container(
-                                      width: MediaQuery.of(context).size.width * 0.6,
-                                      height:
-                                      MediaQuery.of(context).size.height * 0.05,
-                                      decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(50),
-                                          color: Colors.white),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Image.asset(
-                                            "assets/very_bad.png",
-                                            width: MediaQuery.of(context).size.width *
-                                                0.1,
-                                          ),
-                                          Text(
-                                            "Very Bad",
-                                            style: TextStyle(
-                                              fontSize: 18,
-                                            ),
-                                          ),
-                                          Padding(
-                                            padding: EdgeInsets.only(
-                                              right: MediaQuery.of(context)
-                                                  .devicePixelRatio *
-                                                  2,
-                                            ),
-                                            child: Image.asset(
-                                              "assets/coin2.png",
-                                              width:
-                                              MediaQuery.of(context).size.width *
-                                                  0.08,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ) :
-                            Container(
-                              width: MediaQuery.of(context).size.width*0.9,
-                              height: MediaQuery.of(context).size.height*0.15,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(20),
-                                color: Color(0xfff5f5f5),
-                              ),
-                              child: TextFormField(
-                                onChanged: (value){
-                                  // setState(() {
-                                  //   detail = value;
-                                  // });
-                                },
-                                autovalidateMode: AutovalidateMode
-                                    .onUserInteraction,
-                                validator: (value) {
-                                  if (value == null ||
-                                      value.isEmpty) {
-                                    return 'กรุณากรอกข้อความ';
-                                  } else {
-                                    return null;
-                                  }
-                                },
-                                maxLines: null,
-                                decoration: InputDecoration(
-                                  filled: true,
-                                  fillColor: Color(0xfff5f5f5),
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(50),
-                                    borderSide: BorderSide.none,
-                                  ),
-                                  hintText: "คำตอบ",
-                                  hintStyle: TextStyle(
-                                    color: Color(0xff757575),
-                                    fontSize: 14,
-                                  ),
-                                ),
-                              ),
-                            ),
                           ),
                         ],
                       ),
@@ -526,18 +730,18 @@ class _ThreeSixtyQuestionState extends State<ThreeSixtyQuestion> {
                 ],
               ),
               InkWell(
-                  onTap: () {
-                    if (index != indexofQuestion) {
-                      setState(() {
-                        index = index + 1;
-                      });
-                    } else if (index == indexofQuestion ) {
-                      Navigator.of(context).pop();
-                    }
-                  },
-                  child: Container(
-                  width: MediaQuery.of(context).size.width*0.7,
-                  height: MediaQuery.of(context).size.height*0.05,
+                onTap: () {
+                  if (index != indexofQuestion) {
+                    setState(() {
+                      index = index + 1;
+                    });
+                  } else if (index == indexofQuestion) {
+                    Navigator.of(context).pop();
+                  }
+                },
+                child: Container(
+                  width: MediaQuery.of(context).size.width * 0.7,
+                  height: MediaQuery.of(context).size.height * 0.05,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.all(
                       Radius.circular(20),
@@ -552,25 +756,26 @@ class _ThreeSixtyQuestionState extends State<ThreeSixtyQuestion> {
                           Color(0xffE3DEF4),
                           Color(0xffC1E1E7),
                           Color(0xffC1E1E6),
-                        ]
-                    ),
+                        ]),
                   ),
                   child: Center(
-                    child: index == indexofQuestion ? Text(
-                      "ส่งแบบประเมิน",
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16,
-                      ),
-                    ) : Text(
-                      "ต่อไป",
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16,
-                      ),
-                    ),
+                    child: index == indexofQuestion
+                        ? Text(
+                            "ส่งแบบประเมิน",
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 16,
+                            ),
+                          )
+                        : Text(
+                            "ต่อไป",
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 16,
+                            ),
+                          ),
                   ),
                 ),
               ),
@@ -580,5 +785,4 @@ class _ThreeSixtyQuestionState extends State<ThreeSixtyQuestion> {
       ),
     );
   }
-
 }
