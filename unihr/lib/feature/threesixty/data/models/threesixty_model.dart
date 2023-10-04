@@ -1,5 +1,6 @@
 
 import 'dart:convert';
+// import '../../../question/domain/entity/question_entity.dart';
 import '../../domain/entities/threesixty_entity.dart';
 
 List<ThreeSixtyModel> ThreeSixtyModelFromJson(String str) =>
@@ -24,7 +25,7 @@ class ThreeSixtyModel extends ThreeSixtyEntity {
     required String? position,
     required String? department,
     required List<SampleSize>? sampleSize,
-    required List<QuestionList>? questionList,
+    required List<QuestionListThreeSixty>? questionList,
   }):super(
     idAppraisee: idAppraisee,
     startDate: startDate,
@@ -58,7 +59,7 @@ class ThreeSixtyModel extends ThreeSixtyEntity {
     position: json["position"],
     department: json["department"],
     sampleSize: json["sampleSize"] == null ? [] : List<SampleSize>.from(json["sampleSize"]!.map((x) => SampleSize.fromJson(x))),
-    questionList: json["questionList"] == null ? [] : List<QuestionList>.from(json["questionList"]!.map((x) => QuestionList.fromJson(x))),
+    questionList: json["questionList"] == null ? [] : List<QuestionListThreeSixty>.from(json["questionList"]!.map((x) => QuestionListThreeSixty.fromJson(x))),
   );
 
   Map<String, dynamic> toJson() => {
@@ -76,6 +77,6 @@ class ThreeSixtyModel extends ThreeSixtyEntity {
     "position": position,
     "department": department,
     "sampleSize": sampleSize == null ? [] : List<dynamic>.from(sampleSize!.map((x) => x.toJson())),
-    "questionList": questionList == null ? [] : List<dynamic>.from(questionList!.map((x) => x.toJson())),
+    "questionList": questionList == null ? [] : List<dynamic>.from(questionList!.map((x) => x?.toJson())),
   };
 }

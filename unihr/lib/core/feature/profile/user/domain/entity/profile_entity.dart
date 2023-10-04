@@ -144,5 +144,4 @@ class Education {
     this.gpa,
     this.idEmployees,
   });
-
 }

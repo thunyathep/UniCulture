@@ -12,6 +12,7 @@ import 'package:unihr/feature/threesixty/presentation/widgets/card_threesixty.da
 import 'package:unihr/feature/threesixty/presentation/widgets/shimmer_card.dart';
 
 import '../../../question/domain/entity/question_entity.dart';
+import '../../domain/entities/threesixty_entity.dart';
 
 class Evaluate extends StatefulWidget {
   const Evaluate({Key? key}) : super(key: key);
@@ -224,7 +225,8 @@ class _EvaluateState extends State<Evaluate> {
                                     DateTime.now(),
                                 enddate: listquestion[index].endDate ??
                                     DateTime.now(),
-                                // questionlist: listquestion[index].questionList??List<QuestionList>[],
+                                questionlist: listquestion[index].questionList
+                                    as List<QuestionListThreeSixty>?,
                               ),
                             );
                           });

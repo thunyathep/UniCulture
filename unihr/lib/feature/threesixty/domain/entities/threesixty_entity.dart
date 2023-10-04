@@ -1,3 +1,4 @@
+
 class ThreeSixtyEntity {
   int? idAppraisee;
   DateTime? startDate;
@@ -13,7 +14,7 @@ class ThreeSixtyEntity {
   String? position;
   String? department;
   List<SampleSize>? sampleSize;
-  List<QuestionList>? questionList;
+  List<QuestionListThreeSixty>? questionList;
 
   ThreeSixtyEntity({
     this.idAppraisee,
@@ -36,19 +37,18 @@ class ThreeSixtyEntity {
   @override
   List<Object?> get prop => [];
 
-
 }
 
-class QuestionList {
+class QuestionListThreeSixty {
   int? idAssessmentQuestion;
   String? question;
 
-  QuestionList({
+  QuestionListThreeSixty({
     this.idAssessmentQuestion,
     this.question,
   });
 
-  factory QuestionList.fromJson(Map<String, dynamic> json) => QuestionList(
+  factory QuestionListThreeSixty.fromJson(Map<String, dynamic> json) => QuestionListThreeSixty(
     idAssessmentQuestion: json["idAssessment_Question"],
     question: json["question"],
   );

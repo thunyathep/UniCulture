@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 import '../../../question/domain/entity/question_entity.dart';
-
+import '../../domain/entities/threesixty_entity.dart';
+import '../pages/questionthreesixty.dart';
 
 class CardThreeSixty extends StatefulWidget {
   final int idAppraisee;
@@ -18,8 +19,10 @@ class CardThreeSixty extends StatefulWidget {
   final String assessmentDescription;
   final DateTime startdate;
   final DateTime enddate;
-  // final List<QuestionList> questionlist;
-  CardThreeSixty({Key? key,
+  final List<QuestionListThreeSixty>? questionlist;
+
+  CardThreeSixty({
+    Key? key,
     required this.idAppraisee,
     required this.idAssessment,
     required this.idEmployee,
@@ -33,7 +36,7 @@ class CardThreeSixty extends StatefulWidget {
     required this.assessmentDescription,
     required this.startdate,
     required this.enddate,
-    // required this.questionlist,
+    required this.questionlist,
   }) : super(key: key);
 
   @override
@@ -41,21 +44,37 @@ class CardThreeSixty extends StatefulWidget {
 }
 
 class _CardThreeSixtyState extends State<CardThreeSixty> {
-
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: (){
-        // Navigator.of(context).push(
-        //   MaterialPageRoute(builder: (context) => page),
-        // );
+      onTap: () {
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) => ThreeSixtyQuestion(
+              idAppraisee: widget.idAppraisee,
+              idAssessment: widget.idAssessment,
+              idEmployee: widget.idEmployee,
+              scale: widget.scale,
+              firstname: widget.firstname,
+              lastname: widget.lastname,
+              position: widget.position,
+              department: widget.department,
+              assessmentName: widget.assessmentName,
+              assessmentType: widget.assessmentType,
+              assessmentDescription: widget.assessmentDescription,
+              startdate: widget.startdate,
+              enddate: widget.enddate,
+              questionlist: widget.questionlist,
+            ),
+          ),
+        );
       },
       child: Container(
         padding: EdgeInsets.only(
-          bottom: MediaQuery.of(context).devicePixelRatio*10,
+          bottom: MediaQuery.of(context).devicePixelRatio * 10,
         ),
-        width: MediaQuery.of(context).size.width*0.9,
-        height: MediaQuery.of(context).size.height*0.25,
+        width: MediaQuery.of(context).size.width * 0.9,
+        height: MediaQuery.of(context).size.height * 0.25,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(30),
             color: Colors.white,
@@ -64,14 +83,13 @@ class _CardThreeSixtyState extends State<CardThreeSixty> {
                 color: Colors.black.withOpacity(0.1),
                 blurRadius: 5,
                 spreadRadius: 1,
-              )
-            ]
-        ),
+              ),
+            ]),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-              height: MediaQuery.of(context).size.height*0.1,
+              height: MediaQuery.of(context).size.height * 0.1,
               child: Stack(
                 children: [
                   Container(
@@ -83,14 +101,14 @@ class _CardThreeSixtyState extends State<CardThreeSixty> {
                       child: Image.asset(
                         "assets/mission_card.png",
                         width: MediaQuery.of(context).size.width,
-                        height: MediaQuery.of(context).size.height*0.13,
+                        height: MediaQuery.of(context).size.height * 0.13,
                         fit: BoxFit.cover,
                       ),
                     ),
                   ),
                   Padding(
                     padding: EdgeInsets.only(
-                      left: MediaQuery.of(context).devicePixelRatio*6,
+                      left: MediaQuery.of(context).devicePixelRatio * 6,
                     ),
                     child: Row(
                       children: [
@@ -100,8 +118,8 @@ class _CardThreeSixtyState extends State<CardThreeSixty> {
                         ),
                         Padding(
                           padding: EdgeInsets.only(
-                            top: MediaQuery.of(context).devicePixelRatio*3,
-                            left: MediaQuery.of(context).devicePixelRatio*3,
+                            top: MediaQuery.of(context).devicePixelRatio * 3,
+                            left: MediaQuery.of(context).devicePixelRatio * 3,
                           ),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -141,14 +159,14 @@ class _CardThreeSixtyState extends State<CardThreeSixty> {
             ),
             Padding(
               padding: EdgeInsets.only(
-                top: MediaQuery.of(context).devicePixelRatio*3,
-                left: MediaQuery.of(context).devicePixelRatio*10,
+                top: MediaQuery.of(context).devicePixelRatio * 3,
+                left: MediaQuery.of(context).devicePixelRatio * 10,
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "แบบประเมิน: "+widget.assessmentName,
+                    "แบบประเมิน: " + widget.assessmentName,
                     style: TextStyle(
                       color: Colors.black,
                       fontSize: 16,
@@ -156,22 +174,23 @@ class _CardThreeSixtyState extends State<CardThreeSixty> {
                     ),
                   ),
                   Text(
-                    "คำอธิบาย: "+widget.assessmentDescription,
+                    "คำอธิบาย: " + widget.assessmentDescription,
                     style: TextStyle(
                       color: Color(0xff757575),
                       fontSize: 11,
                     ),
                   ),
                   Text(
-                    "จำนวน: " + "-" + " ข้อ",
+                    "จำนวน: " + widget.questionlist!.length.toString() + " ข้อ",
                     style: TextStyle(
                       color: Colors.black,
                       fontSize: 14,
                     ),
                   ),
                   Text(
-                    "ระยะเวลาการประเมิน: "+
-                        DateFormat("d MMM y ").format(widget.startdate)+" - " +
+                    "ระยะเวลาการประเมิน: " +
+                        DateFormat("d MMM y ").format(widget.startdate) +
+                        " - " +
                         DateFormat("d MMM y").format(widget.enddate),
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
@@ -182,7 +201,6 @@ class _CardThreeSixtyState extends State<CardThreeSixty> {
                 ],
               ),
             ),
-
           ],
         ),
       ),

@@ -168,7 +168,6 @@ class _DiaryQuestionState extends State<DiaryQuestion> {
                             listmoralediary = state.listmoralediary;
                             if(listmoralediary.isEmpty){
                               return Text("");
-
                             }else{
                               return Center(
                                 child: Column(
@@ -559,9 +558,6 @@ class _DiaryQuestionState extends State<DiaryQuestion> {
                       ),
                     ),
                   ],
-                ),
-                SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.1,
                 ),
               ],
             ),
