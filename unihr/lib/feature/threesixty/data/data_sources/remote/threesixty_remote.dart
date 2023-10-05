@@ -1,14 +1,19 @@
 import 'dart:convert';
+import 'dart:developer';
 import 'package:http/http.dart' as http;
 import 'package:unihr/feature/reward/data/model/myreward_model.dart';
 import 'package:unihr/feature/reward/data/model/redeem_reward_model.dart';
 
 import '../../../../../core/error/failure.dart';
 import '../../../../../core/storage/secure_storage.dart';
+import '../../../domain/entities/threesixty_entity.dart';
 import '../../models/threesixty_model.dart';
 
 abstract class ThreeSixty_remote{
   Future<List<ThreeSixtyModel>> getQuestionThreeSixty();
+  Future<void> AnswerQuestionThreeSixty(
+      List<AnswerQuestionToJson> answer,
+      );
 }
 
 class ThreeSixty_remoteImpl implements ThreeSixty_remote{
@@ -34,6 +39,31 @@ class ThreeSixty_remoteImpl implements ThreeSixty_remote{
           .toList();
       return ThreeSixtyQuestionlist;
     } else {
+      throw ServerFailure();
+    }
+  }
+
+  @override
+  Future<void> AnswerQuestionThreeSixty(
+      List<AnswerQuestionToJson> answerList,
+      ) async {
+    final url = Uri.parse(
+        "https://uniculture-371814.as.r.appspot.com/api/appraisee-answer");
+    final response = await httpClient.post(url,
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'x-access-token': '${await LoginStorage.readToken()}',
+      },
+      body: jsonEncode(
+        answerList
+      ),
+    );
+    print(response.statusCode);
+    if (response.statusCode == 201) {
+      log("Answer ThreeSixty Success");
+    } else {
+      log("Answer ThreeSixty UnSuccess");
       throw ServerFailure();
     }
   }

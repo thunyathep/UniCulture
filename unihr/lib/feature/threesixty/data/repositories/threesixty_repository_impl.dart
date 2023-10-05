@@ -4,6 +4,7 @@ import 'package:unihr/core/error/failure.dart';
 import 'package:unihr/feature/threesixty/data/data_sources/remote/threesixty_remote.dart';
 import 'package:unihr/feature/threesixty/data/models/threesixty_model.dart';
 
+import '../../domain/entities/threesixty_entity.dart';
 import '../../domain/repositories/threesixty_repository.dart';
 
 
@@ -19,6 +20,20 @@ class ThreeSixtyRepositoryImpl implements ThreeSixtyRepository{
       return Right(question);
     } on SeverException{
       return Left(ServerFailure());
+    }
+  }
+
+  @override
+  Future<Either<Failures, void>> answerQuestionThreeSixty(
+      List<AnswerQuestionToJson> answerList,
+      )async{
+    try{
+      final data = await threeSixty_remote.AnswerQuestionThreeSixty(
+        answerList
+      );
+      return Right(data);
+    } on SeverException {
+      return left(ServerFailure());
     }
   }
 }

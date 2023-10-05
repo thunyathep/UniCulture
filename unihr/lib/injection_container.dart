@@ -11,6 +11,11 @@ import 'package:unihr/feature/heart/data/datasource/remote/heart_remote.dart';
 import 'package:unihr/feature/heart/data/repository/heart_repository_impl.dart';
 import 'package:unihr/feature/heart/domain/repository/heart_repository.dart';
 import 'package:unihr/feature/heart/presentation/bloc/heart_bloc.dart';
+import 'package:unihr/feature/threesixty/data/data_sources/remote/threesixty_remote.dart';
+import 'package:unihr/feature/threesixty/data/repositories/threesixty_repository_impl.dart';
+import 'package:unihr/feature/threesixty/domain/repositories/threesixty_repository.dart';
+import 'package:unihr/feature/threesixty/domain/use_cases/answer_questionThreeSixty.dart';
+import 'package:unihr/feature/threesixty/presentation/bloc/threesixty_bloc.dart';
 
 import 'core/feature/login/data/datasource/remote/login_remote.dart';
 import 'core/feature/login/data/repository/login_repository_impl.dart';
@@ -35,6 +40,7 @@ Future<void> init() async{
   sl.registerFactory(()=> ActivityBloc(registerActivityUsecase: sl(),
       unRegisterActivityUsecase: sl()));
   sl.registerFactory(()=> FeedbackBloc(sendFeedbackUsecase: sl()));
+  sl.registerFactory(()=> ThreeSixtyBloc(answerThreeSixtyUsecase: sl()));
 
 
 
@@ -44,6 +50,7 @@ Future<void> init() async{
   sl.registerLazySingleton(() => RegisterActivityUsecase(sl()));
   sl.registerLazySingleton(() => UnRegisterActivityUsecase(sl()));
   sl.registerLazySingleton(() => SendFeedbackUsecase(sl()));
+  sl.registerLazySingleton(() => AnswerThreeSixtyUsecase(sl()));
   // sl.registerLazySingleton(() => GetProfile(repository: sl()));
 
 
@@ -60,12 +67,16 @@ Future<void> init() async{
   sl.registerLazySingleton<HeartRepository>(() => HeartRepositoryImpl(sl()));
   sl.registerLazySingleton<ActivityRepository>(() => ActivityRepositoryImpl(sl()));
   sl.registerLazySingleton<FeedBackRepositories>(() => FeedBackRepositoryImpl(sl()));
+  sl.registerLazySingleton<ThreeSixtyRepository>(() => ThreeSixtyRepositoryImpl(sl()));
+
 
   // * Data Source
   sl.registerLazySingleton<LoginApi>(() => LoginApiImpl(client: sl()));
   sl.registerLazySingleton<Heart_remote>(() => Heart_remoteImpl(sl()));
   sl.registerLazySingleton<Activity_remote>(() => Activity_remoteImpl(sl()));
   sl.registerLazySingleton<Feedback_remote>(() => Feedback_remoteImpl(sl()));
+  sl.registerLazySingleton<ThreeSixty_remote>(() => ThreeSixty_remoteImpl(sl()));
+
 
   sl.registerLazySingleton(() => http.Client());
 

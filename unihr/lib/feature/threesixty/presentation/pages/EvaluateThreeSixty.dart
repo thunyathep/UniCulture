@@ -11,6 +11,7 @@ import 'package:unihr/feature/threesixty/presentation/bloc/threesixty_state.dart
 import 'package:unihr/feature/threesixty/presentation/widgets/card_threesixty.dart';
 import 'package:unihr/feature/threesixty/presentation/widgets/shimmer_card.dart';
 
+import '../../../../injection_container.dart';
 import '../../../question/domain/entity/question_entity.dart';
 import '../../domain/entities/threesixty_entity.dart';
 
@@ -22,7 +23,7 @@ class Evaluate extends StatefulWidget {
 }
 
 class _EvaluateState extends State<Evaluate> {
-  final ThreeSixtyBloc _threeSixtyBloc = ThreeSixtyBloc();
+  final ThreeSixtyBloc _threeSixtyBloc = sl<ThreeSixtyBloc>();
   late List<ThreeSixtyModel> listquestion;
 
   @override

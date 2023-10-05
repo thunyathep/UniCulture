@@ -148,9 +148,9 @@ class AnswerList {
 }
 
 class AnswerQuestionToJson {
-  int idAppraiseeSampleSize;
-  int idAssessmentQuestion;
-  String value;
+  final int idAppraiseeSampleSize;
+  final int idAssessmentQuestion;
+  final String value;
 
   AnswerQuestionToJson({
     required this.idAppraiseeSampleSize,

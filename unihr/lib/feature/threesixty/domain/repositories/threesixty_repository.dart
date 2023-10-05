@@ -4,4 +4,7 @@ import '../../../../core/error/failure.dart';
 
 abstract class ThreeSixtyRepository {
   Future<Either<Failures, List<ThreeSixtyEntity>>> getQuestionThreeSixty();
+  Future<Either<Failures, void>> answerQuestionThreeSixty(
+      List<AnswerQuestionToJson> answerList,
+      );
 }

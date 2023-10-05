@@ -35,3 +35,13 @@ class ThreeSixtyError extends ThreeSixtyState {
   @override
   List<Object?> get props => [];
 }
+
+class ThreeSixtyAnsweringState extends ThreeSixtyState{
+  @override
+  List<Object?>get props => [];
+}
+
+class ThreeSixtyAnsweredState extends ThreeSixtyState{
+  @override
+  List<Object?>get props => [];
+}
