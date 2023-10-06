@@ -434,7 +434,7 @@ class _HomePageState extends State<HomePage> {
                                                     2,
                                               ),
                                               child: Text(
-                                                listcoin![1].amount.toString(),
+                                                listcoin![1].amount!.toString(),
                                                 // profileProvider.profileData
                                                 //     .wallet![1].amount
                                                 //     .toString(),
