@@ -9,6 +9,7 @@ import '../../../../../core/storage/secure_storage.dart';
 abstract class MyReward_remote{
   Future<List<MyRewardModel>> getMyReward();
   Future<List<RedeemRewardModel>> getRedeemReward();
+  Future<List<RedeemRewardModel>> getRedeemRewardHomePage();
 }
 
 class MyReward_remoteImpl {
@@ -24,7 +25,7 @@ class MyReward_remoteImpl {
         headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json',
-          'x-access-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZEVtcGxveWVlIjoxMDA2ODk4OSwiaWF0IjoxNjg1Njk2MzU1LCJleHAiOjE3NDc5MDQzNTV9.DhEkFL75hsA3HrM339cn5Lf4QzHiZCuU_4RKJBlDbyg',
+          'x-access-token': '${await LoginStorage.readToken()}',
         }
     );
     if (response.statusCode == 200) {
@@ -41,12 +42,34 @@ class MyReward_remoteImpl {
   @override
   Future<List<RedeemRewardModel>> getRedeemReward() async {
     final url = Uri.parse(
-        "https://uniculture-371814.as.r.appspot.com/api/rewards");
+        "https://uniculture-371814.as.r.appspot.com/api/reward-active/100");
     final response = await httpClient.get(url,
         headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json',
-          'x-access-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZEVtcGxveWVlIjoxMDA2ODk4OSwiaWF0IjoxNjg1Njk2MzU1LCJleHAiOjE3NDc5MDQzNTV9.DhEkFL75hsA3HrM339cn5Lf4QzHiZCuU_4RKJBlDbyg',
+          'x-access-token': '${await LoginStorage.readToken()}',
+        }
+    );
+    if (response.statusCode == 200) {
+      final List<dynamic> RedeemRewardJsonList = json.decode(response.body);
+      final List<RedeemRewardModel> redeemrewardlist = RedeemRewardJsonList
+          .map((rewardJson) => RedeemRewardModel.fromJson(rewardJson))
+          .toList();
+      return redeemrewardlist;
+    } else {
+      throw ServerFailure();
+    }
+  }
+
+  @override
+  Future<List<RedeemRewardModel>> getRedeemRewardHomePage() async {
+    final url = Uri.parse(
+        "https://uniculture-371814.as.r.appspot.com/api/reward/100");
+    final response = await httpClient.get(url,
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          'x-access-token': '${await LoginStorage.readToken()}',
         }
     );
     if (response.statusCode == 200) {

@@ -6,4 +6,5 @@ import '../../../../core/error/failure.dart';
 abstract class MyRewardRepository {
   Future<Either<Failures, List<MyRewardEntity>>> getMyReward();
   Future<Either<Failures, List<RedeemRewardEntity>>> getRedeemReward();
+  Future<Either<Failures, List<RedeemRewardEntity>>> getRedeemRewardHomePage();
 }

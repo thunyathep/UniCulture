@@ -14,6 +14,11 @@ class GetRedeemReward extends RewardEvent{
   List<Object?> get props => [];
 }
 
+class GetRedeemRewardHomePage extends RewardEvent{
+  @override
+  List<Object?> get props => [];
+}
+
 class GetMyRewardClick extends RewardEvent{
   int status;
   GetMyRewardClick(this.status);

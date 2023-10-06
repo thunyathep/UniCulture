@@ -58,3 +58,17 @@ class RedeemRewardError extends RewardState {
   @override
   List<Object?> get props => [];
 }
+
+class RedeemRewardHomePageLoadingState extends RewardState{
+  @override
+  List<Object?>get props => [];
+}
+
+class RedeemRewardHomePageLoadedState extends RewardState {
+  RedeemRewardHomePageLoadedState(List<RedeemRewardModel> list){
+    super.listRedeem = list;
+  }
+
+  @override
+  List<Object?> get props => [listReward];
+}

@@ -1,18 +1,34 @@
 import 'package:flutter/material.dart';
 import 'package:gradient_borders/box_borders/gradient_box_border.dart';
 
+import '../../domain/entity/redeem_reward_entity.dart';
+
 class DetailReward extends StatefulWidget {
-  final int idreward;
+  final int idCompanyReward;
   final String name;
   final String detail;
   final String image;
-  final int quantity;
+  final String rewardManager;
+  final String contact;
+  final dynamic location;
+  final int idRewardType;
+  final List<Item> items;
+  final List<Images> images;
+  final List<ThreeSixtyModelOption> options;
+  final int idUniReward;
   const DetailReward({Key? key,
-    required this.idreward,
+    required this.idCompanyReward,
     required this.name,
     required this.detail,
     required this.image,
-    required this.quantity,
+    required this.rewardManager,
+    required this.contact,
+    this.location,
+    required this.idRewardType,
+    required this.items,
+    required this.images,
+    required this.options,
+    required this.idUniReward
   }) : super(key: key);
 
   @override
@@ -130,7 +146,8 @@ class _DetailRewardState extends State<DetailReward> {
                                 right: MediaQuery.of(context).devicePixelRatio*10,
                               ),
                               child: Text(
-                                "คลัง : "+widget.quantity.toString(),
+                                "",
+                                // "คลัง : "+widget.quantity.toString(),
                                 style: TextStyle(
                                   fontSize: 16,
                                   color: Color(0xff757575),

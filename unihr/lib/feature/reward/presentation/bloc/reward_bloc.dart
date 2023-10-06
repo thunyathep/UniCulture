@@ -38,6 +38,19 @@ class RewardBloc extends Bloc<RewardEvent, RewardState>{
       }
     });
 
+    on<GetRedeemRewardHomePage>((event, emit) async {
+      emit(RedeemRewardHomePageLoadingState());
+      try{
+        final List<RedeemRewardModel> listRedeem =
+        await myReward_remoteImpl.getRedeemReward();
+        final List<RedeemRewardModel> listredeem = listRedeem;
+        emit(RedeemRewardHomePageLoadedState(listredeem));
+      }catch(e, stracktrace){
+        print("Exception occurred: $e stracktrace: $stracktrace");
+        emit(RedeemRewardError(e.toString()));
+      }
+    });
+
     on<GetMyRewardClick>((event, emit) async {
       emit(MyRewardLoadingState());
       try{

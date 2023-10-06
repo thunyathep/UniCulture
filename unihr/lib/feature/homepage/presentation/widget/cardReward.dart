@@ -3,23 +3,35 @@ import 'package:intl/intl.dart';
 import 'package:unihr/feature/homepage/presentation/bloc/homepage_bloc.dart';
 import 'package:unihr/feature/reward/presentation/pages/DetailReward.dart';
 
+import '../../../reward/domain/entity/redeem_reward_entity.dart';
+
 class HomepageReward extends StatefulWidget {
-  final HomepageBloc homepageBloc;
-  final int idreward;
+  final int idCompanyReward;
   final String name;
   final String detail;
-  final String endDate;
   final String image;
-  final int quantity;
+  final String rewardManager;
+  final String contact;
+  final dynamic location;
+  final int idRewardType;
+  final List<Item> items;
+  final List<Images> images;
+  final List<ThreeSixtyModelOption> options;
+  final int idUniReward;
 
   const HomepageReward({Key? key,
-    required this.homepageBloc,
-    required this.idreward,
+    required this.idCompanyReward,
     required this.name,
     required this.detail,
-    required this.endDate,
     required this.image,
-    required this.quantity,
+    required this.rewardManager,
+    required this.contact,
+    this.location,
+    required this.idRewardType,
+    required this.items,
+    required this.images,
+    required this.options,
+    required this.idUniReward
     }) : super(key: key);
 
   @override
@@ -27,22 +39,26 @@ class HomepageReward extends StatefulWidget {
 }
 
 class _HomepageRewardState extends State<HomepageReward> {
-  late DateTime dateTime;
+  // late DateTime dateTime;
   @override
   Widget build(BuildContext context) {
-    dateTime = DateTime.parse(widget.endDate);
+    // dateTime = DateTime.parse(widget.endDate);
     return InkWell(
       onTap: (){
         Navigator.of(context).push(
           MaterialPageRoute(
               builder: (context) => DetailReward(
-                  idreward: widget.idreward,
+                  idCompanyReward: widget.idCompanyReward,
                   name: widget.name,
                   detail: widget.detail,
                   image: widget.image,
-                  quantity: widget.quantity
-              ),
-          ),
+                  rewardManager: widget.rewardManager,
+                  contact: widget.contact,
+                  idRewardType: widget.idRewardType,
+                  items: widget.items,
+                  images: widget.images,
+                  options: widget.options,
+                  idUniReward: widget.idUniReward)),
         );
       },
       child: Container(
@@ -101,7 +117,7 @@ class _HomepageRewardState extends State<HomepageReward> {
                       child: Text(
                         widget.name,
                         style: TextStyle(
-                          fontSize: 12,
+                          fontSize: 20,
                           color: Colors.black,
                           fontWeight: FontWeight.bold,
                         ),
@@ -121,30 +137,9 @@ class _HomepageRewardState extends State<HomepageReward> {
                         left: MediaQuery.of(context).devicePixelRatio * 3,
                       ),
                       child: Text(
-                        "หมดเขต: "+ DateFormat("d MMM y , H:M").format(dateTime),
+                        "แลกไปแล้ว: ",
                         style: TextStyle(
-                          fontSize: 8,
-                          color: Color(0xff757575),
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width * 0.05,
-                    ),
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.only(
-                        top: MediaQuery.of(context).devicePixelRatio * 2,
-                        left: MediaQuery.of(context).devicePixelRatio * 3,
-                      ),
-                      child: Text(
-                        "avaliable: "+ widget.quantity.toString(),
-                        style: TextStyle(
-                          fontSize: 8,
+                          fontSize: 14,
                           color: Color(0xff757575),
                         ),
                       ),
@@ -156,9 +151,10 @@ class _HomepageRewardState extends State<HomepageReward> {
                 ),
                 Padding(
                   padding: EdgeInsets.only(
-                    left: MediaQuery.of(context).devicePixelRatio * 1,
+                    right: MediaQuery.of(context).devicePixelRatio * 5,
                   ),
                   child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       Container(
                         margin: EdgeInsets.only(

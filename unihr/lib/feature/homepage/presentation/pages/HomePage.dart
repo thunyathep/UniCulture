@@ -20,6 +20,8 @@ import 'package:unihr/feature/pocket/presentation/bloc/heart_year_state.dart';
 import 'package:unihr/feature/pocket/presentation/bloc/pocket_bloc.dart';
 import 'package:unihr/feature/pocket/presentation/bloc/pocket_event.dart';
 import 'package:unihr/feature/pocket/presentation/bloc/pocket_state.dart';
+import 'package:unihr/feature/reward/presentation/bloc/reward_bloc.dart';
+import 'package:unihr/feature/reward/presentation/bloc/reward_event.dart';
 import 'package:unihr/feature/unicalture/presentation/pages/bottomnav/BottomNavigate.dart';
 import 'package:unihr/feature/unicalture/presentation/pages/poll/Poll.dart';
 import 'package:unihr/feature/unicalture/presentation/pages/score/Score.dart';
@@ -34,6 +36,8 @@ import '../../../communicate/presentation/page/Communicate.dart';
 import '../../../feedback/presentation/pages/feedBack.dart';
 import '../../../pocket/data/model/heart_receive_year_model.dart';
 import '../../../pocket/data/model/pocket_model.dart';
+import '../../../reward/data/model/redeem_reward_model.dart';
+import '../../../reward/presentation/bloc/reward_state.dart';
 import '../../../threesixty/presentation/pages/EvaluateThreeSixty.dart';
 import '../../../question/presentation/pages/YearQuestionDetail.dart';
 import '../../../question/presentation/pages/morale_year.dart';
@@ -61,8 +65,9 @@ class _HomePageState extends State<HomePage> {
   final PocketBloc _pocketBloc = PocketBloc();
   final ActivityBloc _activityBloc = sl<ActivityBloc>();
   final HeartYearBloc _heartYearBloc = HeartYearBloc();
+  final RewardBloc _rewardBloc = RewardBloc();
   late ProfileProvider profileProvider;
-  late List<RewardModel> listreward;
+  late List<RedeemRewardModel> listredeem;
   late List<AllActivityModel> listactivity;
   late List<PocketEntity> listcoin = [];
   late List<HeartYearModel> listheartyear;
@@ -79,6 +84,7 @@ class _HomePageState extends State<HomePage> {
     _activityBloc.add(GetCardActivityHomePage());
     _homepageBloc.add(HomepageLoad());
     _pocketBloc.add(GetPocket());
+    _rewardBloc.add(GetRedeemRewardHomePage());
     _heartYearBloc.add(GetHeartYear());
     profileProvider = ProfileProvider.of(context, listen: false);
     listcoin = profileProvider.profileData.wallet??[];
@@ -92,6 +98,7 @@ class _HomePageState extends State<HomePage> {
     super.dispose();
     _activityBloc.close();
     _homepageBloc.close();
+    _rewardBloc.close();
     _pocketBloc.close();
     _heartYearBloc.close();
     _isDisposed = true;
@@ -114,6 +121,9 @@ class _HomePageState extends State<HomePage> {
               ),
               BlocProvider<ActivityBloc>(
                 create: (_) => _activityBloc,
+              ),
+              BlocProvider<RewardBloc>(
+                create: (_) => _rewardBloc,
               ),
               BlocProvider<HeartYearBloc>(
                 create: (_) => _heartYearBloc,
@@ -217,9 +227,9 @@ class _HomePageState extends State<HomePage> {
                                       ),
                                     ),
                                     Text(
-                                      "${profileProvider.profileData.firstName}" +
+                                      "${profileProvider.profileData.firstName??"ไม่ระบุ"}" +
                                           " " +
-                                          "${profileProvider.profileData.lastName}",
+                                          "${profileProvider.profileData.lastName??"ไม่ระบุ"}",
                                       style: TextStyle(
                                         color: Colors.white,
                                         fontWeight: FontWeight.bold,
@@ -434,10 +444,10 @@ class _HomePageState extends State<HomePage> {
                                                     2,
                                               ),
                                               child: Text(
-                                                listcoin![1].amount!.toString(),
-                                                // profileProvider.profileData
-                                                //     .wallet![1].amount
-                                                //     .toString(),
+                                                // listcoin![1].amount.toString()??"",
+                                                profileProvider.profileData
+                                                    .wallet![1].amount
+                                                    .toString()??"-",
                                                 style: TextStyle(
                                                   color: Colors.black,
                                                   fontSize: 32,
@@ -1015,37 +1025,41 @@ class _HomePageState extends State<HomePage> {
                       ],
                     ),
                   ),
-                  BlocBuilder<HomepageBloc, HomepageState>(
+                  BlocBuilder<RewardBloc, RewardState>(
                       builder: (context, state) {
-                    if (state is RewardLoadingState) {
+                    if (state is RedeemRewardHomePageLoadingState) {
                       return Text('');
-                    } else if (state is RewardLoadedState) {
-                      listreward = state.listReward;
+                    } else if (state is RedeemRewardHomePageLoadedState) {
+                      listredeem = state.listRedeem;
                       return LayoutBuilder(builder:
                           (BuildContext context, BoxConstraints constraints) {
-                        if (listreward.length == 0) {
+                        if (listredeem.length == 0) {
                           return SizedBox(
-                            height: listreward.length == 0
+                            height: listredeem.length == 0
                                 ? MediaQuery.of(context).size.height * 0.05
                                 : MediaQuery.of(context).size.height * 0.325,
                           );
                         } else {
                           return SizedBox(
-                            height: listreward.length == 0
+                            height: listredeem.length == 0
                                 ? MediaQuery.of(context).size.height * 0.05
                                 : MediaQuery.of(context).size.height * 0.325,
                             child: ListView.builder(
-                              itemCount: listreward.length,
+                              itemCount: listredeem.length,
                               scrollDirection: Axis.horizontal,
                               itemBuilder: (BuildContext context, int index) {
                                 return HomepageReward(
-                                  homepageBloc: _homepageBloc,
-                                  idreward: listreward[index].idReward ?? 0,
-                                  name: listreward[index].name ?? "",
-                                  detail: listreward[index].detail ?? "",
-                                  endDate: listreward[index].endDate ?? "",
-                                  image: listreward[index].image ?? "",
-                                  quantity: listreward[index].quantity ?? 0,
+                                    idCompanyReward: listredeem[index].idCompanyReward??0,
+                                    name: listredeem[index].name??"",
+                                    detail: listredeem[index].detail??"",
+                                    image: listredeem[index].image??"",
+                                    rewardManager: listredeem[index].rewardManager??"",
+                                    contact: listredeem[index].contact??"",
+                                    idRewardType: listredeem[index].idRewardType??0,
+                                    items: listredeem[index].items??[],
+                                    images: listredeem[index].images??[],
+                                    options: listredeem[index].options??[],
+                                    idUniReward: listredeem[index].idUniReward??0
                                 );
                               },
                             ),

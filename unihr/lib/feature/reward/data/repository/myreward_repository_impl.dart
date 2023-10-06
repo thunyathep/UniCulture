@@ -31,4 +31,14 @@ class MyRewardRepositoryImpl implements MyRewardRepository{
       return Left(ServerFailure());
     }
   }
+
+  @override
+  Future<Either<Failures,List<RedeemRewardModel>>> getRedeemRewardHomePage() async {
+    try{
+      final redeemreward = await myReward_remote.getRedeemRewardHomePage();
+      return Right(redeemreward);
+    } on SeverException{
+      return Left(ServerFailure());
+    }
+  }
 }
