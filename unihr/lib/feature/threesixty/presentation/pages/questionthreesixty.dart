@@ -61,7 +61,6 @@ class ThreeSixtyQuestion extends StatefulWidget {
         }
       }
     }
-
     return idAppraiseeSampleSizeList;
   }
 

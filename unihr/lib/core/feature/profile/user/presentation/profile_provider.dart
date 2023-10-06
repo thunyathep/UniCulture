@@ -13,7 +13,7 @@ class ProfileProvider extends ChangeNotifier {
   final GetProfile getProfile;
   ProfileProvider({required this.getProfile});
 
-  ProfileEntity _profileData = const ProfileEntity(firstName: '');
+  ProfileEntity _profileData = ProfileEntity();
   String? _telephoneMobile;
   String? _address;
   String? _houseNo;

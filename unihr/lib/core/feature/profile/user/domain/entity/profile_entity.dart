@@ -44,13 +44,10 @@ class ProfileEntity extends Equatable{
   final int? idRole;
   final int? updateBy;
   final dynamic? updateAt;
-  final int? heart;
-  final int? coin;
-  final int? pony;
-  final int? unicorn;
   final String? department;
   final int? idCompany;
   final String? company;
+  final int? budget;
   final int? idCoach;
   final int? price;
   final String? coachProfile;
@@ -103,14 +100,11 @@ class ProfileEntity extends Equatable{
     this.idRole,
     this.updateBy,
     this.updateAt,
-    this.heart,
-    this.coin,
-    this.pony,
-    this.unicorn,
     this.department,
     this.idCompany,
     this.company,
     this.idCoach,
+    this.budget,
     this.price,
     this.coachProfile,
     this.coachExperience,
