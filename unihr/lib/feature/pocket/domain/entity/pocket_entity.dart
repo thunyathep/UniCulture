@@ -1,11 +1,11 @@
 class PocketEntity{
-  int? idEmployee;
   int? idCoinType;
+  String? coinType;
   int? amount;
 
   PocketEntity({
-    this.idEmployee,
     this.idCoinType,
+    this.coinType,
     this.amount,
   });
 

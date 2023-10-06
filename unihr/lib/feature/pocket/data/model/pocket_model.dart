@@ -11,24 +11,24 @@ String MyactivityModelToJson(List<PocketModel> data)
 
 class PocketModel extends PocketEntity{
   PocketModel({
-    required int? idEmployee,
     required int? idCoinType,
+    required String? coinType,
     required int? amount,
   }):super(
-    idEmployee: idEmployee,
     idCoinType: idCoinType,
+    coinType: coinType,
     amount: amount,
   );
 
   factory PocketModel.fromJson(Map<String, dynamic> json) => PocketModel(
-    idEmployee: json["idEmployee"],
     idCoinType: json["idCoinType"],
+    coinType: json["coinType"],
     amount: json["amount"],
   );
 
   Map<String, dynamic> toJson() => {
-    "idEmployee": idEmployee,
     "idCoinType" : idCoinType,
+    "coinType" : coinType,
     "amount" : amount,
   };
 }

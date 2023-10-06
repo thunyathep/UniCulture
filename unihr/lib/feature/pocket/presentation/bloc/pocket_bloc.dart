@@ -9,8 +9,8 @@ import '../../data/model/pocket_model.dart';
 import '../../data/repository/heart_year_repository_impl.dart';
 
 class PocketBloc extends Bloc<PocketEvent, PocketState>{
-  List<PocketModel> listcoin = [];
-  List<HeartYearModel> listheartyear = [];
+  // List<PocketModel> listcoin = [];
+  // List<HeartYearModel> listheartyear = [];
 
   Pocket_remoteImpl pocket_remoteImpl = Pocket_remoteImpl(http.Client());
 
@@ -18,10 +18,7 @@ class PocketBloc extends Bloc<PocketEvent, PocketState>{
     on<GetPocket>((event, emit) async {
       emit(PocketLoadingState());
       try{
-        final List<PocketModel> listcoin =
-            await pocket_remoteImpl.getPocket();
-        final List<PocketModel> listCoin = listcoin;
-        emit(PocketLoadedState(listCoin));
+        emit(PocketLoadedState());
       }catch(e, stracktrace){
         print("Exception occurred: $e stracktrace: $stracktrace");
         emit(PocketError(e.toString()));

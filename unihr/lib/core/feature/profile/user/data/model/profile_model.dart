@@ -51,6 +51,7 @@ class ProfileModel extends ProfileEntity{
     required int? idRole,
     required int? updateBy,
     required dynamic? updateAt,
+    required List<PocketEntity>? wallet,
     required List<Education>? education,
     required String? image,
     required String? rating,
@@ -99,6 +100,7 @@ class ProfileModel extends ProfileEntity{
     updateBy: updateBy,
     updateAt: updateAt,
     image: image,
+    wallet: wallet,
     education: education,
     rating: rating,
   );
@@ -147,7 +149,8 @@ class ProfileModel extends ProfileEntity{
     idRole: json["idRole"],
     updateBy: json["updateBy"],
     updateAt: json["updateAt"],
-    education: json["education"],
+    education: json["education"] == null ? [] : List<Education>.from(json["education"]!.map((x) => Education.fromJson(x))),
+    wallet: json["wallet"] == null ? [] : List<PocketEntity>.from(json["wallet"]!.map((x) => PocketEntity.fromJson(x))),
     image: json["image"],
     rating: json['rating'],
   );
@@ -196,6 +199,7 @@ class ProfileModel extends ProfileEntity{
     "idRole": idRole,
     "updateBy": updateBy,
     "update_at": updateAt,
+    "wallet" : wallet == null ? [] : List<dynamic>.from(wallet!.map((x) => x.toJson())),
     "education": education,
     "image": image,
   };
@@ -224,28 +228,16 @@ class EducationModel extends Education{
     gpa: gpa,
     idEmployees: idEmployees,
   );
-
-  factory EducationModel.fromJson(Map<String, dynamic> json) => EducationModel(
-    idEducations: json["idEducations"],
-    degree: json["degree"],
-    university: json["university"],
-    faculty: json["faculty"],
-    major: json["major"],
-    fromYear: json["fromYear"],
-    endYear: json["endYear"],
-    gpa: json["gpa"],
-    idEmployees: json["idEmployees"],
-  );
-
-  Map<String, dynamic> toJson() => {
-    "idEducations": idEducations,
-    "degree": degree,
-    "university": university,
-    "faculty": faculty,
-    "major": major,
-    "fromYear": fromYear,
-    "endYear": endYear,
-    "gpa": gpa,
-    "idEmployees": idEmployees,
-  };
 }
+
+// class PocketModel extends ProfileEntity{
+//   PocketModel({
+//     required int? idCoinType,
+//     required String? coinType,
+//     required int? amount,
+//   }):super(
+//     idCoinType: idCoinType,
+//     coinType: coinType,
+//     amount: amount,
+//   );
+// }

@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gradient_borders/gradient_borders.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:provider/provider.dart';
+import 'package:unihr/core/feature/profile/user/domain/entity/profile_entity.dart';
 import 'package:unihr/feature/pocket/data/model/pocket_model.dart';
 import 'package:unihr/feature/pocket/presentation/bloc/pocket_bloc.dart';
 import 'package:unihr/feature/pocket/presentation/bloc/pocket_event.dart';
@@ -13,7 +14,7 @@ import '../widget/cardcoin.dart';
 
 
 class Pocket extends StatefulWidget {
-  final List<PocketModel> coin;
+  final List<PocketEntity> coin;
   Pocket({Key? key,
     required this.coin,
   }) : super(key: key);
@@ -30,7 +31,7 @@ late List<Widget> cardList = [];
 
 @override
 void initState(){
-  List<PocketModel> listcoin = widget.coin;
+  List<PocketEntity> listcoin = widget.coin;
   if(listcoin.isNotEmpty) {
     cardList = [
       CardHeart(coinHeart: listcoin[0].amount),

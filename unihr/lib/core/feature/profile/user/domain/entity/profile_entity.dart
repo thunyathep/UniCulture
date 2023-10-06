@@ -53,7 +53,8 @@ class ProfileEntity extends Equatable{
   final String? coachProfile;
   final String? coachExperience;
   final String? image;
-  final List<dynamic>? education;
+  final List<PocketEntity>? wallet;
+  final List<Education>? education;
   final String? rating;
 
   const ProfileEntity({
@@ -109,6 +110,7 @@ class ProfileEntity extends Equatable{
     this.coachProfile,
     this.coachExperience,
     this.image,
+    this.wallet,
     this.education,
     this.rating,
   });
@@ -138,4 +140,52 @@ class Education {
     this.gpa,
     this.idEmployees,
   });
+
+  factory Education.fromJson(Map<String, dynamic> json) => Education(
+    idEducations: json["idEducations"],
+    degree: json["degree"],
+    university: json["university"],
+    faculty: json["faculty"],
+    major: json["major"],
+    fromYear: json["fromYear"],
+    endYear: json["endYear"],
+    gpa: json["gpa"],
+    idEmployees: json["idEmployees"],
+  );
+
+  Map<String, dynamic> toJson() => {
+    "idEducations": idEducations,
+    "degree": degree,
+    "university": university,
+    "faculty": faculty,
+    "major": major,
+    "fromYear": fromYear,
+    "endYear": endYear,
+    "gpa": gpa,
+    "idEmployees": idEmployees,
+  };
+}
+
+class PocketEntity{
+  int? idCoinType;
+  String? coinType;
+  int? amount;
+
+  PocketEntity({
+    this.idCoinType,
+    this.coinType,
+    this.amount,
+  });
+
+  factory PocketEntity.fromJson(Map<String, dynamic> json) => PocketEntity(
+    idCoinType: json["idCoinType"],
+    coinType: json["coinType"],
+    amount: json["amount"],
+  );
+
+  Map<String, dynamic> toJson() => {
+    "idCoinType" : idCoinType,
+    "coinType" : coinType,
+    "amount" : amount,
+  };
 }

@@ -21,9 +21,9 @@ class PocketLoadingState extends PocketState {
 }
 
 class PocketLoadedState extends PocketState{
-  PocketLoadedState(List<PocketModel> list){
-    super.listcoin = list;
-  }
+  // PocketLoadedState(List<PocketModel> list){
+  //   super.listcoin = list;
+  // }
   @override
   List<Object?> get props => [listcoin];
 }

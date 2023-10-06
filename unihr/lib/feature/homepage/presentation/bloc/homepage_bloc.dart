@@ -10,6 +10,7 @@ class HomepageBloc extends Bloc<HomepageEvent, HomepageState>{
   List<RewardModel> listreward = [];
   Homepage_remoteIpml homepage_remoteIpml = Homepage_remoteIpml(http.Client());
 
+
   HomepageBloc() : super(InitialReward()){
     on<GetReward>((event, emit) async {
       emit(RewardLoadingState());
@@ -48,6 +49,16 @@ class HomepageBloc extends Bloc<HomepageEvent, HomepageState>{
       }catch(e, stracktrace){
         print("Exception occurred: $e stracktrace: $stracktrace");
         emit(RewardError(e.toString()));
+      }
+    });
+
+    on<HomepageLoad>((event, emit) async {
+      emit(HomepageLoadingState());
+      try{
+        emit(HomepageLoadedState());
+      }catch(e, stracktrace){
+        print("Exception occurred: $e stracktrace: $stracktrace");
+        emit(HomepageError(e.toString()));
       }
     });
   }

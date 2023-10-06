@@ -18,3 +18,8 @@ class GetCard extends HomepageEvent{
   @override
   List<Object?> get props => [];
 }
+
+class HomepageLoad extends HomepageEvent{
+  @override
+  List<Object?> get props => [];
+}

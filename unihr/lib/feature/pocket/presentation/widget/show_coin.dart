@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:unihr/feature/pocket/presentation/bloc/pocket_event.dart';
 
+import '../../../../core/feature/profile/user/presentation/profile_provider.dart';
 import '../../data/model/pocket_model.dart';
 import '../bloc/pocket_bloc.dart';
 import '../bloc/pocket_state.dart';
@@ -16,10 +17,11 @@ class ShowCoin extends StatefulWidget {
 
 class _ShowCoinState extends State<ShowCoin> {
   final PocketBloc _pocketBloc = PocketBloc();
-  late List<PocketModel> listcoin = [];
+  late ProfileProvider profileProvider;
 
   @override
   void initState() {
+    profileProvider = ProfileProvider.of(context, listen: false);
     _pocketBloc.add(GetPocket());
     super.initState();
   }
@@ -95,7 +97,6 @@ class _ShowCoinState extends State<ShowCoin> {
               ),
             );
           }else if (state is PocketLoadedState){
-            listcoin = state.listcoin;
             return Container(
               width: MediaQuery.of(context).size.width*0.35,
               height: MediaQuery.of(context).size.height*0.035,
@@ -120,7 +121,7 @@ class _ShowCoinState extends State<ShowCoin> {
                           left: MediaQuery.of(context).devicePixelRatio*3,
                         ),
                         child: Text(
-                          listcoin[1].amount.toString(),
+                          profileProvider.profileData.wallet![1].amount.toString(),
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                           ),
@@ -139,7 +140,7 @@ class _ShowCoinState extends State<ShowCoin> {
                           left: MediaQuery.of(context).devicePixelRatio*3,
                         ),
                         child: Text(
-                          listcoin[0].amount.toString(),
+                          profileProvider.profileData.wallet![0].amount.toString(),
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                           ),

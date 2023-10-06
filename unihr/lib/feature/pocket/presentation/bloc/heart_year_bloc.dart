@@ -17,7 +17,6 @@ class HeartYearBloc extends Bloc<HeartYearEvent, HeartYearState>{
         final List<HeartYearModel> listheart =
         await heartYear_RemoteImpl.getHeartYear();
         final List<HeartYearModel> listHeartYear = listheart;
-        print(listHeartYear);
         emit(HeartYearLoadedState(listHeartYear));
       }catch(e, stracktrace){
         print("Exception occurred: $e stracktrace: $stracktrace");

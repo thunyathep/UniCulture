@@ -74,3 +74,23 @@ class GetCardLoadedState extends HomepageState {
   @override
   List<Object?> get props => [listReward, listactivity];
 }
+
+class HomepageLoadingState extends HomepageState{
+
+  @override
+  List<Object?>get props => [];
+}
+
+class HomepageLoadedState extends HomepageState {
+
+  @override
+  List<Object?> get props => [listactivity];
+}
+
+class HomepageError extends HomepageState {
+  final String error;
+
+  HomepageError(this.error);
+  @override
+  List<Object?> get props => [];
+}

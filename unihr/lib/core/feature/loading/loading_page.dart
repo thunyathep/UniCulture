@@ -17,6 +17,7 @@ class LoadingPage extends StatefulWidget {
 }
 
 class _LoadingPageState extends State<LoadingPage> {
+  late ProfileProvider profileProvider;
 
   startLoading() async {
 
@@ -46,6 +47,8 @@ class _LoadingPageState extends State<LoadingPage> {
 
   @override
   void initState(){
+    profileProvider = ProfileProvider.of(context, listen: false);
+    profileProvider.getProfileData();
     super.initState();
     startLoading();
   }
