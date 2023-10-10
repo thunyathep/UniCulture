@@ -10,6 +10,10 @@ class GetMyReward extends RewardEvent{
 }
 
 class GetRedeemReward extends RewardEvent{
+  int status;
+
+  GetRedeemReward(this.status);
+
   @override
   List<Object?> get props => [];
 }

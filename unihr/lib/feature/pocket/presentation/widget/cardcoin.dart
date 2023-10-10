@@ -564,7 +564,7 @@ class _Coin_DoItState extends State<Coin_DoIt> {
                   fit: BoxFit.contain,
                 ),
                 Text(
-                  "10",
+                  widget.coinDoIt.toString(),
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 34,
@@ -650,7 +650,7 @@ class _Coin_CaringState extends State<Coin_Caring> {
                   fit: BoxFit.contain,
                 ),
                 Text(
-                  "10",
+                  widget.coinCaring.toString(),
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 34,

@@ -327,7 +327,7 @@ class _HomePageState extends State<HomePage> {
                                               margin: EdgeInsets.only(
                                                 top: MediaQuery.of(context)
                                                         .devicePixelRatio *
-                                                    3,
+                                                    2.5,
                                                 right: MediaQuery.of(context)
                                                         .devicePixelRatio *
                                                     15,
@@ -459,7 +459,7 @@ class _HomePageState extends State<HomePage> {
                                               margin: EdgeInsets.only(
                                                 top: MediaQuery.of(context)
                                                         .devicePixelRatio *
-                                                    3,
+                                                    2.5,
                                                 right: MediaQuery.of(context)
                                                         .devicePixelRatio *
                                                     15,
@@ -609,7 +609,7 @@ class _HomePageState extends State<HomePage> {
                                               margin: EdgeInsets.only(
                                                 top: MediaQuery.of(context)
                                                         .devicePixelRatio *
-                                                    3,
+                                                    2.5,
                                                 right: MediaQuery.of(context)
                                                         .devicePixelRatio *
                                                     15,
@@ -752,7 +752,7 @@ class _HomePageState extends State<HomePage> {
                                               margin: EdgeInsets.only(
                                                 top: MediaQuery.of(context)
                                                         .devicePixelRatio *
-                                                    3,
+                                                    2.5,
                                                 right: MediaQuery.of(context)
                                                         .devicePixelRatio *
                                                     15,

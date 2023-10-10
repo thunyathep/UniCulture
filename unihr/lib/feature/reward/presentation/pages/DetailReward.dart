@@ -124,7 +124,7 @@ class _DetailRewardState extends State<DetailReward> {
                             Padding(
                               padding: EdgeInsets.only(
                                 left: MediaQuery.of(context).devicePixelRatio*10,
-                                top: MediaQuery.of(context).devicePixelRatio*5,
+                                top: MediaQuery.of(context).devicePixelRatio*8,
                                 bottom: MediaQuery.of(context).devicePixelRatio*2,
                                 right: MediaQuery.of(context).devicePixelRatio*10,
                               ),
@@ -133,23 +133,22 @@ class _DetailRewardState extends State<DetailReward> {
                                 overflow: TextOverflow.ellipsis,
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
-                                  fontSize: 22,
+                                  fontSize: 24,
                                   color: Colors.black,
                                 ),
                               ),
                             ),
                             Padding(
                               padding: EdgeInsets.only(
-                                top: MediaQuery.of(context).devicePixelRatio*2,
                                 bottom: MediaQuery.of(context).devicePixelRatio*2,
                                 left: MediaQuery.of(context).devicePixelRatio*10,
                                 right: MediaQuery.of(context).devicePixelRatio*10,
                               ),
                               child: Text(
-                                "",
+                                "คงเหลือ : ",
                                 // "คลัง : "+widget.quantity.toString(),
                                 style: TextStyle(
-                                  fontSize: 16,
+                                  fontSize: 14,
                                   color: Color(0xff757575),
                                 ),
                               ),

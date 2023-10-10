@@ -147,7 +147,6 @@ class _ThreeSixtyQuestionState extends State<ThreeSixtyQuestion> {
       questionlist: widget.questionlist,
     );
     idAppraiseeSampleSize = questionInstance.getIdAppraiseeSampleSize(idUser);
-    print("id appraiseesamplesizr : $idAppraiseeSampleSize");
 
     return Scaffold(
       backgroundColor: Color(0xffffffff),

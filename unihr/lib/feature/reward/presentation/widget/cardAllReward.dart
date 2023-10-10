@@ -4,6 +4,7 @@ import 'package:unihr/feature/reward/presentation/bloc/reward_bloc.dart';
 
 import '../../domain/entity/redeem_reward_entity.dart';
 import '../pages/DetailReward.dart';
+import 'coinType.dart';
 
 class CardAllReward extends StatefulWidget {
   final int idCompanyReward;
@@ -98,65 +99,110 @@ class _CardAllRewardState extends State<CardAllReward> {
               children: [
                 Padding(
                   padding: EdgeInsets.only(
-                    top: MediaQuery.of(context).devicePixelRatio * 15,
+                    top: MediaQuery.of(context).devicePixelRatio * 5,
                   ),
                   child: Text(
                     widget.name,
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
+                      fontSize: 24,
                     ),
                     overflow: TextOverflow.ellipsis,
                     maxLines: 1,
                   ),
                 ),
-                Container(
-                  margin: EdgeInsets.only(
-                    top: MediaQuery.of(context).devicePixelRatio * 2,
-                    bottom: MediaQuery.of(context).devicePixelRatio * 2,
+                // Container(
+                //   margin: EdgeInsets.only(
+                //     top: MediaQuery.of(context).devicePixelRatio * 2,
+                //     bottom: MediaQuery.of(context).devicePixelRatio * 2,
+                //   ),
+                //   width: MediaQuery.of(context).size.width * 0.4,
+                //   height: MediaQuery.of(context).size.height * 0.05,
+                //   child: Column(
+                //     crossAxisAlignment: CrossAxisAlignment.start,
+                //     children: [
+                //       Expanded(
+                //         child: Text(
+                //           widget.detail,
+                //           // widget.detail,
+                //           maxLines: 2,
+                //           overflow: TextOverflow.ellipsis,
+                //           style: TextStyle(
+                //             color: Color(0xff757575),
+                //           ),
+                //         ),
+                //       ),
+                //     ],
+                //   ),
+                // ),
+
+                Padding(
+                  padding: EdgeInsets.only(
+                    top: MediaQuery.of(context).devicePixelRatio * 4,
                   ),
-                  width: MediaQuery.of(context).size.width * 0.4,
-                  height: MediaQuery.of(context).size.height * 0.05,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Expanded(
-                        child: Text(
-                          "",
-                          // widget.detail,
-                          maxLines: 2,
-                          overflow: TextOverflow.ellipsis,
-                          style: TextStyle(
-                            color: Color(0xff757575),
-                          ),
-                        ),
-                      ),
-                    ],
+                  child: Text(
+                    "แลกไปแล้ว: ",
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: Color(0xff757575),
+                    ),
                   ),
                 ),
 
-                // Text(
-                //   "คลัง: "+ widget.quantity.toString(),
-                //   style: TextStyle(
-                //     fontSize: 8,
-                //     color:  Color(0xff757575),
-                //   ),
-                // ),
-                Row(
-                  children: [
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width * 0.25,
-                    ),
-                    Row(
-                      children: [
-                        Image.asset(
-                          'assets/heart.png',
-                          width: MediaQuery.of(context).size.width * 0.07,
-                          height: MediaQuery.of(context).size.height * 0.07,
-                        ),
-                        Text('x10'),
-                      ],
-                    ),
-                  ],
+                Padding(
+                  padding: EdgeInsets.only(
+                    top: MediaQuery.of(context).devicePixelRatio * 20,
+                  ),
+                  child: Row(
+                    children: [
+                      widget.items[0].coins!.length == 1
+                          ? Container(
+                              height: MediaQuery.of(context).size.height * 0.03,
+                              width: MediaQuery.of(context).size.width * 0.4,
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  CheckCoinType(
+                                    idCoinType:
+                                        widget.items[0].coins![0].idCoinType,
+                                  ),
+                                  Text(
+                                    " X" +
+                                        widget.items[0].coins![0].amount
+                                            .toString(),
+                                  ),
+                                ],
+                              ),
+                            )
+                          : Container(
+                              height: MediaQuery.of(context).size.height * 0.03,
+                              width: MediaQuery.of(context).size.width * 0.4,
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  CheckCoinType(
+                                    idCoinType:
+                                        widget.items[0].coins![0].idCoinType,
+                                  ),
+                                  Text(
+                                    " X" +
+                                        widget.items[0].coins![0].amount
+                                            .toString(),
+                                  ),
+                                  CheckCoinType(
+                                    idCoinType:
+                                        widget.items[0].coins![1].idCoinType,
+                                  ),
+                                  Text(
+                                    " X" +
+                                        widget.items[0].coins![1].amount
+                                            .toString(),
+                                  ),
+                                ],
+                              ),
+                            ),
+                    ],
+                  ),
                 ),
               ],
             ),

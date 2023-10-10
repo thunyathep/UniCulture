@@ -9,6 +9,7 @@ import 'package:unihr/feature/reward/presentation/bloc/reward_state.dart';
 class RewardBloc extends Bloc<RewardEvent, RewardState>{
   List<MyRewardModel> listreward = [];
   List<RedeemRewardModel> listredeem = [];
+  List<RedeemRewardModel> redeemstatus = [];
   MyReward_remoteImpl myReward_remoteImpl = MyReward_remoteImpl(http.Client());
 
   RewardBloc() : super(InitialReward()){
@@ -28,10 +29,33 @@ class RewardBloc extends Bloc<RewardEvent, RewardState>{
     on<GetRedeemReward>((event, emit) async {
       emit(RedeemRewardLoadingState());
       try{
-        final List<RedeemRewardModel> listRedeem =
-        await myReward_remoteImpl.getRedeemReward();
-        final List<RedeemRewardModel> listredeem = listRedeem;
-        emit(RedeemRewardLoadedState(listredeem));
+        List<RedeemRewardModel> redeem = [];
+        if(event.status == 0 ){
+          redeemstatus = await myReward_remoteImpl.getRedeemReward();
+          redeem = redeemstatus;
+        }else if (event.status == 1 ){
+          redeem = redeemstatus
+              .where((element) => element.idRewardType == 1).toList();
+        }
+        else if (event.status == 2 ){
+          redeem = redeemstatus
+              .where((element) => element.idRewardType == 2).toList();
+        }else if (event.status == 3){
+          redeem = redeemstatus
+              .where((element) => element.idRewardType == 3).toList();
+        }
+        else if (event.status == 4 ){
+          redeem = redeemstatus
+              .where((element) => element.idRewardType == 4).toList();
+        }
+        else if (event.status == 5){
+          redeem = redeemstatus
+              .where((element) => element.idRewardType == 5).toList();
+        }else if (event.status == 6){
+          redeem = redeemstatus
+              .where((element) => element.idRewardType == 6).toList();
+        }
+        emit(RedeemRewardLoadedState(redeem));
       }catch(e, stracktrace){
         print("Exception occurred: $e stracktrace: $stracktrace");
         emit(RedeemRewardError(e.toString()));

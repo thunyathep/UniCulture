@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gradient_borders/gradient_borders.dart';
+import 'package:unihr/feature/pocket/presentation/widget/show_coin.dart';
 import 'package:unihr/feature/reward/presentation/bloc/reward_event.dart';
 import '../../data/model/redeem_reward_model.dart';
 import '../bloc/reward_bloc.dart';
@@ -22,7 +23,7 @@ class _AllRewardState extends State<AllReward> {
 
   @override
   void initState() {
-    _rewardBloc.add(GetRedeemReward());
+    _rewardBloc.add(GetRedeemReward(0));
     super.initState();
   }
 
@@ -96,66 +97,7 @@ class _AllRewardState extends State<AllReward> {
                               size: MediaQuery.of(context).size.height * 0.04,
                             ),
                           ),
-                          Container(
-                            width: MediaQuery.of(context).size.width * 0.35,
-                            height: MediaQuery.of(context).size.height * 0.035,
-                            decoration: const BoxDecoration(
-                              borderRadius: BorderRadius.only(
-                                topLeft: Radius.circular(50),
-                                bottomLeft: Radius.circular(50),
-                              ),
-                              color: Colors.white,
-                            ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: [
-                                Row(
-                                  children: [
-                                    Image.asset(
-                                      'assets/coin2.png',
-                                      width: MediaQuery.of(context).size.width *
-                                          0.06,
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsets.only(
-                                        left: MediaQuery.of(context)
-                                                .devicePixelRatio *
-                                            3,
-                                      ),
-                                      child: const Text(
-                                        '26',
-                                        style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                Row(
-                                  children: [
-                                    Image.asset(
-                                      'assets/heart.png',
-                                      width: MediaQuery.of(context).size.width *
-                                          0.05,
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsets.only(
-                                        left: MediaQuery.of(context)
-                                                .devicePixelRatio *
-                                            3,
-                                      ),
-                                      child: const Text(
-                                        '10',
-                                        style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ),
+                          ShowCoin(),
                         ],
                       ),
                     ),
@@ -239,7 +181,9 @@ class _AllRewardState extends State<AllReward> {
                         child: Row(
                           children: [
                             TextButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                _rewardBloc.add(GetRedeemReward(0));
+                              },
                               child: const Text(
                                 "ทั้งหมด",
                                 style: TextStyle(
@@ -248,7 +192,9 @@ class _AllRewardState extends State<AllReward> {
                               ),
                             ),
                             TextButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                _rewardBloc.add(GetRedeemReward(1));
+                              },
                               child: const Text(
                                 "อาหาร",
                                 style: TextStyle(
@@ -257,7 +203,9 @@ class _AllRewardState extends State<AllReward> {
                               ),
                             ),
                             TextButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                _rewardBloc.add(GetRedeemReward(2));
+                              },
                               child: const Text(
                                 "ชอปปิง",
                                 style: TextStyle(
@@ -266,7 +214,9 @@ class _AllRewardState extends State<AllReward> {
                               ),
                             ),
                             TextButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                _rewardBloc.add(GetRedeemReward(3));
+                              },
                               child: const Text(
                                 "ความบันเทิง",
                                 style: TextStyle(
@@ -275,7 +225,9 @@ class _AllRewardState extends State<AllReward> {
                               ),
                             ),
                             TextButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                _rewardBloc.add(GetRedeemReward(4));
+                              },
                               child: const Text(
                                 "ไลฟ์สไตล์",
                                 style: TextStyle(
@@ -284,7 +236,9 @@ class _AllRewardState extends State<AllReward> {
                               ),
                             ),
                             TextButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                _rewardBloc.add(GetRedeemReward(5));
+                              },
                               child: const Text(
                                 "ท่องเที่ยว",
                                 style: TextStyle(
@@ -293,7 +247,9 @@ class _AllRewardState extends State<AllReward> {
                               ),
                             ),
                             TextButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                _rewardBloc.add(GetRedeemReward(6));
+                              },
                               child: const Text(
                                 "สุขภาพ",
                                 style: TextStyle(
