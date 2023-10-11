@@ -23,8 +23,8 @@ class MyRewardModel extends MyRewardEntity {
     required String? name,
     required String? detail,
     required String? image,
-    required Coin? coin,
-    Coin? specialCoin,
+    required CoinType? coin,
+    CoinType? specialCoin,
   }):super(
     idRedeem : idRedeem,
     redeemDate: redeemDate,
@@ -47,8 +47,8 @@ class MyRewardModel extends MyRewardEntity {
     name: json["name"],
     detail: json["detail"],
     image: json["image"],
-    coin: json["coin"] == null ? null : Coin.fromJson(json["coin"]),
-    specialCoin: json["specialCoin"] == null ? null : Coin.fromJson(json["specialCoin"]),
+    coin: json["coin"] == null ? null : CoinType.fromJson(json["coin"]),
+    specialCoin: json["specialCoin"] == null ? null : CoinType.fromJson(json["specialCoin"]),
   );
 
   Map<String, dynamic> toJson() => {

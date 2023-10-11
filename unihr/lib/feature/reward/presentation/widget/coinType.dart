@@ -43,7 +43,7 @@ class _CheckCoinTypeState extends State<CheckCoinType> {
     return Image.asset(
       image,
       width: MediaQuery.of(context).size.width * 0.07,
-      height: MediaQuery.of(context).size.height * 0.07,
+      height: MediaQuery.of(context).size.height * 0.05,
     );
   }
 }

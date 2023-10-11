@@ -189,9 +189,14 @@ class _CardAllRewardState extends State<CardAllReward> {
                                         widget.items[0].coins![0].amount
                                             .toString(),
                                   ),
-                                  CheckCoinType(
-                                    idCoinType:
-                                        widget.items[0].coins![1].idCoinType,
+                                  Padding(
+                                    padding: EdgeInsets.only(
+                                      left: MediaQuery.of(context).devicePixelRatio*5,
+                                    ),
+                                    child: CheckCoinType(
+                                      idCoinType:
+                                          widget.items[0].coins![1].idCoinType,
+                                    ),
                                   ),
                                   Text(
                                     " X" +

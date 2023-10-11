@@ -60,7 +60,7 @@ class Item {
   int? price;
   String? image;
   int? numberOfRedeem;
-  List<Coin>? coins;
+  List<CoinRedeem>? coins;
   List<ItemOption>? options;
   int? idUniRewardItem;
 
@@ -87,7 +87,7 @@ class Item {
     price: json["price"],
     image: json["image"],
     numberOfRedeem: json["numberOfRedeem"],
-    coins: json["coins"] == null ? [] : List<Coin>.from(json["coins"]!.map((x) => Coin.fromJson(x))),
+    coins: json["coins"] == null ? [] : List<CoinRedeem>.from(json["coins"]!.map((x) => CoinRedeem.fromJson(x))),
     options: json["options"] == null ? [] : List<ItemOption>.from(json["options"]!.map((x) => ItemOption.fromJson(x))),
     idUniRewardItem: json["idUniRewardItem"],
   );
@@ -107,18 +107,18 @@ class Item {
   };
 }
 
-class Coin {
+class CoinRedeem {
   int? amount;
   int? idCoinType;
   String? coinType;
 
-  Coin({
+  CoinRedeem({
     this.amount,
     this.idCoinType,
     this.coinType,
   });
 
-  factory Coin.fromJson(Map<String, dynamic> json) => Coin(
+  factory CoinRedeem.fromJson(Map<String, dynamic> json) => CoinRedeem(
     amount: json["amount"],
     idCoinType: json["idCoinType"],
     coinType: json["coinType"],

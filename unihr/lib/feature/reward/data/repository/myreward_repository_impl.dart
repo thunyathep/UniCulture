@@ -3,6 +3,7 @@ import 'package:unihr/core/error/exception.dart';
 import 'package:unihr/core/error/failure.dart';
 import 'package:unihr/feature/reward/data/datasource/remote/myreward_remote.dart';
 
+import '../../domain/entity/redeem_reward_entity.dart';
 import '../../domain/repository/myreward_repository.dart';
 import '../model/myreward_model.dart';
 import '../model/redeem_reward_model.dart';
@@ -39,6 +40,24 @@ class MyRewardRepositoryImpl implements MyRewardRepository{
       return Right(redeemreward);
     } on SeverException{
       return Left(ServerFailure());
+    }
+  }
+
+  @override
+  Future<Either<Failures, void>> redeemedReward(
+      List<CoinRedeem> coins,
+      int idEmployee,
+      int quantity,
+      )async{
+    try{
+      final data = await myReward_remote.redeemedReward(
+          coins,
+          idEmployee,
+          quantity,
+      );
+      return Right(data);
+    } on SeverException {
+      return left(ServerFailure());
     }
   }
 }

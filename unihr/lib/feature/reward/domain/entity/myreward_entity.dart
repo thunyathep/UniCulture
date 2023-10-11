@@ -7,8 +7,8 @@ class MyRewardEntity {
   String? name;
   String? detail;
   String? image;
-  Coin? coin;
-  Coin? specialCoin;
+  CoinType? coin;
+  CoinType? specialCoin;
 
   MyRewardEntity({
     this.idRedeem,
@@ -28,18 +28,18 @@ class MyRewardEntity {
 
 }
 
-class Coin {
+class CoinType {
   final int? idCoinType;
   final int? amount;
   final String? coinType;
 
-  Coin({
+  CoinType({
     this.idCoinType,
     this.amount,
     this.coinType,
   });
 
-  factory Coin.fromJson(Map<String, dynamic> json) => Coin(
+  factory CoinType.fromJson(Map<String, dynamic> json) => CoinType(
     idCoinType: json["idCoinType"],
     amount: json["amount"],
     coinType: json["coinType"],

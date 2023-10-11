@@ -7,4 +7,9 @@ abstract class MyRewardRepository {
   Future<Either<Failures, List<MyRewardEntity>>> getMyReward();
   Future<Either<Failures, List<RedeemRewardEntity>>> getRedeemReward();
   Future<Either<Failures, List<RedeemRewardEntity>>> getRedeemRewardHomePage();
+  Future<Either<Failures, void>> redeemedReward(
+      List<CoinRedeem> coins,
+      int idEmployee,
+      int quantity,
+      );
 }

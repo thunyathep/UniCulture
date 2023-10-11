@@ -5,11 +5,17 @@ import 'package:unihr/feature/reward/data/model/redeem_reward_model.dart';
 
 import '../../../../../core/error/failure.dart';
 import '../../../../../core/storage/secure_storage.dart';
+import '../../../domain/entity/redeem_reward_entity.dart';
 
 abstract class MyReward_remote{
   Future<List<MyRewardModel>> getMyReward();
   Future<List<RedeemRewardModel>> getRedeemReward();
   Future<List<RedeemRewardModel>> getRedeemRewardHomePage();
+  Future<void> redeemedReward(
+      List<CoinRedeem> coins,
+      int idEmployee,
+      int quantity,
+      );
 }
 
 class MyReward_remoteImpl {
