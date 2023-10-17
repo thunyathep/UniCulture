@@ -65,7 +65,7 @@ class _HomePageState extends State<HomePage> {
   final PocketBloc _pocketBloc = PocketBloc();
   final ActivityBloc _activityBloc = sl<ActivityBloc>();
   final HeartYearBloc _heartYearBloc = HeartYearBloc();
-  final RewardBloc _rewardBloc = RewardBloc();
+  final RewardBloc _rewardBloc = sl<RewardBloc>();
   late ProfileProvider profileProvider;
   late List<RedeemRewardModel> listredeem;
   late List<AllActivityModel> listactivity;

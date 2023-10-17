@@ -51,6 +51,16 @@ class RedeemRewardLoadedState extends RewardState {
   List<Object?> get props => [listReward];
 }
 
+class RedeemedRewardLoadingState extends RewardState{
+  @override
+  List<Object?>get props => [];
+}
+
+class RedeemedRewardLoadedState extends RewardState {
+  @override
+  List<Object?> get props => [listReward];
+}
+
 class RedeemRewardError extends RewardState {
   final String error;
 

@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gradient_borders/gradient_borders.dart';
 import 'package:unihr/feature/pocket/presentation/widget/show_coin.dart';
 import 'package:unihr/feature/reward/presentation/bloc/reward_event.dart';
+import '../../../../injection_container.dart';
 import '../../data/model/redeem_reward_model.dart';
 import '../bloc/reward_bloc.dart';
 import '../bloc/reward_state.dart';
@@ -18,7 +19,7 @@ class AllReward extends StatefulWidget {
 }
 
 class _AllRewardState extends State<AllReward> {
-  final RewardBloc _rewardBloc = RewardBloc();
+  final RewardBloc _rewardBloc = sl<RewardBloc>();
   late List<RedeemRewardModel> listredeemreward;
 
   @override

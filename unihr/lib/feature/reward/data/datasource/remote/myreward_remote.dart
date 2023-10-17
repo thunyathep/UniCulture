@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 import 'package:http/http.dart' as http;
 import 'package:unihr/feature/reward/data/model/myreward_model.dart';
 import 'package:unihr/feature/reward/data/model/redeem_reward_model.dart';
@@ -18,7 +19,7 @@ abstract class MyReward_remote{
       );
 }
 
-class MyReward_remoteImpl {
+class MyReward_remoteImpl implements MyReward_remote {
   final http.Client httpClient;
 
   MyReward_remoteImpl(this.httpClient);
@@ -84,6 +85,35 @@ class MyReward_remoteImpl {
           .map((rewardJson) => RedeemRewardModel.fromJson(rewardJson))
           .toList();
       return redeemrewardlist;
+    } else {
+      throw ServerFailure();
+    }
+  }
+
+  @override
+  Future<void> redeemedReward(
+      List<CoinRedeem> coins,
+      int idEmployee,
+      int quantity,
+      ) async {
+    final url = Uri.parse(
+        "https://uniculture-371814.as.r.appspot.com/api/reddem-transaction");
+    final response = await httpClient.post(url,
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'x-access-token': '${await LoginStorage.readToken()}',
+      },
+      body: jsonEncode({
+        "coins" : coins,
+        "idEmployee" : idEmployee,
+        "quantity" : quantity,
+      }
+      ),
+    );
+    print(response.body);
+    if (response.statusCode == 200) {
+      log("Redeem Reward Success");
     } else {
       throw ServerFailure();
     }

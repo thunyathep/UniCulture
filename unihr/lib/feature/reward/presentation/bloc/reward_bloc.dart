@@ -6,13 +6,16 @@ import 'package:unihr/feature/reward/data/model/redeem_reward_model.dart';
 import 'package:unihr/feature/reward/presentation/bloc/reward_event.dart';
 import 'package:unihr/feature/reward/presentation/bloc/reward_state.dart';
 
+import '../../domain/usecase/redeemed_reward.dart';
+
 class RewardBloc extends Bloc<RewardEvent, RewardState>{
   List<MyRewardModel> listreward = [];
   List<RedeemRewardModel> listredeem = [];
   List<RedeemRewardModel> redeemstatus = [];
+  RedeemRewardUsecase redeemRewardUsecase;
   MyReward_remoteImpl myReward_remoteImpl = MyReward_remoteImpl(http.Client());
 
-  RewardBloc() : super(InitialReward()){
+  RewardBloc({required this.redeemRewardUsecase}) : super(InitialReward()){
 
     on<GetMyReward>((event, emit) async {
       emit(MyRewardLoadingState());
@@ -96,5 +99,18 @@ class RewardBloc extends Bloc<RewardEvent, RewardState>{
         emit(MyRewardError(e.toString()));
       }
     });
+
+    on<RedeemedReward>((event, emit) async {
+      emit(RedeemedRewardLoadingState());
+      var response = await redeemRewardUsecase(
+        event.coins,
+        event.idEmployee,
+        event.quantity,
+      );
+      response.fold(
+              (l) => emit(RedeemRewardError("Something wrong")),
+              (r) => emit(RedeemedRewardLoadedState()));
+    });
+
   }
 }

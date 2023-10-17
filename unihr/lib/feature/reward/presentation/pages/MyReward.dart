@@ -5,6 +5,7 @@ import 'package:unihr/feature/reward/presentation/bloc/reward_bloc.dart';
 import 'package:unihr/feature/reward/presentation/bloc/reward_event.dart';
 import 'package:unihr/feature/reward/presentation/bloc/reward_state.dart';
 
+import '../../../../injection_container.dart';
 import '../../data/model/myreward_model.dart';
 import '../widget/cardMyReward.dart';
 import '../widget/shimmer_myreward.dart';
@@ -17,7 +18,7 @@ class MyReward extends StatefulWidget {
 }
 
 class _MyRewardState extends State<MyReward> {
-  final RewardBloc _rewardBloc = RewardBloc();
+  final RewardBloc _rewardBloc = sl<RewardBloc>();
   late List<MyRewardModel> listmyreward;
 
   @override
