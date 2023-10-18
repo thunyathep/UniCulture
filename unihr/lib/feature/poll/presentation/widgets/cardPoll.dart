@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../pages/poll/DetailPoll.dart';
+import '../pages/DetailPoll.dart';
 
 class Card_Poll extends StatefulWidget {
   const Card_Poll({Key? key}) : super(key: key);

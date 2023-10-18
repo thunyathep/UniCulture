@@ -2,8 +2,11 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:gradient_borders/box_borders/gradient_box_border.dart';
+import 'package:unihr/feature/reward/presentation/bloc/reward_bloc.dart';
+import 'package:unihr/feature/reward/presentation/bloc/reward_event.dart';
 
 import '../../../../core/storage/secure_storage.dart';
+import '../../../../injection_container.dart';
 import '../../domain/entity/redeem_reward_entity.dart';
 import '../widget/coinType.dart';
 
@@ -41,6 +44,7 @@ class DetailReward extends StatefulWidget {
 }
 
 class _DetailRewardState extends State<DetailReward> {
+  RewardBloc _rewardBloc = sl<RewardBloc>();
   int numberofreward = 1;
   int selectedOptioni = -1;
   int selectedOptionIndex = -1;
@@ -57,6 +61,20 @@ class _DetailRewardState extends State<DetailReward> {
       // Handle the case where the string cannot be parsed as an integer.
       print("Error parsing string to int: $e");
     }
+  }
+
+  @override
+  void initState() {
+    getId();
+    super.initState();
+  }
+
+  bool _isDisposed = false;
+
+  @override
+  void dispose() {
+    super.dispose();
+    _isDisposed = true;
   }
 
   @override
@@ -746,6 +764,7 @@ class _DetailRewardState extends State<DetailReward> {
                             Center(
                               child: InkWell(
                                 onTap: () {
+                                  listcoinredeem = widget.items[0].coins!;
                                   showDialog(
                                       context: context,
                                       builder: (BuildContext context) {
@@ -874,6 +893,10 @@ class _DetailRewardState extends State<DetailReward> {
                                                 InkWell(
                                                   onTap: () {
                                                     Navigator.of(context).pop();
+                                                    _rewardBloc.add(RedeemedReward(
+                                                        coins: listcoinredeem,
+                                                        idEmployee: idEmployee,
+                                                        quantity: numberofreward));
                                                     showDialog(
                                                         context: context,
                                                         builder: (BuildContext

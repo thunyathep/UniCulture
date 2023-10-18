@@ -2,8 +2,9 @@ import 'package:drop_shadow_image/drop_shadow_image.dart';
 import 'package:flutter/material.dart';
 import 'package:gradient_borders/gradient_borders.dart';
 import 'dart:math' as math;
-import '../../widgets/poll/cardPoll.dart';
-import 'DetailPoll.dart';
+
+import '../widgets/cardPoll.dart';
+
 
 class PollPage extends StatefulWidget {
   const PollPage({Key? key}) : super(key: key);

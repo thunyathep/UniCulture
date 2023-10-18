@@ -97,7 +97,7 @@ class MyReward_remoteImpl implements MyReward_remote {
       int quantity,
       ) async {
     final url = Uri.parse(
-        "https://uniculture-371814.as.r.appspot.com/api/reddem-transaction");
+        "https://uniculture-371814.as.r.appspot.com/api/redeem-transaction");
     final response = await httpClient.post(url,
       headers: {
         'Content-Type': 'application/json',
@@ -105,9 +105,9 @@ class MyReward_remoteImpl implements MyReward_remote {
         'x-access-token': '${await LoginStorage.readToken()}',
       },
       body: jsonEncode({
-        "coins" : coins,
-        "idEmployee" : idEmployee,
-        "quantity" : quantity,
+        coins,
+        idEmployee,
+        quantity,
       }
       ),
     );
