@@ -7,7 +7,6 @@ import '../../../../core/error/failure.dart';
 
 class PollRepositoryImpl implements PollRepository{
   final Poll_remote poll_remote;
-
   PollRepositoryImpl(this.poll_remote);
 
   @override

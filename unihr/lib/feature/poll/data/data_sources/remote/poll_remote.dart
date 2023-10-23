@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 import 'package:http/http.dart' as http;
 import 'package:unihr/core/error/failure.dart';
 import 'package:unihr/feature/poll/data/models/poll_model.dart';
@@ -24,6 +25,7 @@ class Poll_remoteImpl implements Poll_remote {
           'x-access-token': '${await LoginStorage.readToken()}',
         }
     );
+    // print(response.body);
     if (response.statusCode == 200) {
       final List<dynamic> pollJsonList = json.decode(response.body);
       final List<Poll_Model> pollList = pollJsonList

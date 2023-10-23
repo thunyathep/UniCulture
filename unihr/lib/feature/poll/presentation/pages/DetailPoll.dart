@@ -1,8 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_polls/flutter_polls.dart';
 
+import '../../domain/entities/poll_entity.dart';
+
 class DetailPoll extends StatefulWidget {
-  const DetailPoll({Key? key}) : super(key: key);
+  final int idPoll;
+  final String poll;
+  final DateTime endDate;
+  final String status;
+  final List<QuestionPollList>? questionPollList;
+  final List<VoterList>? voterList;
+  const DetailPoll({Key? key,
+    required this.idPoll,
+    required this.poll,
+    required this.endDate,
+    required this.status,
+    required this.questionPollList,
+    required this.voterList,
+  }) : super(key: key);
 
   @override
   State<DetailPoll> createState() => _DetailPollState();
@@ -76,7 +91,7 @@ class _DetailPollState extends State<DetailPoll> {
                       ),
                       child: Center(
                         child: Text(
-                          "Status",
+                          widget.status,
                           style: TextStyle(
                             color: Color(0xff6ED33F),
                             fontSize: 14,
@@ -118,17 +133,14 @@ class _DetailPollState extends State<DetailPoll> {
                       top: MediaQuery.of(context).devicePixelRatio*10,
                     ),
                     child: Text(
-                      "Topic อะไรก็ได้",
+                      widget.poll,
                       style: TextStyle(
                         color: Colors.black,
                         fontWeight: FontWeight.bold,
-                        fontSize: 32,
+                        fontSize: 26,
                       ),
                     ),
                   ),
-
-
-
                   Align(
                     alignment: Alignment.bottomCenter,
                     child: Center(

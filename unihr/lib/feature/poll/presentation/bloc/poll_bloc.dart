@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:http/http.dart' as http;
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:unihr/feature/poll/data/data_sources/remote/poll_remote.dart';
@@ -15,8 +17,8 @@ class PollBloc extends Bloc<PollEvent, PollState>{
       try {
         final List<Poll_Model> listpoll =
         await poll_remoteImpl.getPoll();
-        final List<Poll_Model> listPoll = listpoll;
-        emit(PollLoadedState(listPoll));
+        // final List<Poll_Model> listPoll = listpoll;
+        emit(PollLoadedState(listpoll));
       } catch (e, stracktrace) {
         print("Exception occurred: $e stracktrace: $stracktrace");
         emit(PollError(e.toString()));

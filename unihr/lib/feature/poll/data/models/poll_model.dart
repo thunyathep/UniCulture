@@ -20,6 +20,11 @@ class Poll_Model extends Poll_Entity {
     required List<VoterList>? voterList,
   }):super(
     idPoll: idPoll,
+    poll: poll,
+    endDate: endDate,
+    status: status,
+    questionPollList: questionPollList,
+    voterList: voterList,
   );
 
   factory Poll_Model.fromJson(Map<String, dynamic> json) => Poll_Model(
@@ -34,7 +39,7 @@ class Poll_Model extends Poll_Entity {
   Map<String, dynamic> toJson() => {
     "idPoll": idPoll,
     "poll": poll,
-    "endDate": endDate!.toIso8601String(),
+    "endDate": endDate,
     "status": status,
     "questionList": List<dynamic>.from(questionPollList!.map((x) => x.toJson())),
     "voterList": List<dynamic>.from(voterList!.map((x) => x.toJson())),
