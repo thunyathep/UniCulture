@@ -28,6 +28,16 @@ class PollLoadedState extends PollState{
   List<Object?> get props => [listpoll];
 }
 
+class SendingPollState extends PollState{
+  @override
+  List<Object?> get props => [];
+}
+
+class SendedPollState extends PollState{
+  @override
+  List<Object?> get props => [];
+}
+
 class PollError extends PollState{
   final String error;
 

@@ -9,6 +9,7 @@ import 'package:unihr/feature/poll/presentation/bloc/poll_state.dart';
 import 'dart:math' as math;
 
 import '../../../../core/feature/profile/user/presentation/profile_provider.dart';
+import '../../../../injection_container.dart';
 import '../../../pocket/presentation/widget/show_coin.dart';
 import '../bloc/poll_event.dart';
 import '../widgets/cardPoll.dart';
@@ -21,7 +22,7 @@ class PollPage extends StatefulWidget {
 }
 
 class _PollPageState extends State<PollPage> {
-  final PollBloc _pollBloc = PollBloc();
+  final PollBloc _pollBloc = sl<PollBloc>();
   late ProfileProvider profileProvider;
   late List<Poll_Model> listpoll;
 

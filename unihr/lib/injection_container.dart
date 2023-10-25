@@ -11,6 +11,10 @@ import 'package:unihr/feature/heart/data/datasource/remote/heart_remote.dart';
 import 'package:unihr/feature/heart/data/repository/heart_repository_impl.dart';
 import 'package:unihr/feature/heart/domain/repository/heart_repository.dart';
 import 'package:unihr/feature/heart/presentation/bloc/heart_bloc.dart';
+import 'package:unihr/feature/poll/data/data_sources/remote/poll_remote.dart';
+import 'package:unihr/feature/poll/data/repositories/poll_repository_impl.dart';
+import 'package:unihr/feature/poll/domain/use_cases/answer_poll.dart';
+import 'package:unihr/feature/poll/presentation/bloc/poll_bloc.dart';
 import 'package:unihr/feature/reward/data/datasource/remote/myreward_remote.dart';
 import 'package:unihr/feature/reward/data/repository/myreward_repository_impl.dart';
 import 'package:unihr/feature/reward/domain/usecase/redeemed_reward.dart';
@@ -31,6 +35,7 @@ import 'feature/activity/domain/usecase/register_activitiy.dart';
 import 'feature/activity/domain/usecase/unregis_activity.dart';
 import 'feature/activity/presentation/bloc/activity_bloc.dart';
 import 'feature/heart/domain/usecase/send_heart_transfer.dart';
+import 'feature/poll/domain/repositories/poll_repository.dart';
 import 'feature/reward/domain/repository/myreward_repository.dart';
 
 
@@ -47,6 +52,7 @@ Future<void> init() async{
   sl.registerFactory(()=> FeedbackBloc(sendFeedbackUsecase: sl()));
   sl.registerFactory(()=> ThreeSixtyBloc(answerThreeSixtyUsecase: sl()));
   sl.registerFactory(()=> RewardBloc(redeemRewardUsecase: sl()));
+  sl.registerFactory(()=> PollBloc(answerPollUsecase: sl()));
 
 
 
@@ -58,6 +64,7 @@ Future<void> init() async{
   sl.registerLazySingleton(() => SendFeedbackUsecase(sl()));
   sl.registerLazySingleton(() => AnswerThreeSixtyUsecase(sl()));
   sl.registerLazySingleton(() => RedeemRewardUsecase(sl()));
+  sl.registerLazySingleton(() => AnswerPollUsecase(sl()));
   // sl.registerLazySingleton(() => GetProfile(repository: sl()));
 
 
@@ -76,6 +83,7 @@ Future<void> init() async{
   sl.registerLazySingleton<FeedBackRepositories>(() => FeedBackRepositoryImpl(sl()));
   sl.registerLazySingleton<ThreeSixtyRepository>(() => ThreeSixtyRepositoryImpl(sl()));
   sl.registerLazySingleton<MyRewardRepository>(() => MyRewardRepositoryImpl(sl()));
+  sl.registerLazySingleton<PollRepository>(() => PollRepositoryImpl(sl()));
 
   // * Data Source
   sl.registerLazySingleton<LoginApi>(() => LoginApiImpl(client: sl()));
@@ -84,6 +92,7 @@ Future<void> init() async{
   sl.registerLazySingleton<Feedback_remote>(() => Feedback_remoteImpl(sl()));
   sl.registerLazySingleton<ThreeSixty_remote>(() => ThreeSixty_remoteImpl(sl()));
   sl.registerLazySingleton<MyReward_remote>(() => MyReward_remoteImpl(sl()));
+  sl.registerLazySingleton<Poll_remote>(() => Poll_remoteImpl(sl()));
 
 
   sl.registerLazySingleton(() => http.Client());

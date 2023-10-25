@@ -18,4 +18,22 @@ class PollRepositoryImpl implements PollRepository{
       return Left(ServerFailure());
     }
   }
+
+  @override
+  Future<Either<Failures, void>> sendPoll(
+      int idEmployee,
+      int idPoll,
+      int idPollQuestion,
+      )async{
+    try{
+      final data = await poll_remote.sendPoll(
+        idEmployee,
+        idPoll,
+        idPollQuestion,
+      );
+      return Right(data);
+    } on SeverException {
+      return left(ServerFailure());
+    }
+  }
 }
