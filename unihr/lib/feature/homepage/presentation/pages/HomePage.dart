@@ -23,7 +23,6 @@ import 'package:unihr/feature/pocket/presentation/bloc/pocket_state.dart';
 import 'package:unihr/feature/reward/presentation/bloc/reward_bloc.dart';
 import 'package:unihr/feature/reward/presentation/bloc/reward_event.dart';
 import 'package:unihr/feature/unicalture/presentation/pages/bottomnav/BottomNavigate.dart';
-import 'package:unihr/feature/unicalture/presentation/pages/score/Score.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:unihr/feature/homepage/presentation/widget/cardActivity.dart';
 import 'package:unihr/feature/homepage/presentation/widget/cardReward.dart';
@@ -38,6 +37,7 @@ import '../../../pocket/data/model/pocket_model.dart';
 import '../../../poll/presentation/pages/Poll.dart';
 import '../../../reward/data/model/redeem_reward_model.dart';
 import '../../../reward/presentation/bloc/reward_state.dart';
+import '../../../score/presentation/pages/Score.dart';
 import '../../../threesixty/presentation/pages/EvaluateThreeSixty.dart';
 import '../../../question/presentation/pages/YearQuestionDetail.dart';
 import '../../../question/presentation/pages/morale_year.dart';
@@ -447,7 +447,7 @@ class _HomePageState extends State<HomePage> {
                                                 // listcoin![1].amount.toString()??"",
                                                 profileProvider.profileData
                                                     .wallet![1].amount
-                                                    .toString()??"-",
+                                                    .toString(),
                                                 style: TextStyle(
                                                   color: Colors.black,
                                                   fontSize: 32,
