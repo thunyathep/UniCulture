@@ -26,6 +26,7 @@ import 'package:unihr/feature/unicalture/presentation/pages/bottomnav/BottomNavi
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:unihr/feature/homepage/presentation/widget/cardActivity.dart';
 import 'package:unihr/feature/homepage/presentation/widget/cardReward.dart';
+import '../../../../core/error/token_expires.dart';
 import '../../../../core/feature/nothing/not_ready_page.dart';
 import '../../../../core/feature/profile/user/presentation/profile_provider.dart';
 import '../../../../injection_container.dart';
@@ -74,6 +75,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   void initState() {
+    TokenExpires.checkTokenExpires(context);
     AwesomeNotifications().isNotificationAllowed().then((isAllowed) {
       if (!isAllowed) {
         AwesomeNotifications().requestPermissionToSendNotifications();
@@ -87,7 +89,7 @@ class _HomePageState extends State<HomePage> {
     _rewardBloc.add(GetRedeemRewardHomePage());
     _heartYearBloc.add(GetHeartYear());
     profileProvider = ProfileProvider.of(context, listen: false);
-    listcoin = profileProvider.profileData.wallet??[];
+
     super.initState();
   }
 
@@ -107,6 +109,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     final profileProvider = Provider.of<ProfileProvider>(context);
+    listcoin = profileProvider.profileData.wallet??[];
     return ResponsiveApp(builder: (context) {
       return Scaffold(
         backgroundColor: Colors.white,
@@ -444,10 +447,9 @@ class _HomePageState extends State<HomePage> {
                                                     2,
                                               ),
                                               child: Text(
-                                                // listcoin![1].amount.toString()??"",
                                                 profileProvider.profileData
-                                                    .wallet![1].amount
-                                                    .toString(),
+                                                    .wallet?[1].amount
+                                                    .toString()??"-",
                                                 style: TextStyle(
                                                   color: Colors.black,
                                                   fontSize: 32,

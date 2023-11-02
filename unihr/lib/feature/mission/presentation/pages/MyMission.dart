@@ -285,15 +285,19 @@ class _MyMissionState extends State<MyMission> {
                                         MediaQuery.of(context).devicePixelRatio*2,
                                       ),
                                       child: Card_Mission(
-                                          missionBloc: _missionBloc,
-                                          image: listmission[index].image??"",
-                                          nameTask: listmission[index].nameTask??"",
-                                          detail: listmission[index].detail??"",
-                                          doDate: listmission[index].doDate??
-                                              DateTime.now().toString(),
-                                          status: listmission[index].status??"",
-                                          nameprinciple: listmission[index]
-                                              .nameprinciple??"",
+                                          idMission: listmission[index].idMission!,
+                                          missionDate: listmission[index].missionDate,
+                                          reward: listmission[index].reward,
+                                          missionTitle: listmission[index].missionTitle,
+                                          missionDetail: listmission[index].missionDetail,
+                                          detail: listmission[index].detail,
+                                          keyLearning: listmission[index].keyLearning,
+                                          file: listmission[index].file,
+                                          idEmployee: listmission[index].idEmployee,
+                                          createBy: listmission[index].createBy,
+                                          idMissionStatus: listmission[index].idMissionStatus,
+                                          rewardDate: listmission[index].rewardDate,
+                                          missionStatus: listmission[index].missionStatus
                                       ),
                                     );
                                   }

@@ -3,8 +3,13 @@ import 'package:flutter/material.dart';
 class CardScore extends StatelessWidget {
   final BuildContext context;
   final int number;
+  final String firstName;
+  final String lastName;
+  final String departmentShortName;
+  final int amount;
+  final int icontype;
 
-  const CardScore(this.context, this.number);
+  const CardScore(this.context, this.number, this.firstName, this.lastName, this.departmentShortName, this.amount, this.icontype);
 
   @override
   Widget build(BuildContext context) {
@@ -55,7 +60,7 @@ class CardScore extends StatelessWidget {
                       left: MediaQuery.of(context).devicePixelRatio * 3,
                     ),
                     child: CircleAvatar(
-                      backgroundImage: AssetImage('assets/pikachu.jpg'),
+                      backgroundImage: AssetImage('assets/profilepic.png'),
                       radius: 28,
                     ),
                   ),
@@ -69,14 +74,15 @@ class CardScore extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "ปิกาจู ตัวจิ๋ว",
+                          firstName + " " + lastName,
                           style: TextStyle(
                             color: Colors.black,
                             fontSize: 16,
                           ),
+                          overflow: TextOverflow.ellipsis,
                         ),
                         Text(
-                          "ลูกน้องซาโตชิ",
+                          departmentShortName,
                           style: TextStyle(
                             color: Color(0xff757575),
                             fontSize: 14,
@@ -87,29 +93,35 @@ class CardScore extends StatelessWidget {
                   ),
                   Container(
                     margin: EdgeInsets.only(
-                      top: MediaQuery.of(context).devicePixelRatio * 5,
-                      left: MediaQuery.of(context).devicePixelRatio * 3,
+                      top: MediaQuery.of(context).devicePixelRatio * 2,
+                      left: MediaQuery.of(context).devicePixelRatio * 6,
                     ),
-                    width: MediaQuery.of(context).size.width * 0.1,
-                    height: MediaQuery.of(context).size.height * 0.08,
-                    child: Stack(
-                      children: [
-                        Image.asset(
-                          "assets/heart.png",
-                        ),
-                        Padding(
-                          padding: EdgeInsets.only(
-                            top: MediaQuery.of(context).devicePixelRatio * 3,
-                            left: MediaQuery.of(context).devicePixelRatio * 3.5,
-                          ),
-                          child: Text(
-                            "23",
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold),
-                          ),
-                        ),
-                      ],
+                    // width: MediaQuery.of(context).size.width * 0.1,
+                    // height: MediaQuery.of(context).size.height * 0.08,
+                    child: icontype == 0 ? Image.asset(
+                      "assets/heart.png",
+                      width: MediaQuery.of(
+                          context)
+                          .size
+                          .width *
+                          0.08,
+                      height: MediaQuery.of(
+                          context)
+                          .size
+                          .height *
+                          0.06,
+                    ):Image.asset(
+                      "assets/coin2.png",
+                      width: MediaQuery.of(
+                          context)
+                          .size
+                          .width *
+                          0.08,
+                      height: MediaQuery.of(
+                          context)
+                          .size
+                          .height *
+                          0.06,
                     ),
                   ),
                 ],

@@ -1,49 +1,33 @@
 class MissionEntity {
-  int? idTasks;
-  String? image;
-  String? status;
-  String? doDate;
-  String? nameTask;
+  int? idMission;
+  DateTime? missionDate;
+  int? reward;
+  String? missionTitle;
+  String? missionDetail;
   String? detail;
-  String? nameprinciple;
-  Coin? coin;
-  Coin? specialCoin;
+  String? keyLearning;
+  String? file;
+  int? idEmployee;
+  int? createBy;
+  int? idMissionStatus;
+  DateTime? rewardDate;
+  String? missionStatus;
 
   MissionEntity({
-    this.idTasks,
-    this.image,
-    this.status,
-    this.doDate,
-    this.nameTask,
+    this.idMission,
+    this.missionDate,
+    this.reward,
+    this.missionTitle,
+    this.missionDetail,
     this.detail,
-    this.nameprinciple,
-    this.coin,
-    this.specialCoin,
+    this.keyLearning,
+    this.file,
+    this.idEmployee,
+    this.createBy,
+    this.idMissionStatus,
+    this.rewardDate,
+    this.missionStatus,
   });
   @override
   List<Object?> get prop => [];
-}
-
-class Coin {
-  final int? idCoinType;
-  final int? amount;
-  final String? coinType;
-
-  Coin({
-    this.idCoinType,
-    this.amount,
-    this.coinType,
-  });
-
-  factory Coin.fromJson(Map<String, dynamic> json) => Coin(
-    idCoinType: json["idCoinType"],
-    amount: json["amount"],
-    coinType: json["coinType"],
-  );
-
-  Map<String, dynamic> toJson() => {
-    "idCoinType": idCoinType,
-    "amount": amount,
-    "coinType": coinType,
-  };
 }

@@ -19,14 +19,14 @@ class Score_remoteImpl implements Score_remote {
   @override
   Future<List<ScoreModel>> getHeartleaderboard() async {
     final url = Uri.parse(
-        "https://uniculture-371814.as.r.appspot.com/api/heart-leaderboard");
+        "https://uniculture-371814.as.r.appspot.com/api/heart-leaderboard"
+    );
     final response = await httpClient.get(url,
         headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json',
           'x-access-token': '${await LoginStorage.readToken()}',        }
     );
-    print(response.body);
     if (response.statusCode == 200) {
       final List<dynamic> heartJsonList = json.decode(response.body);
       final List<ScoreModel> heartLeader = heartJsonList

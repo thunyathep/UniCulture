@@ -25,7 +25,7 @@ class _ScorePageState extends State<ScorePage> {
   late List<ScoreModel> listscore;
   late ProfileProvider profileProvider;
   int current = 0;
-  int rank = 3;
+  int rank = 4;
   List<String> items = [
     "หัวใจ",
     "เหรียญ",
@@ -34,7 +34,7 @@ class _ScorePageState extends State<ScorePage> {
   @override
   void initState() {
     profileProvider = ProfileProvider.of(context, listen: false);
-    _scoreBloc.add(GetScore(current));
+    _scoreBloc.add(GetScoreHeart());
     super.initState();
   }
 
@@ -235,7 +235,8 @@ class _ScorePageState extends State<ScorePage> {
                                 setState(() {
                                   current = index;
                                 });
-                                // _feedbackBloc.add(GetFeedback(current));
+                                current == 0 ? _scoreBloc.add(GetScoreHeart()):_scoreBloc.add(GetScoreCoin());
+                                // _scoreBloc.add(GetScore(current));
                               },
                               child: Container(
                                 width: MediaQuery.of(context).size.width * 0.4,
@@ -335,512 +336,569 @@ class _ScorePageState extends State<ScorePage> {
                       return Text("");
                     }else if(state is ScoreLoadedState){
                       listscore = state.listscore;
-                      return Column(
-                        children: [
-                          Center(
-                            child: Container(
-                              width: MediaQuery.of(context).size.width * 0.85,
-                              height: MediaQuery.of(context).size.height * 0.3,
-                              color: Colors.transparent,
-                              child: Stack(
-                                children: [
-                                  Row(
-                                    children: [
-                                      Container(
-                                        width: MediaQuery.of(context).size.width *
-                                            0.283,
-                                        height:
-                                        MediaQuery.of(context).size.height *
-                                            0.25,
-                                        color: Color(0xffFCB0C2),
-                                        child: Container(
-                                          width:
-                                          MediaQuery.of(context).size.width *
+                      if(listscore.isEmpty){
+                        return Text("");
+                      }else if(listscore.isNotEmpty){
+                        return Column(
+                          children: [
+                            Center(
+                              child: Container(
+                                width: MediaQuery.of(context).size.width * 0.85,
+                                height: MediaQuery.of(context).size.height * 0.3,
+                                color: Colors.transparent,
+                                child: Stack(
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Container(
+                                          width: MediaQuery.of(context).size.width *
                                               0.283,
                                           height:
                                           MediaQuery.of(context).size.height *
-                                              0.3,
-                                          decoration: BoxDecoration(
-                                            gradient: LinearGradient(
-                                              begin: Alignment.bottomCenter,
-                                              end: Alignment.topCenter,
-                                              colors: [
-                                                Colors.white.withOpacity(
-                                                    0.7), // Start color with opacity
-                                                Colors.white.withOpacity(
-                                                    1), // End color with opacity
+                                              0.25,
+                                          color: Color(0xffFCB0C2),
+                                          child: Container(
+                                            width:
+                                            MediaQuery.of(context).size.width *
+                                                0.283,
+                                            height:
+                                            MediaQuery.of(context).size.height *
+                                                0.3,
+                                            decoration: BoxDecoration(
+                                              gradient: LinearGradient(
+                                                begin: Alignment.bottomCenter,
+                                                end: Alignment.topCenter,
+                                                colors: [
+                                                  Colors.white.withOpacity(
+                                                      0.7), // Start color with opacity
+                                                  Colors.white.withOpacity(
+                                                      1), // End color with opacity
+                                                ],
+                                              ),
+                                            ),
+                                            child: Column(
+                                              children: [
+                                                Stack(
+                                                  children: [
+                                                    Padding(
+                                                      padding: EdgeInsets.only(
+                                                        left: MediaQuery.of(context)
+                                                            .devicePixelRatio *
+                                                            5,
+                                                        top: MediaQuery.of(context)
+                                                            .devicePixelRatio *
+                                                            10,
+                                                      ),
+                                                      child: Container(
+                                                        width:
+                                                        MediaQuery.of(context)
+                                                            .size
+                                                            .width *
+                                                            0.2,
+                                                        height:
+                                                        MediaQuery.of(context)
+                                                            .size
+                                                            .height *
+                                                            0.1,
+                                                        child: CircleAvatar(
+                                                          backgroundImage: AssetImage(
+                                                              'assets/profilepic.png'),
+                                                          radius: 30,
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    Padding(
+                                                      padding: EdgeInsets.only(
+                                                        top: MediaQuery.of(context)
+                                                            .devicePixelRatio *
+                                                            10,
+                                                      ),
+                                                      child: Align(
+                                                        alignment:
+                                                        Alignment(0.7, 1),
+                                                        child: Stack(
+                                                          children: [
+                                                            current == 0 ? Image.asset(
+                                                              "assets/heart.png",
+                                                              width: MediaQuery.of(
+                                                                  context)
+                                                                  .size
+                                                                  .width *
+                                                                  0.08,
+                                                              height: MediaQuery.of(
+                                                                  context)
+                                                                  .size
+                                                                  .height *
+                                                                  0.16,
+                                                            ):Image.asset(
+                                                              "assets/coin2.png",
+                                                              width: MediaQuery.of(
+                                                                  context)
+                                                                  .size
+                                                                  .width *
+                                                                  0.08,
+                                                              height: MediaQuery.of(
+                                                                  context)
+                                                                  .size
+                                                                  .height *
+                                                                  0.16,
+                                                            ),
+                                                            // Padding(
+                                                            //   padding:
+                                                            //   EdgeInsets.only(
+                                                            //     left: MediaQuery.of(
+                                                            //         context)
+                                                            //         .devicePixelRatio *
+                                                            //         2.5,
+                                                            //     top: MediaQuery.of(
+                                                            //         context)
+                                                            //         .devicePixelRatio *
+                                                            //         17,
+                                                            //   ),
+                                                            //   child: Text(
+                                                            //     listscore[1].amount.toString(),
+                                                            //     style: TextStyle(
+                                                            //       fontWeight:
+                                                            //       FontWeight
+                                                            //           .bold,
+                                                            //       color:
+                                                            //       Colors.white,
+                                                            //       fontSize: 14,
+                                                            //     ),
+                                                            //   ),
+                                                            // ),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    Padding(
+                                                      padding: EdgeInsets.only(
+                                                        top: MediaQuery.of(context)
+                                                            .devicePixelRatio *
+                                                            37,
+                                                        left: MediaQuery.of(context)
+                                                            .devicePixelRatio *
+                                                            3,
+                                                      ),
+                                                      child: Container(
+                                                        height: MediaQuery.of(context).size.height * 0.02,
+                                                        width: MediaQuery.of(context).size.width * 0.25,
+                                                        child: Text(
+                                                          listscore[1].firstName! + " " + listscore[1].lastName!,
+                                                          style: TextStyle(
+                                                            fontWeight:
+                                                            FontWeight.bold,
+                                                            fontSize: 11,
+                                                          ),
+                                                          overflow: TextOverflow.ellipsis,
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    Padding(
+                                                      padding: EdgeInsets.only(
+                                                        top: MediaQuery.of(context)
+                                                            .devicePixelRatio *
+                                                            43,
+                                                        left: MediaQuery.of(context)
+                                                            .devicePixelRatio *
+                                                            10,
+                                                      ),
+                                                      child: Text(
+                                                        listscore[1].departmentShortName!,
+                                                        style: TextStyle(
+                                                          fontSize: 11,
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
                                               ],
                                             ),
                                           ),
-                                          child: Column(
-                                            children: [
-                                              Stack(
-                                                children: [
-                                                  Padding(
-                                                    padding: EdgeInsets.only(
-                                                      left: MediaQuery.of(context)
-                                                          .devicePixelRatio *
-                                                          5,
-                                                      top: MediaQuery.of(context)
-                                                          .devicePixelRatio *
-                                                          10,
-                                                    ),
-                                                    child: Container(
-                                                      width:
-                                                      MediaQuery.of(context)
-                                                          .size
-                                                          .width *
-                                                          0.2,
-                                                      height:
-                                                      MediaQuery.of(context)
-                                                          .size
-                                                          .height *
-                                                          0.1,
-                                                      child: CircleAvatar(
-                                                        backgroundImage: AssetImage(
-                                                            'assets/profilepic.png'),
-                                                        radius: 30,
-                                                      ),
-                                                    ),
-                                                  ),
-                                                  Padding(
-                                                    padding: EdgeInsets.only(
-                                                      top: MediaQuery.of(context)
-                                                          .devicePixelRatio *
-                                                          10,
-                                                    ),
-                                                    child: Align(
-                                                      alignment:
-                                                      Alignment(0.7, 1),
-                                                      child: Stack(
-                                                        children: [
-                                                          current == 0 ? Image.asset(
-                                                            "assets/heart.png",
-                                                            width: MediaQuery.of(
-                                                                context)
-                                                                .size
-                                                                .width *
-                                                                0.08,
-                                                            height: MediaQuery.of(
-                                                                context)
-                                                                .size
-                                                                .height *
-                                                                0.16,
-                                                          ):Image.asset(
-                                                            "assets/coin2.png",
-                                                            width: MediaQuery.of(
-                                                                context)
-                                                                .size
-                                                                .width *
-                                                                0.08,
-                                                            height: MediaQuery.of(
-                                                                context)
-                                                                .size
-                                                                .height *
-                                                                0.16,
-                                                          ),
-                                                          Padding(
-                                                            padding:
-                                                            EdgeInsets.only(
-                                                              left: MediaQuery.of(
-                                                                  context)
-                                                                  .devicePixelRatio *
-                                                                  2.5,
-                                                              top: MediaQuery.of(
-                                                                  context)
-                                                                  .devicePixelRatio *
-                                                                  17,
-                                                            ),
-                                                            child: Text(
-                                                              listscore[1].amount.toString(),
-                                                              style: TextStyle(
-                                                                fontWeight:
-                                                                FontWeight
-                                                                    .bold,
-                                                                color:
-                                                                Colors.white,
-                                                                fontSize: 14,
-                                                              ),
-                                                            ),
-                                                          ),
-                                                        ],
-                                                      ),
-                                                    ),
-                                                  ),
-                                                  Padding(
-                                                    padding: EdgeInsets.only(
-                                                      top: MediaQuery.of(context)
-                                                          .devicePixelRatio *
-                                                          37,
-                                                      left: MediaQuery.of(context)
-                                                          .devicePixelRatio *
-                                                          3,
-                                                    ),
-                                                    child: Text(
-                                                      listscore[1].firstName! + " " + listscore[1].lastName!,
-                                                      style: TextStyle(
-                                                        fontWeight:
-                                                        FontWeight.bold,
-                                                        fontSize: 11,
-                                                      ),
-                                                    ),
-                                                  ),
-                                                  Padding(
-                                                    padding: EdgeInsets.only(
-                                                      top: MediaQuery.of(context)
-                                                          .devicePixelRatio *
-                                                          42,
-                                                      left: MediaQuery.of(context)
-                                                          .devicePixelRatio *
-                                                          10,
-                                                    ),
-                                                    child: Text(
-                                                      listscore[1].departmentShortName!,
-                                                      style: TextStyle(
-                                                        fontSize: 11,
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ],
-                                          ),
                                         ),
-                                      ),
-                                      Container(
-                                        width: MediaQuery.of(context).size.width *
-                                            0.283,
-                                        height:
-                                        MediaQuery.of(context).size.height *
-                                            0.25,
-                                        color: Color(0xffFCB0C2),
-                                        child: Container(
-                                          width:
-                                          MediaQuery.of(context).size.width *
+                                        Container(
+                                          width: MediaQuery.of(context).size.width *
                                               0.283,
                                           height:
                                           MediaQuery.of(context).size.height *
-                                              0.3,
-                                          decoration: BoxDecoration(
-                                            gradient: LinearGradient(
-                                              begin: Alignment.bottomCenter,
-                                              end: Alignment.topCenter,
-                                              colors: [
-                                                Colors.white.withOpacity(
-                                                    0.2), // Start color with opacity
-                                                Colors.white.withOpacity(
-                                                    1), // End color with opacity
+                                              0.25,
+                                          color: Color(0xffFCB0C2),
+                                          child: Container(
+                                            width:
+                                            MediaQuery.of(context).size.width *
+                                                0.283,
+                                            height:
+                                            MediaQuery.of(context).size.height *
+                                                0.3,
+                                            decoration: BoxDecoration(
+                                              gradient: LinearGradient(
+                                                begin: Alignment.bottomCenter,
+                                                end: Alignment.topCenter,
+                                                colors: [
+                                                  Colors.white.withOpacity(
+                                                      0.2), // Start color with opacity
+                                                  Colors.white.withOpacity(
+                                                      1), // End color with opacity
+                                                ],
+                                              ),
+                                            ),
+                                            child: Column(
+                                              children: [
+                                                Stack(
+                                                  children: [
+                                                    Padding(
+                                                      padding: EdgeInsets.only(
+                                                        left: MediaQuery.of(context)
+                                                            .devicePixelRatio *
+                                                            5,
+                                                      ),
+                                                      child: Container(
+                                                        width:
+                                                        MediaQuery.of(context)
+                                                            .size
+                                                            .width *
+                                                            0.2,
+                                                        height:
+                                                        MediaQuery.of(context)
+                                                            .size
+                                                            .height *
+                                                            0.1,
+                                                        child: CircleAvatar(
+                                                          backgroundImage: AssetImage(
+                                                              'assets/profilepic.png'),
+                                                          radius: 30,
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    Padding(
+                                                      padding: EdgeInsets.only(
+                                                        top: MediaQuery.of(context)
+                                                            .devicePixelRatio *
+                                                            1,
+                                                      ),
+                                                      child: Align(
+                                                        alignment:
+                                                        Alignment(0.7, 1),
+                                                        child: Stack(
+                                                          children: [
+                                                            current == 0 ? Image.asset(
+                                                              "assets/heart.png",
+                                                              width: MediaQuery.of(
+                                                                  context)
+                                                                  .size
+                                                                  .width *
+                                                                  0.08,
+                                                              height: MediaQuery.of(
+                                                                  context)
+                                                                  .size
+                                                                  .height *
+                                                                  0.16,
+                                                            ):Image.asset(
+                                                              "assets/coin2.png",
+                                                              width: MediaQuery.of(
+                                                                  context)
+                                                                  .size
+                                                                  .width *
+                                                                  0.08,
+                                                              height: MediaQuery.of(
+                                                                  context)
+                                                                  .size
+                                                                  .height *
+                                                                  0.16,
+                                                            ),
+                                                            // Padding(
+                                                            //   padding:
+                                                            //   EdgeInsets.only(
+                                                            //     left: MediaQuery.of(
+                                                            //         context)
+                                                            //         .devicePixelRatio *
+                                                            //         2.5,
+                                                            //     top: MediaQuery.of(
+                                                            //         context)
+                                                            //         .devicePixelRatio *
+                                                            //         17,
+                                                            //   ),
+                                                            //   child: Text(
+                                                            //     "30",
+                                                            //     style: TextStyle(
+                                                            //       fontWeight:
+                                                            //       FontWeight
+                                                            //           .bold,
+                                                            //       color:
+                                                            //       Colors.white,
+                                                            //       fontSize: 14,
+                                                            //     ),
+                                                            //   ),
+                                                            // ),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    Padding(
+                                                      padding: EdgeInsets.only(
+                                                        top: MediaQuery.of(context)
+                                                            .devicePixelRatio *
+                                                            27,
+                                                        left: MediaQuery.of(context)
+                                                            .devicePixelRatio *
+                                                            3,
+                                                      ),
+                                                      child: Container(
+                                                        height: MediaQuery.of(context).size.height * 0.02,
+                                                        width: MediaQuery.of(context).size.width * 0.25,
+                                                        child: Text(
+                                                          listscore[0].firstName! + " " + listscore[0].lastName!,
+                                                          style: TextStyle(
+                                                            fontWeight:
+                                                            FontWeight.bold,
+                                                            fontSize: 11,
+                                                          ),
+                                                          overflow: TextOverflow.ellipsis,
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    Padding(
+                                                      padding: EdgeInsets.only(
+                                                        top: MediaQuery.of(context)
+                                                            .devicePixelRatio *
+                                                            32,
+                                                        left: MediaQuery.of(context)
+                                                            .devicePixelRatio *
+                                                            15,
+                                                      ),
+                                                      child: Text(
+                                                        listscore[0].departmentShortName!,
+                                                        style: TextStyle(
+                                                          fontSize: 11,
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
                                               ],
                                             ),
                                           ),
-                                          child: Column(
-                                            children: [
-                                              Stack(
-                                                children: [
-                                                  Padding(
-                                                    padding: EdgeInsets.only(
-                                                      left: MediaQuery.of(context)
-                                                          .devicePixelRatio *
-                                                          5,
-                                                    ),
-                                                    child: Container(
-                                                      width:
-                                                      MediaQuery.of(context)
-                                                          .size
-                                                          .width *
-                                                          0.2,
-                                                      height:
-                                                      MediaQuery.of(context)
-                                                          .size
-                                                          .height *
-                                                          0.1,
-                                                      child: CircleAvatar(
-                                                        backgroundImage: AssetImage(
-                                                            'assets/pikachu.jpg'),
-                                                        radius: 30,
-                                                      ),
-                                                    ),
-                                                  ),
-                                                  Padding(
-                                                    padding: EdgeInsets.only(
-                                                      top: MediaQuery.of(context)
-                                                          .devicePixelRatio *
-                                                          1,
-                                                    ),
-                                                    child: Align(
-                                                      alignment:
-                                                      Alignment(0.7, 1),
-                                                      child: Stack(
-                                                        children: [
-                                                          Image.asset(
-                                                            "assets/heart.png",
-                                                            width: MediaQuery.of(
-                                                                context)
-                                                                .size
-                                                                .width *
-                                                                0.08,
-                                                            height: MediaQuery.of(
-                                                                context)
-                                                                .size
-                                                                .height *
-                                                                0.16,
-                                                          ),
-                                                          Padding(
-                                                            padding:
-                                                            EdgeInsets.only(
-                                                              left: MediaQuery.of(
-                                                                  context)
-                                                                  .devicePixelRatio *
-                                                                  2.5,
-                                                              top: MediaQuery.of(
-                                                                  context)
-                                                                  .devicePixelRatio *
-                                                                  17,
-                                                            ),
-                                                            child: Text(
-                                                              "30",
-                                                              style: TextStyle(
-                                                                fontWeight:
-                                                                FontWeight
-                                                                    .bold,
-                                                                color:
-                                                                Colors.white,
-                                                                fontSize: 14,
-                                                              ),
-                                                            ),
-                                                          ),
-                                                        ],
-                                                      ),
-                                                    ),
-                                                  ),
-                                                  Padding(
-                                                    padding: EdgeInsets.only(
-                                                      top: MediaQuery.of(context)
-                                                          .devicePixelRatio *
-                                                          27,
-                                                      left: MediaQuery.of(context)
-                                                          .devicePixelRatio *
-                                                          3,
-                                                    ),
-                                                    child: Text(
-                                                      "นายสัญจร นอนดึก",
-                                                      style: TextStyle(
-                                                        fontWeight:
-                                                        FontWeight.bold,
-                                                        fontSize: 11,
-                                                      ),
-                                                    ),
-                                                  ),
-                                                  Padding(
-                                                    padding: EdgeInsets.only(
-                                                      top: MediaQuery.of(context)
-                                                          .devicePixelRatio *
-                                                          32,
-                                                      left: MediaQuery.of(context)
-                                                          .devicePixelRatio *
-                                                          10,
-                                                    ),
-                                                    child: Text(
-                                                      "Logistc",
-                                                      style: TextStyle(
-                                                        fontSize: 11,
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ],
-                                          ),
                                         ),
-                                      ),
-                                      Container(
-                                        width: MediaQuery.of(context).size.width *
-                                            0.283,
-                                        height:
-                                        MediaQuery.of(context).size.height *
-                                            0.25,
-                                        color: Color(0xffFCB0C2),
-                                        child: Container(
-                                          width:
-                                          MediaQuery.of(context).size.width *
+                                        Container(
+                                          width: MediaQuery.of(context).size.width *
                                               0.283,
                                           height:
                                           MediaQuery.of(context).size.height *
-                                              0.3,
-                                          decoration: BoxDecoration(
-                                            gradient: LinearGradient(
-                                              begin: Alignment.bottomCenter,
-                                              end: Alignment.topCenter,
-                                              colors: [
-                                                Colors.white.withOpacity(
-                                                    0.7), // Start color with opacity
-                                                Colors.white.withOpacity(
-                                                    1), // End color with opacity
+                                              0.25,
+                                          color: Color(0xffFCB0C2),
+                                          child: Container(
+                                            width:
+                                            MediaQuery.of(context).size.width *
+                                                0.283,
+                                            height:
+                                            MediaQuery.of(context).size.height *
+                                                0.3,
+                                            decoration: BoxDecoration(
+                                              gradient: LinearGradient(
+                                                begin: Alignment.bottomCenter,
+                                                end: Alignment.topCenter,
+                                                colors: [
+                                                  Colors.white.withOpacity(
+                                                      0.7), // Start color with opacity
+                                                  Colors.white.withOpacity(
+                                                      1), // End color with opacity
+                                                ],
+                                              ),
+                                            ),
+                                            child: Column(
+                                              children: [
+                                                Stack(
+                                                  children: [
+                                                    Padding(
+                                                      padding: EdgeInsets.only(
+                                                        left: MediaQuery.of(context)
+                                                            .devicePixelRatio *
+                                                            5,
+                                                        top: MediaQuery.of(context)
+                                                            .devicePixelRatio *
+                                                            10,
+                                                      ),
+                                                      child: Container(
+                                                        width:
+                                                        MediaQuery.of(context)
+                                                            .size
+                                                            .width *
+                                                            0.2,
+                                                        height:
+                                                        MediaQuery.of(context)
+                                                            .size
+                                                            .height *
+                                                            0.1,
+                                                        child: CircleAvatar(
+                                                          backgroundImage: AssetImage(
+                                                              'assets/profilepic.png'),
+                                                          radius: 30,
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    Padding(
+                                                      padding: EdgeInsets.only(
+                                                        top: MediaQuery.of(context)
+                                                            .devicePixelRatio *
+                                                            10,
+                                                      ),
+                                                      child: Align(
+                                                        alignment:
+                                                        Alignment(0.7, 1),
+                                                        child: Stack(
+                                                          children: [
+                                                            current == 0 ? Image.asset(
+                                                              "assets/heart.png",
+                                                              width: MediaQuery.of(
+                                                                  context)
+                                                                  .size
+                                                                  .width *
+                                                                  0.08,
+                                                              height: MediaQuery.of(
+                                                                  context)
+                                                                  .size
+                                                                  .height *
+                                                                  0.16,
+                                                            ):Image.asset(
+                                                              "assets/coin2.png",
+                                                              width: MediaQuery.of(
+                                                                  context)
+                                                                  .size
+                                                                  .width *
+                                                                  0.08,
+                                                              height: MediaQuery.of(
+                                                                  context)
+                                                                  .size
+                                                                  .height *
+                                                                  0.16,
+                                                            ),
+                                                            // Padding(
+                                                            //   padding:
+                                                            //   EdgeInsets.only(
+                                                            //     left: MediaQuery.of(
+                                                            //         context)
+                                                            //         .devicePixelRatio *
+                                                            //         2.5,
+                                                            //     top: MediaQuery.of(
+                                                            //         context)
+                                                            //         .devicePixelRatio *
+                                                            //         17,
+                                                            //   ),
+                                                            //   child: Text(
+                                                            //     "30",
+                                                            //     style: TextStyle(
+                                                            //       fontWeight:
+                                                            //       FontWeight
+                                                            //           .bold,
+                                                            //       color:
+                                                            //       Colors.white,
+                                                            //       fontSize: 14,
+                                                            //     ),
+                                                            //   ),
+                                                            // ),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    Padding(
+                                                      padding: EdgeInsets.only(
+                                                        top: MediaQuery.of(context)
+                                                            .devicePixelRatio *
+                                                            37,
+                                                        left: MediaQuery.of(context)
+                                                            .devicePixelRatio *
+                                                            3,
+                                                      ),
+                                                      child: Container(
+                                                        height: MediaQuery.of(context).size.height * 0.02,
+                                                        width: MediaQuery.of(context).size.width * 0.25,
+                                                        child: Text(
+                                                          listscore[2].firstName! + " " + listscore[2].lastName!,
+                                                          style: TextStyle(
+                                                            fontWeight:
+                                                            FontWeight.bold,
+                                                            fontSize: 11,
+                                                          ),
+                                                          overflow: TextOverflow.ellipsis,
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    Padding(
+                                                      padding: EdgeInsets.only(
+                                                        top: MediaQuery.of(context)
+                                                            .devicePixelRatio *
+                                                            42,
+                                                        left: MediaQuery.of(context)
+                                                            .devicePixelRatio *
+                                                            10,
+                                                      ),
+                                                      child: Text(
+                                                        listscore[2].departmentShortName!,
+                                                        style: TextStyle(
+                                                          fontSize: 11,
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
                                               ],
                                             ),
                                           ),
-                                          child: Column(
-                                            children: [
-                                              Stack(
-                                                children: [
-                                                  Padding(
-                                                    padding: EdgeInsets.only(
-                                                      left: MediaQuery.of(context)
-                                                          .devicePixelRatio *
-                                                          5,
-                                                      top: MediaQuery.of(context)
-                                                          .devicePixelRatio *
-                                                          10,
-                                                    ),
-                                                    child: Container(
-                                                      width:
-                                                      MediaQuery.of(context)
-                                                          .size
-                                                          .width *
-                                                          0.2,
-                                                      height:
-                                                      MediaQuery.of(context)
-                                                          .size
-                                                          .height *
-                                                          0.1,
-                                                      child: CircleAvatar(
-                                                        backgroundImage: AssetImage(
-                                                            'assets/pikachu.jpg'),
-                                                        radius: 30,
-                                                      ),
-                                                    ),
-                                                  ),
-                                                  Padding(
-                                                    padding: EdgeInsets.only(
-                                                      top: MediaQuery.of(context)
-                                                          .devicePixelRatio *
-                                                          10,
-                                                    ),
-                                                    child: Align(
-                                                      alignment:
-                                                      Alignment(0.7, 1),
-                                                      child: Stack(
-                                                        children: [
-                                                          Image.asset(
-                                                            "assets/heart.png",
-                                                            width: MediaQuery.of(
-                                                                context)
-                                                                .size
-                                                                .width *
-                                                                0.08,
-                                                            height: MediaQuery.of(
-                                                                context)
-                                                                .size
-                                                                .height *
-                                                                0.16,
-                                                          ),
-                                                          Padding(
-                                                            padding:
-                                                            EdgeInsets.only(
-                                                              left: MediaQuery.of(
-                                                                  context)
-                                                                  .devicePixelRatio *
-                                                                  2.5,
-                                                              top: MediaQuery.of(
-                                                                  context)
-                                                                  .devicePixelRatio *
-                                                                  17,
-                                                            ),
-                                                            child: Text(
-                                                              "30",
-                                                              style: TextStyle(
-                                                                fontWeight:
-                                                                FontWeight
-                                                                    .bold,
-                                                                color:
-                                                                Colors.white,
-                                                                fontSize: 14,
-                                                              ),
-                                                            ),
-                                                          ),
-                                                        ],
-                                                      ),
-                                                    ),
-                                                  ),
-                                                  Padding(
-                                                    padding: EdgeInsets.only(
-                                                      top: MediaQuery.of(context)
-                                                          .devicePixelRatio *
-                                                          37,
-                                                      left: MediaQuery.of(context)
-                                                          .devicePixelRatio *
-                                                          3,
-                                                    ),
-                                                    child: Text(
-                                                      "นายสัญจร นอนดึก",
-                                                      style: TextStyle(
-                                                        fontWeight:
-                                                        FontWeight.bold,
-                                                        fontSize: 11,
-                                                      ),
-                                                    ),
-                                                  ),
-                                                  Padding(
-                                                    padding: EdgeInsets.only(
-                                                      top: MediaQuery.of(context)
-                                                          .devicePixelRatio *
-                                                          42,
-                                                      left: MediaQuery.of(context)
-                                                          .devicePixelRatio *
-                                                          10,
-                                                    ),
-                                                    child: Text(
-                                                      "Logistc",
-                                                      style: TextStyle(
-                                                        fontSize: 11,
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ],
+                                        ),
+                                      ],
+                                    ),
+                                    Column(
+                                      mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        SizedBox(
+                                          height:
+                                          MediaQuery.of(context).size.height *
+                                              0.1,
+                                        ),
+                                        Container(
+                                          // margin: EdgeInsets.only(
+                                          //   top: MediaQuery.of(context).devicePixelRatio*40,
+                                          // ),
+                                          width: MediaQuery.of(context).size.width *
+                                              0.85,
+                                          child: Image.asset(
+                                            "assets/podium.png",
+                                            fit: BoxFit.cover,
                                           ),
                                         ),
-                                      ),
-                                    ],
-                                  ),
-                                  Column(
-                                    mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      SizedBox(
-                                        height:
-                                        MediaQuery.of(context).size.height *
-                                            0.1,
-                                      ),
-                                      Container(
-                                        // margin: EdgeInsets.only(
-                                        //   top: MediaQuery.of(context).devicePixelRatio*40,
-                                        // ),
-                                        width: MediaQuery.of(context).size.width *
-                                            0.85,
-                                        child: Image.asset(
-                                          "assets/podium.png",
-                                          fit: BoxFit.cover,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ],
+                                      ],
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
-                          ),
-                          ListView.builder(
-                            itemCount: 7,
-                            shrinkWrap: true,
-                            itemBuilder: (BuildContext context, int index) {
-                              index = rank;
-                              rank++;
-                              return CardScore(context, index + 1);
-                            },
-                          ),
-                        ],
-                      );
+                            Stack(
+                              children: [
+                                ListView.builder(
+                                  itemCount: 7,
+                                  shrinkWrap: true,
+                                  itemBuilder: (BuildContext context, int index) {
+                                    int startindex = index + rank;
+                                    return CardScore(context, startindex, listscore[startindex].firstName!,
+                                        listscore[startindex].lastName!,listscore[startindex].departmentShortName!,
+                                        listscore[startindex].amount!,current);
+                                  },
+                                ),
+                                Center(
+                                  child: Container(
+                                    height: MediaQuery.of(context).size.height * 0.7,
+                                    width: MediaQuery.of(context).size.width * 0.85,
+                                    color: Colors.transparent,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        );
+                      }else{
+                        return Text("Something Wrong");
+                      }
                     }else{
                       return Text(state.props.toString());
                     }
@@ -850,7 +908,10 @@ class _ScorePageState extends State<ScorePage> {
                   child: InkWell(
                     onTap: () {
                       Navigator.of(context).push(
-                          MaterialPageRoute(builder: (context) => AllScore()));
+                          MaterialPageRoute(builder: (context) => AllScore(
+                            icontype: current,
+                            listscore: listscore,
+                          )));
                     },
                     child: Container(
                       margin: EdgeInsets.only(

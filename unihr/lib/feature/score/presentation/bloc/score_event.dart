@@ -4,9 +4,13 @@ abstract class ScoreEvent extends Equatable{
   const ScoreEvent();
 }
 
-class GetScore extends ScoreEvent{
-  int status;
-  GetScore(this.status);
+
+class GetScoreHeart extends ScoreEvent{
+  @override
+  List<Object> get props => [];
+}
+
+class GetScoreCoin extends ScoreEvent{
   @override
   List<Object> get props => [];
 }

@@ -5,21 +5,33 @@ import 'package:unihr/feature/mission/presentation/bloc/mission_bloc.dart';
 import '../pages/DetailMission.dart';
 
 class Card_Mission extends StatefulWidget {
-  final MissionBloc missionBloc;
-  final String image;
-  final String nameTask;
-  final String detail;
-  final String status;
-  final String doDate;
-  final String nameprinciple;
+  final int? idMission;
+  final DateTime? missionDate;
+  final int? reward;
+  final String? missionTitle;
+  final String? missionDetail;
+  final String? detail;
+  final String? keyLearning;
+  final String? file;
+  final int? idEmployee;
+  final int? createBy;
+  final int? idMissionStatus;
+  final DateTime? rewardDate;
+  final String? missionStatus;
   const Card_Mission({Key? key,
-    required this.missionBloc,
-    required this.image,
-    required this.nameTask,
+    required this.idMission,
+    required this.missionDate,
+    required this.reward,
+    required this.missionTitle,
+    required this.missionDetail,
     required this.detail,
-    required this.doDate,
-    required this.status,
-    required this.nameprinciple,
+    required this.keyLearning,
+    required this.file,
+    required this.idEmployee,
+    required this.createBy,
+    required this.idMissionStatus,
+    required this.rewardDate,
+    required this.missionStatus,
   }) : super(key: key);
 
   @override
@@ -27,23 +39,21 @@ class Card_Mission extends StatefulWidget {
 }
 
 class _Card_MissionState extends State<Card_Mission> {
-  late DateTime doDateTime;
   @override
   Widget build(BuildContext context) {
-    doDateTime = DateTime.parse(widget.doDate);
     return InkWell(
       onTap: (){
-        Navigator.of(context).push(
-          MaterialPageRoute(builder: (context) =>DetailMission(
-              missionBloc: widget.missionBloc,
-              image: widget.image,
-              nameTask: widget.nameTask,
-              status: widget.status,
-              detail: widget.detail,
-              doDate: widget.doDate,
-              nameprinciple: widget.nameprinciple,
-          )),
-        );
+        // Navigator.of(context).push(
+        //   MaterialPageRoute(builder: (context) =>DetailMission(
+        //       missionBloc: widget.missionBloc,
+        //       image: widget.image,
+        //       nameTask: widget.nameTask,
+        //       status: widget.status,
+        //       detail: widget.detail,
+        //       doDate: widget.doDate,
+        //       nameprinciple: widget.nameprinciple,
+        //   )),
+        // );
       },
       child: Container(
         width: MediaQuery.of(context).size.width*0.9,
@@ -76,7 +86,7 @@ class _Card_MissionState extends State<Card_Mission> {
                       left: MediaQuery.of(context).devicePixelRatio*10,
                     ),
                     child: Text(
-                      widget.nameTask,
+                      widget.missionTitle!,
                       style: TextStyle(
                           fontSize: 24,
                           fontWeight: FontWeight.bold
@@ -93,7 +103,7 @@ class _Card_MissionState extends State<Card_Mission> {
               ),
               child: Text(
                 "วันที่ได้รับมอบหมาย : "
-                    +DateFormat("d MMM y ").format(doDateTime),
+                    +DateFormat("d MMM y ").format(widget.missionDate!),
                 style: TextStyle(
                   color: Color(0xff757575),
                   fontSize: 14,
@@ -107,7 +117,7 @@ class _Card_MissionState extends State<Card_Mission> {
                 right: MediaQuery.of(context).devicePixelRatio*10,
               ),
               child: Text(
-                widget.detail,
+                widget.detail!,
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(
@@ -157,7 +167,7 @@ class _Card_MissionState extends State<Card_Mission> {
                       ),
                       child: Center(
                         child: Text(
-                          widget.status,
+                          widget.missionStatus!,
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 12,
@@ -186,7 +196,7 @@ class _Card_MissionState extends State<Card_Mission> {
                         right: MediaQuery.of(context).devicePixelRatio*10,
                       ),
                       child: Text(
-                        " x5",
+                        " x"+widget.reward.toString(),
                         style: TextStyle(
                           color: Color(0xff757575),
                           fontSize: 16,

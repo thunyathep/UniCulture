@@ -8,8 +8,10 @@ import 'package:unihr/feature/pocket/data/model/pocket_model.dart';
 import 'package:unihr/feature/pocket/presentation/bloc/pocket_bloc.dart';
 import 'package:unihr/feature/pocket/presentation/bloc/pocket_event.dart';
 import 'package:unihr/feature/pocket/presentation/bloc/pocket_state.dart';
+import 'package:unihr/feature/pocket/presentation/widget/show_coin.dart';
 import 'dart:math' as math;
 
+import '../../../../core/feature/profile/user/presentation/profile_provider.dart';
 import '../widget/cardcoin.dart';
 
 
@@ -25,6 +27,7 @@ class Pocket extends StatefulWidget {
 
 class _PocketState extends State<Pocket> {
 int _currentIndex = 0;
+late ProfileProvider profileProvider;
 final PocketBloc _pocketBloc = PocketBloc();
 late List<Widget> cardList = [];
 
@@ -62,6 +65,8 @@ void initState(){
       Coin_Outperform(coinOutperform: 0),
     ];
   }
+  profileProvider = ProfileProvider.of(context, listen: false);
+
   super.initState();
 }
 
@@ -84,6 +89,8 @@ List<T> map<T>(List list, Function handler){
 
   @override
   Widget build(BuildContext context) {
+    final profileProvider = Provider.of<ProfileProvider>(context);
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
@@ -148,63 +155,7 @@ List<T> map<T>(List list, Function handler){
                               size: MediaQuery.of(context).size.height*0.04,
                             ),
                           ),
-                          Container(
-                            width: MediaQuery.of(context).size.width*0.35,
-                            height: MediaQuery.of(context).size.height*0.035,
-                            decoration: const BoxDecoration(
-                              borderRadius: BorderRadius.only(
-                                topLeft: Radius.circular(50),
-                                bottomLeft: Radius.circular(50),
-                              ),
-                              color: Colors.white,
-                            ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: [
-                                Row(
-                                  children: [
-                                    Image.asset(
-                                      'assets/coin2.png',
-                                      width: MediaQuery.of(context).size.width*0.06,
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsets.only(
-                                        left: MediaQuery.of(context).devicePixelRatio*3,
-                                      ),
-                                      child: Text(
-                                        widget.coin.isNotEmpty ?
-                                        widget.coin[1].amount.toString() : "0",
-                                        style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                Row(
-                                  children: [
-                                    Image.asset(
-                                      'assets/heart.png',
-                                      width: MediaQuery.of(context).size.width*0.06,
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsets.only(
-                                        left: MediaQuery.of(context).devicePixelRatio*3,
-                                      ),
-                                      child: Text(
-                                        widget.coin.isNotEmpty ?
-                                          widget.coin[0].amount.toString() :
-                                            "0",
-                                        style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ),
+                          ShowCoin(),
                         ],
                       ),
                     ),
@@ -255,12 +206,19 @@ List<T> map<T>(List list, Function handler){
                             padding: EdgeInsets.only(
                               left: MediaQuery.of(context).devicePixelRatio*5,
                             ),
-                            child: const Text(
-                              'สมพงศ์ จำปี',
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white,
-                                fontSize: 18,
+                            child: SizedBox(
+                              height: MediaQuery.of(context).size.height * 0.03,
+                              width: MediaQuery.of(context).size.width * 0.3,
+                              child: Text(
+                                "${profileProvider.profileData.firstName??"ไม่ระบุ"}" +
+                                    " " +
+                                    "${profileProvider.profileData.lastName??"ไม่ระบุ"}",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18,
+                                ),
+                                overflow: TextOverflow.ellipsis,
                               ),
                             ),
                           ),

@@ -13,15 +13,25 @@ class ScoreBloc extends Bloc<ScoreEvent, ScoreState> {
 
 
   ScoreBloc() : super(InitialScore()) {
-    on<GetScore>((event, emit) async {
+    on<GetScoreHeart>((event, emit) async {
       emit(ScoreLoadingState());
       try {
-        List<ScoreModel> listScore = await score_remoteImpl.getHeartleaderboard();
-        if(event.status == 0){
-          listScore;
-        }else if(event.status == 1){
-          listScore = await score_remoteImpl.getCoinleaderboard();
-        }
+        final List<ScoreModel> listscore =
+        await score_remoteImpl.getHeartleaderboard();
+        final List<ScoreModel> listScore = listscore;
+        emit(ScoreLoadedState(listScore));
+      } catch (e, stacktrace) {
+        print("Exception occurred: $e stackTrace: $stacktrace");
+        emit(ScoreError(e.toString()));
+      }
+    });
+
+    on<GetScoreCoin>((event, emit) async {
+      emit(ScoreLoadingState());
+      try {
+        final List<ScoreModel> listscore =
+        await score_remoteImpl.getCoinleaderboard();
+        final List<ScoreModel> listScore = listscore;
         emit(ScoreLoadedState(listScore));
       } catch (e, stacktrace) {
         print("Exception occurred: $e stackTrace: $stacktrace");

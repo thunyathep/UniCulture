@@ -43,6 +43,7 @@ dependencies:
   flutter_launcher_icons: ^0.13.1
   logger: ^2.0.2
   better_polls: ^1.0.8
+  quickalert: ^1.0.2
 
 
 
