@@ -6,21 +6,33 @@ import 'package:unihr/feature/mission/presentation/bloc/mission_bloc.dart';
 import 'DoTask.dart';
 
 class DetailMission extends StatefulWidget {
-  final MissionBloc missionBloc;
-  final String image;
-  final String nameTask;
-  final String detail;
-  final String status;
-  final String doDate;
-  final String nameprinciple;
+  final int? idMission;
+  final DateTime? missionDate;
+  final int? reward;
+  final String? missionTitle;
+  final String? missionDetail;
+  final String? detail;
+  final String? keyLearning;
+  final String? file;
+  final int? idEmployee;
+  final int? createBy;
+  final int? idMissionStatus;
+  final DateTime? rewardDate;
+  final String? missionStatus;
   const DetailMission({Key? key,
-    required this.missionBloc,
-    required this.image,
-    required this.nameTask,
-    required this.status,
+    required this.idMission,
+    required this.missionDate,
+    required this.reward,
+    required this.missionTitle,
+    required this.missionDetail,
     required this.detail,
-    required this.doDate,
-    required this.nameprinciple,
+    required this.keyLearning,
+    required this.file,
+    required this.idEmployee,
+    required this.createBy,
+    required this.idMissionStatus,
+    required this.rewardDate,
+    required this.missionStatus,
   }) : super(key: key);
 
   @override
@@ -42,9 +54,9 @@ class _DetailMissionState extends State<DetailMission> {
                     Container(
                       width: MediaQuery.of(context).size.width*1,
                       height: MediaQuery.of(context).size.height*0.5,
-                      child: Image.network(widget.image,
-                        fit: BoxFit.cover,
-                      ),
+                      // child: Image.network(widget.image,
+                      //   fit: BoxFit.cover,
+                      // ),
                     ),
                   ],
                 ),
@@ -111,7 +123,7 @@ class _DetailMissionState extends State<DetailMission> {
                               right: MediaQuery.of(context).devicePixelRatio*10,
                             ),
                             child: Text(
-                              widget.nameTask,
+                              widget.missionTitle!,
                               overflow: TextOverflow.ellipsis,
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
@@ -126,7 +138,7 @@ class _DetailMissionState extends State<DetailMission> {
                               right: MediaQuery.of(context).devicePixelRatio*10,
                             ),
                             child: Text(
-                              widget.detail,
+                              widget.detail!,
                               maxLines: 2,
                               overflow: TextOverflow.ellipsis,
                               style: TextStyle(
@@ -177,7 +189,7 @@ class _DetailMissionState extends State<DetailMission> {
                                   ),
                                   child: Center(
                                     child: Text(
-                                      widget.status,
+                                      widget.missionStatus!,
                                       style: TextStyle(
                                         color: Colors.white,
                                         fontSize: 14,
@@ -282,7 +294,7 @@ class _DetailMissionState extends State<DetailMission> {
                                         top: MediaQuery.of(context).devicePixelRatio*2,
                                       ),
                                       child: Text(
-                                        widget.nameprinciple,
+                                        widget.createBy!.toString(),
                                         style: TextStyle(
                                           fontSize: 14,
                                           color: Color(0xff757575),
@@ -317,23 +329,23 @@ class _DetailMissionState extends State<DetailMission> {
                                     left: MediaQuery.of(context).devicePixelRatio*1,
                                     right: MediaQuery.of(context).devicePixelRatio*2,
                                   ),
-                                  child: Text("x3",
+                                  child: Text(widget.reward!.toString(),
                                     style: TextStyle(
                                       fontSize: 12,
                                     ),
                                   ),
                                 ),
-                                Image.asset("assets/Fast_move_coin.png"),
-                                Padding(
-                                  padding: EdgeInsets.only(
-                                      left: MediaQuery.of(context).devicePixelRatio*1
-                                  ),
-                                  child: Text("x1",
-                                    style: TextStyle(
-                                      fontSize: 12,
-                                    ),
-                                  ),
-                                ),
+                                // Image.asset("assets/Fast_move_coin.png"),
+                                // Padding(
+                                //   padding: EdgeInsets.only(
+                                //       left: MediaQuery.of(context).devicePixelRatio*1
+                                //   ),
+                                //   child: Text("x1",
+                                //     style: TextStyle(
+                                //       fontSize: 12,
+                                //     ),
+                                //   ),
+                                // ),
                               ],
                             ),
                           ),
