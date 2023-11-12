@@ -5,10 +5,12 @@ import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gradient_borders/gradient_borders.dart';
+import 'package:provider/provider.dart';
 import 'package:unihr/feature/threesixty/presentation/bloc/threesixty_bloc.dart';
 import 'package:unihr/feature/threesixty/presentation/bloc/threesixty_event.dart';
 import 'dart:math' as math;
 
+import '../../../../core/feature/profile/user/presentation/profile_provider.dart';
 import '../../../../core/storage/secure_storage.dart';
 import '../../../../injection_container.dart';
 import '../../../pocket/presentation/widget/show_coin.dart';
@@ -69,6 +71,7 @@ class ThreeSixtyQuestion extends StatefulWidget {
 }
 
 class _ThreeSixtyQuestionState extends State<ThreeSixtyQuestion> {
+  late ProfileProvider profileProvider;
   late AnswerQuestionToJson answerQuestion;
   ThreeSixtyBloc _threeSixtyBloc = sl<ThreeSixtyBloc>();
   ValueNotifier<int> indexNotifier = ValueNotifier<int>(0);
@@ -113,6 +116,7 @@ class _ThreeSixtyQuestionState extends State<ThreeSixtyQuestion> {
   @override
   void initState() {
     getId();
+    profileProvider = ProfileProvider.of(context, listen: false);
     super.initState();
   }
 
@@ -127,6 +131,7 @@ class _ThreeSixtyQuestionState extends State<ThreeSixtyQuestion> {
 
   @override
   Widget build(BuildContext context) {
+    final profileProvider = Provider.of<ProfileProvider>(context);
     int numberofQuestion = widget.questionlist!.length;
     int indexofQuestion = numberofQuestion - 1;
     ThreeSixtyQuestion questionInstance = ThreeSixtyQuestion(
@@ -245,12 +250,19 @@ class _ThreeSixtyQuestionState extends State<ThreeSixtyQuestion> {
                             padding: EdgeInsets.only(
                               left: MediaQuery.of(context).devicePixelRatio * 5,
                             ),
-                            child: const Text(
-                              'สมพงศ์ จำปี',
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white,
-                                fontSize: 18,
+                            child: SizedBox(
+                              height: MediaQuery.of(context).size.height * 0.03,
+                              width: MediaQuery.of(context).size.width * 0.3,
+                              child: Text(
+                                "${profileProvider.profileData.firstName??"ไม่ระบุ"}" +
+                                    " " +
+                                    "${profileProvider.profileData.lastName??"ไม่ระบุ"}",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18,
+                                ),
+                                overflow: TextOverflow.ellipsis,
                               ),
                             ),
                           ),

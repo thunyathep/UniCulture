@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gradient_borders/gradient_borders.dart';
+import 'package:provider/provider.dart';
+import 'package:unihr/feature/pocket/presentation/widget/show_coin.dart';
 import 'package:unihr/feature/reward/presentation/bloc/reward_bloc.dart';
 import 'package:unihr/feature/reward/presentation/bloc/reward_event.dart';
 import 'package:unihr/feature/reward/presentation/bloc/reward_state.dart';
 
+import '../../../../core/feature/profile/user/presentation/profile_provider.dart';
 import '../../../../injection_container.dart';
 import '../../data/model/myreward_model.dart';
 import '../widget/cardMyReward.dart';
@@ -18,11 +21,13 @@ class MyReward extends StatefulWidget {
 }
 
 class _MyRewardState extends State<MyReward> {
+  late ProfileProvider profileProvider;
   final RewardBloc _rewardBloc = sl<RewardBloc>();
   late List<MyRewardModel> listmyreward;
 
   @override
   void initState(){
+    profileProvider = ProfileProvider.of(context, listen: false);
     _rewardBloc.add(GetMyReward());
     super.initState();
   }
@@ -38,6 +43,7 @@ class _MyRewardState extends State<MyReward> {
 
   @override
   Widget build(BuildContext context) {
+    final profileProvider = Provider.of<ProfileProvider>(context);
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
@@ -95,60 +101,7 @@ class _MyRewardState extends State<MyReward> {
                                 size: MediaQuery.of(context).size.height*0.04,
                               ),
                           ),
-                          Container(
-                            width: MediaQuery.of(context).size.width*0.35,
-                            height: MediaQuery.of(context).size.height*0.035,
-                            decoration: const BoxDecoration(
-                              borderRadius: BorderRadius.only(
-                                topLeft: Radius.circular(50),
-                                bottomLeft: Radius.circular(50),
-                              ),
-                              color: Colors.white,
-                            ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: [
-                                Row(
-                                  children: [
-                                    Image.asset(
-                                        'assets/coin2.png',
-                                      width: MediaQuery.of(context).size.width*0.06,
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsets.only(
-                                        left: MediaQuery.of(context).devicePixelRatio*3,
-                                      ),
-                                      child: Text(
-                                          '26',
-                                        style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                Row(
-                                  children: [
-                                    Image.asset(
-                                      'assets/heart.png',
-                                      width: MediaQuery.of(context).size.width*0.06,
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsets.only(
-                                        left: MediaQuery.of(context).devicePixelRatio*3,
-                                      ),
-                                      child: Text(
-                                        '10',
-                                        style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ),
+                          ShowCoin(),
                         ],
                       ),
                     ),
@@ -199,12 +152,19 @@ class _MyRewardState extends State<MyReward> {
                             padding: EdgeInsets.only(
                               left: MediaQuery.of(context).devicePixelRatio*5,
                             ),
-                            child: const Text(
-                                'สมพงศ์ จำปี',
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white,
-                                fontSize: 18,
+                            child: SizedBox(
+                              height: MediaQuery.of(context).size.height * 0.03,
+                              width: MediaQuery.of(context).size.width * 0.3,
+                              child: Text(
+                                "${profileProvider.profileData.firstName??"ไม่ระบุ"}" +
+                                    " " +
+                                    "${profileProvider.profileData.lastName??"ไม่ระบุ"}",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18,
+                                ),
+                                overflow: TextOverflow.ellipsis,
                               ),
                             ),
                           ),

@@ -84,6 +84,9 @@ class RewardBloc extends Bloc<RewardEvent, RewardState>{
         List<MyRewardModel> listmyreward = [];
         if(event.status == 1){
           listmyreward = listreward.where((element) => element.idReward==1).toList();
+        }else if(event.status == 0){
+          listreward = await myReward_remoteImpl.getMyReward();
+          listmyreward = listreward;
         } else if(event.status == 2){
           listmyreward = listreward.where((element) => element.idReward==2).toList();
         }

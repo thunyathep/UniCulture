@@ -4,6 +4,7 @@ import 'package:gradient_borders/gradient_borders.dart';
 import 'package:unihr/feature/mission/presentation/bloc/mission_bloc.dart';
 import 'package:unihr/feature/mission/presentation/bloc/mission_event.dart';
 import 'package:unihr/feature/mission/presentation/bloc/mission_state.dart';
+import 'package:unihr/feature/pocket/presentation/widget/show_coin.dart';
 import 'dart:math' as math;
 
 import '../../data/model/mission_model.dart';
@@ -103,60 +104,7 @@ class _MyMissionState extends State<MyMission> {
                               size: MediaQuery.of(context).size.height*0.04,
                             ),
                           ),
-                          Container(
-                            width: MediaQuery.of(context).size.width*0.35,
-                            height: MediaQuery.of(context).size.height*0.035,
-                            decoration: const BoxDecoration(
-                              borderRadius: BorderRadius.only(
-                                topLeft: Radius.circular(50),
-                                bottomLeft: Radius.circular(50),
-                              ),
-                              color: Colors.white,
-                            ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: [
-                                Row(
-                                  children: [
-                                    Image.asset(
-                                      'assets/coin2.png',
-                                      width: MediaQuery.of(context).size.width*0.06,
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsets.only(
-                                        left: MediaQuery.of(context).devicePixelRatio*3,
-                                      ),
-                                      child: Text(
-                                        '26',
-                                        style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                Row(
-                                  children: [
-                                    Image.asset(
-                                      'assets/heart.png',
-                                      width: MediaQuery.of(context).size.width*0.06,
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsets.only(
-                                        left: MediaQuery.of(context).devicePixelRatio*3,
-                                      ),
-                                      child: Text(
-                                        '10',
-                                        style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ),
+                          ShowCoin(),
                         ],
                       ),
                     ),
@@ -270,40 +218,44 @@ class _MyMissionState extends State<MyMission> {
                         return ShimmerMyMission();
                       }else if (state is MyMissionLoadedState){
                         listmission = state.listmission;
-                        return LayoutBuilder(
-                            builder: (BuildContext context,
-                                BoxConstraints constraints) {
-                              return ListView.builder(
-                                  shrinkWrap: true,
-                                  physics:
-                                  const NeverScrollableScrollPhysics(),
-                                  itemCount: listmission.length,
-                                  itemBuilder: (BuildContext context,
-                                      int index){
-                                    return Padding(
-                                      padding: EdgeInsets.all(
-                                        MediaQuery.of(context).devicePixelRatio*2,
-                                      ),
-                                      child: Card_Mission(
-                                          idMission: listmission[index].idMission!,
-                                          missionDate: listmission[index].missionDate,
-                                          reward: listmission[index].reward,
-                                          missionTitle: listmission[index].missionTitle,
-                                          missionDetail: listmission[index].missionDetail,
-                                          detail: listmission[index].detail,
-                                          keyLearning: listmission[index].keyLearning,
-                                          file: listmission[index].file,
-                                          idEmployee: listmission[index].idEmployee,
-                                          createBy: listmission[index].createBy,
-                                          idMissionStatus: listmission[index].idMissionStatus,
-                                          rewardDate: listmission[index].rewardDate,
-                                          missionStatus: listmission[index].missionStatus
-                                      ),
-                                    );
-                                  }
-                              );
-                            }
-                        );
+                        if(listmission.length == 0){
+                          return Text("No Mission.");
+                        }else {
+                          return LayoutBuilder(
+                              builder: (BuildContext context,
+                                  BoxConstraints constraints) {
+                                return ListView.builder(
+                                    shrinkWrap: true,
+                                    physics:
+                                    const NeverScrollableScrollPhysics(),
+                                    itemCount: listmission.length,
+                                    itemBuilder: (BuildContext context,
+                                        int index){
+                                      return Padding(
+                                        padding: EdgeInsets.all(
+                                          MediaQuery.of(context).devicePixelRatio*2,
+                                        ),
+                                        child: Card_Mission(
+                                            idMission: listmission[index].idMission!,
+                                            missionDate: listmission[index].missionDate,
+                                            reward: listmission[index].reward,
+                                            missionTitle: listmission[index].missionTitle,
+                                            missionDetail: listmission[index].missionDetail,
+                                            detail: listmission[index].detail,
+                                            keyLearning: listmission[index].keyLearning,
+                                            file: listmission[index].file,
+                                            idEmployee: listmission[index].idEmployee,
+                                            createBy: listmission[index].createBy,
+                                            idMissionStatus: listmission[index].idMissionStatus,
+                                            rewardDate: listmission[index].rewardDate,
+                                            missionStatus: listmission[index].missionStatus
+                                        ),
+                                      );
+                                    }
+                                );
+                              }
+                          );
+                        }
                       }else{
                         return Text(state.props.toString());
                       }
@@ -319,5 +271,6 @@ class _MyMissionState extends State<MyMission> {
       ),
     );
   }
-
 }
+
+

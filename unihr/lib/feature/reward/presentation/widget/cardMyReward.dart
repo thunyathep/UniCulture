@@ -158,15 +158,9 @@ class _CardMyRewardState extends State<CardMyReward> {
                     SizedBox(
                       width: MediaQuery.of(context).size.width*0.25,
                     ),
-                    Row(
-                      children: [
-                        Image.asset(
-                          'assets/heart.png',
-                          width: MediaQuery.of(context).size.width*0.07,
-                          height: MediaQuery.of(context).size.height*0.05,
-                        ),
-                        Text('x10'),
-                      ],
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width*0.07,
+                      height: MediaQuery.of(context).size.height*0.05,
                     ),
                   ],
                 ),

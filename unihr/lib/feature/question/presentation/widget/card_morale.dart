@@ -1,22 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
+import '../../domain/entity/question_entity.dart';
 import '../pages/YearQuestionDetail.dart';
 
 class Card_Morale extends StatefulWidget {
-  final int NumberTopic;
-  final String MoraleName;
-  final DateTime startDate;
-  final DateTime endDate;
-  final String status;
-  final String moraleStatus;
+  final int? idMoraleParticipant;
+  final int? idEmployee;
+  final int? idMorale;
+  final String? status;
+  final String? moraleName;
+  final DateTime? startDate;
+  final DateTime? endDate;
+  final String? moraleStatus;
+  final String? moraleType;
+  final List<QuestionTopic>? questionTopic;
   const Card_Morale({Key? key,
-    required this.MoraleName,
-    required this.NumberTopic,
+    required this.idMoraleParticipant,
+    required this.idEmployee,
+    required this.idMorale,
+    required this.status,
+    required this.moraleName,
     required this.startDate,
     required this.endDate,
-    required this.status,
     required this.moraleStatus,
+    required this.moraleType,
+    required this.questionTopic,
   }) : super(key: key);
 
   @override
@@ -28,11 +37,11 @@ class _Card_MoraleState extends State<Card_Morale> {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: (){
-        if(widget.status == "incomplete"){
-          Navigator.of(context).push(
-            MaterialPageRoute(builder: (context) => YearQuestion()),
-          );
-        }
+        //   if(widget.status == "incomplete"){
+        //     Navigator.of(context).push(
+        //       MaterialPageRoute(builder: (context) => YearQuestion()),
+        //     );
+        // }
       },
       child: Container(
         width: MediaQuery.of(context).size.width*0.9,
@@ -85,7 +94,7 @@ class _Card_MoraleState extends State<Card_Morale> {
                   top: MediaQuery.of(context).devicePixelRatio*3,
                 ),
                 child: Text(
-                  widget.MoraleName,
+                  widget.moraleName!,
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 32,
@@ -102,7 +111,7 @@ class _Card_MoraleState extends State<Card_Morale> {
                     left: MediaQuery.of(context).devicePixelRatio*5,
                   ),
                   child: Text(
-                    "จำนวนหัวข้อ : "+widget.NumberTopic.toString(),
+                    "จำนวนหัวข้อ : "+widget.questionTopic!.length.toString(),
                     style: TextStyle(
                       color: Colors.black,
                       fontSize: 16,
@@ -115,7 +124,7 @@ class _Card_MoraleState extends State<Card_Morale> {
                     left: MediaQuery.of(context).devicePixelRatio*5,
                   ),
                   child: Text(
-                    "วันที่เริ่มต้น : "+DateFormat("d/M/y").format(widget.startDate),
+                    "วันที่เริ่มต้น : "+DateFormat("d/M/y").format(widget.startDate!),
                     style: TextStyle(
                       color: Colors.black,
                       fontSize: 16,
@@ -128,7 +137,7 @@ class _Card_MoraleState extends State<Card_Morale> {
                     left: MediaQuery.of(context).devicePixelRatio*5,
                   ),
                   child: Text(
-                    "วันสิ้นสุด : "+DateFormat("d/M/y").format(widget.endDate),
+                    "วันสิ้นสุด : "+DateFormat("d/M/y").format(widget.endDate!),
                     style: TextStyle(
                       color: Colors.black,
                       fontSize: 16,

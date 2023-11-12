@@ -1,14 +1,60 @@
 import 'package:flutter/material.dart';
 import 'package:gradient_borders/gradient_borders.dart';
 
+import '../../domain/entity/question_entity.dart';
+
 class YearQuestion extends StatefulWidget {
-  const YearQuestion({Key? key}) : super(key: key);
+  final int? idMoraleParticipant;
+  final int? idEmployee;
+  final int? idMorale;
+  final String? status;
+  final String? moraleName;
+  final DateTime? startDate;
+  final DateTime? endDate;
+  final String? moraleStatus;
+  final String? moraleType;
+  final List<QuestionTopic>? questionTopic;
+
+  const YearQuestion({Key? key,
+    required this.idMoraleParticipant,
+    required this.idEmployee,
+    required this.idMorale,
+    required this.status,
+    required this.moraleName,
+    required this.startDate,
+    required this.endDate,
+    required this.moraleStatus,
+    required this.moraleType,
+    required this.questionTopic,
+  }) : super(key: key);
 
   @override
   State<YearQuestion> createState() => _YearQuestionState();
 }
 
 class _YearQuestionState extends State<YearQuestion> {
+  int currentAnswer = 0;
+  int index = 0;
+  String value = "100";
+  List<String> items = [
+    "Very Happy",
+    "Happy",
+    "Little Happy",
+    "Little Bad",
+    "Bad",
+    "Very Bad",
+  ];
+
+  List<String> images = [
+    "assets/very_happy.png",
+    "assets/happy.png",
+    "assets/not_bad.png",
+    "assets/not_good.png",
+    "assets/bad.png",
+    "assets/very_bad.png",
+  ];
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -165,7 +211,7 @@ class _YearQuestionState extends State<YearQuestion> {
                           padding: EdgeInsets.only(
                             left: MediaQuery.of(context).devicePixelRatio * 5,
                           ),
-                          child: const Text(
+                          child: Text(
                             'สมพงศ์ จำปี',
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
@@ -185,7 +231,10 @@ class _YearQuestionState extends State<YearQuestion> {
                       child: Column(
                         children: [
                           Text(
-                            "มาทำงานวันนี้คุณรู้สึกยังไง?",
+                            widget.questionTopic != null &&
+                                index < widget.questionTopic!.length
+                                ? widget.questionTopic![index].questionList![index].question ?? ""
+                                : "No question available",
                             style: TextStyle(
                               color: Colors.black,
                               // fontWeight: FontWeight.bold,
@@ -194,360 +243,184 @@ class _YearQuestionState extends State<YearQuestion> {
                           ),
                           Padding(
                             padding: EdgeInsets.only(
-                              top: MediaQuery.of(context).devicePixelRatio * 15,
+                              top: MediaQuery.of(context).devicePixelRatio *
+                                  10,
                             ),
-                            child: GestureDetector(
-                              // onTap: () {
-                              //   showDialog(
-                              //       context: context,
-                              //       builder: (BuildContext context) {
-                              //         return Scaffold(
-                              //           backgroundColor: Colors.transparent,
-                              //           body: SafeArea(
-                              //             child: Stack(
-                              //               children: [
-                              //                 // Confetti GIF as the background
-                              //                 Positioned.fill(
-                              //                   child: Image.asset(
-                              //                     'assets/confetti.gif',
-                              //                     fit: BoxFit.cover,
-                              //                   ),
-                              //                 ),
-                              //                 // Centered Dialog Container
-                              //                 Dialog(
-                              //                   shape: RoundedRectangleBorder(
-                              //                       borderRadius:
-                              //                       BorderRadius.circular(
-                              //                           20.0)), //this right here
-                              //                   child: Container(
-                              //                     height: MediaQuery.of(context)
-                              //                         .size
-                              //                         .height *
-                              //                         0.38,
-                              //                     width: MediaQuery.of(context)
-                              //                         .size
-                              //                         .width *
-                              //                         0.8,
-                              //                     child: Column(
-                              //                       children: [
-                              //                         Row(
-                              //                           mainAxisAlignment:
-                              //                           MainAxisAlignment
-                              //                               .end,
-                              //                           children: [
-                              //                             IconButton(
-                              //                               onPressed: () {
-                              //                                 Navigator.of(
-                              //                                     context)
-                              //                                     .pop();
-                              //                               },
-                              //                               icon: Icon(Icons
-                              //                                   .clear_rounded),
-                              //                             ),
-                              //                           ],
-                              //                         ),
-                              //                         Center(
-                              //                           child: Image.asset(
-                              //                             "assets/coin2.png",
-                              //                             width: MediaQuery
-                              //                                 .of(context)
-                              //                                 .size
-                              //                                 .width
-                              //                                 *0.3,
-                              //                             fit: BoxFit.cover,
-                              //                           ),
-                              //                         ),
-                              //                         Text(
-                              //                           "ยินดีด้วย",
-                              //                           style: TextStyle(
-                              //                             color: Colors.black,
-                              //                             fontSize: 40,
-                              //                             fontWeight: FontWeight.bold,
-                              //                           ),
-                              //                         ),
-                              //                         Text(
-                              //                           "คุณได้รับ 1 เหรียญทอง",
-                              //                           style: TextStyle(
-                              //                             color: Colors.black,
-                              //                             fontSize: 24,
-                              //                           ),
-                              //                         )
-                              //                       ],
-                              //                     ),
-                              //                   ),
-                              //                 ),
-                              //               ],
-                              //             ),
-                              //           ),
-                              //         );
-                              //       });
-                              // },
-                              child: Container(
-                                width: MediaQuery.of(context).size.width * 0.6,
+                            child: widget.questionTopic![index].questionList![index].questionType == "choice"
+                                ?
+                            Center(
+                              child: SizedBox(
                                 height:
-                                MediaQuery.of(context).size.height * 0.05,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(50),
-                                    color: Colors.white),
-                                child: Row(
-                                  mainAxisAlignment:
-                                  MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Image.asset(
-                                      "assets/very_happy.png",
-                                      width: MediaQuery.of(context).size.width *
-                                          0.1,
-                                    ),
-                                    Text(
-                                      "มีความสุขสุดๆ",
-                                      style: TextStyle(
-                                        fontSize: 18,
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsets.only(
-                                        right: MediaQuery.of(context)
-                                            .devicePixelRatio *
-                                            2,
-                                      ),
-                                      child: Image.asset(
-                                        "assets/coin2.png",
-                                        width:
-                                        MediaQuery.of(context).size.width *
-                                            0.08,
-                                      ),
-                                    ),
-                                  ],
-                                ),
+                                MediaQuery.of(context).size.height *
+                                    0.5,
+                                width:
+                                MediaQuery.of(context).size.width *
+                                    0.6,
+                                child: ListView.builder(
+                                    itemCount: items.length,
+                                    scrollDirection: Axis.vertical,
+                                    itemBuilder: (context, Answer) {
+                                      return Padding(
+                                        padding: EdgeInsets.only(
+                                          top: MediaQuery.of(context)
+                                              .devicePixelRatio *
+                                              5,
+                                        ),
+                                        child: Stack(
+                                          children: [
+                                            Container(
+                                              width:
+                                              MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                                  0.6,
+                                              height:
+                                              MediaQuery.of(context)
+                                                  .size
+                                                  .height *
+                                                  0.05,
+                                              decoration: BoxDecoration(
+                                                  borderRadius:
+                                                  BorderRadius
+                                                      .circular(50),
+                                                  color: Colors.white),
+                                              child: Row(
+                                                mainAxisAlignment:
+                                                MainAxisAlignment
+                                                    .spaceBetween,
+                                                children: [
+                                                  Image.asset(
+                                                    images[Answer],
+                                                    width: MediaQuery.of(
+                                                        context)
+                                                        .size
+                                                        .width *
+                                                        0.1,
+                                                  ),
+                                                  Text(
+                                                    items[Answer],
+                                                    style: TextStyle(
+                                                      fontSize: 18,
+                                                    ),
+                                                  ),
+                                                  Padding(
+                                                    padding:
+                                                    EdgeInsets.only(
+                                                      right: MediaQuery.of(
+                                                          context)
+                                                          .devicePixelRatio *
+                                                          2,
+                                                    ),
+                                                    child: Image.asset(
+                                                      "assets/coin2.png",
+                                                      width: MediaQuery.of(
+                                                          context)
+                                                          .size
+                                                          .width *
+                                                          0.08,
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                            InkWell(
+                                              onTap: () {
+                                                setState(() {
+                                                  currentAnswer =
+                                                      Answer;
+                                                  if (currentAnswer ==
+                                                      0) {
+                                                    value = "100";
+                                                  } else if (currentAnswer ==
+                                                      1) {
+                                                    value = "80";
+                                                  } else if (currentAnswer ==
+                                                      2) {
+                                                    value = "60";
+                                                  } else if (currentAnswer ==
+                                                      3) {
+                                                    value = "40";
+                                                  } else if (currentAnswer ==
+                                                      4) {
+                                                    value = "20";
+                                                  } else if (currentAnswer ==
+                                                      5) {
+                                                    value = "0";
+                                                  }
+                                                });
+                                                print(value);
+                                              },
+                                              child: Container(
+                                                width: MediaQuery.of(
+                                                    context)
+                                                    .size
+                                                    .width *
+                                                    0.6,
+                                                height: MediaQuery.of(
+                                                    context)
+                                                    .size
+                                                    .height *
+                                                    0.05,
+                                                decoration:
+                                                BoxDecoration(
+                                                  borderRadius:
+                                                  BorderRadius
+                                                      .circular(50),
+                                                  color: currentAnswer ==
+                                                      Answer
+                                                      ? Color(0xff757575)
+                                                      .withOpacity(
+                                                      0.2)
+                                                      : Colors
+                                                      .transparent,
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      );
+                                    }),
                               ),
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.only(
-                              top: MediaQuery.of(context).devicePixelRatio * 5,
-                            ),
-                            child: GestureDetector(
-                              onTap: () {},
-                              child: Container(
-                                width: MediaQuery.of(context).size.width * 0.6,
-                                height:
-                                MediaQuery.of(context).size.height * 0.05,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(50),
-                                    color: Colors.white),
-                                child: Row(
-                                  mainAxisAlignment:
-                                  MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Image.asset(
-                                      "assets/happy.png",
-                                      width: MediaQuery.of(context).size.width *
-                                          0.1,
-                                    ),
-                                    Text(
-                                      "แฮปปี้",
-                                      style: TextStyle(
-                                        fontSize: 18,
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsets.only(
-                                        right: MediaQuery.of(context)
-                                            .devicePixelRatio *
-                                            2,
-                                      ),
-                                      child: Image.asset(
-                                        "assets/coin2.png",
-                                        width:
-                                        MediaQuery.of(context).size.width *
-                                            0.08,
-                                      ),
-                                    ),
-                                  ],
-                                ),
+                            )
+                                : Container(
+                              width: MediaQuery.of(context).size.width *
+                                  0.9,
+                              height:
+                              MediaQuery.of(context).size.height *
+                                  0.15,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                                color: Color(0xfff5f5f5),
                               ),
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.only(
-                              top: MediaQuery.of(context).devicePixelRatio * 5,
-                            ),
-                            child: GestureDetector(
-                              onTap: () {},
-                              child: Container(
-                                width: MediaQuery.of(context).size.width * 0.6,
-                                height:
-                                MediaQuery.of(context).size.height * 0.05,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(50),
-                                    color: Colors.white),
-                                child: Row(
-                                  mainAxisAlignment:
-                                  MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Image.asset(
-                                      "assets/not_bad.png",
-                                      width: MediaQuery.of(context).size.width *
-                                          0.1,
-                                    ),
-                                    Text(
-                                      "ก็โอเคนะ",
-                                      style: TextStyle(
-                                        fontSize: 18,
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsets.only(
-                                        right: MediaQuery.of(context)
-                                            .devicePixelRatio *
-                                            2,
-                                      ),
-                                      child: Image.asset(
-                                        "assets/coin2.png",
-                                        width:
-                                        MediaQuery.of(context).size.width *
-                                            0.08,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.only(
-                              top: MediaQuery.of(context).devicePixelRatio * 5,
-                            ),
-                            child: GestureDetector(
-                              onTap: () {},
-                              child: Container(
-                                width: MediaQuery.of(context).size.width * 0.6,
-                                height:
-                                MediaQuery.of(context).size.height * 0.05,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(50),
-                                    color: Colors.white),
-                                child: Row(
-                                  mainAxisAlignment:
-                                  MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Image.asset(
-                                      "assets/not_good.png",
-                                      width: MediaQuery.of(context).size.width *
-                                          0.1,
-                                    ),
-                                    Text(
-                                      "ไม่ค่อยดี",
-                                      style: TextStyle(
-                                        fontSize: 18,
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsets.only(
-                                        right: MediaQuery.of(context)
-                                            .devicePixelRatio *
-                                            2,
-                                      ),
-                                      child: Image.asset(
-                                        "assets/coin2.png",
-                                        width:
-                                        MediaQuery.of(context).size.width *
-                                            0.08,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.only(
-                              top: MediaQuery.of(context).devicePixelRatio * 5,
-                            ),
-                            child: GestureDetector(
-                              onTap: () {},
-                              child: Container(
-                                width: MediaQuery.of(context).size.width * 0.6,
-                                height:
-                                MediaQuery.of(context).size.height * 0.05,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(50),
-                                    color: Colors.white),
-                                child: Row(
-                                  mainAxisAlignment:
-                                  MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Image.asset(
-                                      "assets/bad.png",
-                                      width: MediaQuery.of(context).size.width *
-                                          0.1,
-                                    ),
-                                    Text(
-                                      "ค่อนข้างแย่",
-                                      style: TextStyle(
-                                        fontSize: 18,
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsets.only(
-                                        right: MediaQuery.of(context)
-                                            .devicePixelRatio *
-                                            2,
-                                      ),
-                                      child: Image.asset(
-                                        "assets/coin2.png",
-                                        width:
-                                        MediaQuery.of(context).size.width *
-                                            0.08,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.only(
-                              top: MediaQuery.of(context).devicePixelRatio * 5,
-                            ),
-                            child: GestureDetector(
-                              onTap: () {},
-                              child: Container(
-                                width: MediaQuery.of(context).size.width * 0.6,
-                                height:
-                                MediaQuery.of(context).size.height * 0.05,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(50),
-                                    color: Colors.white),
-                                child: Row(
-                                  mainAxisAlignment:
-                                  MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Image.asset(
-                                      "assets/very_bad.png",
-                                      width: MediaQuery.of(context).size.width *
-                                          0.1,
-                                    ),
-                                    Text(
-                                      "แย่มาก",
-                                      style: TextStyle(
-                                        fontSize: 18,
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsets.only(
-                                        right: MediaQuery.of(context)
-                                            .devicePixelRatio *
-                                            2,
-                                      ),
-                                      child: Image.asset(
-                                        "assets/coin2.png",
-                                        width:
-                                        MediaQuery.of(context).size.width *
-                                            0.08,
-                                      ),
-                                    ),
-                                  ],
+                              child: TextFormField(
+                                onChanged: (content) {
+                                  // setState(() {
+                                  //   detail = value;
+                                  // });
+                                },
+                                autovalidateMode:
+                                AutovalidateMode.onUserInteraction,
+                                validator: (content) {
+                                  if (content == null || content.isEmpty) {
+                                    return 'กรุณากรอกข้อความ';
+                                  } else {
+                                    return null;
+                                  }
+                                },
+                                maxLines: null,
+                                decoration: InputDecoration(
+                                  filled: true,
+                                  fillColor: Color(0xfff5f5f5),
+                                  border: OutlineInputBorder(
+                                    borderRadius:
+                                    BorderRadius.circular(50),
+                                    borderSide: BorderSide.none,
+                                  ),
+                                  hintText: "คำตอบ",
+                                  hintStyle: TextStyle(
+                                    color: Color(0xff757575),
+                                    fontSize: 14,
+                                  ),
                                 ),
                               ),
                             ),

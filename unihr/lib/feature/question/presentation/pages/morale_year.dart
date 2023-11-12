@@ -234,12 +234,16 @@ class _Morale_YearState extends State<Morale_Year> {
                                                     MediaQuery.of(context).devicePixelRatio*7,
                                                   ),
                                                   child: Card_Morale(
-                                                      MoraleName: listquestion[index].moraleName!,
-                                                      NumberTopic: listquestion[index].questionTopic!.length,
+                                                      idMoraleParticipant: listquestion[index].idMoraleParticipant,
+                                                      idEmployee: listquestion[index].idEmployee,
+                                                      idMorale: listquestion[index].idMorale,
+                                                      moraleName: listquestion[index].moraleName!,
                                                       startDate: listquestion[index].startDate ?? DateTime.now(),
                                                       endDate: listquestion[index].endDate ?? DateTime.now(),
                                                       status: listquestion[index].status!,
                                                       moraleStatus: listquestion[index].moraleStatus!,
+                                                      moraleType: listquestion[index].moraleType,
+                                                      questionTopic: listquestion[index].questionTopic,
                                                   ),
                                                 );
                                               }
