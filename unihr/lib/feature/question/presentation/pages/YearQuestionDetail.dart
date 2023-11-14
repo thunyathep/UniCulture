@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:gradient_borders/gradient_borders.dart';
+import 'package:provider/provider.dart';
+import 'package:unihr/feature/pocket/presentation/widget/show_coin.dart';
 
+import '../../../../core/feature/profile/user/presentation/profile_provider.dart';
 import '../../domain/entity/question_entity.dart';
 
 class YearQuestion extends StatefulWidget {
@@ -33,8 +36,10 @@ class YearQuestion extends StatefulWidget {
 }
 
 class _YearQuestionState extends State<YearQuestion> {
+  late ProfileProvider profileProvider;
   int currentAnswer = 0;
-  int index = 0;
+  int questiontopic = 0;
+  int question = 0;
   String value = "100";
   List<String> items = [
     "Very Happy",
@@ -43,6 +48,17 @@ class _YearQuestionState extends State<YearQuestion> {
     "Little Bad",
     "Bad",
     "Very Bad",
+  ];
+
+  List<Color> colors = [
+    Color(0xffFCB0C2),
+    Color(0xff94F1E5),
+    Color(0xffFFBA53),
+    Color(0xffAC8FDC),
+    Color(0xffC1E1E6),
+    Color(0xffF995BA),
+    Color(0xffFFB139),
+    Color(0xff7BCB14),
   ];
 
   List<String> images = [
@@ -54,9 +70,28 @@ class _YearQuestionState extends State<YearQuestion> {
     "assets/very_bad.png",
   ];
 
+  @override
+  void initState() {
+    profileProvider = ProfileProvider.of(context, listen: false);
+    super.initState();
+  }
+
+  bool _isDisposed = false;
+
+  @override
+  void dispose() {
+    super.dispose();
+    _isDisposed = true;
+  }
+
 
   @override
   Widget build(BuildContext context) {
+    int numberofQuestion = widget.questionTopic![questiontopic].questionList!.length;
+    int indexofQuestion = numberofQuestion - 1;
+    int numberofQuestionTopic = widget.questionTopic!.length;
+    int indexofQuestionTopic = numberofQuestionTopic - 1;
+    final profileProvider = Provider.of<ProfileProvider>(context);
     return Scaffold(
       backgroundColor: Color(0xffffffff),
       body: SafeArea(
@@ -105,66 +140,7 @@ class _YearQuestionState extends State<YearQuestion> {
                             size: MediaQuery.of(context).size.height * 0.04,
                           ),
                         ),
-                        Container(
-                          width: MediaQuery.of(context).size.width * 0.35,
-                          height: MediaQuery.of(context).size.height * 0.035,
-                          decoration: const BoxDecoration(
-                            borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(50),
-                              bottomLeft: Radius.circular(50),
-                            ),
-                            color: Colors.white,
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [
-                              Row(
-                                children: [
-                                  Image.asset(
-                                    'assets/coin2.png',
-                                    width: MediaQuery.of(context).size.width *
-                                        0.06,
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsets.only(
-                                      left: MediaQuery.of(context)
-                                          .devicePixelRatio *
-                                          3,
-                                    ),
-                                    child: Text(
-                                      '26',
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              Row(
-                                children: [
-                                  Image.asset(
-                                    'assets/heart.png',
-                                    width: MediaQuery.of(context).size.width *
-                                        0.06,
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsets.only(
-                                      left: MediaQuery.of(context)
-                                          .devicePixelRatio *
-                                          3,
-                                    ),
-                                    child: Text(
-                                      '10',
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
+                        ShowCoin(),
                       ],
                     ),
                   ),
@@ -211,12 +187,19 @@ class _YearQuestionState extends State<YearQuestion> {
                           padding: EdgeInsets.only(
                             left: MediaQuery.of(context).devicePixelRatio * 5,
                           ),
-                          child: Text(
-                            'สมพงศ์ จำปี',
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white,
-                              fontSize: 18,
+                          child: SizedBox(
+                            height: MediaQuery.of(context).size.height * 0.03,
+                            width: MediaQuery.of(context).size.width * 0.3,
+                            child: Text(
+                              "${profileProvider.profileData.firstName??"ไม่ระบุ"}" +
+                                  " " +
+                                  "${profileProvider.profileData.lastName??"ไม่ระบุ"}",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 18,
+                              ),
+                              overflow: TextOverflow.ellipsis,
                             ),
                           ),
                         ),
@@ -225,208 +208,257 @@ class _YearQuestionState extends State<YearQuestion> {
                   ),
                   Padding(
                     padding: EdgeInsets.only(
-                      top: MediaQuery.of(context).devicePixelRatio * 60,
+                      top: MediaQuery.of(context).devicePixelRatio * 48,
                     ),
-                    child: Center(
-                      child: Column(
-                        children: [
-                          Text(
-                            widget.questionTopic != null &&
-                                index < widget.questionTopic!.length
-                                ? widget.questionTopic![index].questionList![index].question ?? ""
-                                : "No question available",
-                            style: TextStyle(
-                              color: Colors.black,
-                              // fontWeight: FontWeight.bold,
-                              fontSize: 24,
+                    child: Column(
+                      children: [
+                        Container(
+                          // width: MediaQuery.of(context).size.width*0.,
+                          height: MediaQuery.of(context).size.height*0.045,
+                          decoration: const BoxDecoration(
+                            borderRadius: BorderRadius.only(
+                              topRight: Radius.circular(50),
+                              bottomRight: Radius.circular(50),
+                              topLeft: Radius.circular(50),
+                              bottomLeft: Radius.circular(50),
+                            ),
+                            color: Colors.white,
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                "Topic : ",
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  // fontWeight: FontWeight.bold,
+                                  fontSize: 24,
+                                ),
+                              ),
+                              Text(
+                                widget.questionTopic != null &&
+                                    questiontopic < widget.questionTopic!.length
+                                    ? widget.questionTopic![questiontopic].questionTopic!
+                                    : "",
+                                style: TextStyle(
+                                  color: colors[questiontopic],
+                                  // fontWeight: FontWeight.bold,
+                                  fontSize: 24,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(
+                            left : MediaQuery.of(context).devicePixelRatio*5,
+                          ),
+                          child: Padding(
+                            padding: EdgeInsets.only(
+                              top : MediaQuery.of(context).devicePixelRatio*5,
+                            ),
+                            child: Container(
+                              width: MediaQuery.of(context).size.width * 0.8,
+                              child: Text(
+                                widget.questionTopic != null &&
+                                    questiontopic < widget.questionTopic!.length
+                                    ? widget.questionTopic![questiontopic].questionList![question].question ?? ""
+                                    : "No question available",
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  // fontWeight: FontWeight.bold,
+                                  fontSize: 20,
+                                ),
+                                maxLines: 5,
+                              ),
                             ),
                           ),
-                          Padding(
-                            padding: EdgeInsets.only(
-                              top: MediaQuery.of(context).devicePixelRatio *
-                                  10,
-                            ),
-                            child: widget.questionTopic![index].questionList![index].questionType == "choice"
-                                ?
-                            Center(
-                              child: SizedBox(
-                                height:
-                                MediaQuery.of(context).size.height *
-                                    0.5,
-                                width:
-                                MediaQuery.of(context).size.width *
-                                    0.6,
-                                child: ListView.builder(
-                                    itemCount: items.length,
-                                    scrollDirection: Axis.vertical,
-                                    itemBuilder: (context, Answer) {
-                                      return Padding(
-                                        padding: EdgeInsets.only(
-                                          top: MediaQuery.of(context)
-                                              .devicePixelRatio *
-                                              5,
-                                        ),
-                                        child: Stack(
-                                          children: [
-                                            Container(
-                                              width:
-                                              MediaQuery.of(context)
-                                                  .size
-                                                  .width *
-                                                  0.6,
-                                              height:
-                                              MediaQuery.of(context)
-                                                  .size
-                                                  .height *
-                                                  0.05,
-                                              decoration: BoxDecoration(
-                                                  borderRadius:
-                                                  BorderRadius
-                                                      .circular(50),
-                                                  color: Colors.white),
-                                              child: Row(
-                                                mainAxisAlignment:
-                                                MainAxisAlignment
-                                                    .spaceBetween,
-                                                children: [
-                                                  Image.asset(
-                                                    images[Answer],
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(
+                            top: MediaQuery.of(context).devicePixelRatio *
+                                10,
+                          ),
+                          child: widget.questionTopic![questiontopic].questionList![question].questionType == "choice"
+                              ?
+                          Center(
+                            child: SizedBox(
+                              height:
+                              MediaQuery.of(context).size.height *
+                                  0.5,
+                              width:
+                              MediaQuery.of(context).size.width *
+                                  0.6,
+                              child: ListView.builder(
+                                  itemCount: items.length,
+                                  scrollDirection: Axis.vertical,
+                                  itemBuilder: (context, Answer) {
+                                    return Padding(
+                                      padding: EdgeInsets.only(
+                                        top: MediaQuery.of(context)
+                                            .devicePixelRatio *
+                                            5,
+                                      ),
+                                      child: Stack(
+                                        children: [
+                                          Container(
+                                            width:
+                                            MediaQuery.of(context)
+                                                .size
+                                                .width *
+                                                0.6,
+                                            height:
+                                            MediaQuery.of(context)
+                                                .size
+                                                .height *
+                                                0.05,
+                                            decoration: BoxDecoration(
+                                                borderRadius:
+                                                BorderRadius
+                                                    .circular(50),
+                                                color: Colors.white),
+                                            child: Row(
+                                              mainAxisAlignment:
+                                              MainAxisAlignment
+                                                  .spaceBetween,
+                                              children: [
+                                                Image.asset(
+                                                  images[Answer],
+                                                  width: MediaQuery.of(
+                                                      context)
+                                                      .size
+                                                      .width *
+                                                      0.1,
+                                                ),
+                                                Text(
+                                                  items[Answer],
+                                                  style: TextStyle(
+                                                    fontSize: 18,
+                                                  ),
+                                                ),
+                                                Padding(
+                                                  padding:
+                                                  EdgeInsets.only(
+                                                    right: MediaQuery.of(
+                                                        context)
+                                                        .devicePixelRatio *
+                                                        2,
+                                                  ),
+                                                  child: Image.asset(
+                                                    "assets/coin2.png",
                                                     width: MediaQuery.of(
                                                         context)
                                                         .size
                                                         .width *
-                                                        0.1,
+                                                        0.08,
                                                   ),
-                                                  Text(
-                                                    items[Answer],
-                                                    style: TextStyle(
-                                                      fontSize: 18,
-                                                    ),
-                                                  ),
-                                                  Padding(
-                                                    padding:
-                                                    EdgeInsets.only(
-                                                      right: MediaQuery.of(
-                                                          context)
-                                                          .devicePixelRatio *
-                                                          2,
-                                                    ),
-                                                    child: Image.asset(
-                                                      "assets/coin2.png",
-                                                      width: MediaQuery.of(
-                                                          context)
-                                                          .size
-                                                          .width *
-                                                          0.08,
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                            InkWell(
-                                              onTap: () {
-                                                setState(() {
-                                                  currentAnswer =
-                                                      Answer;
-                                                  if (currentAnswer ==
-                                                      0) {
-                                                    value = "100";
-                                                  } else if (currentAnswer ==
-                                                      1) {
-                                                    value = "80";
-                                                  } else if (currentAnswer ==
-                                                      2) {
-                                                    value = "60";
-                                                  } else if (currentAnswer ==
-                                                      3) {
-                                                    value = "40";
-                                                  } else if (currentAnswer ==
-                                                      4) {
-                                                    value = "20";
-                                                  } else if (currentAnswer ==
-                                                      5) {
-                                                    value = "0";
-                                                  }
-                                                });
-                                                print(value);
-                                              },
-                                              child: Container(
-                                                width: MediaQuery.of(
-                                                    context)
-                                                    .size
-                                                    .width *
-                                                    0.6,
-                                                height: MediaQuery.of(
-                                                    context)
-                                                    .size
-                                                    .height *
-                                                    0.05,
-                                                decoration:
-                                                BoxDecoration(
-                                                  borderRadius:
-                                                  BorderRadius
-                                                      .circular(50),
-                                                  color: currentAnswer ==
-                                                      Answer
-                                                      ? Color(0xff757575)
-                                                      .withOpacity(
-                                                      0.2)
-                                                      : Colors
-                                                      .transparent,
                                                 ),
+                                              ],
+                                            ),
+                                          ),
+                                          InkWell(
+                                            onTap: () {
+                                              setState(() {
+                                                currentAnswer =
+                                                    Answer;
+                                                if (currentAnswer ==
+                                                    0) {
+                                                  value = "100";
+                                                } else if (currentAnswer ==
+                                                    1) {
+                                                  value = "80";
+                                                } else if (currentAnswer ==
+                                                    2) {
+                                                  value = "60";
+                                                } else if (currentAnswer ==
+                                                    3) {
+                                                  value = "40";
+                                                } else if (currentAnswer ==
+                                                    4) {
+                                                  value = "20";
+                                                } else if (currentAnswer ==
+                                                    5) {
+                                                  value = "0";
+                                                }
+                                              });
+                                              print(value);
+                                            },
+                                            child: Container(
+                                              width: MediaQuery.of(
+                                                  context)
+                                                  .size
+                                                  .width *
+                                                  0.6,
+                                              height: MediaQuery.of(
+                                                  context)
+                                                  .size
+                                                  .height *
+                                                  0.05,
+                                              decoration:
+                                              BoxDecoration(
+                                                borderRadius:
+                                                BorderRadius
+                                                    .circular(50),
+                                                color: currentAnswer ==
+                                                    Answer
+                                                    ? Color(0xff757575)
+                                                    .withOpacity(
+                                                    0.2)
+                                                    : Colors
+                                                    .transparent,
                                               ),
                                             ),
-                                          ],
-                                        ),
-                                      );
-                                    }),
-                              ),
-                            )
-                                : Container(
-                              width: MediaQuery.of(context).size.width *
-                                  0.9,
-                              height:
-                              MediaQuery.of(context).size.height *
-                                  0.15,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(20),
-                                color: Color(0xfff5f5f5),
-                              ),
-                              child: TextFormField(
-                                onChanged: (content) {
-                                  // setState(() {
-                                  //   detail = value;
-                                  // });
-                                },
-                                autovalidateMode:
-                                AutovalidateMode.onUserInteraction,
-                                validator: (content) {
-                                  if (content == null || content.isEmpty) {
-                                    return 'กรุณากรอกข้อความ';
-                                  } else {
-                                    return null;
-                                  }
-                                },
-                                maxLines: null,
-                                decoration: InputDecoration(
-                                  filled: true,
-                                  fillColor: Color(0xfff5f5f5),
-                                  border: OutlineInputBorder(
-                                    borderRadius:
-                                    BorderRadius.circular(50),
-                                    borderSide: BorderSide.none,
-                                  ),
-                                  hintText: "คำตอบ",
-                                  hintStyle: TextStyle(
-                                    color: Color(0xff757575),
-                                    fontSize: 14,
-                                  ),
+                                          ),
+                                        ],
+                                      ),
+                                    );
+                                  }),
+                            ),
+                          )
+                              : Container(
+                            width: MediaQuery.of(context).size.width *
+                                0.9,
+                            height:
+                            MediaQuery.of(context).size.height *
+                                0.15,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(20),
+                              color: Color(0xfff5f5f5),
+                            ),
+                            child: TextFormField(
+                              onChanged: (content) {
+                                // setState(() {
+                                //   detail = value;
+                                // });
+                              },
+                              autovalidateMode:
+                              AutovalidateMode.onUserInteraction,
+                              validator: (content) {
+                                if (content == null || content.isEmpty) {
+                                  return 'กรุณากรอกข้อความ';
+                                } else {
+                                  return null;
+                                }
+                              },
+                              maxLines: null,
+                              decoration: InputDecoration(
+                                filled: true,
+                                fillColor: Color(0xfff5f5f5),
+                                border: OutlineInputBorder(
+                                  borderRadius:
+                                  BorderRadius.circular(50),
+                                  borderSide: BorderSide.none,
+                                ),
+                                hintText: "คำตอบ",
+                                hintStyle: TextStyle(
+                                  color: Color(0xff757575),
+                                  fontSize: 14,
                                 ),
                               ),
                             ),
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                   ),
 
@@ -434,12 +466,44 @@ class _YearQuestionState extends State<YearQuestion> {
               ),
               Align(
                 child: Center(
-                  child: GestureDetector(
-                    onTap: () {},
+                  child: InkWell(
+                    onTap: () {
+                      if (questiontopic != indexofQuestionTopic && question != indexofQuestion) {
+                        setState(() {
+                          question = question + 1;
+                          // answerQuestion = AnswerQuestionToJson(
+                          //     idAppraiseeSampleSize: idAppraiseeSampleSize[0],
+                          //     idAssessmentQuestion: widget.questionlist![index]
+                          //         .idAssessmentQuestion ??
+                          //         0,
+                          //     value: value);
+                          // dataAnswerArray.add(answerQuestion);
+                          // value = "100";
+                          // currentAnswer = 0;
+                        });
+                      } else if (questiontopic != indexofQuestionTopic && question == indexofQuestion) {
+                        setState(() {
+                          questiontopic = questiontopic + 1;
+                          question = 0;
+                        });
+                      } else if (questiontopic == indexofQuestionTopic && question != indexofQuestion) {
+                        setState(() {
+                          question = question + 1;
+                        });
+                      } else if (questiontopic == indexofQuestionTopic &&question == indexofQuestion) {
+                        // answerQuestion = AnswerQuestionToJson(
+                        //     idAppraiseeSampleSize: idAppraiseeSampleSize[0],
+                        //     idAssessmentQuestion: widget
+                        //         .questionlist![index].idAssessmentQuestion ??
+                        //         0,
+                        //     value: value);
+                        // dataAnswerArray.add(answerQuestion);
+                        // _threeSixtyBloc.add(AnswerThreeSixty(
+                        //     answerList: dataAnswerArray));
+                        Navigator.of(context).pop();
+                      }
+                    },
                     child: Container(
-                      margin: EdgeInsets.only(
-                        top: MediaQuery.of(context).devicePixelRatio*5,
-                      ),
                       width: MediaQuery.of(context).size.width*0.7,
                       height: MediaQuery.of(context).size.height*0.05,
                       decoration: BoxDecoration(
@@ -460,18 +524,30 @@ class _YearQuestionState extends State<YearQuestion> {
                         ),
                       ),
                       child: Center(
-                        child: Text(
+                        child: questiontopic == indexofQuestionTopic && question == indexofQuestion
+                            ? Text(
+                          "ส่งแบบประเมิน",
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16,
+                          ),
+                        )
+                            : Text(
                           "ต่อไป",
                           style: TextStyle(
                             color: Colors.black,
                             fontWeight: FontWeight.bold,
-                            fontSize: 18,
+                            fontSize: 16,
                           ),
                         ),
                       ),
                     ),
                   ),
                 ),
+              ),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.05,
               ),
             ],
           ),
