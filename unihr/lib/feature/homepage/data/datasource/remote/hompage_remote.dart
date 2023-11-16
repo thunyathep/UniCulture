@@ -24,7 +24,7 @@ class Homepage_remoteIpml {
         headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json',
-          'x-access-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZEVtcGxveWVlIjoxMDA2ODk4OSwiaWF0IjoxNjg1Njk2MzU1LCJleHAiOjE3NDc5MDQzNTV9.DhEkFL75hsA3HrM339cn5Lf4QzHiZCuU_4RKJBlDbyg',
+          'x-access-token': '${await LoginStorage.readToken()}',
         }
     );
     if (response.statusCode == 200) {
@@ -46,7 +46,7 @@ class Homepage_remoteIpml {
         headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json',
-          'x-access-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZEVtcGxveWVlIjoxMDA2ODk4OSwiaWF0IjoxNjg1Njk2MzU1LCJleHAiOjE3NDc5MDQzNTV9.DhEkFL75hsA3HrM339cn5Lf4QzHiZCuU_4RKJBlDbyg',
+          'x-access-token': '${await LoginStorage.readToken()}',
         }
     );
     if (response.statusCode == 200) {

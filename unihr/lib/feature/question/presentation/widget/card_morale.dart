@@ -37,36 +37,36 @@ class _Card_MoraleState extends State<Card_Morale> {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: (){
-        //   if(widget.status == "incomplete"){
-        //     Navigator.of(context).push(
-        //       MaterialPageRoute(builder: (context) => YearQuestion(
-        //           idMoraleParticipant: widget.idMoraleParticipant,
-        //           idEmployee: widget.idEmployee,
-        //           idMorale: widget.idMorale,
-        //           status: widget.status,
-        //           moraleName: widget.moraleName,
-        //           startDate: widget.startDate,
-        //           endDate: widget.endDate,
-        //           moraleStatus: widget.moraleStatus,
-        //           moraleType: widget.moraleType,
-        //           questionTopic: widget.questionTopic,
-        //       )),
-        //     );
-        // }
-        Navigator.of(context).push(
-          MaterialPageRoute(builder: (context) => YearQuestion(
-            idMoraleParticipant: widget.idMoraleParticipant,
-            idEmployee: widget.idEmployee,
-            idMorale: widget.idMorale,
-            status: widget.status,
-            moraleName: widget.moraleName,
-            startDate: widget.startDate,
-            endDate: widget.endDate,
-            moraleStatus: widget.moraleStatus,
-            moraleType: widget.moraleType,
-            questionTopic: widget.questionTopic,
-          )),
-        );
+          if(widget.status == "incomplete"){
+            Navigator.of(context).push(
+              MaterialPageRoute(builder: (context) => YearQuestion(
+                  idMoraleParticipant: widget.idMoraleParticipant,
+                  idEmployee: widget.idEmployee,
+                  idMorale: widget.idMorale,
+                  status: widget.status,
+                  moraleName: widget.moraleName,
+                  startDate: widget.startDate,
+                  endDate: widget.endDate,
+                  moraleStatus: widget.moraleStatus,
+                  moraleType: widget.moraleType,
+                  questionTopic: widget.questionTopic,
+              )),
+            );
+        }
+        // Navigator.of(context).push(
+        //   MaterialPageRoute(builder: (context) => YearQuestion(
+        //     idMoraleParticipant: widget.idMoraleParticipant,
+        //     idEmployee: widget.idEmployee,
+        //     idMorale: widget.idMorale,
+        //     status: widget.status,
+        //     moraleName: widget.moraleName,
+        //     startDate: widget.startDate,
+        //     endDate: widget.endDate,
+        //     moraleStatus: widget.moraleStatus,
+        //     moraleType: widget.moraleType,
+        //     questionTopic: widget.questionTopic,
+        //   )),
+        // );
       },
       child: Container(
         width: MediaQuery.of(context).size.width*0.9,
