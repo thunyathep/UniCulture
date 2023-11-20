@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gradient_borders/gradient_borders.dart';
 import 'dart:math' as math;
+import 'package:percent_indicator/percent_indicator.dart';
+
 
 import '../../../../injection_container.dart';
 
@@ -177,7 +179,7 @@ class _DashBoardState extends State<DashBoard> {
                 child: Center(
                   child: Container(
                     width: MediaQuery.of(context).size.width*0.9,
-                    height: MediaQuery.of(context).size.height*0.65,
+                    height: MediaQuery.of(context).size.height*0.7,
                     decoration: BoxDecoration(
                       border: Border.all(
                         width: 1,
@@ -214,8 +216,103 @@ class _DashBoardState extends State<DashBoard> {
                         ),
                         Row(
                           children: [
-
+                            Padding(
+                              padding: EdgeInsets.only(
+                                top: MediaQuery.of(context).devicePixelRatio*2,
+                                left: MediaQuery.of(context).devicePixelRatio*8,
+                              ),
+                              child: InkWell(
+                                onTap: (){},
+                                child: Container(
+                                  width: MediaQuery.of(context).size.width*0.24,
+                                  height: MediaQuery.of(context).size.height*0.034,
+                                  decoration: BoxDecoration(
+                                    borderRadius: const BorderRadius.all(
+                                      Radius.circular(40),
+                                    ),
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(
+                                top: MediaQuery.of(context).devicePixelRatio*2,
+                                left: MediaQuery.of(context).devicePixelRatio*8,
+                              ),
+                              child: InkWell(
+                                onTap: (){},
+                                child: Container(
+                                  width: MediaQuery.of(context).size.width*0.4,
+                                  height: MediaQuery.of(context).size.height*0.034,
+                                  decoration: BoxDecoration(
+                                    borderRadius: const BorderRadius.all(
+                                      Radius.circular(40),
+                                    ),
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ),
+                            ),
                           ],
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(
+                            top: MediaQuery.of(context).devicePixelRatio*2,
+                            left: MediaQuery.of(context).devicePixelRatio*8,
+                          ),
+                          child: InkWell(
+                            onTap: (){},
+                            child: Container(
+                              width: MediaQuery.of(context).size.width*0.24,
+                              height: MediaQuery.of(context).size.height*0.034,
+                              decoration: BoxDecoration(
+                                borderRadius: const BorderRadius.all(
+                                  Radius.circular(40),
+                                ),
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(
+                            top: MediaQuery.of(context).devicePixelRatio*5
+                          ),
+                          child: Center(
+                            child: Column(
+                              children: [
+                                Text(
+                                    "November 2022",
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 26,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                Text(
+                                  "Total score : 68%",
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 22,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(
+                            left: MediaQuery.of(context).devicePixelRatio*12,
+                          ),
+                          child: Container(
+                            height: MediaQuery.of(context).size.height*0.32,
+                            width: MediaQuery.of(context).size.width*0.72,
+                            child: Image.asset(
+                              "assets/unicorn.png",
+                              fit: BoxFit.contain,
+                            ),
+                          ),
                         ),
                       ],
                     ),
