@@ -57,7 +57,7 @@ flutter_launcher_icons:
   android: "ic_launcher"
   ios: false
   remove_alpha_ios: true
-  image_path: "assets/logoUni.png"
+  image_path: "assets/uni_app_icon.png"
 
 
 dev_dependencies:

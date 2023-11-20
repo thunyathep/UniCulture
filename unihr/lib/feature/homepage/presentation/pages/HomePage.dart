@@ -10,6 +10,7 @@ import 'package:unihr/feature/activity/data/model/allactivity_model.dart';
 import 'package:unihr/feature/activity/presentation/bloc/activity_bloc.dart';
 import 'package:unihr/feature/activity/presentation/bloc/activity_event.dart';
 import 'package:unihr/feature/activity/presentation/bloc/activity_state.dart';
+import 'package:unihr/feature/dashboard/presentation/pages/dashboard.dart';
 import 'package:unihr/feature/heart/presentation/page/heart_transfer.dart';
 import 'package:unihr/feature/homepage/presentation/bloc/homepage_bloc.dart';
 import 'package:unihr/feature/homepage/presentation/bloc/homepage_event.dart';
@@ -893,9 +894,9 @@ class _HomePageState extends State<HomePage> {
                                 image: 'assets/360.png',
                                 pages: Evaluate()),
                             ButtonFeature(
-                                feature: "Manager\n\n",
+                                feature: "สุขภาพใจ\n\n",
                                 image: 'assets/manager.png',
-                                pages: NotReady()),
+                                pages: DashBoard()),
                             ButtonFeature(
                                 feature: "Admin\n\n",
                                 image: 'assets/admin.png',

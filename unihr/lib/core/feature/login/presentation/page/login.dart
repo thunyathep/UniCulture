@@ -323,12 +323,6 @@ class _LoginPageState extends State<LoginPage> {
                               }
                             },
                           ),
-                          Text(
-                            "version 1.0",
-                            style: GoogleFonts.kanit(
-                                fontSize: 17,
-                                color: Colors.black),
-                          ),
                           const SizedBox(
                             height: 5,
                           ),
