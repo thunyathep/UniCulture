@@ -1,4 +1,5 @@
-class DashboardEntity {
+
+class DashboardFilterEntity {
   int? idMorale;
   String? moraleName;
   DateTime? startDate;
@@ -9,7 +10,7 @@ class DashboardEntity {
   List<MoraleDepAvgAndBest>? moraleDepAvgAndBest;
   List<MoraleTopicAvgAndBest>? moraleTopicAvgAndBest;
 
-  DashboardEntity({
+  DashboardFilterEntity({
     this.idMorale,
     this.moraleName,
     this.startDate,
@@ -216,3 +217,135 @@ class Score {
     "negitivePerception": negitivePerception,
   };
 }
+
+class DashboardToJson {
+  int idMorale;
+  List<SelectedFilterToJson> selectedFilter;
+
+
+  DashboardToJson({
+    required this.idMorale,
+    required this.selectedFilter,
+  });
+
+
+  Map<String, dynamic> toJson() => {
+    "idMorale": idMorale,
+    "selectedFilter": selectedFilter,
+  };
+}
+
+
+
+class SelectedFilterToJson {
+  List<ItemList> itemList;
+  String key;
+  String label;
+
+  SelectedFilterToJson({
+    required this.itemList,
+    required this.key,
+    required this.label,
+  });
+
+
+  Map<String, dynamic> toJson() => {
+    "itemList": itemList,
+    "key": key,
+    "label": label,
+  };
+}
+
+
+class ItemList {
+  bool checked;
+  String text;
+  String value;
+
+  ItemList({
+    required this.checked,
+    required this.text,
+    required this.value,
+  });
+
+
+  Map<String, dynamic> toJson() => {
+    "checked": checked,
+    "text": text,
+    "value": value,
+  };
+}
+//
+// class Gender{
+//   List<itemGender> itemGender;
+//   String key;
+//   String label;
+//
+//   Gender({
+//     required this.itemGender,
+//     required this.key,
+//     required this.label,
+//   });
+//
+//   Map<String, dynamic> toJson() => {
+//     "itemList": itemGender,
+//     "key": key,
+//     "label": label,
+//   };
+// }
+//
+//
+//
+// class Generation{
+//   List<itemGeneration> itemGeneration;
+//   String key;
+//   String label;
+//
+//   Generation({
+//     required this.itemGeneration,
+//     required this.key,
+//     required this.label,
+//   });
+//
+//   Map<String, dynamic> toJson() => {
+//     "itemList": itemGeneration,
+//     "key": key,
+//     "label": label,
+//   };
+// }
+//
+// class JobLevel{
+//   List<itemJobLevel> itemJobLevel;
+//   String key;
+//   String label;
+//
+//   JobLevel({
+//     required this.itemJobLevel,
+//     required this.key,
+//     required this.label,
+//   });
+//
+//   Map<String, dynamic> toJson() => {
+//     "itemList": itemJobLevel,
+//     "key": key,
+//     "label": label,
+//   };
+// }
+//
+// class JobType{
+//   List<itemJobType> itemJobType;
+//   String key;
+//   String label;
+//
+//   JobType({
+//     required this.itemJobType,
+//     required this.key,
+//     required this.label,
+//   });
+//
+//   Map<String, dynamic> toJson() => {
+//     "itemList": itemJobType,
+//     "key": key,
+//     "label": label,
+//   };
+// }

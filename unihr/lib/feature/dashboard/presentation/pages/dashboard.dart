@@ -19,6 +19,7 @@ class _DashBoardState extends State<DashBoard> {
   // final FeedbackBloc _feedbackBloc = sl<FeedbackBloc>();
   // late List<FeedbackModel> listfeedback;
   int current = 0;
+  int progress = 0;
 
   List<String> items = [
     "MOUNTHLY",
@@ -179,7 +180,7 @@ class _DashBoardState extends State<DashBoard> {
                 child: Center(
                   child: Container(
                     width: MediaQuery.of(context).size.width*0.9,
-                    height: MediaQuery.of(context).size.height*0.7,
+                    height: MediaQuery.of(context).size.height*0.68,
                     decoration: BoxDecoration(
                       border: Border.all(
                         width: 1,
@@ -312,6 +313,40 @@ class _DashBoardState extends State<DashBoard> {
                               "assets/unicorn.png",
                               fit: BoxFit.contain,
                             ),
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(
+                            left: MediaQuery.of(context).devicePixelRatio * 12
+                          ),
+                          child: Text(
+                            "ผู้เข้าร่วมแบบประเมิน",
+                            style: TextStyle(
+                              fontSize: 20,
+                              color : Colors.black
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(
+                            top: MediaQuery.of(context).devicePixelRatio*3.2,
+                            left: MediaQuery.of(context).devicePixelRatio*8,
+                          ),
+                          child: LinearPercentIndicator(
+                            width: MediaQuery.of(context).size.width * 0.75,
+                            animation: true,
+                            lineHeight: 20.0,
+                            animationDuration: 900,
+                            percent: 0.8,
+                            linearGradient: LinearGradient(
+                              end: Alignment.centerRight,
+                              begin: Alignment.centerLeft,
+                              colors: [
+                                Color(0xffF04E75),
+                                Color(0xffFBA77B),
+                              ],
+                            ),
+                            barRadius: Radius.circular(16),
                           ),
                         ),
                       ],

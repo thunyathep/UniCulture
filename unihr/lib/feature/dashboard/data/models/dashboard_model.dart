@@ -6,7 +6,7 @@ List<DashboardModel> dashboardFromJson(String str) => List<DashboardModel>.from(
 
 String dashboardToJson(List<DashboardModel> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
-class DashboardModel extends DashboardEntity {
+class DashboardModel extends DashboardFilterEntity {
   DashboardModel({
     required int idMorale,
     required String moraleName,
