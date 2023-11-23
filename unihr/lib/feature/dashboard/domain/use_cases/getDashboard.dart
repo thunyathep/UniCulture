@@ -8,6 +8,6 @@ class GetDashboardUsecase {
 
   GetDashboardUsecase(this.dashBoardRepositories);
 
-  Future<Either<Failures, List<DashboardFilterEntity>>> execute() async =>
+  Future<Either<Failures, List<DashboardEntity>>> execute() async =>
       await dashBoardRepositories.getDashBoard();
 }

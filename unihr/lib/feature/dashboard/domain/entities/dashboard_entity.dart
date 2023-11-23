@@ -1,3 +1,23 @@
+class DashboardEntity {
+  int? idMorale;
+  String? moraleName;
+  DateTime? startDate;
+  DateTime? endDate;
+  String? moraleStatus;
+  String? moraleType;
+
+  DashboardEntity({
+    this.idMorale,
+    this.moraleName,
+    this.startDate,
+    this.endDate,
+    this.moraleStatus,
+    this.moraleType,
+  });
+
+  @override
+  List<Object?> get prop => [];
+}
 
 class DashboardFilterEntity {
   int? idMorale;

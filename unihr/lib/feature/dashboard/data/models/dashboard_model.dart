@@ -2,12 +2,55 @@ import 'dart:convert';
 
 import '../../domain/entities/dashboard_entity.dart';
 
-List<DashboardModel> dashboardFromJson(String str) => List<DashboardModel>.from(json.decode(str).map((x) => DashboardModel.fromJson(x)));
 
-String dashboardToJson(List<DashboardModel> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
+List<DashboardModel> dashboardModelFromJson(String str) => List<DashboardModel>.from(json.decode(str).map((x) => DashboardModel.fromJson(x)));
 
-class DashboardModel extends DashboardFilterEntity {
+String dashboardModelToJson(List<DashboardModel> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
+
+class DashboardModel extends  DashboardEntity {
+  final int idMorale;
+  final String moraleName;
+  final DateTime startDate;
+  final DateTime endDate;
+  final String moraleStatus;
+  final String moraleType;
+
   DashboardModel({
+    required this.idMorale,
+    required this.moraleName,
+    required this.startDate,
+    required this.endDate,
+    required this.moraleStatus,
+    required this.moraleType,
+  });
+
+  factory DashboardModel.fromJson(Map<String, dynamic> json) => DashboardModel(
+    idMorale: json["idMorale"],
+    moraleName: json["moraleName"],
+    startDate: DateTime.parse(json["startDate"]),
+    endDate: DateTime.parse(json["endDate"]),
+    moraleStatus: json["moraleStatus"],
+    moraleType: json["moraleType"],
+  );
+
+  Map<String, dynamic> toJson() => {
+    "idMorale": idMorale,
+    "moraleName": moraleName,
+    "startDate": startDate.toIso8601String(),
+    "endDate": endDate.toIso8601String(),
+    "moraleStatus": moraleStatus,
+    "moraleType": moraleType,
+  };
+}
+
+
+
+List<DashboardFilterModel> dashboardFromJson(String str) => List<DashboardFilterModel>.from(json.decode(str).map((x) => DashboardFilterModel.fromJson(x)));
+
+String dashboardFilterToJson(List<DashboardFilterModel> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
+
+class DashboardFilterModel extends DashboardFilterEntity {
+  DashboardFilterModel({
     required int idMorale,
     required String moraleName,
     required DateTime startDate,
@@ -29,7 +72,7 @@ class DashboardModel extends DashboardFilterEntity {
     moraleTopicAvgAndBest : moraleTopicAvgAndBest,
   );
 
-  factory DashboardModel.fromJson(Map<String, dynamic> json) => DashboardModel(
+  factory DashboardFilterModel.fromJson(Map<String, dynamic> json) => DashboardFilterModel(
     idMorale: json["idMorale"],
     moraleName: json["moraleName"],
     startDate: json["startDate"],
