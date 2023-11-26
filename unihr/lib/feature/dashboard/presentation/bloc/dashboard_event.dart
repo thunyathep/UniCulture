@@ -5,8 +5,13 @@ abstract class DashboardEvent extends Equatable{
 }
 
 class GetDashBoard extends DashboardEvent{
-  int status;
-  GetDashBoard(this.status);
+  GetDashBoard();
+  @override
+  List<Object> get props => [];
+}
+
+class GetDashBoardCompare extends DashboardEvent{
+  GetDashBoardCompare();
   @override
   List<Object> get props => [];
 }

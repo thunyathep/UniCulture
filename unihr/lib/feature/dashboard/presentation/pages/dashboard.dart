@@ -3,6 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gradient_borders/gradient_borders.dart';
 import 'dart:math' as math;
 import 'package:percent_indicator/percent_indicator.dart';
+import 'package:unihr/feature/dashboard/data/models/dashboard_model.dart';
+import 'package:unihr/feature/dashboard/presentation/bloc/dashboard_bloc.dart';
+import 'package:unihr/feature/dashboard/presentation/bloc/dashboard_event.dart';
 
 
 import '../../../../injection_container.dart';
@@ -16,8 +19,8 @@ class DashBoard extends StatefulWidget {
 }
 
 class _DashBoardState extends State<DashBoard> {
-  // final FeedbackBloc _feedbackBloc = sl<FeedbackBloc>();
-  // late List<FeedbackModel> listfeedback;
+  final DashboardBloc _dashboardBloc = DashboardBloc();
+  late List<DashboardModel> listdashboard;
   int current = 0;
   int progress = 0;
 
@@ -28,6 +31,7 @@ class _DashBoardState extends State<DashBoard> {
 
   @override
   void initState() {
+    _dashboardBloc.add(GetDashBoard());
     super.initState();
   }
 
@@ -35,6 +39,7 @@ class _DashBoardState extends State<DashBoard> {
 
   @override
   void dispose() {
+    _dashboardBloc.close();
     super.dispose();
     _isDisposed = true;
   }
