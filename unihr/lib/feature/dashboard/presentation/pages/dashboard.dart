@@ -9,6 +9,7 @@ import 'package:unihr/feature/dashboard/presentation/bloc/dashboard_event.dart';
 
 
 import '../../../../injection_container.dart';
+import '../../domain/entities/dashboard_entity.dart';
 
 class DashBoard extends StatefulWidget {
   const DashBoard({Key? key}) : super(key: key);
@@ -21,6 +22,13 @@ class DashBoard extends StatefulWidget {
 class _DashBoardState extends State<DashBoard> {
   final DashboardBloc _dashboardBloc = DashboardBloc();
   late List<DashboardModel> listdashboard;
+  late ItemList itemList;
+  final List<ItemList> itemgender = [];
+  final List<ItemList> itemgeneration = [];
+  final List<ItemList> itemjoblvl = [];
+  final List<ItemList> itemjobtype = [];
+
+
   int current = 0;
   int progress = 0;
 
@@ -28,10 +36,22 @@ class _DashBoardState extends State<DashBoard> {
     "MOUNTHLY",
     "5Q COMPARISON",
   ];
+  
 
   @override
   void initState() {
     _dashboardBloc.add(GetDashBoard());
+    itemList = ItemList(
+        checked: false, text: "Female", value: "gender = 'F'"
+    );
+    itemgender.add(itemList);
+    itemList = ItemList(checked: false, text: "Male", value: "gender = 'M'"
+    );
+    itemgender.add(itemList);
+    itemList = ItemList(
+        checked: false, text: "Baby Boomer", value: "YEAR(birthDate) BETWEEN 1946 AND 1964"
+    );
+    itemgeneration.add(itemList);
     super.initState();
   }
 
