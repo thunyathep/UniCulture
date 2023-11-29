@@ -4,6 +4,9 @@ import 'package:unihr/core/error/failure.dart';
 import 'package:unihr/feature/dashboard/data/data_sources/remote/dashboard_remote.dart';
 import 'package:unihr/feature/dashboard/data/models/dashboard_model.dart';
 import 'package:unihr/feature/dashboard/domain/repositories/dashboard_repositor.dart';
+import 'package:unihr/feature/dashboard/domain/use_cases/getDashboardFilter.dart';
+
+import '../../domain/entities/dashboard_entity.dart';
 
 
 
@@ -22,17 +25,19 @@ class DashBoardRepositoryImpl implements DashBoardRepositories{
     }
   }
 
-  // @override
-  // Future<Either<Failures, void>> answerQuestionThreeSixty(
-  //     List<AnswerQuestionToJson> answerList,
-  //     )async{
-  //   try{
-  //     final data = await threeSixty_remote.AnswerQuestionThreeSixty(
-  //         answerList
-  //     );
-  //     return Right(data);
-  //   } on SeverException {
-  //     return left(ServerFailure());
-  //   }
-  // }
+  @override
+  Future<Either<Failures, void>> getDashboardFilter(
+      int idMorale,
+      List<SelectedFilterToJson> selectedFilter,
+      )async{
+    try{
+      final data = await dashboard_remote.getDashboardFilter(
+          idMorale,
+          selectedFilter
+      );
+      return Right(data);
+    } on SeverException {
+      return left(ServerFailure());
+    }
+  }
 }

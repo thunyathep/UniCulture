@@ -5,9 +5,14 @@ import 'package:unihr/core/error/failure.dart';
 import 'package:unihr/feature/dashboard/data/models/dashboard_model.dart';
 
 import '../../../../../core/storage/secure_storage.dart';
+import '../../../domain/entities/dashboard_entity.dart';
 
 abstract class Dashboard_remote{
   Future<List<DashboardModel>> getDashboard();
+  Future<void> getDashboardFilter(
+      int idMorale,
+      List<SelectedFilterToJson> selectedFilter,
+      );
 }
 
 class Dashboard_remoteImpl implements Dashboard_remote {
@@ -37,28 +42,31 @@ class Dashboard_remoteImpl implements Dashboard_remote {
     }
   }
 
-  // @override
-  // Future<void> getDashboardFilter(
-  //     List<AnswerQuestionToJson> answerList,
-  //     ) async {
-  //   final url = Uri.parse(
-  //       "https://uniculture-371814.as.r.appspot.com/api/morale-kpi");
-  //   final response = await httpClient.post(url,
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //       'Accept': 'application/json',
-  //       'x-access-token': '${await LoginStorage.readToken()}',
-  //     },
-  //     body: jsonEncode(
-  //         answerList
-  //     ),
-  //   );
-  //   print(response.statusCode);
-  //   if (response.statusCode == 201) {
-  //     log("Answer ThreeSixty Success");
-  //   } else {
-  //     log("Answer ThreeSixty UnSuccess");
-  //     throw ServerFailure();
-  //   }
-  // }
+  @override
+  Future<void> getDashboardFilter(
+      int idMorale,
+      List<SelectedFilterToJson> selectedFilter,
+      ) async {
+    final url = Uri.parse(
+        "https://uniculture-371814.as.r.appspot.com/api/morale-kpi");
+    final response = await httpClient.post(url,
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'x-access-token': '${await LoginStorage.readToken()}',
+      },
+      body: jsonEncode({
+        "idMorale" : idMorale,
+        "selectedFilter" : selectedFilter,
+      }),
+    );
+    print(response.statusCode);
+    if (response.statusCode == 201) {
+      log("Success");
+    } else {
+      log("UnSuccess");
+      throw ServerFailure();
+    }
+  }
+
 }

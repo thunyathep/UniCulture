@@ -24,6 +24,8 @@ class _DashBoardState extends State<DashBoard> {
   late List<DashboardModel> listdashboard;
   late ItemList itemList;
   late SelectedFilterToJson selectedFilterToJson;
+  late DashboardToJson dashboardToJson;
+  final List<DashboardToJson> datafilter = [];
   final List<SelectedFilterToJson> selectedFilter = [];
   final List<ItemList> itemgender = [];
   final List<ItemList> itemgeneration = [];
@@ -143,7 +145,11 @@ class _DashBoardState extends State<DashBoard> {
     );
     selectedFilter.add(selectedFilterToJson);
 
-    print(selectedFilter);
+    dashboardToJson = DashboardToJson(
+        idMorale: 2,
+        selectedFilter: selectedFilter
+    );
+
     super.initState();
 
   }
