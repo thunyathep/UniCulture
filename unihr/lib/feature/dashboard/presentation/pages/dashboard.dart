@@ -23,6 +23,8 @@ class _DashBoardState extends State<DashBoard> {
   final DashboardBloc _dashboardBloc = DashboardBloc();
   late List<DashboardModel> listdashboard;
   late ItemList itemList;
+  late SelectedFilterToJson selectedFilterToJson;
+  final List<SelectedFilterToJson> selectedFilter = [];
   final List<ItemList> itemgender = [];
   final List<ItemList> itemgeneration = [];
   final List<ItemList> itemjoblvl = [];
@@ -52,7 +54,98 @@ class _DashBoardState extends State<DashBoard> {
         checked: false, text: "Baby Boomer", value: "YEAR(birthDate) BETWEEN 1946 AND 1964"
     );
     itemgeneration.add(itemList);
+    itemList = ItemList(
+        checked: false, text: "Generation X", value: "YEAR(birthDate) BETWEEN 1965 AND 1980"
+    );
+    itemgeneration.add(itemList);
+    itemList = ItemList(
+        checked: false, text: "Generation Y", value: "YEAR(birthDate) BETWEEN 1981 AND 1996"
+    );
+    itemgeneration.add(itemList);
+    itemList = ItemList(
+        checked: false, text: "Generation Z", value: "YEAR(birthDate) BETWEEN 1997 AND 2012"
+    );
+    itemgeneration.add(itemList);
+    itemList = ItemList(
+        checked: false, text: "Alpha", value: "YEAR(birthDate) BETWEEN 2013 AND 2025"
+    );
+    itemgeneration.add(itemList);
+    itemList = ItemList(
+        checked: false, text: "O0", value: "plESOP = 'O0'"
+    );
+    itemjoblvl.add(itemList);
+    itemList = ItemList(
+        checked: false, text: "O3", value: "plESOP = 'O3'"
+    );
+    itemjoblvl.add(itemList);
+    itemList = ItemList(
+        checked: false, text: "O4", value: "plESOP = 'O4'"
+    );
+    itemjoblvl.add(itemList);
+    itemList = ItemList(
+        checked: false, text: "O5", value: "plESOP = 'O5'"
+    );
+    itemjoblvl.add(itemList);
+    itemList = ItemList(
+        checked: false, text: "S1", value: "plESOP = 'S1'"
+    );
+    itemjoblvl.add(itemList);
+    itemList = ItemList(
+        checked: false, text: "S2", value: "plESOP = 'S2'"
+    );
+    itemjoblvl.add(itemList);
+    itemList = ItemList(
+        checked: false, text: "S3", value: "plESOP = 'S3'"
+    );
+    itemjoblvl.add(itemList);
+    itemList = ItemList(
+        checked: false, text: "S4", value: "plESOP = 'S4'"
+    );
+    itemjoblvl.add(itemList);
+    itemList = ItemList(
+        checked: false, text: "M1", value: "plESOP = 'M1'"
+    );
+    itemjoblvl.add(itemList);
+    itemList = ItemList(
+        checked: false, text: "M2", value: "plESOP = 'M2'"
+    );
+    itemjoblvl.add(itemList);
+    itemList = ItemList(
+        checked: false, text: "M3", value: "plESOP = 'M3'"
+    );
+    itemjoblvl.add(itemList);
+    itemList = ItemList(
+        checked: false, text: "Permanent Employee", value: "employeeGroupCode = 'B'"
+    );
+    itemjobtype.add(itemList);
+    itemList = ItemList(
+        checked: false, text: "Contract Employee", value: "employeeGroupCode = 'C'"
+    );
+    itemjobtype.add(itemList);
+
+    selectedFilterToJson = SelectedFilterToJson(
+        itemList: itemgender, key: "gender", label: "Gender"
+    );
+    selectedFilter.add(selectedFilterToJson);
+
+    selectedFilterToJson = SelectedFilterToJson(
+        itemList: itemgender, key: "generation", label: "Generation"
+    );
+    selectedFilter.add(selectedFilterToJson);
+
+    selectedFilterToJson = SelectedFilterToJson(
+        itemList: itemgender, key: "jobLevel", label: "Job Level"
+    );
+    selectedFilter.add(selectedFilterToJson);
+
+    selectedFilterToJson = SelectedFilterToJson(
+        itemList: itemgender, key: "jobType", label: "Job Type"
+    );
+    selectedFilter.add(selectedFilterToJson);
+
+    print(selectedFilter);
     super.initState();
+
   }
 
   bool _isDisposed = false;
